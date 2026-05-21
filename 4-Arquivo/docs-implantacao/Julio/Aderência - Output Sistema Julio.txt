@@ -1,0 +1,313 @@
+Nome do formulário: Analise de Aderência - OrionREG (TDPJ)
+Data da resposta: 18/05/2026, 10:23:56
+Respostas: FORMULÁRIO: Analise de Aderência - OrionREG (TDPJ)
+Data/Hora: 18/05/2026, 10:23:56
+
+── IDENTIFICAÇÃO ──
+Sistema a implantar: OrionREG (TDPJ)
+Cidade da serventia: Catanduva
+Responsável pela análise: Júlio Araujo
+
+——— Responsável pelo Preenchimento ———
+
+Nome completo:
+Matheus Nicolosi
+
+Cargo/Função:
+Escrevente
+
+E-mail:
+contato@primeiroregistrocatanduva.com.br
+
+Telefone/WhatsApp:
+17-35317474/17-992057370
+
+Data do Preenchimento:
+16/04/2026
+
+——— Estrutura Física e Organizacional ———
+
+Quantos andares possui a serventia?:
+2
+
+Observação:
+Térreo e 1º andar.
+
+——— Distribuição por setores ———
+
+Quais setores existem no estabelecimento?:
+Balcão de atendimento, Recepção, Setor de Registro, Financeiro, Digitalização
+
+Como os setores estão distribuídos nos andares?:
+Térreo: atendimento, recepção, administrativo, RH, setor de registro, digitalização; 1º andar: arquivos.
+
+Observação:
+—
+
+——— Estrutura de colaboradores ———
+
+Quantidade de colaboradores por setor:
+1 administrativo/financeiro, 1 RH, 2 TDPJ, 4 recepção, 17 registro de imóveis
+
+Quantidade total de colaboradores:
+22
+
+Todos os colaboradores estão cientes da mudança do sistema?:
+Não
+
+Como a equipe lida com mudanças ou sistemas novos?:
+Aprende com facilidade
+
+Observação:
+total de 25 colaboradores
+
+——— Recepção de Título e Certidões ———
+
+Como os protocolos são separados?:
+Separados por tipo (TD, PJ, Certidão)
+
+Quais os outros tipos?:
+—
+
+Ainda são gerados protocolos nesse grupos?:
+Sim
+
+Como funciona a sequência dos protocolos:
+Cada tipo (TD, PJ, Certidão) tem sua própria numeração
+
+Observação:
+—
+
+Como é realizado o controle de prazos?:
+Dias úteis
+
+Qual o formato da impressão do protocolo do título/certidão?:
+A4
+
+Quantas vias são impressas?:
+2 vias
+
+É informado mais de um contato para o apresentante?:
+Sim
+
+Como controla a devolução de saldo parado há mais de 60 dias nos protocolos?:
+Controla por por fora
+
+——— Custas ———
+
+A prévia de custas é realizada antes da impressão do protocolo para a parte?:
+Sim
+
+Existem regras de registro que associam custas às naturezas dos títulos?:
+Sim
+
+Observação:
+—
+
+——— Qualificação das partes ———
+
+Em que momento é realizada a qualificação das partes?:
+Em momento posterior
+
+Lança algum dado específico para as partes?:
+Sim
+
+Qual dado especifico lança?:
+Nome, nacionalidade, profissão, estado civil, RG, CPF, endereço de residência/domicílio
+
+Observação:
+—
+
+——— Movimentação Financeira ———
+
+Como realiza a cobrança de depósito?:
+Recebe valor total do título na recepção
+
+Como é realizado o envio de solicitação de complemento?:
+Telefone
+
+Como devolve eventual saldo para o cliente?:
+Cheque Cartório
+
+Observação:
+—
+
+——— Devolução ———
+
+Como controla a sequência de notas devolutivas/exigências?:
+Numeração crescente indefinida
+
+Observação:
+—
+
+——— Registro ———
+
+Como realiza o controle de sequência de registros:
+Numeração sequencial crescente indefinida
+
+Como realiza o controle de sequência dos registros de Guarda e Conservação?:
+Numeração sequencial crescente indefinida
+
+Possui matrículas de PJ no livro B (rádios, jornais, periódicos, etc)?:
+Sim
+
+Como realiza o controle da numeração das averbações?:
+Sequência numérica crescente para aquele registro: exemplo: 01/5022, 02/5022etc.
+
+Como realiza o controle da numeração dos microfilmes:
+Mesmo número do protocolo
+
+Lança algum tipo de informação adicional para o registro?:
+Não
+
+Se "SIM", qual?:
+—
+
+Existe algum controle para os registros fora do sistema?:
+Não
+
+Se "SIM", qual?:
+—
+
+Utiliza etiqueta?:
+Não
+
+Realiza registro em lote?:
+Não
+
+Existem registros RETROATIVOS em grupos diferentes de TD e PJ?:
+Não
+
+Ainda realiza digitação dos indicadores para registros RETROATIVOS?:
+Não
+
+Possui cadastro de Empresas/PJs preenchido no sistema com o encadeamento das averbações, poderes, representação etc.?:
+Sim
+
+Observação:
+—
+
+——— Notificações ———
+
+Como realiza o controle da sequência das certificações?:
+Mesmo número do registro
+
+Realiza impressão da carta de convocação em lote?:
+Sim
+
+Como segue o fluxo para notificações?:
+impressão da carta de convocação, inclusão das diligências e impressão da certificação positiva/negativa
+
+Como seria "outra" forma?:
+—
+
+Existe algum tipo de documento especifico que realiza impressão para notifiações?:
+Sim
+
+Se "SIM" qual?:
+recibo de notificação
+
+Observação:
+—
+
+——— Certidões ———
+
+Como realiza o controle de sequencia das certidões:
+Sequencia única. Ex.: 1 TD, 2 PJ
+
+Como realiza emissão das certidões?:
+Pelo sistema
+
+Possui modelos de certidões em alguma ferramenta especifica? :
+Word
+
+Observação:
+—
+
+——— Imagens ———
+
+Em qual momento digitaliza os documentos:
+Em outro momento
+
+Quais pastas são digitalizadas e de que forma os arquivos dentro delas são organizados para facilitar a busca?:
+Todos os documentos são digitalizados no GED
+Registros TD: Numero de protocolo, numero do registro, data do registro e numero de averbação
+Registros PJ: Numero de protocolo, numero do registro, data do registro e numero de averbação
+Ofícios recebidos e encaminhados: Numero de cadastro no sistema Reg (RI).
+
+
+Informe o caminho do servidor onde as imagens estão armazenadas.:
+Não há imagens armazenadas fora do GED.
+
+São gerados volumes de imagens mensais ou periódicos para a confecção de microfilmes?:
+Sim
+
+Observação:
+Todos os documentos de TDPJ são digitalizados no GED
+
+——— Relatórios ———
+
+Quais relatórios utiliza diariamente?:
+Financeiro
+
+O Protocolo Oficial :
+Ainda realiza a impressão
+
+Observação:
+—
+
+——— Central ONRTDPJ ———
+
+Como é a divisão das rotinas entre os colaboradores?:
+TDPJ: Todos responsáveis por todos os protocolos de TD, PJ, certidão, e ONRTDPJ
+
+Quais são os serviços que serventia mais recebe pela central?:
+Notificação, registros de cédulas de crédito e atas de condomínio e de associações
+
+Descreva como é realizado o tratamento dos protocolos da central: o registro é feito imediatamente ou somente após o pagamento do orçamento?:
+O registro é feito somente após o pagamento do orçamento
+
+Observação:
+—
+
+——— Financeiro ———
+
+Como é realizado o fechamento do caixa?:
+Final do expediente se fecha o caixa individualmente, conferindo todo o valor de entrada e saída, conforme planilha feita no excel por cada recepcionista, e no início do dia seguinte se faz a conferência de todos os caixas através da listagem do caixa.
+
+Quais relatórios são utilizados para realizar os recolhimentos/repasses?:
+Listagem de Recolhimento Diária, Listagem para recolhimentos das custas, relatório PEX, resumo dos recolhimentos por periodo.
+
+Há algum tipo de controle realizado fora do sistema?:
+Planilha
+
+Realiza auditoria de selo digital?:
+Não realiza auditoria, apenas confere na listagem no momento do recolhimento
+
+Como realiza o controle do Livro Caixa?:
+Outro
+
+Utiliza o Parcela Express?:
+Sim
+
+É gerado RPS para a emissão de nota fiscal?:
+Não
+
+Observação:
+Os valores de entrada e saída de cada protocolo é feito diariamente em planilha no excel, para fechamento do caixa no final do dia.
+
+——— Comunicações ———
+
+Como é realizada a comunicação com o COAF?:
+Pelo site do SISCOAF
+
+A serventia dispõe de um site institucional?:
+Siplan
+
+Caso a serventia possua site, há integração com o sistema para disponibilização de consultas de protocolos ou certidões?:
+Sim
+
+——— Informações adicionais ———
+
+Se houver alguma particularidade dos processos não abordada nas perguntas anteriores, descreva-a abaixo.:
+—
