@@ -11,7 +11,7 @@ O Siplan Hub é a plataforma central de gestão operacional interna da Siplan, s
 
 ## Dinâmicas e Desafios de Uso
 - **Alimentação Centralizada:** Atualmente, o Hub é alimentado quase exclusivamente por um único responsável, atuando como um "hub humano" de informações vindas de Email, Teams e WhatsApp.
-- **Falta de Cultura de Uso:** As equipes técnicas e comerciais ainda não utilizam o Hub como fonte primária de atualização, gerando defasagem entre o sistema e a realidade.
+- **Falta de Cultura de Uso:** As equipes técnicas e comerciais ainda não utilizam o Hub como fonte primária de atualização, gerando defasagem entre o sistema e a realidade. Veja o mapeamento de uso em [[[Hub] Estrutura de Telas e Diagnóstico de Uso]].
 - **Potencial de Indicadores:** O Hub possui indicadores de faróis e tempo de demora, mas carece de algoritmos de **previsibilidade de risco** para datas agendadas.
 
 ## Módulos e Tecnologias

@@ -1,5 +1,6 @@
 [
   "terminal",
   "calendar",
-  "templater-obsidian"
+  "templater-obsidian",
+  "obsidian-git"
 ]
