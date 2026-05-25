@@ -16,6 +16,7 @@ O Siplan Hub é a plataforma central de gestão operacional interna da Siplan, s
 
 ## Módulos e Tecnologias
 - [[[Processo] Mapeamento AS-IS e TO-BE do Siplan Hub]] *(Estratégia Definitiva de Adoção)*
+- [[[Hub] Mapeamento Prático e Funcional do Sistema]] *(Análise Detalhada de Telas e Fluxos)*
 - [[[Hub] Dashboard e Visão Estratégica]]
 - [[[Hub] Gestão de Implantação]]
 - [[[Hub] Conversão de Projetos]]
