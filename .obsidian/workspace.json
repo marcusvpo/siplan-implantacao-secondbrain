@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "3-Recursos/00 - Inbox/Questionario_ASIS_TOBE_Siplan_Hub.md",
+                "file": "3-Recursos/00 - Inbox/Análise Transição e Aderência.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Questionario_ASIS_TOBE_Siplan_Hub"
+              "title": "Análise Transição e Aderência"
             }
           }
         ]
@@ -78,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 283.5,
-    "collapsed": true
+    "width": 283.5
   },
   "right": {
     "id": "68a27932085be794",
@@ -199,16 +198,21 @@
   },
   "active": "0ac918d83b92a0d6",
   "lastOpenFiles": [
-    "3-Recursos/00 - Inbox/Relatorio_Transformacao_Implantacao_2026.md",
-    "2-Áreas/Implantação Funcional/[Oportunidade] Evolução e Rollout do Hub.md",
+    "3-Recursos/00 - Inbox/Analise_Process_Architect_AI.md",
+    "3-Recursos/00 - Inbox/Análise Transição e Aderência.md",
+    "3-Recursos/00 - Inbox/CONHECIMENTO GERAL - SIPLAN & IMPLANTAÇÃO.md",
+    "3-Recursos/00 - Inbox/DETALHAMENTO SIPLAN HUB.md",
+    "3-Recursos/00 - Inbox/Diagnostico_Bruto_Vault.md",
+    "3-Recursos/00 - Inbox/Siplan e o Mercado de Cartórios no Brasil - Perfil, Desafios e Oportunidades em Sistemas e Tecnologia.md",
     "3-Recursos/00 - Inbox/Questionario_ASIS_TOBE_Siplan_Hub.md",
+    "3-Recursos/00 - Inbox/Relatorio_Transformacao_Implantacao_2026.md",
+    "3-Recursos/00 - Inbox/Sabotagem_do_Conhecimento.md",
+    "2-Áreas/Siplan Hub/MOC - Siplan Hub.md",
+    "2-Áreas/Siplan Hub/[Processo] Mapeamento AS-IS e TO-BE do Siplan Hub.md",
+    "2-Áreas/Implantação Funcional/[Oportunidade] Evolução e Rollout do Hub.md",
     "2-Áreas/Siplan Hub/[Hub] Estrutura de Telas e Diagnóstico de Uso.md",
     "3-Recursos/00 - Inbox/Questionário Investigação.md",
-    "3-Recursos/00 - Inbox/Diagnostico_Bruto_Vault.md",
-    "3-Recursos/00 - Inbox/Sabotagem_do_Conhecimento.md",
-    "3-Recursos/00 - Inbox/Análise Transição e Aderência.md",
     "2-Áreas/Implantação Funcional/MOC - Fluxo de Implantação.md",
-    "3-Recursos/00 - Inbox/Analise_Process_Architect_AI.md",
     "Sem título.canvas",
     "4-Arquivo/[Gargalo/] Dúvidas Operacionais no Service Desk.md",
     "4-Arquivo/[Gargalo",
@@ -224,17 +228,12 @@
     "4-Arquivo/docs-implantacao/Vieira/Análise de aderência para implantação.docx",
     "4-Arquivo/docs-implantacao/Vieira",
     "4-Arquivo/docs-implantacao/Mizuno/Documento de transição de conhecimento implantação_1TNPT_PortoFeliz.pdf",
-    "3-Recursos/00 - Inbox/CONHECIMENTO GERAL - SIPLAN & IMPLANTAÇÃO.md",
     "4-Arquivo/Exemplo Output - Formulário de Implantação.md",
     "Agents/Agente de Processos Siplan/SKILL.md",
     "GEMINI.md",
     "2-Áreas/Siplan Hub/[Hub] Integrações e Automações n8n.md",
     "4-Arquivo/Detalhes do Chamado.md",
     "3-Recursos/Procedimentos e Manuais/[Regra] Cronograma e Virada por Sistema.md",
-    "2-Áreas/Implantação Funcional/[Processo] 4. Tratamento de Impedimentos da Análise de Aderência.md",
-    "3-Recursos/Procedimentos e Manuais/[Regra] Gates Condicionais de Início de Projeto.md",
-    "3-Recursos/Procedimentos e Manuais/Estrutura da Equipe e Especialidades.md",
-    "2-Áreas/Implantação Funcional/[Gargalo] Desafios da Operação Real.md",
-    "2-Áreas/Implantação Funcional/[Processo] 3. Análise de Aderência do Processo de Negócio.md"
+    "2-Áreas/Implantação Funcional/[Processo] 4. Tratamento de Impedimentos da Análise de Aderência.md"
   ]
 }

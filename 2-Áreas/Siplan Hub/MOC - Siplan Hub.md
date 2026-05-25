@@ -10,11 +10,12 @@ tags:
 O Siplan Hub é a plataforma central de gestão operacional interna da Siplan, substituindo fluxos descentralizados por um hub unificado para Implantação, Conversão, Comercial e Administração.
 
 ## Dinâmicas e Desafios de Uso
-- **Alimentação Centralizada:** Atualmente, o Hub é alimentado quase exclusivamente por um único responsável, atuando como um "hub humano" de informações vindas de Email, Teams e WhatsApp.
-- **Falta de Cultura de Uso:** As equipes técnicas e comerciais ainda não utilizam o Hub como fonte primária de atualização, gerando defasagem entre o sistema e a realidade. Veja o mapeamento de uso em [[[Hub] Estrutura de Telas e Diagnóstico de Uso]].
-- **Potencial de Indicadores:** O Hub possui indicadores de faróis e tempo de demora, mas carece de algoritmos de **previsibilidade de risco** para datas agendadas.
+- **Alimentação Centralizada e Adoção Realista:** Atualmente, o Hub é alimentado quase exclusivamente pela Implantação. O diagnóstico AS-IS/TO-BE concluiu que a estratégia correta **não é forçar a adoção da interface do Hub pelas equipes de campo (Comercial e Implantadores em viagem)**, pois isso geraria retrabalho. 
+- **O Hub como "Orquestrador Invisível":** Para as equipes externas, o Hub deve chegar até eles via integrações n8n/Outlook (notificações estruturadas). O uso ativo da interface fica restrito à equipe interna de gestão, fila técnica de Conversão e equipe de Modelos.
+- **Potencial de Indicadores:** O Hub possui indicadores de faróis e tempo de demora, com o foco em fornecer previsibilidade e métricas para a Gestão e Diretoria.
 
 ## Módulos e Tecnologias
+- [[[Processo] Mapeamento AS-IS e TO-BE do Siplan Hub]] *(Estratégia Definitiva de Adoção)*
 - [[[Hub] Dashboard e Visão Estratégica]]
 - [[[Hub] Gestão de Implantação]]
 - [[[Hub] Conversão de Projetos]]
