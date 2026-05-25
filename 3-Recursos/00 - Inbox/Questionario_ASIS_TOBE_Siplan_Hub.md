@@ -17,7 +17,7 @@ Preencha os campos abaixo de cada pergunta. Seja o mais detalhista possível nas
 
 ### Pergunta 1.1: O "Handoff" do Projeto
 *Atualmente, a tela "Form. Nova Implantação" não está liberada. Como a equipe comercial avisa a Implantação que um novo cliente foi fechado e quais são os requisitos técnicos/comerciais acordados? Como deveria ser esse ritual usando a nova tela do Hub?*
-* **[AS-IS] (Como é hoje):** 
+* **[AS-IS] (Quando o contrato é fechado, é aberto um chamado no 0800 e depois dos primeiros trâmites administrativos eles me passam esse chamado, aí entra na fila de implantações. Os requisitos são sempre variados de cliente para cliente, o Comercial sempre é responsável por negociar isso e pode acionar a Diretoria em casos específicos. ):** 
 * **[TO-BE] (Como deve ser no Hub):** 
 
 ### Pergunta 1.2: Gestão de Bloqueios e Saúde da Carteira
