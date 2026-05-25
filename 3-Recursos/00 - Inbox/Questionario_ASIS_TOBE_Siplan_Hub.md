@@ -82,7 +82,7 @@ Preencha os campos abaixo de cada pergunta. Seja o mais detalhista possível nas
 ### Pergunta 5.1: Consumo de Indicadores
 *Quando a diretoria quer saber "Como estão os projetos desse mês?", eles olham o Dashboard sozinhos ou te pedem um resumo no WhatsApp/Teams? Como deveria ser o consumo de relatórios no cenário ideal?*
 * **[AS-IS] (Eles olham diretamente no projeto individual em específico, os dashboards e relatórios também são pouco utilizados por eles. Eles acessam o hub de maneira mais pontual quando querem saber de alguma etapa específica de algum projeto.):** 
-* **[TO-BE] (Como deve ser no Hub):** 
+* **[TO-BE] (Esse processo fica a critério da Diretoria. Os relatórios e indicadores quem acompanha mais sou eu, porém vou incentiva-los a fazer esse acompanhamento também. No geral acredito que não deva ter nenhuma mudança de processo ou no HUB):** 
 
 ---
 
@@ -90,5 +90,7 @@ Preencha os campos abaixo de cada pergunta. Seja o mais detalhista possível nas
 
 ### Pergunta 6.1: Notificações e Gatilhos Ativos
 *Pensando em não forçar o usuário a abrir o Hub o tempo todo: quais processos/telas deveriam obrigatoriamente disparar e-mails/mensagens no Outlook ou WhatsApp (via n8n) para acionar as pessoas no momento exato em que elas precisam agir?*
-* **[AS-IS] (Como é hoje):** 
-* **[TO-BE] (Como deve ser no Hub):** 
+* **[AS-IS] (Atualmente só existe o disparo de e-mail para o Comercial referente a Infraestrutura inadequada.):** 
+* **[TO-BE] (Quero criar diversos tipo de notificações para disparar no e-mail (integração com Outlook) para os membros que eu selecionar. Por Exemplo:
+* - Disparo de e-mail para equipe de Conversão ao ser enviado uma Conversão para a fila (Acionamento junto ao ser clicado o botão "Enviar para Conversão")
+* - Ainda não tenho ideias de outros disparos porém quero ter ainda mais essa integração do HUB com Outlook, me ajude com isso.):** 
