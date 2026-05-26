@@ -11,14 +11,12 @@
             "id": "0ac918d83b92a0d6",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "3-Recursos/00 - Inbox/Análise Transição e Aderência.md",
-                "mode": "source",
-                "source": false
+                "file": "4-Arquivo/Siplan_Implantacao_Transformacao_Operacional_v2.pdf"
               },
-              "icon": "lucide-file",
-              "title": "Análise Transição e Aderência"
+              "icon": "lucide-file-text",
+              "title": "Siplan_Implantacao_Transformacao_Operacional_v2"
             }
           }
         ]
@@ -198,9 +196,10 @@
   },
   "active": "0ac918d83b92a0d6",
   "lastOpenFiles": [
+    "3-Recursos/00 - Inbox/Análise Transição e Aderência.md",
+    "4-Arquivo/Siplan_Implantacao_Transformacao_Operacional_v2.pdf",
     "2-Áreas/Siplan Hub/[Hub] Mapeamento Prático e Funcional do Sistema.md",
     "3-Recursos/00 - Inbox/Analise_Process_Architect_AI.md",
-    "3-Recursos/00 - Inbox/Análise Transição e Aderência.md",
     "3-Recursos/00 - Inbox/CONHECIMENTO GERAL - SIPLAN & IMPLANTAÇÃO.md",
     "3-Recursos/00 - Inbox/DETALHAMENTO SIPLAN HUB.md",
     "3-Recursos/00 - Inbox/Diagnostico_Bruto_Vault.md",
@@ -228,12 +227,10 @@
     "4-Arquivo/docs-implantacao/Vieira/Catalogo de Conversão - OrionTN.pdf",
     "4-Arquivo/docs-implantacao/Vieira/Análise de aderência para implantação.docx",
     "4-Arquivo/docs-implantacao/Vieira",
-    "4-Arquivo/docs-implantacao/Mizuno/Documento de transição de conhecimento implantação_1TNPT_PortoFeliz.pdf",
     "4-Arquivo/Exemplo Output - Formulário de Implantação.md",
     "Agents/Agente de Processos Siplan/SKILL.md",
     "GEMINI.md",
     "2-Áreas/Siplan Hub/[Hub] Integrações e Automações n8n.md",
-    "4-Arquivo/Detalhes do Chamado.md",
-    "3-Recursos/Procedimentos e Manuais/[Regra] Cronograma e Virada por Sistema.md"
+    "4-Arquivo/Detalhes do Chamado.md"
   ]
 }
