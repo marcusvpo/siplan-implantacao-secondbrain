@@ -17,12 +17,31 @@ Pontos Discutidos:
 ---
 Apresentação Etapas - Análise e Perguntas
 
-Análise de Aderência:
-- WebRI - Não existe o checklist e deverá ser criado
+Análise de Aderência: (Brainstorming)
+-  WebRI - Não existe o checklist e deverá ser criado
 - EU vou ficar responsável por atualizar o Checklist e padronizar por cada sistema. Quando houver atualizações a serem feitas, os Implantadores avisam no e-mail que foi identificado um novo ponto e eu adiciono no template padrão.
 - Padronização de perguntas com observações da estrutura do cartório, estrutura de setores e estrutura de pessoas. Pessoas com possíveis dificuldades ou resistências, verificar se todos funcionários estão cientes da mudança de sistema previamente.
 - Talvez modelo de aderência hibrida, onde o cliente preenche o formulário e o implantador acompanha e guia nas perguntas.
 - Criar um questionário genérico independente do sistema. Definir com o Comercial para eles mandarem esse questionário.
+
+-O que ficou definido:
+- Formulário técnico padronizado por sistema dentro da Etapa de Análise de Aderência no Siplan HUB que será acessado pelos implantadores. Questionário simples sobre a estruturação física do cartório, estrutura dos setores e de pessoas/funcionários.
+- Alinhar com o Comercial para deixar o cliente avisado que nossa equipe irá entrar em contato para realizar as Análises de Aderência e Infra - Deixar ciente que o cliente precisa ter uma pessoa específica e que tenha o conhecimento a disposição para ter esse contato com a nossa equipe.
+- Eu vou criar um formulário para cada sistema dentro do HUB, na etapa de Análise de Aderência terá um botão "Gerar Formulário de Aderência", que vai identificar qual o sistema relacionado ao projeto e criará o template a ser preenchido. Eu vou criar cada template de cada sistema com base nos documentos de análise de aderência atuais. Terá uma nova tela "Implantadores" e uma subtela "Editar Form. Aderência" , lá terá o editor do formulário de cada sistema para adicionar e atualizar novos pontos a serem analisados na aderência.
+
+Análise de Infraestrutura: (Brainstorming)
+- Análise de Infra não deve constar os periféricos - Deixar para a aderência (como scanners e impressoras)
+- Para o WEBRI, adicionar etapa de verificação de Domínio.
+- Ao invés de mandar no Teams o chamado para Análise de Infra, colocar um trâmite antes de fazer a passagem definindo quais são todos os sistemas contratados.
+- Casos do TI demorar nas respostas ou não deixam acessar, as vezes não estão nem cientes. Deverá ser melhor definido pelo Comercial de que nossa equipe irá fazer contato para essa análise.
+- Quando o levantamento for feito pelo TI, as informações devem serem preenchidas de acordo com a nossa planilha padrão. Ter um documento formal.
+- Confirmação se o servidor é local ou em nuvem.
+
+-O que ficou definido:
+- Atualizar planilha de Análise de Infra - Incluir confirmação se o servidor é em nuvem e se o link é redundante.
+- Conversão deve ser responsável por analisar o espaço em disco. Verificar com a equipe de Conversão sobre esse processo.
+- Antes da ida do analista deve ser feita uma checagem com o cliente se as adequações do ambiente, na semana interior da implantação, verificar se todas as adequações foram feitas com sucesso ou não.
+
 
 
 
