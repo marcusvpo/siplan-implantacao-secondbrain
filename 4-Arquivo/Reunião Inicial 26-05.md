@@ -15,9 +15,9 @@ Pontos Discutidos:
 - 90% das implantações o tabelião não acompanha a implantação. Nas implantações que o tabelião/oficial acompanha diretamente, a implantação flui extremamente melhor, com mais aproveitamento, mais aprendizado e menos resistência dos funcionários.
 - Muitas vezes os funcionários não quer aprender e tem uma resistência, mas quando vê o resultado e o beneficio final, fica surpreso. Talvez essa demonstração de valor, beneficios e ganhos operacionais sejam mostrados no início dos treinamentos.
 ---
-Apresentação Etapas - Análise e Perguntas
+# Apresentação Etapas - Análise e Perguntas
 
-Análise de Aderência: (Brainstorming)
+## Análise de Aderência: (Brainstorming)
 -  WebRI - Não existe o checklist e deverá ser criado
 - EU vou ficar responsável por atualizar o Checklist e padronizar por cada sistema. Quando houver atualizações a serem feitas, os Implantadores avisam no e-mail que foi identificado um novo ponto e eu adiciono no template padrão.
 - Padronização de perguntas com observações da estrutura do cartório, estrutura de setores e estrutura de pessoas. Pessoas com possíveis dificuldades ou resistências, verificar se todos funcionários estão cientes da mudança de sistema previamente.
@@ -29,7 +29,7 @@ Análise de Aderência: (Brainstorming)
 - Alinhar com o Comercial para deixar o cliente avisado que nossa equipe irá entrar em contato para realizar as Análises de Aderência e Infra - Deixar ciente que o cliente precisa ter uma pessoa específica e que tenha o conhecimento a disposição para ter esse contato com a nossa equipe.
 - Eu vou criar um formulário para cada sistema dentro do HUB, na etapa de Análise de Aderência terá um botão "Gerar Formulário de Aderência", que vai identificar qual o sistema relacionado ao projeto e criará o template a ser preenchido. Eu vou criar cada template de cada sistema com base nos documentos de análise de aderência atuais. Terá uma nova tela "Implantadores" e uma subtela "Editar Form. Aderência" , lá terá o editor do formulário de cada sistema para adicionar e atualizar novos pontos a serem analisados na aderência.
 
-Análise de Infraestrutura: (Brainstorming)
+## Análise de Infraestrutura: (Brainstorming)
 - Análise de Infra não deve constar os periféricos - Deixar para a aderência (como scanners e impressoras)
 - Para o WEBRI, adicionar etapa de verificação de Domínio.
 - Ao invés de mandar no Teams o chamado para Análise de Infra, colocar um trâmite antes de fazer a passagem definindo quais são todos os sistemas contratados.
@@ -39,8 +39,33 @@ Análise de Infraestrutura: (Brainstorming)
 
 -O que ficou definido:
 - Atualizar planilha de Análise de Infra - Incluir confirmação se o servidor é em nuvem e se o link é redundante.
-- Conversão deve ser responsável por analisar o espaço em disco. Verificar com a equipe de Conversão sobre esse processo.
+- Conversão deve ser responsável por analisar o espaço em disco. Verificar com a equipe de Conversão sobre esse processo. (Definiu que vai ficar na análise de aderência)
 - Antes da ida do analista deve ser feita uma checagem com o cliente se as adequações do ambiente, na semana interior da implantação, verificar se todas as adequações foram feitas com sucesso ou não.
+
+## Conversão: (Brainstorming)
+- Documento Formalização de Migração de Dados é feito um levantamento do que será convertido e o que não será convertido pela Siplan. 
+- Time de conversão faz o de - para na base de dados do cliente.
+- Trazer um resumo da conversão na hora da homologação para passar para os implantadores mostrando a quantidade de itens a serem convertidos
+- Implantadores fazer uma lista de todos os itens
+
+-O que ficou definido:
+- Criar esse documento de Formalização de Migração de Dados para o WEBRI, Orion PRO e Orion REG que ainda não tem, enviar o template para os Implantadores ajustarem com os itens dos sistemas que eles atendem em questão.
+- Verificar criação motor de conversão de imagens dos sistemas legados da Siplan para os sistemas Orion.
+- Criação de Conversor para o Orion GED.
+- Trazer para a análise de aderência um campo para informar essa questão do tamanho total (disco) ocupado pelas imagens atualmente no servidor do cliente.
+
+## Homologação: (Brainstoming)
+- Analistas gastam no mínimo umas 2 horas após a conversão ser liberada por conta de configurações e parametrizações. Ideia de já vir configurado.
+- Dump de base zerada Orion PRO vem sem dados de tabela de custas, parametros. Do Orion TN já vem com alguns dados. (Sistema instalador que o Kleverson e Diego estão criando talvez já vai resolver isso, vamos verificar amanhã)
+- Daniel relatou o ponto da segurança de subir a base já pré parametrizada, pode passar algo batido em clientes que algum parâmetro não seja o mesmo.
+
+-O que ficou definido:
+- Homologação deverá ter um tempo maior para homologação antes da semana da implantação.
+- 
+
+
+
+
 
 
 
@@ -50,4 +75,4 @@ Análise de Infraestrutura: (Brainstorming)
 Ideias Minhas (Brainstorming):
 - Disparo de e-mails para os implantadores ao finalizar e cadastrar análise de infra para eles verificarem e ficarem cientes
 - Aderência Orion PRO Mizuno - Verificar Possibilidade de Scripts para configurações e parametrizações com base nas respostas da Análise de Aderência.
-- 
+- Criação de Script para enviar ao TI do cartório e abrir em cada máquina, que faz uma coleta das informações do hardware e nos envia.
