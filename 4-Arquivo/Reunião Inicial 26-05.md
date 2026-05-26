@@ -19,8 +19,10 @@ Apresentação Etapas - Análise e Perguntas
 
 Análise de Aderência:
 - WebRI - Não existe o checklist e deverá ser criado
-- 
-
+- EU vou ficar responsável por atualizar o Checklist e padronizar por cada sistema. Quando houver atualizações a serem feitas, os Implantadores avisam no e-mail que foi identificado um novo ponto e eu adiciono no template padrão.
+- Padronização de perguntas com observações da estrutura do cartório, estrutura de setores e estrutura de pessoas. Pessoas com possíveis dificuldades ou resistências, verificar se todos funcionários estão cientes da mudança de sistema previamente.
+- Talvez modelo de aderência hibrida, onde o cliente preenche o formulário e o implantador acompanha e guia nas perguntas.
+- Criar um questionário genérico independente do sistema. Definir com o Comercial para eles mandarem esse questionário.
 
 
 
