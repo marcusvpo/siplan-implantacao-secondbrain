@@ -61,7 +61,6 @@ Pontos Discutidos:
 
 -O que ficou definido:
 - Homologação deverá ter um tempo maior para homologação antes da semana da implantação.
-- 
 
 
 
