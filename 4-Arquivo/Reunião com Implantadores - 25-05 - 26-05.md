@@ -59,12 +59,14 @@ Pontos Discutidos:
 - Dump de base zerada Orion PRO vem sem dados de tabela de custas, parametros. Do Orion TN já vem com alguns dados. (Sistema instalador que o Kleverson e Diego estão criando talvez já vai resolver isso, vamos verificar amanhã)
 - Daniel relatou o ponto da segurança de subir a base já pré parametrizada, pode passar algo batido em clientes que algum parâmetro não seja o mesmo.
 - Alguns seguem um fluxo (checklist) de homologação e outros não.
+- Padrão hoje é fazer por amostragem, abrindo o nosso sistema em uma tela (com a base de homologação) e o sistema legado em outra e batendo as informações. Quando há necessidade acessam o banco de dados para encontrar as informações na origem, mas muito poucos casos.
 
 -O que ficou definido:
 - Homologação deverá ter um tempo maior para homologação antes da semana da implantação.
 - Equipe de Conversão deverá utilizar mais o HUB para o gerenciamento das conversões, filas e motores.
 - Arquivo de inconsistências em Word enviado por e-mail para equipe de Conversão está fluindo bem e será mantido.
 - Implantadores devem criar um checklist de homologação padronizado para todos os sistemas. Essa função deverá ir na tela "Implantadores" e subtela "Checklist Homologação" e basicamente será um editor/criador de formulário para cada sistema igual vamos fazer para análise de aderência.
+- Verificar possibilidade da equipe de Conversão ser responsáveis por fazer uma pré-homologação.
 
 
 
