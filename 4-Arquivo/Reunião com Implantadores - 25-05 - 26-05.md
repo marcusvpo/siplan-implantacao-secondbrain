@@ -61,7 +61,7 @@ Pontos Discutidos:
 
 -O que ficou definido:
 - Homologação deverá ter um tempo maior para homologação antes da semana da implantação.
-- 
+- Arquivo de inconsistências em Word enviado por e-mail para equipe de Conversão está fluindo bem e será mantido.
 
 
 
