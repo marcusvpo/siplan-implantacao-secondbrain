@@ -86,15 +86,20 @@ Pontos Discutidos:
 - Resistências por alguns funcionários que não querem mudar de sistema. São muito resistentes a mudanças.
 - Muitas vezes tem o desencontro de interesses entre o Tabelião e seus funcionários em relação aos sistemas.
 - Hoje em dia os Implantadores treinam de acordo com o Setor dentro do sistema e vão passando tela por tela. Mas não há um processo definido e padronizado, se treina um por um ou treina geral de uma vez, etc.
-- Vídeos Siplan Skills já está ajudando
+- Vídeos Siplan Skills já está ajudando nos primeiros dias de treinamento.
+- 
 
 -O que ficou definido
 - Foco maior dos implantadores em demonstrar e deixar claro os ganhos operacionais e benefícios do nosso sistema.
 - Implantadores Criarão um Fluxo/Roteiro do treinamento padrão Siplan, desde o passo zero até a finalização do treinamento. Esse primeiro documento será gerado por Vieira - Orion TN. Mizuno - Orion PRO. Julio - Orion REG. Fernando Cruz - WebRI.
 - Documento de Formalização de Treinamento será imprescindível ao término da implantação.
 - Back Office da Implantação deverá ser responsável por garantir e cobrar o envio de todos os documentos pelo analista ao finalizar a implantação.
+- Criação de mais vídeos de rotinas para o Siplan Skills (Plataforma de treinamento online) pelos implantadores quando tiverem tempo disponível
+- Ter um alinhamento melhor com o Comercial sobre o comprometimento do lado do cliente para assistir os vídeos e um compromisso do cliente para conquistar o apoio dos funcionários para a Implantação, desde a hora da negociação ter esse compromisso de apoio do Oficial/Tabelião para incentivar sua equipe a colaborar, assistir os vídeos e aumentar a aceitação do novo sistema, sem corpo mole.
+- Filtrar os pedidos/desejos dos clientes para entender o que pode ser feito por Produto e que realmente vai trazer benefícios para o cliente e outros. Saber falar não e não prometer todos os desejos de ajustes/melhorias ao cliente. Personalizações peculiares de cada cliente são passiveis de orçamento e os Implantadores devem entender e filtrar o que é "besteira" e da trabalho vs o que realmente pode ser desenvolvido/melhorado pois trará benefícios reais.
+- 
 
-
+##
 
 
 
