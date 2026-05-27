@@ -100,7 +100,13 @@ Pontos Discutidos:
 - Ter um processo de passagem de conhecimento de changelog mais frequente pela equipe de Produtos, nem que for um vídeo que eles gravem mostrando pontualmente os itens da atualização.
 
 
-##
+## Configuração de Ambiente (Brainstorming)
+- Servidores em Windows sempre dão problemas com docker, Linux é a melhor opção.
+- 
+
+-O que ficou decidido
+- Daqui para frente a abordagem com os clientes que querem o servidor em Windows deverá ser mais dificultada e forçando a padronização de todos os clientes daqui pra frente ser em Linux.
+- 
 
 
 
