@@ -97,7 +97,8 @@ Pontos Discutidos:
 - Criação de mais vídeos de rotinas para o Siplan Skills (Plataforma de treinamento online) pelos implantadores quando tiverem tempo disponível
 - Ter um alinhamento melhor com o Comercial sobre o comprometimento do lado do cliente para assistir os vídeos e um compromisso do cliente para conquistar o apoio dos funcionários para a Implantação, desde a hora da negociação ter esse compromisso de apoio do Oficial/Tabelião para incentivar sua equipe a colaborar, assistir os vídeos e aumentar a aceitação do novo sistema, sem corpo mole.
 - Filtrar os pedidos/desejos dos clientes para entender o que pode ser feito por Produto e que realmente vai trazer benefícios para o cliente e outros. Saber falar não e não prometer todos os desejos de ajustes/melhorias ao cliente. Personalizações peculiares de cada cliente são passiveis de orçamento e os Implantadores devem entender e filtrar o que é "besteira" e da trabalho vs o que realmente pode ser desenvolvido/melhorado pois trará benefícios reais.
-- 
+- Ter um processo de passagem de conhecimento de changelog mais frequente pela equipe de Produtos, nem que for um vídeo que eles gravem mostrando pontualmente os itens da atualização.
+
 
 ##
 
