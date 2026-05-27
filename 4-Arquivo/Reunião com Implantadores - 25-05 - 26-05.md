@@ -86,6 +86,7 @@ Pontos Discutidos:
 - Resistências por alguns funcionários que não querem mudar de sistema. São muito resistentes a mudanças.
 - Muitas vezes tem o desencontro de interesses entre o Tabelião e seus funcionários em relação aos sistemas.
 - Hoje em dia os Implantadores treinam de acordo com o Setor dentro do sistema e vão passando tela por tela. Mas não há um processo definido e padronizado, se treina um por um ou treina geral de uma vez, etc.
+- Vídeos Siplan Skills já está ajudando
 
 -O que ficou definido
 - Foco maior dos implantadores em demonstrar e deixar claro os ganhos operacionais e benefícios do nosso sistema.
