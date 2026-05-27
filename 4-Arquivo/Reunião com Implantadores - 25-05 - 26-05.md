@@ -66,7 +66,34 @@ Pontos Discutidos:
 - Equipe de Conversão deverá utilizar mais o HUB para o gerenciamento das conversões, filas e motores.
 - Arquivo de inconsistências em Word enviado por e-mail para equipe de Conversão está fluindo bem e será mantido.
 - Implantadores devem criar um checklist de homologação padronizado para todos os sistemas. Essa função deverá ir na tela "Implantadores" e subtela "Checklist Homologação" e basicamente será um editor/criador de formulário para cada sistema igual vamos fazer para análise de aderência.
-- Verificar possibilidade da equipe de Conversão ser responsáveis por fazer uma pré-homologação.
+- Verificar possibilidade da equipe de Conversão ser responsáveis por fazer uma pré-homologação campo a campo do que é previsto nos Layouts que estão no Sharepoint. Ou alguém interno de outra equipe para essas homologações.
+
+## Instalação do Sistema - (Brainstorming)
+- Relataram que a instalação é rápida nas máquinas. 3 a 5 min por máquina.
+- Depende da quantidade de máquinas do cartório. As vezes o TI não libera a senha e quer ficar acompanhando máquina por máquina o Implantador instalar o sistema, nesses casos demora um pouco mais.
+- Parte mais complexa é configurar, parametrizar, testar os componentes.
+- Quando encontrar alguns erros ou dificuldades, acionam o Alex que é responsável por configurar o ambiente previamente.
+- Sem mudanças de processo, apenas ter a garantia do que foi prometido em relação ao hardware e adequação das máquinas e servidor pelo cartório.
+
+
+## Parametrização dos Sistemas (Brainstorming)
+- Aguardar...
+
+
+
+## Treinamento (Brainstorming)
+- Encontram muitos funcionários com perfil de que não "quer" aprender e fazem corpo mole, não prestam atenção no treinamento e não vê os vídeos do Siplan Skills (vídeos de treinamento de rotinas de demonstrações dos sistemas), depois quando a "agua bate na bunda" no pós implantação fica acionando direto.
+- Resistências por alguns funcionários que não querem mudar de sistema. São muito resistentes a mudanças.
+- Muitas vezes tem o desencontro de interesses entre o Tabelião e seus funcionários em relação aos sistemas.
+- Hoje em dia os Implantadores treinam de acordo com o Setor dentro do sistema e vão passando tela por tela. Mas não há um processo definido e padronizado, se treina um por um ou treina geral de uma vez, etc.
+
+-O que ficou definido
+- Foco maior dos implantadores em demonstrar e deixar claro os ganhos operacionais e benefícios do nosso sistema.
+- Implantadores Criarão um Fluxo/Roteiro do treinamento padrão Siplan, desde o passo zero até a finalização do treinamento. Esse primeiro documento será gerado por Vieira - Orion TN. Mizuno - Orion PRO. Julio - Orion REG. Fernando Cruz - WebRI.
+- Documento de Formalização de Treinamento será imprescindível ao término da implantação.
+- Back Office da Implantação deverá ser responsável por garantir e cobrar o envio de todos os documentos pelo analista ao finalizar a implantação.
+
+
 
 
 
@@ -80,3 +107,6 @@ Ideias Minhas (Brainstorming):
 - Disparo de e-mails para os implantadores ao finalizar e cadastrar análise de infra para eles verificarem e ficarem cientes
 - Aderência Orion PRO Mizuno - Verificar Possibilidade de Scripts para configurações e parametrizações com base nas respostas da Análise de Aderência.
 - Criação de Script para enviar ao TI do cartório e abrir em cada máquina, que faz uma coleta das informações do hardware e nos envia.
+- Nos casos de rotinas que os funcionários do cartório só vão utilizar na semana seguinte que o Implantador não estará lá para acompanhar. Verificar quais são a maioria dessas rotinas e criar os Cartões de Referência (Manuais Práticos) para deixar no cartório. Isso pode amenizar os acionamentos do pós-implantação.
+- Siplan Skills virar um comprometimento acordado previamente com o Tabelião e ele assumir a responsabilidade de que a equipe vai ver os vídeos.
+- 
