@@ -11,12 +11,14 @@
             "id": "0ac918d83b92a0d6",
             "type": "leaf",
             "state": {
-              "type": "pdf",
+              "type": "markdown",
               "state": {
-                "file": "4-Arquivo/Siplan_Implantacao_Transformacao_Operacional_v2.pdf"
+                "file": "4-Arquivo/Reunião com Implantadores - 25-05 - 26-05 - 27-05.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-file-text",
-              "title": "Siplan_Implantacao_Transformacao_Operacional_v2"
+              "icon": "lucide-file",
+              "title": "Reunião com Implantadores - 25-05 - 26-05 - 27-05"
             }
           }
         ]
@@ -196,14 +198,14 @@
   },
   "active": "0ac918d83b92a0d6",
   "lastOpenFiles": [
+    "4-Arquivo/Siplan_Implantacao_Transformacao_Operacional_v2.pdf",
     "4-Arquivo/Detalhes do Chamado.md",
     "4-Arquivo/Exemplo Output - Formulário de Implantação.md",
-    "4-Arquivo/Reunião com Implantadores - 25-05 - 26-05.md",
+    "4-Arquivo/Reunião com Implantadores - 25-05 - 26-05 - 27-05.md",
     "docs/superpowers/specs/2026-05-27-auditor-hibrido-homologacao-design.md",
     "docs/superpowers/specs",
     "docs/superpowers",
     "docs",
-    "4-Arquivo/Siplan_Implantacao_Transformacao_Operacional_v2.pdf",
     "3-Recursos/00 - Inbox/Análise Transição e Aderência.md",
     "2-Áreas/Siplan Hub/[Hub] Mapeamento Prático e Funcional do Sistema.md",
     "3-Recursos/00 - Inbox/Analise_Process_Architect_AI.md",
@@ -231,7 +233,6 @@
     "4-Arquivo/docs-implantacao/Vieira/Relatório de Atendimento Técnico (RAT) - Chamado 717671.pdf",
     "4-Arquivo/docs-implantacao/Vieira/Formalização da Migração de Dados do SiplanTN para o OrionTN.pdf",
     "4-Arquivo/docs-implantacao/Vieira/Documento de transição de conhecimento implantação.docx",
-    "Agents/Agente de Processos Siplan/SKILL.md",
-    "GEMINI.md"
+    "Agents/Agente de Processos Siplan/SKILL.md"
   ]
 }

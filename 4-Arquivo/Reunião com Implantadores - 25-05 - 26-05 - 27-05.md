@@ -106,10 +106,15 @@ Pontos Discutidos:
 
 -O que ficou decidido
 - Daqui para frente a abordagem com os clientes que querem o servidor em Windows deverá ser mais dificultada e forçando a padronização de todos os clientes daqui pra frente ser em Linux.
+- Ferramenta de instalador Wizard criada pelo Kleverson está sendo finalizada e passará a ser utilizada. Haverão ganhos para quem configura o ambiente (Alex, Hugo, Bruno) e também para os implantadores com as parametrizações e configurações.
+
+## Entrada em Produção
+- Trabalho em equipe para solução de problemas, sem individualismo.
+- Visão corporativa, responsabilidade da empresa.
 - 
 
-
-
+-O que ficou decidido
+- Quando acontece problemas: O problema não é individual, o problema é da empresa e a culpa não é de ninguém em específico. A postura ao ter na frente do cliente é mostrar segurança, sem culpar um ou outro e manter o espirito de trabalho em equipe e representar a empresa.
 
 
 
