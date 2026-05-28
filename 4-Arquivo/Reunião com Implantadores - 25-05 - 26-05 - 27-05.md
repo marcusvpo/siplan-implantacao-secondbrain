@@ -122,7 +122,19 @@ Pontos Discutidos:
 - Sempre deixar o cliente avisado caso houver algo que não deu tempo de ser convertido e que será convertido durante a semana. Deixar isso claro para o cliente. Normalmente acontece isso com os Termos e ele é convertido em sequência nos dias seguintes. Muito importante ter esse alinhamento com o cliente.
 - Ver o que é necessário com a equipe de Modelos para ter uma base padrão de Modelos do Orion TN com os melhores modelos que já foram criados até hoje.
 
+## Transição para o Pós Implantação (Brainstorming)
+- Padrão do tempo de pós implantação é de 2 semanas - Grupo do WhatApp será mantido por conta da facilidade, praticidade e proximidade ao cliente para tirar dúvidas e solicitar suporte.
+- Quando o implantador tiver agenda livre na semana seguinte, ele deve participar ativamente do pós implantação e será adicionado no grupo do WhatsApp.
+- O documento que vai para o time do pós implantação (Documento de Transição de Conhecimento) deverá ser o mais detalhado possível. Esclarecer problemas, dificuldades, perfis dos usuários, pontualidades, pendências que ficaram, sugestões, etc. Implantadores deve melhorar a profundidade dos detalhes e não entregar um "resumo".
 
+-O que ficou decidido
+- Retomar a plataforma Siplan On-Field - Plataforma será usada no dia a dia dos implantadores para gravarem áudios de relatos diários que serão transcritos e gerado um grande relatório no final. Facilitando para eles não terem que escrever tudo na mão após sair do cartório ou deixar para o ultimo dia e esquecer algumas pontualidades.
+- Documento de Transição de Conhecimento sempre deverá ser enviado por e-mail para toda a equipe do pós e em cópia a Diretoria e eu mesmo.
+- Começar a criar o grupo do pós na última semana de implantação na quinta feira a tarde ao invés de manter a criação na sexta a tarde para já começar os atendimentos na sexta de manhã, pois na sexta o analista está em deslocamento e não consegue mais atender.
+- Rotinas que o implantador ver que não vai dar tempo de fazer, como configurações específicas, deverão passar para a equipe do pós para ter esse apoio técnico.
+- Criar um documento padrão de Transição de Conhecimento com base nos documentos do Vieira e Julio
+- Futuro: Transformar o Documento de Transição de Conhecimento em um formulário dentro do HUB que gera o relatório completo e já fica linkado ao cliente.
+- 
 
 
 
@@ -134,4 +146,4 @@ Ideias Minhas (Brainstorming):
 - Criação de Script para enviar ao TI do cartório e abrir em cada máquina, que faz uma coleta das informações do hardware e nos envia.
 - Nos casos de rotinas que os funcionários do cartório só vão utilizar na semana seguinte que o Implantador não estará lá para acompanhar. Verificar quais são a maioria dessas rotinas e criar os Cartões de Referência (Manuais Práticos) para deixar no cartório. Isso pode amenizar os acionamentos do pós-implantação.
 - Siplan Skills virar um comprometimento acordado previamente com o Tabelião e ele assumir a responsabilidade de que a equipe vai ver os vídeos.
-- 
+- Criação de grupos no Teams para cada implantação com todos os responsáveis, envolvendo o pós, o implantador, diretoria e back office de implantação.
