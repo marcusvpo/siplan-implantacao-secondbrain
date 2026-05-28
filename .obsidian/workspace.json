@@ -11,12 +11,14 @@
             "id": "0ac918d83b92a0d6",
             "type": "leaf",
             "state": {
-              "type": "pdf",
+              "type": "markdown",
               "state": {
-                "file": "4-Arquivo/Siplan_Implantacao_Transformacao_Operacional_v2.pdf"
+                "file": "4-Arquivo/Reunião com Implantadores - 25-05 - 26-05 - 27-05.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-file-text",
-              "title": "Siplan_Implantacao_Transformacao_Operacional_v2"
+              "icon": "lucide-file",
+              "title": "Reunião com Implantadores - 25-05 - 26-05 - 27-05"
             }
           }
         ]
@@ -196,9 +198,9 @@
   },
   "active": "0ac918d83b92a0d6",
   "lastOpenFiles": [
+    "4-Arquivo/Siplan_Implantacao_Transformacao_Operacional_v2.pdf",
     "4-Arquivo/Reunião com Implantadores - 25-05 - 26-05 - 27-05.md",
     "4-Arquivo/Exemplo Output - Formulário de Implantação.md",
-    "4-Arquivo/Siplan_Implantacao_Transformacao_Operacional_v2.pdf",
     "4-Arquivo/Detalhes do Chamado.md",
     "docs/superpowers/specs/2026-05-27-auditor-hibrido-homologacao-design.md",
     "docs/superpowers/specs",

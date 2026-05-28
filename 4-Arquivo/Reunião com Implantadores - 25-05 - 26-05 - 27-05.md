@@ -138,6 +138,11 @@ Pontos Discutidos:
 - Pós Implantação deverá instigar mais o uso do Siplan Skills ao cliente no grupo do pós. As vezes uma dúvida que o cliente está questionando, ao invés de tomar tempo de atendimento, já temos em vídeo no skills e o pessoal do Pós apenas envia o acesso.
 - Estudar capacitar a equipe de CS e Pós, dividindo por especialidade (Notas, Protesto e TDPJ) para os atendimentos e conseguir dar mais suporte ainda.
 
+## Relatório de Benefícios do Sistema
+- Ao final de cada implantação, o implantador deverá preencher um documento apontando quais foram os benefícios reais no cliente. Demonstrando de forma clara e transparente ao cliente os benefícios e ganhos operacionais do sistema.
+- Muito importante não deixar a resistência e falta de conforto dos usuários deixar ofuscar esses benefícios.
+- Deverá ser integrado uma seção para relato desses benefícios dentro do Documento de Transição de Conhecimento.
+- 
 
 
 ---
