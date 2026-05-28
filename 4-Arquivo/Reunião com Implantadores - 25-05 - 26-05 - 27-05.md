@@ -154,3 +154,8 @@ Ideias Minhas (Brainstorming):
 - Nos casos de rotinas que os funcionários do cartório só vão utilizar na semana seguinte que o Implantador não estará lá para acompanhar. Verificar quais são a maioria dessas rotinas e criar os Cartões de Referência (Manuais Práticos) para deixar no cartório. Isso pode amenizar os acionamentos do pós-implantação.
 - Siplan Skills virar um comprometimento acordado previamente com o Tabelião e ele assumir a responsabilidade de que a equipe vai ver os vídeos.
 - Criação de grupos no Teams para cada implantação com todos os responsáveis, envolvendo o pós, o implantador, diretoria e back office de implantação.
+
+---
+## Outros
+- Nas semanas que os implantadores não estão em implantação, eles também ajudam com chamados e esses chamados devem ser melhor filtrados antes de serem repassados para os implantadores. Há casos de chamados que ficam na fila por 1 mês e o implantador devolve em 5 minutos. 
+- Melhor verificação de quantas horas cada chamado é necessário para atender antes de passar para o Implantador. Podem ter 5 chamados que levam 1 hora e 1 chamado que leva 4 horas, deve ser melhor filtrado para não simplesmente "jogar" na agenda do implantador.
