@@ -25,7 +25,8 @@ Pontos Discutidos:
 - Criar um questionário genérico independente do sistema. Definir com o Comercial para eles mandarem esse questionário.
 
 -O que ficou definido:
-- Formulário técnico padronizado por sistema dentro da Etapa de Análise de Aderência no Siplan HUB que será acessado pelos implantadores. Questionário simples sobre a estruturação física do cartório, estrutura dos setores e de pessoas/funcionários.
+- Formulário técnico padronizado por sistema dentro da Etapa de Análise de Aderência no Siplan HUB que será acessado pelos implantadores. 
+- Criar um questionário simples sobre a estruturação física do cartório, estrutura dos setores e de pessoas/funcionários. Isso deverá ser enviado pelo Comercial no fechamento do contrato para chegar essas informações o quanto antes.
 - Alinhar com o Comercial para deixar o cliente avisado que nossa equipe irá entrar em contato para realizar as Análises de Aderência e Infra - Deixar ciente que o cliente precisa ter uma pessoa específica e que tenha o conhecimento a disposição para ter esse contato com a nossa equipe.
 - Eu vou criar um formulário para cada sistema dentro do HUB, na etapa de Análise de Aderência terá um botão "Gerar Formulário de Aderência", que vai identificar qual o sistema relacionado ao projeto e criará o template a ser preenchido. Eu vou criar cada template de cada sistema com base nos documentos de análise de aderência atuais. Terá uma nova tela "Implantadores" e uma subtela "Editar Form. Aderência" , lá terá o editor do formulário de cada sistema para adicionar e atualizar novos pontos a serem analisados na aderência.
 
@@ -106,15 +107,21 @@ Pontos Discutidos:
 
 -O que ficou decidido
 - Daqui para frente a abordagem com os clientes que querem o servidor em Windows deverá ser mais dificultada e forçando a padronização de todos os clientes daqui pra frente ser em Linux.
-- Ferramenta de instalador Wizard criada pelo Kleverson está sendo finalizada e passará a ser utilizada. Haverão ganhos para quem configura o ambiente (Alex, Hugo, Bruno) e também para os implantadores com as parametrizações e configurações.
+- Ferramenta de instalador wizard criada pelo Kleverson está sendo finalizada e passará a ser utilizada. Haverão ganhos para quem configura o ambiente (Alex, Hugo, Bruno) e também para os implantadores com as parametrizações e configurações.
 
-## Entrada em Produção
-- Trabalho em equipe para solução de problemas, sem individualismo.
-- Visão corporativa, responsabilidade da empresa.
-- 
+## Entrada em Produção (Brainstorming)
+- Virada para produção que acontece após a conversão final.
+- Acompanhamento feito por 1 ou 2 analistas, a depender do tamanho do cartório e quantidade de usuários.
+- Hoje em dia relataram que tem casos que a conversão finaliza muito em cima da hora para os cartórios maiores, os cartórios menores está fluindo mais rápido.
+- Mizuno relatou que nas duas ultimas conversões a base convertida foi liberada na manhã que ele já estava no cartório. Talvez alguma pontualidade com a equipe de Conversão.
+- Em casos de problemas específicos do sistema após a virada, os analistas acionam a equipe de produtos.
 
 -O que ficou decidido
 - Quando acontece problemas: O problema não é individual, o problema é da empresa e a culpa não é de ninguém em específico. A postura ao ter na frente do cliente é mostrar segurança, sem culpar um ou outro e manter o espirito de trabalho em equipe e representar a empresa.
+- Conversar com a equipe de produtos para ver quais são os níveis de tarifação (gasto com tokens) das IAs utilizadas no Siplan IA e deixar o cliente ciente disso.
+- Sempre deixar o cliente avisado caso houver algo que não deu tempo de ser convertido e que será convertido durante a semana. Deixar isso claro para o cliente. Normalmente acontece isso com os Termos e ele é convertido em sequência nos dias seguintes. Muito importante ter esse alinhamento com o cliente.
+- Ver o que é necessário com a equipe de Modelos para ter uma base padrão de Modelos do Orion TN com os melhores modelos que já foram criados até hoje.
+
 
 
 
