@@ -134,7 +134,9 @@ Pontos Discutidos:
 - Rotinas que o implantador ver que não vai dar tempo de fazer, como configurações específicas, deverão passar para a equipe do pós para ter esse apoio técnico.
 - Criar um documento padrão de Transição de Conhecimento com base nos documentos do Vieira e Julio
 - Futuro: Transformar o Documento de Transição de Conhecimento em um formulário dentro do HUB que gera o relatório completo e já fica linkado ao cliente.
-- 
+- Fazer um mapeamento das maiores dúvidas e rotinas que chegam no pós e focar na criação de vídeos para o Siplan Skills. O mesmo para os treinamentos do LCW (Livro Caixa Web) e verificar possíveis outros sistemas para criar o treinamento completo gravado e cadastrado no Siplan Skills.
+- Pós Implantação deverá instigar mais o uso do Siplan Skills ao cliente no grupo do pós. As vezes uma dúvida que o cliente está questionando, ao invés de tomar tempo de atendimento, já temos em vídeo no skills e o pessoal do Pós apenas envia o acesso.
+- Estudar capacitar a equipe de CS e Pós, dividindo por especialidade (Notas, Protesto e TDPJ) para os atendimentos e conseguir dar mais suporte ainda.
 
 
 
