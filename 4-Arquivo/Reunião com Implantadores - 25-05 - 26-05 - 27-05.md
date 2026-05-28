@@ -141,7 +141,7 @@ Pontos Discutidos:
 ## Relatório de Benefícios do Sistema
 - Ao final de cada implantação, o implantador deverá preencher um documento apontando quais foram os benefícios reais no cliente. Demonstrando de forma clara e transparente ao cliente os benefícios e ganhos operacionais do sistema.
 - Muito importante não deixar a resistência e falta de conforto dos usuários deixar ofuscar esses benefícios.
-- Deverá ser integrado uma seção para relato desses benefícios dentro do Documento de Transição de Conhecimento.
+- Deverá ser entregue pelos implantadores ao final da implantação, junto com o envio do Documento de Transição de Conhecimento.
 - 
 
 
