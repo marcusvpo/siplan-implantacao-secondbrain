@@ -24,6 +24,7 @@ Este é o mapa de conteúdo que orquestra o processo de implantação de softwar
 5. **Ação em Campo:**
    - [[[Processo] 9. Implantação no Cartório - Treinamento e Configuração]]
    - [[[Processo] 10. Virada para Produção]]
+   - [[[Processo] 11. Transição para o Pós-Implantação]]
 
 ## Diagnóstico e Realidade Operacional
 - [[[Gargalo] Desafios da Operação Real]]

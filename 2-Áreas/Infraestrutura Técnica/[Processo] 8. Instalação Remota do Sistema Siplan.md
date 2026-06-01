@@ -26,6 +26,9 @@ Apesar dessas limitações, a atuação prévia da Infra resolve 90% dos problem
 
 ## 🚀 Visão de Futuro & Ideias (To-Be)
 
+- **Padronização em Linux:** Servidores Windows têm apresentado muitos problemas de compatibilidade com Docker. A nova diretriz é dificultar proativamente a instalação em Windows para novos clientes e forçar a padronização no ambiente Linux.
+- **Ferramenta "Wizard" de Instalação:** A ferramenta de instalação automatizada (criada por Kleverson) será oficializada, gerando ganhos significativos de tempo e estabilidade tanto para a equipe de Infra (Alex) quanto para os Implantadores em campo.
+- **Parametrização Remota Pré-Viagem:** Deslocar as atividades pesadas de configurações e parametrizações (que historicamente consomem os 2 primeiros dias no cartório) para o Back Office de Implantação (Hugo e Bruno). Eles farão isso remotamente *antes* do deslocamento do analista, permitindo que o Implantador foque 100% no treinamento.
 - **Script de Validação de Ponto (Endpoint):** Desenvolver um pequeno script automatizado que a TI do cartório possa rodar em todas as máquinas de balcão, devolvendo para a Siplan os dados *reais* de hardware (RAM, Disco, SO), eliminando a dependência do "achismo" do cliente e evitando surpresas para o analista.
 
 **Ver também:** [[[Regra] Diferença entre Instalação Remota e Implantação Funcional]]

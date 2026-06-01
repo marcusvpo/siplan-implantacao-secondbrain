@@ -31,6 +31,9 @@ Quando o cartório possui um sistema cujos dados nunca foram convertidos pela Si
 
 ## 🚀 Visão de Futuro & Ideias (To-Be)
 
+- **Formalização da Migração de Dados:** Criar e padronizar o documento de Formalização de Migração de Dados (definindo o que será ou não convertido) para WEBRI, Orion PRO e Orion REG, assim como já existe no Orion TN.
+- **Conversor de Imagens:** Avaliar e priorizar a criação de um motor de conversão de imagens dos sistemas legados da Siplan para a linha Orion (e também conversor para o Orion GED).
+- **Gestão pelo HUB:** A equipe de Conversão passará a utilizar mais ativamente o Siplan HUB para gerenciamento das conversões, filas e motores, saindo do controle paralelo.
 - **Catálogo de Conversores no Hub:** Criar uma base de dados indexada no Hub com todos os sistemas do mercado e o "Nível de Maturidade" do nosso conversor para cada um. Isso permitirá que o Comercial saiba, *no ato da venda*, se aquele cartório demorará 3 dias ou 3 meses para converter.
 
 **Próxima etapa:** [[[Processo] 6. Homologação da Conversão de Dados]]

@@ -29,7 +29,11 @@ A execução se apoia no levantamento da serventia e rotinas essenciais da opera
 
 ## 🚀 Visão de Futuro & Ideias (To-Be)
 
-- **Padronização Estrita:** Consolidar o uso de um **Template Unificado e Obrigatório** para todas as aderências (Acesse o rascunho: [[[Modelo] Template - Analise de Aderencia]]), garantindo mapeamento físico completo e mitigando riscos de subdimensionamento. Esta unificação é pauta prioritária da reunião de 25 a 29 de Maio.
+- **Formulários Estruturados no Siplan HUB:** Consolidação da Análise de Aderência através de formulários técnicos padronizados por sistema dentro do HUB. Foi definida a criação do botão "Gerar Formulário de Aderência" que identificará o sistema e gerará o template apropriado.
+- **Gestão de Templates no HUB:** Criação de uma tela "Implantadores" com a subtela "Editar Form. Aderência", permitindo que os próprios implantadores atualizem e adicionem novos pontos aos checklists.
+- **Questionário Estrutural e Comercial:** O Comercial passará a enviar, logo no fechamento do contrato, um questionário genérico sobre a estrutura física do cartório, disposição de setores e perfil das pessoas (para identificar precocemente resistências e necessidade de gestão de mudança). O Comercial também deve alinhar com o cliente a necessidade de disponibilizar uma pessoa focada para acompanhar a aderência.
+- **Modelo Híbrido:** O cliente preencherá o formulário e o implantador acompanhará e guiará nas perguntas.
+- **Verificação de Espaço em Disco (Imagens):** A Análise de Aderência absorveu a responsabilidade de verificar o tamanho total (espaço em disco) ocupado pelas imagens no servidor atual do cliente (demanda da equipe de Conversão).
 - **Gestão da Fila de Produtos:** Melhorar a previsibilidade e criar métricas de estimativa de viabilidade técnica quando uma implantação depende de uma nova feature, para que o cliente não fique com o prazo completamente aberto.
 
 **Próxima etapa:** [[[Processo] 4. Tratamento de Impedimentos da Análise de Aderência]]

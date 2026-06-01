@@ -48,6 +48,10 @@ Esta nota documenta o mapeamento detalhado da arquitetura de telas atual do Sipl
 *   **Motores:** Conversões aguardando criação ou desenvolvimento do motor. **[Uso Baixo]**
 *   **Homologação:** Validação de conversões finalizadas. **[Nunca Usado]**
 
+### 🛠️ Implantadores (Novo)
+*   **Editar Form. Aderência:** Editor visual para os formulários de Análise de Aderência padronizados por sistema, gerenciados pelos próprios implantadores. **[Em Desenvolvimento]**
+*   **Checklist Homologação:** Editor visual e acompanhamento dos checklists padronizados para homologação de dados convertidos. **[Em Desenvolvimento]**
+
 ### 📝 Modelos Editor OrionTN
 *   **Dashboard:** Visão geral do estágio de Modelos Editor nos projetos OrionTN (Indicadores, Status, Progresso). **[Uso Baixo]**
 *   **Gerenciar Projetos:** Gestão no ecossistema OrionTN por Cliente, Status e Progresso. **[Uso Baixo]**

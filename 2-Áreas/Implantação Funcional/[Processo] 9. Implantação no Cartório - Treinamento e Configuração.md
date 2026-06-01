@@ -27,4 +27,10 @@ Apesar da instalação remota do servidor (veja [[[Processo] 8. Instalação Rem
 
 ## 🚀 Visão de Futuro & Ideias (To-Be)
 
-- **Manual de 'Troubleshooting' em Campo:** Criar um checklist tático no Siplan Hub acessível via celular, dando autonomia ao analista em campo para contornar problemas de infraestrutura de rede e banco de dados sem depender de telefonemas para a matriz.
+- **Foco em Valor e Benefícios:** O treinamento deve iniciar e manter um foco constante na demonstração clara dos ganhos operacionais e benefícios do sistema, visando quebrar a resistência natural à mudança por parte dos funcionários.
+- **Roteiro de Treinamento Padrão Siplan:** Foi definida a criação de um roteiro/fluxo padrão de treinamento (passo a passo) para cada sistema, com responsáveis definidos (Vieira - TN, Mizuno - PRO, Julio - REG, Fernando Cruz - WebRI).
+- **Comprometimento com Siplan Skills:** O Comercial deverá firmar um compromisso claro com o Tabelião/Oficial para que sua equipe assista aos vídeos do Siplan Skills *antes* e *durante* a implantação, diminuindo a carga de dúvidas básicas em campo.
+- **Formalização Obrigatória:** O "Documento de Formalização de Treinamento" passará a ser obrigatório ao término da implantação. O Back Office de Implantação ficará responsável por cobrar esse envio.
+- **Gestão de Expectativas (Filtragem de Pedidos):** Treinar os implantadores para saberem dizer "não" a personalizações muito específicas ou desejos infundados. Devem filtrar o que é "perfumaria" versus o que trará ganho real à operação e pode ir para a equipe de Produtos.
+- **Repasse de Changelog (Produtos):** Estabelecer um processo mais frequente de passagem de conhecimento sobre atualizações da equipe de Produtos para os implantadores (preferencialmente vídeos pontuais).
+- **Manual de 'Troubleshooting' em Campo:** Criar um checklist tático no Siplan Hub acessível via celular, dando autonomia ao analista em campo para contornar problemas de infraestrutura de rede e banco sem depender de telefonemas para a matriz.

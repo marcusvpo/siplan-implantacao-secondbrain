@@ -29,5 +29,9 @@ Em cenários de falhas extremas durante a implantação (bugs bloqueantes inoper
 
 ## 🚀 Visão de Futuro & Ideias (To-Be)
 
+- **Comunicação Proativa de Pendências:** Caso itens não essenciais (ex: Termos antigos) não deem tempo de serem convertidos antes da virada, o implantador deve alinhar isso imediatamente com o cliente, deixando claro que a equipe de Conversão fará a carga desses dados ao longo da primeira semana de operação.
+- **Transparência de Custos (IA):** Durante a virada e configuração final, certificar-se de que a Diretoria/Tabelião tem plena ciência dos níveis de tarifação (gasto com tokens) das IAs utilizadas no Siplan IA.
+- **Postura Profissional Diante de Falhas:** Instituir a cultura de que, quando ocorrem problemas sistêmicos, "a culpa não é de ninguém específico, o problema é da empresa". O implantador deve manter postura de segurança, resiliência e foco na solução, sem buscar culpados (Produtos, Conversão, etc.) na frente do cliente.
+- **Base Padrão de Modelos (Orion TN):** Alinhar com a equipe de Modelos (OrionTN) a criação de uma base unificada com os melhores modelos já desenvolvidos até hoje, injetando-a logo na virada.
 - **Métricas de Contingência:** Desenhar critérios técnicos mais objetivos para classificar o que constitui uma "falha crítica", agilizando a comunicação entre os implantadores em campo e a Diretoria.
 - **Aperfeiçoamento do Protocolo de Retorno:** Estruturar um checklist de ações imediatas e protocolos de emergência de fim de semana, garantindo autonomia guiada (via Playbook) caso a Diretoria esteja inalcançável às vésperas do cartório abrir o balcão.

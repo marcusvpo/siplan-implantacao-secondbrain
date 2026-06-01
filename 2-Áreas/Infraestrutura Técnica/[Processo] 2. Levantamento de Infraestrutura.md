@@ -26,5 +26,8 @@ A **Equipe de Infraestrutura** entra em contato com o cartório para realizar o 
 
 ## 🚀 Visão de Futuro & Ideias (To-Be)
 
+- **Atualização da Planilha de Infra:** A planilha padrão de Análise de Infraestrutura foi atualizada para incluir a confirmação explícita de servidor em nuvem e a existência de link de internet redundante. A verificação de espaço em disco ocupado pelas imagens foi movida para a equipe de Implantação na Análise de Aderência.
+- **Formalização via TI:** Quando o levantamento for realizado diretamente pela TI do cliente, as informações deverão ser preenchidas em um documento formal seguindo nosso padrão. O Comercial deve deixar claro no fechamento que a equipe da Siplan fará esse contato.
+- **Check-up Pré-Viagem:** Instituição de uma checagem obrigatória com o cliente na semana anterior à implantação presencial para validar se todas as adequações de ambiente solicitadas foram realizadas com sucesso, evitando surpresas "on-site".
 - **Controle de SLA de Retenção e Regra de Rescisão:** Estabelecer uma política ou limite de tempo (ex: 90 dias) para que projetos pausados por infraestrutura recebam um ultimato, evitando contratos zumbis acumulados nos indicadores. Alertas automatizados pelo Hub cobrariam o Comercial periodicamente.
 - **Visibilidade no Hub:** Aprimorar o acompanhamento do status dessas pendências de hardware diretamente pelo Siplan Hub, evitando que o Gestor de Implantação precise cobrar ativamente o Comercial por status.
