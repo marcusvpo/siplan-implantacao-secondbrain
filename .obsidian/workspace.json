@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "4-Arquivo/Reunião com Implantadores - 25-05 - 26-05 - 27-05.md",
+                "file": "Anotações Diárias/Ideias Automações Disparo E-mail - Siplan HUB.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Reunião com Implantadores - 25-05 - 26-05 - 27-05"
+              "title": "Ideias Automações Disparo E-mail - Siplan HUB"
             }
           }
         ]
@@ -198,12 +198,14 @@
   },
   "active": "0ac918d83b92a0d6",
   "lastOpenFiles": [
+    "docs/superpowers/specs/2026-05-27-auditor-hibrido-homologacao-design.md",
+    "Anotações Diárias/Ideias Automações Disparo E-mail - Siplan HUB.md",
+    "Anotações Diárias",
+    "4-Arquivo/Reunião com Implantadores - 25-05 - 26-05 - 27-05.md",
     "2-Áreas/Implantação Funcional/[Processo] 11. Transição para o Pós-Implantação.md",
     "4-Arquivo/Siplan_Implantacao_Transformacao_Operacional_v2.pdf",
-    "4-Arquivo/Reunião com Implantadores - 25-05 - 26-05 - 27-05.md",
     "4-Arquivo/Exemplo Output - Formulário de Implantação.md",
     "4-Arquivo/Detalhes do Chamado.md",
-    "docs/superpowers/specs/2026-05-27-auditor-hibrido-homologacao-design.md",
     "docs/superpowers/specs",
     "docs/superpowers",
     "docs",
@@ -232,8 +234,6 @@
     "4-Arquivo/docs-implantacao/Julio/Aderência - Output Sistema Julio.txt",
     "4-Arquivo/docs-implantacao/Julio/Novo(a) Documento de Texto.txt",
     "4-Arquivo/docs-implantacao/Vieira/Relatório de Atendimento Técnico (RAT) - Chamado 717671.pdf",
-    "4-Arquivo/docs-implantacao/Vieira/Formalização da Migração de Dados do SiplanTN para o OrionTN.pdf",
-    "4-Arquivo/docs-implantacao/Vieira/Documento de transição de conhecimento implantação.docx",
-    "Agents/Agente de Processos Siplan/SKILL.md"
+    "4-Arquivo/docs-implantacao/Vieira/Formalização da Migração de Dados do SiplanTN para o OrionTN.pdf"
   ]
 }

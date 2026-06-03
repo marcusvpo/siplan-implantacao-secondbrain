@@ -1,0 +1,126 @@
+
+---
+
+## 🔍 Detalhamento das 4 Automações Propostas
+
+### Automação 1: Criação de Novo Projeto via Automação 0800
+Como esta ação ocorre por um integrador externo (via API/Webhook inserindo dados na tabela `projects`), o gatilho será uma **Trigger de Banco de Dados** no Supabase no evento `INSERT` (filtrando apenas novas inserções).
+
+*   **Campos de Dados do Projeto Utilizados:**
+    *   Nome do cliente/cartório: `client_name` (mapeado na interface [ProjectV2](file:///c:/Users/marcu/Desktop/Projects/siplan-hub/src/types/ProjectV2.ts#L67-L155) como `clientName`).
+    *   Número do chamado: `ticket_number` (mapeado como `ticketNumber`).
+    *   Sistema contratado: `system_type` (mapeado como `systemType`, ex: `"Orion TN"`, `"Orion PRO"`).
+    *   Horas vendidas: `sold_hours` (mapeado como `soldHours`).
+*   **Regra de Disparo (Condição):** `INSERT` na tabela `projects` onde a coluna `external_id` ou dados do chamado estejam preenchidos. Não disparar se for um `UPDATE`.
+*   **Mapeamento de E-mails:**
+    1.  **Solicitação de Infra:** Enviar para **Marcus, Alex e Hugo**.
+        *   *Assunto:* `[Infraestrutura] Solicitação de Análise de Infra — {clientName} (#{ticketNumber})`
+    2.  **Agendamento de Aderência:** Enviar para **Marcus e Maria**.
+        *   *Assunto:* `[Aderência] Agendar Análise — {clientName} (#{ticketNumber}) — Sistema: {systemType}`
+    3.  **Kickoff do Projeto:** Enviar para **Marcus, Marcos Ortiz e Bruno Fernandes**.
+        *   *Assunto:* `[Kickoff] Novo Projeto Criado — {clientName} (#{ticketNumber})`
+        *   *Destaque no Corpo:* Mostrar `soldHours` (Horas vendidas).
+
+---
+
+### Automação 2: Análise de Aderência Finalizada
+Gatilho acionado no frontend na tela de preenchimento do formulário quando o analista clica em finalizar.
+
+*   **Componente do React:** [ProjectAdherenceForm.tsx](file:///c:/Users/marcu/Desktop/Projects/siplan-hub/src/pages/ProjectAdherenceForm.tsx#L287-L331) na função `handleFinalizeForm`.
+*   **Ação no Banco de Dados:** Atualização da coluna `adherence_status` para `'approved'` na tabela `projects` (ou via hook [useUpsertFormResponse](file:///c:/Users/marcu/Desktop/Projects/siplan-hub/src/hooks/useProjectFormResponse.ts) que atualiza o status do formulário de aderência para `approved`).
+*   **Campos de Dados Utilizados:**
+    *   Metadados: `clientName`, `ticketNumber`, `systemType`.
+    *   Analista Executor: `lastUpdatedBy` (ou `adherence_responsible` de [adherence](file:///c:/Users/marcu/Desktop/Projects/siplan-hub/src/types/ProjectV2.ts#L175-L190)).
+    *   Parecer Técnico Final (Veredito): `finalVerdict` (Salvo no JSON da coluna `notes` ou `responses` de aderência. Opções padrão: `"Totalmente Aderente"`, `"Aderente com Restrições"` ou `"Não Aderente / Impeditivo"`).
+    *   Justificativa / Parecer Técnico: `finalNotes`.
+    *   Itens com Impacto: Extraídos de forma dinâmica usando a função técnica `getImpactedItems` (linhas 37–64 do [ProjectAdherenceForm.tsx](file:///c:/Users/marcu/Desktop/Projects/siplan-hub/src/pages/ProjectAdherenceForm.tsx#L37-L64)).
+*   **Anexo PDF:** A tela possui um modo de visualização de impressão nativo (`?print=true`) estruturado em HTML limpo nas linhas 425–773 do [ProjectAdherenceForm.tsx](file:///c:/Users/marcu/Desktop/Projects/siplan-hub/src/pages/ProjectAdherenceForm.tsx#L425-L773). O microsserviço de e-mail pode renderizar esta URL via headless browser (ex: Puppeteer) e anexar o PDF gerado.
+*   **Destinatários e Condicionais de Sistema (`systemType`):**
+    *   **Fixos:** Marcus, Marcos Ortiz, Bruno Fernandes e o analista que enviou (`lastUpdatedBy`).
+    *   **Condicional:**
+        *   Se `systemType` for `"Orion TN"` ou `"OrionTN"` $\rightarrow$ Incluir **Luan Caldeira** em cópia.
+        *   Se `systemType` for `"Orion PRO"` ou `"OrionPRO"` $\rightarrow$ Incluir **Maurilio Camargo** em cópia.
+        *   Se `systemType` for `"Orion REG"` ou `"OrionREG"` $\rightarrow$ Incluir **Amanda Flor** em cópia.
+
+---
+
+### Automação 3: Nova Conversão Enviada para a Fila
+Gatilho disparado quando o implantador ou gestor clica no botão para enviar o banco de dados do cliente para a fila de migração.
+
+*   **Código do React/Hook:** Função `sendToConversion` no hook [useConversionQueue.ts](file:///c:/Users/marcu/Desktop/Projects/siplan-hub/src/hooks/useConversionQueue.ts#L166-L213).
+*   **Ação no Banco de Dados:** Inserção (`INSERT`) na tabela `conversion_queue` com a coluna `queue_status` definida como `'pending'`.
+*   **Campos de Dados Utilizados:**
+    *   `client_name` e `ticket_number` (obtidos através do join de relacionamento da tabela `projects` com a `conversion_queue`).
+    *   `system_type` do cliente.
+*   **Destinatários:** **Marcus, Ademar, Luciane, Eduardo e Marcos Ortiz**.
+*   **Assunto do E-mail:** `[Fila de Conversão] Nova Importação Pendente — {clientName} (#{ticketNumber})`
+
+---
+
+### Automação 4: Checklist Comercial Respondido pelo Cliente
+Gatilho disparado no portal público externo quando o cliente finaliza o preenchimento de suas informações estruturais.
+
+*   **Componente / Hook:** Função `handleSubmit` ou `handleDynamicSubmit` no hook público [usePublicChecklist.ts](file:///c:/Users/marcu/Desktop/Projects/siplan-hub/src/hooks/usePublicChecklist.ts#L133-L209), que chama `submitChecklist` do [useCommercialChecklists.ts](file:///c:/Users/marcu/Desktop/Projects/siplan-hub/src/hooks/useCommercialChecklists.ts).
+*   **Ação no Banco de Dados:** Atualização na tabela `commercial_checklists` mudando a coluna `status` para `'submitted'` e gravando o JSON de respostas na coluna `responses`.
+*   **Campos de Dados Utilizados:**
+    *   Metadados do projeto: `clientName`, `ticketNumber`, `systemType`.
+    *   Respostas Completas: Todas as propriedades salvas no campo `responses`. No caso do formulário padrão (Fallback), ler e formatar os campos estruturais em formato de tabela legível:
+        *   Dados de quem preencheu: `fullname` (Nome), `role` (Cargo), `email` e `phones` (Telefones).
+        *   Estrutura: `floors` (Andares), `sectors` (Setores existentes), `sectors_distribution` (Distribuição dos setores) e `total_employees` (Total de colaboradores).
+        *   Colaboradores Chave: Lista `key_people` contendo nome, cargo e contato dos líderes internos.
+        *   Gestão de Mudança: `aware_of_change` (Se a equipe sabe da troca de sistema) e `team_adaptability` (Como lidam com novidades).
+*   **Destinatários:** **Marcus, Marcos Ortiz e Bruno Fernandes**.
+*   **Assunto do E-mail:** `[Checklist Comercial] Respostas Enviadas — {clientName} (#{ticketNumber})`
+
+---
+
+## 💡 Sugestões de Novos Disparos (Por Evento ou Cron Job)
+
+Seguindo a mesma lógica operacional do Siplan HUB, aqui estão ideias adicionais para otimizar gargalos e alinhamentos diários:
+
+### A) Por Acionamento (Event-driven)
+
+#### 1. Atribuição de Analista na Fila de Conversão
+*   **Gatilho:** Quando um analista de dados clica em "Assumir Conversão" na tela de fila (Função `assignToMe` em [useConversionQueue.ts](file:///c:/Users/marcu/Desktop/Projects/siplan-hub/src/hooks/useConversionQueue.ts#L216-L265)).
+*   **E-mail para:** Implantador Responsável (`responsibleImplementation`), Líder do Projeto (`projectLeader`) e Marcus.
+*   **Objetivo:** Informar à ponta de implantação quem é o analista de conversão responsável por tratar os dados daquele cliente, facilitando a troca direta de informações.
+*   **Campos:** Nome do cliente, chamado, nome do analista (`assignedToName`), e data de início (`startedAt`).
+
+#### 2. Registro de Inconsistência Crítica na Homologação
+*   **Gatilho:** Quando o implantador cria uma ocorrência de divergência de dados com severidade "Crítica" na tela de validação.
+*   **E-mail para:** Analista de Conversão designado (`assignedTo`), Equipe de Conversão e Marcus.
+*   **Objetivo:** Agilizar a correção do script de carga de dados para evitar atrasos na virada oficial.
+*   **Campos:** Nome do cliente, chamado, título da inconsistência, tabela afetada e descrição do erro.
+
+#### 3. Mudança de Responsabilidades por Férias
+*   **Gatilho:** Quando um administrador cria ou altera o período de férias de um analista em [VacationManagement.tsx](file:///c:/Users/marcu/Desktop/Projects/siplan-hub/src/pages/admin/VacationManagement.tsx).
+*   **E-mail para:** Líderes de Projeto (`projectLeader`) dos projetos onde esse analista figura como responsável ativo em alguma das etapas (`responsibleInfra`, `responsibleConversion`, `responsibleImplementation`).
+*   **Objetivo:** Garantir que o gestor do projeto saiba com antecedência da indisponibilidade do recurso para remapear tarefas.
+
+---
+
+### B) Por Cron Job (Processamento Agendado)
+
+#### 1. Relatório Semanal de Projetos Bloqueados (Segunda-feira - 08:00)
+*   **Gatilho:** Executado no início de toda semana.
+*   **E-mail para:** Marcus, Marcos Ortiz e Bruno Fernandes.
+*   **Objetivo:** Fornecer uma lista de controle consolidada com os projetos que estão com o status global em `'blocked'` (travados), para tomada de decisões executivas.
+*   **Campos:** Tabela com: Cliente, Chamado, Etapa em que travou (Infra, Aderência, Conversão, etc.), Responsável pela Etapa, Motivo do Bloqueio (`blockingReason` / `gapDescription`) e há quantos dias está sem atualização.
+
+#### 2. Alerta de Homologação de Banco de Dados Expirando (Diário - 08:00)
+*   **Gatilho:** Varredura diária nos projetos em estágio de conversão de dados.
+*   **E-mail para:** Implantador Responsável (`responsibleImplementation`) e Marcus.
+*   **Objetivo:** Cobrar a finalização de bases de dados de testes enviadas ao cliente que estão aguardando validação por muito tempo.
+*   **Condição:** Projetos na fila de conversão com status `awaiting_homologation` onde o prazo final de homologação (`homologationDeadline`) está a menos de 48 horas de vencer ou já venceu.
+
+#### 3. Resumo Diário da Fila de Conversão (Segunda a Sexta - 17:30)
+*   **Gatilho:** Fim do expediente diário.
+*   **E-mail para:** Marcus, Ademar, Luciane e Eduardo.
+*   **Objetivo:** Manter a equipe de dados ciente do volume de conversões pendentes para planejamento de capacidade no dia seguinte.
+*   **Campos:** Quantidade de itens em `'pending'`, quantidade em `'in_progress'`, chamado mais antigo aguardando atendimento e prioridades críticas da fila.
+
+---
+**Resumo do Trabalho:**
+1. Mapeei os campos exatos (Supabase e interfaces TypeScript) de cada e-mail solicitado pelo usuário.
+2. Identifiquei as funções de gatilho nos hooks de frontend ([ProjectAdherenceForm.tsx](file:///c:/Users/marcu/Desktop/Projects/siplan-hub/src/pages/ProjectAdherenceForm.tsx), [useConversionQueue.ts](file:///c:/Users/marcu/Desktop/Projects/siplan-hub/src/hooks/useConversionQueue.ts) e [usePublicChecklist.ts](file:///c:/Users/marcu/Desktop/Projects/siplan-hub/src/hooks/usePublicChecklist.ts)).
+3. Desenhei 3 novas sugestões por acionamento (evento) e 3 novas sugestões por rotina de tempo (cron job) baseadas nas regras de negócio identificadas no ecossistema do Siplan HUB.
