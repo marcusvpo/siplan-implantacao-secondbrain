@@ -37,3 +37,6 @@ A execução se apoia no levantamento da serventia e rotinas essenciais da opera
 - **Gestão da Fila de Produtos:** Melhorar a previsibilidade e criar métricas de estimativa de viabilidade técnica quando uma implantação depende de uma nova feature, para que o cliente não fique com o prazo completamente aberto.
 
 **Próxima etapa:** [[[Processo] 4. Tratamento de Impedimentos da Análise de Aderência]]
+
+- **Padronização e Formato:** Os checklists de aderência serão centralizados num template mestre no HUB (baseado no do Vieira). Análises em clientes que usam sistemas de concorrentes serão preferencialmente **presenciais**.
+- **Questionário Prévio:** O Comercial enviará um questionário self-service simplificado logo após o fechamento para coletar dados da infraestrutura e perfis, preparando a ida presencial.

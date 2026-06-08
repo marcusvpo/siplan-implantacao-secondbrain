@@ -29,3 +29,6 @@ Após a primeira conversão (base provisória), o Analista de Implantação cone
 - **Formulário/Checklist de Homologação no HUB:** Os implantadores deverão criar um checklist de homologação padronizado para todos os sistemas. Essa função será alocada na nova tela "Implantadores > Checklist Homologação" no HUB, funcionando como um criador/editor de formulários semelhante ao de Aderência.
 - **Relatório de Inconsistências:** O envio do arquivo Word com inconsistências via e-mail para a equipe de Conversão está fluindo bem e será mantido como padrão.
 - **Pré-homologação por Conversão:** Verificar a viabilidade da equipe de Conversão (ou uma equipe dedicada) realizar uma pré-homologação "campo a campo" validando os dados contra os layouts do SharePoint antes de liberar para o Implantador.
+
+- **Checklist Padrão:** Criação do checklist padrão de homologação guiado por fluxos (top-down) no Siplan HUB, em contraposição a análises infinitas focadas apenas nos dados brutos.
+- **Pré-Homologação pela Conversão (Bottom-up):** A equipe de Conversão passará a realizar uma pré-homologação exaustiva, validando dados contra o layout e usando relatórios de batimento quantitativo de origem/destino antes de liberar a base para o Implantador.

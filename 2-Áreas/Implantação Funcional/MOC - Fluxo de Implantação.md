@@ -40,3 +40,9 @@ Este é o mapa de conteúdo que orquestra o processo de implantação de softwar
 - [[Estrutura da Equipe e Especialidades]]
 - [[Glossario de Documentos de Implantacao]]
 - [[[Modelo] Template - Analise de Aderencia]]
+
+
+## ## Regras de Negócio Críticas
+- [[[Regra] Uso Obrigatório do Catálogo de Conversão]]
+- [[[Regra] Formulário de Formalização de Treinamento como Defesa]]
+- [[[Regra] Relatório Formal de Benefícios e Ganhos Operacionais]]

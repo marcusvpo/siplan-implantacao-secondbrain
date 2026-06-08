@@ -11,14 +11,10 @@
             "id": "6c1f41fedfba5127",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "4-Arquivo/transcricoes-reunioes-semana25/Reunião com Implantadores - 25-05 - 26-05 - 27-05.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Reunião com Implantadores - 25-05 - 26-05 - 27-05"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Visualização em gráfico"
             }
           }
         ]
@@ -211,8 +207,15 @@
   },
   "active": "6c1f41fedfba5127",
   "lastOpenFiles": [
-    "4-Arquivo/Resumo Reuniões com Implantadores/Parte 1.md",
+    "4-Arquivo/Resumo Reuniões com Implantadores/Resumo das Reuniões com Implantadores por Tópicos.md",
+    "2-Áreas/Implantação Funcional/[Oportunidade] Automação da Parametrização e Instalação de Estações.md",
+    "3-Recursos/Procedimentos e Manuais/[Regra] Relatório Formal de Benefícios e Ganhos Operacionais.md",
+    "3-Recursos/Procedimentos e Manuais/[Regra] Formulário de Formalização de Treinamento como Defesa.md",
+    "2-Áreas/Conversão de Dados/[Gargalo] Espaço em Disco para Imagens GED.md",
+    "2-Áreas/Implantação Funcional/[Gargalo] Dependência da TI do Cliente na Análise.md",
+    "3-Recursos/Procedimentos e Manuais/[Regra] Uso Obrigatório do Catálogo de Conversão.md",
     "4-Arquivo/transcricoes-reunioes-semana25/Reunião com Implantadores - 25-05 - 26-05 - 27-05.md",
+    "4-Arquivo/Resumo Reuniões com Implantadores/Parte 1.md",
     "4-Arquivo/Resumo Reuniões com Implantadores",
     "GEMINI.md",
     "Agents/Agente de Processos Siplan/SKILL.md",
@@ -238,15 +241,8 @@
     "4-Arquivo/2026-06-08.md",
     "4-Arquivo/08-06--12-06.md",
     "4-Arquivo/Sem título.md",
-    "Anotações Diárias/Ideias Automações Disparo E-mail - Siplan HUB.md",
     "Anotações Diárias/Semanas",
-    "3-Recursos/00 - Inbox/Ideias Automações Disparo E-mail - Siplan HUB.md",
     "Anotações Diárias/0-Templates",
-    "docs/superpowers/plans/2026-06-08-journal-reorganization-plan.md",
-    "docs/superpowers/specs/2026-06-08-journal-reorganization-design.md",
-    "docs/superpowers/specs/2026-05-27-auditor-hibrido-homologacao-design.md",
-    "4-Arquivo/Reunião com Implantadores - 25-05 - 26-05 - 27-05.md",
-    "2-Áreas/Implantação Funcional/[Processo] 11. Transição para o Pós-Implantação.md",
     "Sem título.canvas"
   ]
 }

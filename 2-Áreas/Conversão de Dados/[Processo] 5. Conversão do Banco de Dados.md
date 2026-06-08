@@ -37,3 +37,7 @@ Quando o cartório possui um sistema cujos dados nunca foram convertidos pela Si
 - **Catálogo de Conversores no Hub:** Criar uma base de dados indexada no Hub com todos os sistemas do mercado e o "Nível de Maturidade" do nosso conversor para cada um. Isso permitirá que o Comercial saiba, *no ato da venda*, se aquele cartório demorará 3 dias ou 3 meses para converter.
 
 **Próxima etapa:** [[[Processo] 6. Homologação da Conversão de Dados]]
+
+- **Relatório de Quantidades:** Exigência de que o processo de conversão emita relatórios de batimento (quantidades na origem e no destino) para transparência.
+- **Volume de Imagens na Aderência:** O levantamento do tamanho ocupado pelas imagens do cliente (em GB), essencial para dimensionar discos do ambiente Docker, será responsabilidade dos Analistas de Implantação já na fase de Análise de Aderência.
+- **Motor GED (Prioridade Absoluta):** Foco emergencial na finalização e estruturação dos conversores de imagens do Control-M PRO e sistemas legados, a fim de eliminar o backlog acumulado de cartórios de protesto sem as imagens migradas.
