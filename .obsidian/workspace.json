@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "d6e1f83cfa820e14",
+        "id": "aa0d5adaee586de5",
         "type": "tabs",
         "children": [
           {
-            "id": "0ac918d83b92a0d6",
+            "id": "34166ed59761e75c",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Anotações Diárias/Ideias Automações Disparo E-mail - Siplan HUB.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Ideias Automações Disparo E-mail - Siplan HUB"
+              "title": "Nova aba"
             }
           }
         ]
@@ -196,10 +192,24 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "0ac918d83b92a0d6",
+  "active": "3499d2a2ae291273",
   "lastOpenFiles": [
-    "docs/superpowers/specs/2026-05-27-auditor-hibrido-homologacao-design.md",
+    "Anotações Diárias/Semanas/Untitled.md",
+    "Anotações Diárias/Semanas/Sem título.md",
+    "Anotações Diárias/0-Templates/Template - Dia.md",
+    "Anotações Diárias/Semanas/08-06--12-06.md",
+    "4-Arquivo/Untitled.md",
+    "4-Arquivo/Sem título.md",
+    "Anotações Diárias/0-Templates/Template - Semana.md",
     "Anotações Diárias/Ideias Automações Disparo E-mail - Siplan HUB.md",
+    "Anotações Diárias/Dias",
+    "Anotações Diárias/Semanas",
+    "3-Recursos/00 - Inbox/Ideias Automações Disparo E-mail - Siplan HUB.md",
+    "Anotações Diárias/0-Templates",
+    "docs/superpowers/plans/2026-06-08-journal-reorganization-plan.md",
+    "docs/superpowers/plans",
+    "docs/superpowers/specs/2026-06-08-journal-reorganization-design.md",
+    "docs/superpowers/specs/2026-05-27-auditor-hibrido-homologacao-design.md",
     "Anotações Diárias",
     "4-Arquivo/Reunião com Implantadores - 25-05 - 26-05 - 27-05.md",
     "2-Áreas/Implantação Funcional/[Processo] 11. Transição para o Pós-Implantação.md",
@@ -219,21 +229,7 @@
     "3-Recursos/00 - Inbox/Questionario_ASIS_TOBE_Siplan_Hub.md",
     "3-Recursos/00 - Inbox/Relatorio_Transformacao_Implantacao_2026.md",
     "3-Recursos/00 - Inbox/Sabotagem_do_Conhecimento.md",
-    "2-Áreas/Siplan Hub/MOC - Siplan Hub.md",
-    "2-Áreas/Siplan Hub/[Processo] Mapeamento AS-IS e TO-BE do Siplan Hub.md",
-    "2-Áreas/Implantação Funcional/[Oportunidade] Evolução e Rollout do Hub.md",
-    "2-Áreas/Siplan Hub/[Hub] Estrutura de Telas e Diagnóstico de Uso.md",
-    "3-Recursos/00 - Inbox/Questionário Investigação.md",
-    "2-Áreas/Implantação Funcional/MOC - Fluxo de Implantação.md",
     "Sem título.canvas",
-    "4-Arquivo/[Gargalo/] Dúvidas Operacionais no Service Desk.md",
-    "4-Arquivo/[Gargalo",
-    "3-Recursos/Procedimentos e Manuais/[Modelo] Template - Analise de Aderencia.md",
-    "3-Recursos/00 - Inbox/Questionario_Aprofundamento_Implantacao.md",
-    "3-Recursos/Procedimentos e Manuais/Glossario de Documentos de Implantacao.md",
-    "4-Arquivo/docs-implantacao/Julio/Aderência - Output Sistema Julio.txt",
-    "4-Arquivo/docs-implantacao/Julio/Novo(a) Documento de Texto.txt",
-    "4-Arquivo/docs-implantacao/Vieira/Relatório de Atendimento Técnico (RAT) - Chamado 717671.pdf",
-    "4-Arquivo/docs-implantacao/Vieira/Formalização da Migração de Dados do SiplanTN para o OrionTN.pdf"
+    "4-Arquivo/[Gargalo"
   ]
 }

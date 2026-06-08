@@ -1,3 +1,5 @@
 {
-  "format": "DD-MM-YYYY"
+  "format": "YYYY-MM-DD",
+  "folder": "Anotações Diárias/Dias",
+  "template": "Anotações Diárias/0-Templates/Template - Dia.md"
 }
