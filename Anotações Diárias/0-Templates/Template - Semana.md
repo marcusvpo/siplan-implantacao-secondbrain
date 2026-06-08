@@ -30,11 +30,13 @@ inicio: <% monday %>
 ---
 # 🎯 Planejamento da Semana: <% titleMon %> a <% titleFri %>
 
-## 🚀 Prioridades Absolutas (Must-do)
-> *As coisas mais importantes que precisam ser entregues nesta semana.*
-- [ ] 
-- [ ] 
-- [ ] 
+## 🚀 Atualizar Projetos (Siplan HUB)
+> *Atualizar os projetos ativos diariamente no HUB.*
+- [ ] Segunda
+- [ ] Terça
+- [ ] Quarta
+- [ ] Quinta
+- [ ] Sexta
 
 ## 🛠️ Implantação e Cartórios
 > *Atividades relacionadas a clientes, projetos e implantações ativas.*
@@ -42,8 +44,8 @@ inicio: <% monday %>
 - [ ] 
 - [ ] 
 
-## ⚙️ Siplan HUB & Processos Internos
-> *Melhorias, automações n8n, organização do Obsidian e outros projetos internos.*
+## ⚙️ Desenvolvimento & Processos Internos
+> *Melhorias Siplan HUB e Siplan Skills, automações , organização e projetos internos.*
 - [ ] 
 - [ ] 
 - [ ] 

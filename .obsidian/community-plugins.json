@@ -2,5 +2,7 @@
   "terminal",
   "calendar",
   "templater-obsidian",
-  "obsidian-git"
+  "obsidian-git",
+  "dataview",
+  "pdf-plus"
 ]
