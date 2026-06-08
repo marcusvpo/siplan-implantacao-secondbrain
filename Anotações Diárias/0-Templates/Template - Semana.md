@@ -11,12 +11,8 @@ if (title && title.includes("--")) {
     m = moment(promptDate, ["DD/MM/YYYY", "DD-MM-YYYY", "YYYY-MM-DD"]);
 }
 
-// Calcula todos os dias clonando a data inicial para evitar erros
+// Calcula a data inicial para o frontmatter
 let monday = m.clone().format("YYYY-MM-DD");
-let tuesday = m.clone().add(1, 'days').format("YYYY-MM-DD");
-let wednesday = m.clone().add(2, 'days').format("YYYY-MM-DD");
-let thursday = m.clone().add(3, 'days').format("YYYY-MM-DD");
-let friday = m.clone().add(4, 'days').format("YYYY-MM-DD");
 
 // Define como o título do arquivo deveria ser
 let titleMon = m.clone().format("DD-MM");
@@ -45,7 +41,6 @@ inicio: <% monday %>
 - [ ] 
 - [ ] 
 - [ ] 
-- [ ] 
 
 ## ⚙️ Siplan HUB & Processos Internos
 > *Melhorias, automações n8n, organização do Obsidian e outros projetos internos.*
@@ -60,14 +55,9 @@ inicio: <% monday %>
 
 ---
 
-## 📝 Diário de Bordo (Logs longos e Atas)
-> *Clique nos dias abaixo APENAS se precisar escrever uma ata de reunião longa ou documentar um problema complexo que ocorreu naquele dia. Não use para tarefas.*
-
-- [[<% monday %>]] - Segunda-feira
-- [[<% tuesday %>]] - Terça-feira
-- [[<% wednesday %>]] - Quarta-feira
-- [[<% thursday %>]] - Quinta-feira
-- [[<% friday %>]] - Sexta-feira
+## 📝 Atas e Reuniões da Semana
+> *Documente aqui os detalhes de reuniões, alinhamentos ou problemas complexos que ocorreram ao longo da semana.*
+- 
 
 ---
 
