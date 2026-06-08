@@ -13,13 +13,13 @@ Como esta ação ocorre por um integrador externo (via API/Webhook inserindo dad
     *   Horas vendidas: `sold_hours` (mapeado como `soldHours`).
 *   **Regra de Disparo (Condição):** `INSERT` na tabela `projects` onde a coluna `external_id` ou dados do chamado estejam preenchidos. Não disparar se for um `UPDATE`.
 *   **Mapeamento de E-mails:**
-    1.  **Solicitação de Infra:** Enviar para **Marcus, Alex e Hugo**.
+    1.  **Solicitação de Infra:** Enviar para **Marcus, Alex Silva e Hugo Januário**.
         *   *Assunto:* `[Infraestrutura] Solicitação de Análise de Infra — {clientName} (#{ticketNumber})`
     2.  **Agendamento de Aderência:** Enviar para **Marcus e Maria**.
         *   *Assunto:* `[Aderência] Agendar Análise — {clientName} (#{ticketNumber}) — Sistema: {systemType}`
     3.  **Kickoff do Projeto:** Enviar para **Marcus, Marcos Ortiz e Bruno Fernandes**.
-        *   *Assunto:* `[Kickoff] Novo Projeto Criado — {clientName} (#{ticketNumber})`
-        *   *Destaque no Corpo:* Mostrar `soldHours` (Horas vendidas).
+        *   *Assunto:* `[Kickoff] Novo Projeto Cadastrado — {clientName} (#{ticketNumber})`
+        *   *Destaque no Corpo:* Mostrar `soldHours` (Horas vendidas) e `systemType` (Sistema).
 
 ---
 
