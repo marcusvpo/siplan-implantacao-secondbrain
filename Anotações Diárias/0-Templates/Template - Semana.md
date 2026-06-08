@@ -32,35 +32,46 @@ if(title !== expectedTitle) {
 tipo: planejamento-semanal
 inicio: <% monday %>
 ---
-# 🎯 Planejamento da Semana
+# 🎯 Planejamento da Semana: <% titleMon %> a <% titleFri %>
 
-## 📥 Inbox / Foco da Semana (Despejo de Ideias)
+## 🚀 Prioridades Absolutas (Must-do)
+> *As coisas mais importantes que precisam ser entregues nesta semana.*
 - [ ] 
-- [ ] 
-- [ ] 
-
-## 🗓️ Checklist dos Dias da Semana
-
-### [[<% monday %>]] - Segunda-feira
 - [ ] 
 - [ ] 
 
-### [[<% tuesday %>]] - Terça-feira
+## 🛠️ Implantação e Cartórios
+> *Atividades relacionadas a clientes, projetos e implantações ativas.*
+- [ ] 
+- [ ] 
 - [ ] 
 - [ ] 
 
-### [[<% wednesday %>]] - Quarta-feira
+## ⚙️ Siplan HUB & Processos Internos
+> *Melhorias, automações n8n, organização do Obsidian e outros projetos internos.*
 - [ ] 
-- [ ] 
-
-### [[<% thursday %>]] - Quinta-feira
 - [ ] 
 - [ ] 
 
-### [[<% friday %>]] - Sexta-feira
+## Inbox / Outros Assuntos
+> *Coisas menores, ligações rápidas, ou tarefas que surgiram no meio do caminho.*
 - [ ] 
 - [ ] 
 
-## 🔄 Revisão Semanal
-- [ ] Mover tarefas pendentes (undone) para a próxima semana
-- [ ] Atualizar status de implantações no Siplan HUB
+---
+
+## 📝 Diário de Bordo (Logs longos e Atas)
+> *Clique nos dias abaixo APENAS se precisar escrever uma ata de reunião longa ou documentar um problema complexo que ocorreu naquele dia. Não use para tarefas.*
+
+- [[<% monday %>]] - Segunda-feira
+- [[<% tuesday %>]] - Terça-feira
+- [[<% wednesday %>]] - Quarta-feira
+- [[<% thursday %>]] - Quinta-feira
+- [[<% friday %>]] - Sexta-feira
+
+---
+
+## 🔄 Fechamento da Semana (Sexta-feira)
+- [ ] Migrar tarefas que não foram feitas (undone) para a nota da próxima semana.
+- [ ] Atualizar o status dos projetos no Siplan HUB.
+- [ ] Esvaziar a cabeça para o final de semana.
