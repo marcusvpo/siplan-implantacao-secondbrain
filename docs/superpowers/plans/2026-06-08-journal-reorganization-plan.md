@@ -1,153 +1,129 @@
-# Reestruturação do Journal no Obsidian - Implementation Plan
+# Vault Reorganization Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Reestruturar a pasta de Anotações Diárias para adotar um fluxo focado na semana usando templates automatizados com o Templater.
+**Goal:** Implement the approved vault architecture by creating isolated zones for drafts and obsolete files to keep the RAG context clean.
 
-**Architecture:** O sistema terá uma pasta raiz `Anotações Diárias` contendo `0-Templates`, `Semanas`, e `Dias`. A lógica central é baseada em Notas Semanais dinâmicas.
+**Architecture:** Moving files to strict designated folders (`0-Em Andamento` for active work, `4-Arquivo/00-Obsoletos e Temporarios` for discarded files, and keeping `2-Áreas`/`3-Recursos` for permanent atomic notes). Updating `.geminiignore` to hide obsolete files from AI tools.
 
-**Tech Stack:** Obsidian Core Plugins (Daily Notes), Templater.
+**Tech Stack:** Obsidian, Gemini CLI (.geminiignore)
 
 ---
 
-### Task 1: Criar Estrutura de Pastas e Mover Notas Existentes
+### Task 1: Create New Directory Structure
 
 **Files:**
-- Create Dir: `Anotações Diárias/0-Templates`
-- Create Dir: `Anotações Diárias/Semanas`
-- Create Dir: `Anotações Diárias/Dias`
-- Move: `Anotações Diárias/Ideias Automações Disparo E-mail - Siplan HUB.md` para a pasta inbox (vamos usar `3-Recursos/00 - Inbox` já existente)
+- Create: `0-Em Andamento/`
+- Create: `4-Arquivo/00-Obsoletos e Temporarios/`
 
-- [ ] **Step 1: Criar as pastas**
+- [ ] **Step 1: Create the new root folder for drafts**
 
 ```bash
-mkdir -p "Anotações Diárias/0-Templates"
-mkdir -p "Anotações Diárias/Semanas"
-mkdir -p "Anotações Diárias/Dias"
+mkdir -Force "0-Em Andamento"
 ```
 
-- [ ] **Step 2: Mover a nota existente**
+- [ ] **Step 2: Create the new subfolder for obsolete files**
 
 ```bash
-mv "Anotações Diárias/Ideias Automações Disparo E-mail - Siplan HUB.md" "3-Recursos/00 - Inbox/Ideias Automações Disparo E-mail - Siplan HUB.md"
+mkdir -Force "4-Arquivo\00-Obsoletos e Temporarios"
 ```
 
-- [ ] **Step 3: Commit**
+- [ ] **Step 3: Commit structural changes**
 
 ```bash
-git add "Anotações Diárias/" "3-Recursos/00 - Inbox/"
-git commit -m "chore: create folder structure for new journal system and move inbox note"
+git add .
+git commit -m "chore: create vault reorganization directories"
 ```
 
----
-
-### Task 2: Criar Templates
+### Task 2: Configure RAG Isolation (Geminiignore)
 
 **Files:**
-- Create: `Anotações Diárias/0-Templates/Template - Semana.md`
-- Create: `Anotações Diárias/0-Templates/Template - Dia.md`
+- Modify/Create: `.geminiignore`
 
-- [ ] **Step 1: Criar o Template da Semana**
-
-Crie o arquivo `Anotações Diárias/0-Templates/Template - Semana.md` com o seguinte conteúdo:
-```markdown
----
-tipo: planejamento-semanal
-inicio: <% tp.date.now("YYYY-MM-DD", 0, tp.file.title, "DD-MM--DD-MM") %>
----
-# 🎯 Planejamento: <% tp.file.title %>
-
-## 📥 Inbox / Foco da Semana
-- [ ] 
-
-## 🗓️ Dias da Semana
-
-### [[<% tp.date.now("YYYY-MM-DD", 0, tp.file.title, "DD-MM--DD-MM") %>]] - Segunda-feira
-- [ ] 
-
-### [[<% tp.date.now("YYYY-MM-DD", 1, tp.file.title, "DD-MM--DD-MM") %>]] - Terça-feira
-- [ ] 
-
-### [[<% tp.date.now("YYYY-MM-DD", 2, tp.file.title, "DD-MM--DD-MM") %>]] - Quarta-feira
-- [ ] 
-
-### [[<% tp.date.now("YYYY-MM-DD", 3, tp.file.title, "DD-MM--DD-MM") %>]] - Quinta-feira
-- [ ] 
-
-### [[<% tp.date.now("YYYY-MM-DD", 4, tp.file.title, "DD-MM--DD-MM") %>]] - Sexta-feira
-- [ ] 
-
-## 🔄 Revisão Semanal
-- [ ] Mover tarefas pendentes para a próxima semana
-- [ ] Atualizar status de implantações no Siplan HUB
-```
-
-- [ ] **Step 2: Criar o Template do Dia**
-
-Crie o arquivo `Anotações Diárias/0-Templates/Template - Dia.md` com o seguinte conteúdo:
-```markdown
----
-tipo: log-diario
-data: <% tp.file.title %>
----
-# 📅 <% tp.file.title %>
-
-## 📝 Log / Anotações
-- 
-
-## 🤝 Reuniões / Atendimentos
-- 
-```
-
-- [ ] **Step 3: Commit**
+- [ ] **Step 1: Write/Update the `.geminiignore` file**
 
 ```bash
-git add "Anotações Diárias/0-Templates/"
-git commit -m "feat: add templater templates for weekly and daily notes"
+echo "4-Arquivo/00-Obsoletos e Temporarios/" >> .geminiignore
 ```
 
----
+- [ ] **Step 2: Verify the file content**
 
-### Task 3: Configurar Plugins do Obsidian
+```bash
+cat .geminiignore
+```
+Expected: output includes `4-Arquivo/00-Obsoletos e Temporarios/`
+
+- [ ] **Step 3: Commit the ignore configuration**
+
+```bash
+git add .geminiignore
+git commit -m "build: ignore obsolete files directory in gemini context"
+```
+
+### Task 3: Migrate Rascunhos from Inbox
 
 **Files:**
-- Modify: `.obsidian/daily-notes.json`
-- Modify: `.obsidian/plugins/templater-obsidian/data.json` (ou criar se não existir)
+- Modify (Move): All AI-generated questionnaires and active drafts from `3-Recursos/00 - Inbox/` to `0-Em Andamento/` or `4-Arquivo/00-Obsoletos e Temporarios/`
 
-- [ ] **Step 1: Atualizar configuração do Daily Notes**
-
-O arquivo `.obsidian/daily-notes.json` deve ficar assim:
-```json
-{
-  "format": "YYYY-MM-DD",
-  "folder": "Anotações Diárias/Dias",
-  "template": "Anotações Diárias/0-Templates/Template - Dia.md"
-}
-```
-
-- [ ] **Step 2: Atualizar configuração do Templater**
-
-O arquivo `.obsidian/plugins/templater-obsidian/data.json` deve ser criado/modificado para:
-```json
-{
-  "templates_folder": "Anotações Diárias/0-Templates",
-  "templates_pairs": [],
-  "trigger_on_file_creation": true,
-  "auto_jump_to_cursor": false,
-  "enable_system_commands": false,
-  "shell_path": "",
-  "user_scripts_folder": "",
-  "enable_folder_templates": false,
-  "folder_templates": [],
-  "syntax_highlighting": true,
-  "syntax_highlighting_mobile": false,
-  "enabled_templates_hotkeys": []
-}
-```
-
-- [ ] **Step 3: Commit**
+- [ ] **Step 1: Move active questionnaires to the draft zone**
 
 ```bash
-git add .obsidian/daily-notes.json .obsidian/plugins/templater-obsidian/data.json
-git commit -m "chore: configure daily notes and templater for new folder structure"
+mv "3-Recursos\00 - Inbox\Questionario_Aprofundamento_Implantacao.md" "0-Em Andamento\"
+mv "3-Recursos\00 - Inbox\Questionário Investigação.md" "0-Em Andamento\"
+mv "3-Recursos\00 - Inbox\Questionario_ASIS_TOBE_Siplan_Hub.md" "0-Em Andamento\"
+mv "3-Recursos\00 - Inbox\Ideias Automações Disparo E-mail - Siplan HUB.md" "0-Em Andamento\"
 ```
+
+- [ ] **Step 2: Move old/processed raw data to the obsolete zone**
+
+```bash
+mv "3-Recursos\00 - Inbox\Diagnostico_Bruto_Vault.md" "4-Arquivo\00-Obsoletos e Temporarios\"
+mv "3-Recursos\00 - Inbox\Sabotagem_do_Conhecimento.md" "4-Arquivo\00-Obsoletos e Temporarios\"
+mv "3-Recursos\00 - Inbox\Análise Transição e Aderência.md" "4-Arquivo\00-Obsoletos e Temporarios\"
+mv "3-Recursos\00 - Inbox\Relatorio_Transformacao_Implantacao_2026.md" "4-Arquivo\00-Obsoletos e Temporarios\"
+```
+
+- [ ] **Step 3: Verify the remaining files in Inbox**
+*Note: Any remaining files should be legitimate permanent resources or raw content still awaiting processing.*
+
+```bash
+ls "3-Recursos\00 - Inbox\"
+```
+
+- [ ] **Step 4: Commit Inbox migration**
+
+```bash
+git add "3-Recursos\00 - Inbox\" "0-Em Andamento\" "4-Arquivo\00-Obsoletos e Temporarios\"
+git commit -m "refactor: migrate drafts and obsolete files out of Inbox"
+```
+
+### Task 4: Migrate Anotações Diárias
+
+**Files:**
+- Modify (Move): Files from `Anotações Diárias/Notas/`
+
+- [ ] **Step 1: Move active templates/notes to the draft zone**
+
+```bash
+mv "Anotações Diárias\Notas\Templates de Email - Siplan Skills.md" "0-Em Andamento\"
+```
+
+- [ ] **Step 2: Remove the empty Notas folder (if applicable)**
+
+```bash
+rmdir "Anotações Diárias\Notas"
+```
+
+- [ ] **Step 3: Commit Anotações migration**
+
+```bash
+git add "Anotações Diárias\" "0-Em Andamento\"
+git commit -m "refactor: move daily notes artifacts to draft zone"
+```
+
+### Task 5: Final RAG Reindex
+
+- [ ] **Step 1: Execute the RAG reindex to reflect the deleted/ignored context**
+*This ensures the vector database no longer points to the files moved to the obsolete folder.*
+
+Run the tool: `obsidian_rag_index` with `force_reindex: true`
