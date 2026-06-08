@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Anotações Diárias/Notas/Sem título.md",
+                "file": "4-Arquivo/transcricoes-reunioes-semana25/Reunião com Implantadores - 25-05 - 26-05 - 27-05.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Sem título"
+              "title": "Reunião com Implantadores - 25-05 - 26-05 - 27-05"
             }
           }
         ]
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Anotações Diárias/Notas/Sem título.md",
+                "file": "4-Arquivo/transcricoes-reunioes-semana25/Reunião com Implantadores - 25-05 - 26-05 - 27-05.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Sumário de Sem título"
+              "title": "Sumário de Reunião com Implantadores - 25-05 - 26-05 - 27-05"
             }
           },
           {
@@ -209,11 +209,13 @@
       "pdf-plus:PDF++: Toggle auto-paste": false
     }
   },
-  "active": "3499d2a2ae291273",
+  "active": "6c1f41fedfba5127",
   "lastOpenFiles": [
+    "GEMINI.md",
+    "Agents/Agente de Processos Siplan/SKILL.md",
     "Anotações Diárias/Notas/Templates de Email - Siplan Skills.md",
-    "Anotações Diárias/Semanas/08-06--12-06.md",
     "Anotações Diárias/Notas/Sem título.md",
+    "Anotações Diárias/Semanas/08-06--12-06.md",
     "Anotações Diárias/Notas",
     "Anotações Diárias/Semanas/teste.md",
     "4-Arquivo/Invalid date--Invalid date.md",
@@ -245,8 +247,6 @@
     "4-Arquivo/Reunião com Implantadores - 25-05 - 26-05 - 27-05.md",
     "2-Áreas/Implantação Funcional/[Processo] 11. Transição para o Pós-Implantação.md",
     "4-Arquivo/Exemplo Output - Formulário de Implantação.md",
-    "4-Arquivo/Detalhes do Chamado.md",
-    "3-Recursos/00 - Inbox/Análise Transição e Aderência.md",
     "Sem título.canvas"
   ]
 }

@@ -119,3 +119,23 @@ Nesta etapa inicial, foram liberados os módulos de Demonstração e Treinamento
 Caso surja qualquer dúvida técnica ou necessidade de suporte adicional durante a navegação, permaneço à inteira disposição para auxiliá-los.
 
 Atenciosamente,
+
+## 🔹 Comunicação Interna (Envio para o Comercial repassar ao Cliente)
+
+*Use este modelo quando o Comercial (ex: Macan, Ademar, etc.) solicitar a criação do usuário para que eles mesmos repassem ao cliente final. Ele é objetivo, mas mantém o profissionalismo e inclui o contexto de qual cliente e sistemas estão sendo entregues.*
+
+Prezados, 
+
+Conforme solicitado, os acessos à plataforma Siplan Skills foram criados com sucesso. 
+
+Já efetuamos a liberação dos módulos referentes ao(s) sistema(s) solicitado(s).
+
+Abaixo seguem as credenciais prontas para serem repassadas ao cliente:
+
+**Plataforma:** https://skills.siplan.com.br
+**Usuário:** (login)
+**Token de Autenticação:** (token)
+
+Qualquer dúvida ou necessidade de ajuste, sigo à disposição.
+
+Atenciosamente,
