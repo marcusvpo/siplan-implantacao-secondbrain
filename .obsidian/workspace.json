@@ -11,10 +11,14 @@
             "id": "6c1f41fedfba5127",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Visualização em gráfico"
+              "type": "markdown",
+              "state": {
+                "file": "3-Recursos/00 - Inbox/Análise Transição e Aderência.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Análise Transição e Aderência"
             }
           }
         ]
@@ -207,6 +211,11 @@
   },
   "active": "6c1f41fedfba5127",
   "lastOpenFiles": [
+    "3-Recursos/00 - Inbox/Sabotagem_do_Conhecimento.md",
+    "3-Recursos/00 - Inbox/Questionario_Aprofundamento_Implantacao.md",
+    "3-Recursos/00 - Inbox/Questionario_ASIS_TOBE_Siplan_Hub.md",
+    "Anotações Diárias/Notas/Ideias Automações Disparo E-mail - Siplan HUB.md",
+    "Anotações Diárias/Notas/Templates de Email - Siplan Skills.md",
     "4-Arquivo/Resumo Reuniões com Implantadores/Resumo das Reuniões com Implantadores por Tópicos.md",
     "2-Áreas/Implantação Funcional/[Oportunidade] Automação da Parametrização e Instalação de Estações.md",
     "3-Recursos/Procedimentos e Manuais/[Regra] Relatório Formal de Benefícios e Ganhos Operacionais.md",
@@ -219,7 +228,6 @@
     "4-Arquivo/Resumo Reuniões com Implantadores",
     "GEMINI.md",
     "Agents/Agente de Processos Siplan/SKILL.md",
-    "Anotações Diárias/Notas/Templates de Email - Siplan Skills.md",
     "Anotações Diárias/Notas/Sem título.md",
     "Anotações Diárias/Semanas/08-06--12-06.md",
     "Anotações Diárias/Notas",
@@ -235,12 +243,8 @@
     "4-Arquivo/Exemplos e Chamados Antigos",
     "docs/superpowers/specs/2026-06-08-vault-restructuring-design.md",
     "Anotações Diárias/Dias",
-    "Anotações Diárias/0-Templates/Template - Dia.md",
     "conductor",
     "4-Arquivo/Sem título.base",
-    "4-Arquivo/2026-06-08.md",
-    "4-Arquivo/08-06--12-06.md",
-    "4-Arquivo/Sem título.md",
     "Anotações Diárias/Semanas",
     "Anotações Diárias/0-Templates",
     "Sem título.canvas"
