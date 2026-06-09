@@ -10,10 +10,10 @@ Reorganizar a arquitetura de pastas do Obsidian Vault "Siplan - Implantação" p
 - **Função:** Atuará como a "mesa de trabalho". Receberá questionários em elaboração, esboços gerados pela IA, notas diárias em preenchimento e rascunhos não consolidados.
 - **Ciclo de Vida:** Arquivos aqui são temporários. Eles existem apenas para serem posteriormente processados (ex: via skill `wiki-ingest`) e transformados em conhecimento consolidado.
 
-### 2. Zona de Lixo Inteligente (`4-Arquivo/00-Obsoletos e Temporarios`)
-- **Novo Diretório:** Criar a pasta `4-Arquivo/00-Obsoletos e Temporarios`.
+### 2. Zona de Lixo Inteligente (Fora do Vault)
+- **Novo Diretório:** `D:\Projetos Obsidian\Siplan - Arquivo Obsoleto`.
 - **Função:** "Cemitério" de arquivos que cumpriram sua função e não devem mais poluir pesquisas semânticas. Ex: questionários já respondidos e absorvidos, rascunhos velhos, rascunhos de reuniões já degravadas.
-- **Isolamento RAG:** O arquivo `.geminiignore` na raiz do Vault será atualizado para ignorar explicitamente o caminho `4-Arquivo/00-Obsoletos e Temporarios/`. Dessa forma, os arquivos são mantidos para fins de histórico pessoal do usuário, mas tornam-se invisíveis para as leituras de contexto e buscas da IA.
+- **Isolamento RAG:** Ao mover os arquivos para fora da raiz do Vault, garantimos 100% de isolamento, já que a ferramenta de indexação não terá acesso físico a esses arquivos. Isso resolve a limitação técnica onde o `.geminiignore` não era respeitado pelo indexador RAG.
 
 ### 3. Zona de Conhecimento Permanente
 - Mantém-se as atuais pastas `2-Áreas` e `3-Recursos`.

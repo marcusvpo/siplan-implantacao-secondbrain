@@ -13,8 +13,8 @@
 ### Task 1: Create New Directory Structure
 
 **Files:**
-- Create: `0-Em Andamento/`
-- Create: `4-Arquivo/00-Obsoletos e Temporarios/`
+- Create: `0-Em Andamento/` (In Vault)
+- Create: `D:\Projetos Obsidian\Siplan - Arquivo Obsoleto\` (Outside Vault)
 
 - [ ] **Step 1: Create the new root folder for drafts**
 
@@ -22,10 +22,10 @@
 mkdir -Force "0-Em Andamento"
 ```
 
-- [ ] **Step 2: Create the new subfolder for obsolete files**
+- [ ] **Step 2: Create the external folder for obsolete files**
 
 ```bash
-mkdir -Force "4-Arquivo\00-Obsoletos e Temporarios"
+mkdir -Force "D:\Projetos Obsidian\Siplan - Arquivo Obsoleto"
 ```
 
 - [ ] **Step 3: Commit structural changes**
@@ -43,7 +43,7 @@ git commit -m "chore: create vault reorganization directories"
 - [ ] **Step 1: Write/Update the `.geminiignore` file**
 
 ```bash
-echo "4-Arquivo/00-Obsoletos e Temporarios/" >> .geminiignore
+echo "0-Em Andamento/" >> .geminiignore
 ```
 
 - [ ] **Step 2: Verify the file content**
@@ -51,19 +51,19 @@ echo "4-Arquivo/00-Obsoletos e Temporarios/" >> .geminiignore
 ```bash
 cat .geminiignore
 ```
-Expected: output includes `4-Arquivo/00-Obsoletos e Temporarios/`
+Expected: output includes `0-Em Andamento/`
 
 - [ ] **Step 3: Commit the ignore configuration**
 
 ```bash
 git add .geminiignore
-git commit -m "build: ignore obsolete files directory in gemini context"
+git commit -m "build: ignore drafts directory in gemini context"
 ```
 
 ### Task 3: Migrate Rascunhos from Inbox
 
 **Files:**
-- Modify (Move): All AI-generated questionnaires and active drafts from `3-Recursos/00 - Inbox/` to `0-Em Andamento/` or `4-Arquivo/00-Obsoletos e Temporarios/`
+- Modify (Move): All AI-generated questionnaires and active drafts from `3-Recursos/00 - Inbox/` to `0-Em Andamento/` or `D:\Projetos Obsidian\Siplan - Arquivo Obsoleto\`
 
 - [ ] **Step 1: Move active questionnaires to the draft zone**
 
@@ -74,13 +74,13 @@ mv "3-Recursos\00 - Inbox\Questionario_ASIS_TOBE_Siplan_Hub.md" "0-Em Andamento\
 mv "3-Recursos\00 - Inbox\Ideias Automações Disparo E-mail - Siplan HUB.md" "0-Em Andamento\"
 ```
 
-- [ ] **Step 2: Move old/processed raw data to the obsolete zone**
+- [ ] **Step 2: Move old/processed raw data to the external obsolete zone**
 
 ```bash
-mv "3-Recursos\00 - Inbox\Diagnostico_Bruto_Vault.md" "4-Arquivo\00-Obsoletos e Temporarios\"
-mv "3-Recursos\00 - Inbox\Sabotagem_do_Conhecimento.md" "4-Arquivo\00-Obsoletos e Temporarios\"
-mv "3-Recursos\00 - Inbox\Análise Transição e Aderência.md" "4-Arquivo\00-Obsoletos e Temporarios\"
-mv "3-Recursos\00 - Inbox\Relatorio_Transformacao_Implantacao_2026.md" "4-Arquivo\00-Obsoletos e Temporarios\"
+mv "3-Recursos\00 - Inbox\Diagnostico_Bruto_Vault.md" "D:\Projetos Obsidian\Siplan - Arquivo Obsoleto\"
+mv "3-Recursos\00 - Inbox\Sabotagem_do_Conhecimento.md" "D:\Projetos Obsidian\Siplan - Arquivo Obsoleto\"
+mv "3-Recursos\00 - Inbox\Análise Transição e Aderência.md" "D:\Projetos Obsidian\Siplan - Arquivo Obsoleto\"
+mv "3-Recursos\00 - Inbox\Relatorio_Transformacao_Implantacao_2026.md" "D:\Projetos Obsidian\Siplan - Arquivo Obsoleto\"
 ```
 
 - [ ] **Step 3: Verify the remaining files in Inbox**
