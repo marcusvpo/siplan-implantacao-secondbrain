@@ -3,6 +3,8 @@
 
 ## 🔍 Detalhamento das 4 Automações Propostas
 
+Todos os e-mails vindo de disparo das automações devem começar com "[SIPLAN HUB] " para reconhecimento imediato da equipe e de entender que isso é um e-mail relacionado a alguma ação do Hub.
+
 ### Automação 1: Criação de Novo Projeto via Automação 0800
 Como esta ação ocorre por um integrador externo (via API/Webhook inserindo dados na tabela `projects`), o gatilho será uma **Trigger de Banco de Dados** no Supabase no evento `INSERT` (filtrando apenas novas inserções).
 
@@ -14,12 +16,15 @@ Como esta ação ocorre por um integrador externo (via API/Webhook inserindo dad
 *   **Regra de Disparo (Condição):** `INSERT` na tabela `projects` onde a coluna `external_id` ou dados do chamado estejam preenchidos. Não disparar se for um `UPDATE`.
 *   **Mapeamento de E-mails:**
     1.  **Solicitação de Infra:** Enviar para **Marcus, Alex Silva e Hugo Januário**.
-        *   *Assunto:* `[Infraestrutura] Solicitação de Análise de Infra — {clientName} (#{ticketNumber})`
+        *   *Assunto:* `[SIPLAN HUB] [Infraestrutura] Solicitação de Análise de Infra — {clientName} (#{ticketNumber})`
+        * Criar body completo e bem estruturado
     2.  **Agendamento de Aderência:** Enviar para **Marcus e Maria**.
-        *   *Assunto:* `[Aderência] Agendar Análise — {clientName} (#{ticketNumber}) — Sistema: {systemType}`
+        *   *Assunto:* `[SIPLAN HUB] [Aderência] Agendar Análise — {clientName} (#{ticketNumber}) — Sistema: {systemType}`
+        * Criar body completo e bem estruturado
     3.  **Kickoff do Projeto:** Enviar para **Marcus, Marcos Ortiz e Bruno Fernandes**.
-        *   *Assunto:* `[Kickoff] Novo Projeto Cadastrado — {clientName} (#{ticketNumber})`
+        *   *Assunto:* ` [SIPLAN HUB] [Kickoff] Novo Projeto Cadastrado — {clientName} (#{ticketNumber})`
         *   *Destaque no Corpo:* Mostrar `soldHours` (Horas vendidas) e `systemType` (Sistema).
+        * Criar body completo e bem estruturado
 
 ---
 
@@ -30,7 +35,7 @@ Gatilho acionado no frontend na tela de preenchimento do formulário quando o an
 *   **Ação no Banco de Dados:** Atualização da coluna `adherence_status` para `'approved'` na tabela `projects` (ou via hook [useUpsertFormResponse](file:///c:/Users/marcu/Desktop/Projects/siplan-hub/src/hooks/useProjectFormResponse.ts) que atualiza o status do formulário de aderência para `approved`).
 *   **Campos de Dados Utilizados:**
     *   Metadados: `clientName`, `ticketNumber`, `systemType`.
-    *   Analista Executor: `lastUpdatedBy` (ou `adherence_responsible` de [adherence](file:///c:/Users/marcu/Desktop/Projects/siplan-hub/src/types/ProjectV2.ts#L175-L190)).
+    *   Analista Executor: `lastUpdatedBy` (ou `adherence_responsible` de [adherence](file:///c:/Users/marcu/Desktop/Projects/siplan-hub/src/types/ProjectV2.ts#L175-L190)) -  GARANTIR QUE PEGUE O CAMPO CORRETAMENTE QUE INDICA O ANALISTA RESPONSÁVEL POR AQUELA ANÁLISE DE ADERÊNCIA.
     *   Parecer Técnico Final (Veredito): `finalVerdict` (Salvo no JSON da coluna `notes` ou `responses` de aderência. Opções padrão: `"Totalmente Aderente"`, `"Aderente com Restrições"` ou `"Não Aderente / Impeditivo"`).
     *   Justificativa / Parecer Técnico: `finalNotes`.
     *   Itens com Impacto: Extraídos de forma dinâmica usando a função técnica `getImpactedItems` (linhas 37–64 do [ProjectAdherenceForm.tsx](file:///c:/Users/marcu/Desktop/Projects/siplan-hub/src/pages/ProjectAdherenceForm.tsx#L37-L64)).
@@ -70,7 +75,7 @@ Gatilho disparado no portal público externo quando o cliente finaliza o preench
         *   Colaboradores Chave: Lista `key_people` contendo nome, cargo e contato dos líderes internos.
         *   Gestão de Mudança: `aware_of_change` (Se a equipe sabe da troca de sistema) e `team_adaptability` (Como lidam com novidades).
 *   **Destinatários:** **Marcus, Marcos Ortiz e Bruno Fernandes**.
-*   **Assunto do E-mail:** `[Checklist Comercial] Respostas Enviadas — {clientName} (#{ticketNumber})`
+*   **Assunto do E-mail:** `[SIPLAN HUB] [Checklist] Respostas Enviadas — {clientName} (#{ticketNumber})`
 
 ---
 
@@ -88,7 +93,21 @@ Seguindo a mesma lógica operacional do Siplan HUB, aqui estão ideias adicionai
 *   **Gatilho:** Quando um analista de dados clica em "Assumir Conversão" na tela de fila (Função `assignToMe` em [useConversionQueue.ts](file:///c:/Users/marcu/Desktop/Projects/siplan-hub/src/hooks/useConversionQueue.ts#L216-L265)).
 *   **E-mail para:** Marcus, Bruno Fernandes e Marcos Ortiz.
 *   **Objetivo:** Informar à ponta de implantação quem é o analista de conversão responsável por tratar os dados daquele cliente, facilitando a troca direta de informações.
-*   **Campos:** Nome do cliente, chamado, nome do analista (`assignedToName`), e data de início (`startedAt`).
+*   **Campos:** Nome do cliente, chamado, nome do analista que assumiu a conversão(`assignedToName`), e data de início - quando assumiu (`startedAt`).
 
 ---
 
+## Lista de Emails citados:
+
+Marcus - marcus.vinicius@siplan.com.br
+Bruno Fernandes - bruno.fernandes@siplan.com.br
+Marcos Ortiz - marcos.ortiz@siplan.com.br
+Ademar - ademar.souza@siplan.com.br
+Luciane - luciane.lima@siplan.com.br
+Eduardo Silva - eduardo.silva@siplan.com.br
+Luan Caldeira - luan.caldeira@siplan.com.br
+Amanda Flor - amanda.flor@siplan.com.br
+Maurilio Camargo - maurilio.camargo@siplan.com.br
+Maria - maria.santos@siplan.com.br
+Alex Silva - alex.silva@siplan.com.br
+Hugo Januário - hugo.santariosi@siplan.com.br
