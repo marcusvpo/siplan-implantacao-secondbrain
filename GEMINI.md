@@ -29,6 +29,9 @@ Os arquivos mais importantes são os MOCs, que atuam como índices ou "hubs" cen
 *   **`2-Áreas/Implantação Funcional/MOC - Fluxo de Implantação.md`:** Detalha as 10 etapas sequenciais e condicionais do processo de implantação da Siplan, desde o fechamento comercial até a virada para produção.
 *   **`2-Áreas/Siplan Hub/MOC - Siplan Hub.md`:** Documenta o funcionamento da plataforma interna de gestão (Dashboard, Gestão de Implantação, Conversão, OrionTN, e CRM Interno).
 *   **`3-Recursos/Mercado Cartorário e CNJ/MOC - Mercado Cartorário.md`:** Oferece contexto do mercado em que a Siplan atua, abordando a transformação digital, perfis heterogêneos de tecnologia dos clientes, normativas do CNJ, e uso emergente de IA.
+*   **`3-Recursos/Produtos Siplan/MOC - Produtos Siplan.md`:** Mapa de conteúdo central do portfólio de produtos e sistemas da Siplan (Arquitetura Orion).
+*   **`3-Recursos/Produtos Siplan/Orion PRO/MOC - Orion PRO.md`:** Detalha os módulos e rotinas operacionais do sistema Orion PRO (Tabelionato de Protesto).
+*   **`3-Recursos/Produtos Siplan/Orion TN/MOC - Orion TN.md`:** Detalha os módulos e rotinas operacionais do sistema Orion TN (Tabelionato de Notas).
 *   **`3-Recursos/00 - Inbox/`:** Diretório que contém os textos longos "brutos" remanescentes que aguardam refinamento e fragmentação em notas atômicas.
 
 ## Como Utilizar este Vault
