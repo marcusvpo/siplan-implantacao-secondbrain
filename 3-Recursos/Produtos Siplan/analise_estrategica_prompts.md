@@ -21,37 +21,28 @@ Os prompts originais seguiam uma estrutura binária rígida ("Listar" ou "Transc
 
 ---
 
-## 2. A Nova Arquitetura de Prompt Proposta (Roteamento de Duas Rotas)
+## 2. A Nova Arquitetura de Prompt Proposta (Roteamento Linear e Simplificado)
 
-Para maximizar a eficiência dos assistentes virtuais como guias didáticos dos sistemas e do setor extrajudicial, a nova estrutura de prompts adota um **Roteamento de Duas Rotas Dialógicas Dinâmicas** com base na intenção do usuário:
+Para evitar conflitos lógicos no processamento de raciocínio (*reasoning*) do GPT-4o e GPT-5 mini que causavam lentidão (latência) e falhas de formatação (como a injeção indevida de marcas de citação), a arquitetura acadêmica de tags XML e máquina de estados complexa foi substituída por um **Roteamento Linear Baseado em Markdown Direto**:
 
 ```mermaid
 graph TD
     User([Entrada do Usuário]) --> C{Classificação da Intenção}
     
-    C -->|Dúvida Operacional do Software Orion| RotaA[Rota A: Suporte ao Sistema]
-    C -->|Dúvida de Leis, Normas ou Setor| RotaB[Rota B: Conhecimento Setorial]
+    C -->|Dúvida Operacional do Software Orion| RotaA[Rota A: Suporte Operacional]
+    C -->|Dúvida de Leis, Normas ou Setor| RotaB[Rota B: Pesquisa Setorial Web]
     
-    RotaA --> S1[Estado 1: Listagem semântica via File Search]
-    S1 --> S2[Estado 2: Transcrição literal do manual com botões em negrito]
-    S2 --> S3[Estado 3: Acompanhamento e esclarecimento do procedimento]
+    RotaA --> R1[Busca de Rotinas: Lista numerada limpa]
+    R1 --> R2[Exibição de Passo a Passo: Transcrição literal sem metadados]
     
-    RotaB --> WS[Pesquisa Web restrita a domínios de cartórios e leis]
-    WS --> Direct[Resposta didática conceitual direta]
+    RotaB --> WS[Web Search restrito a domínios do setor]
+    WS --> Direct[Resposta direta e didática]
 ```
 
-### Rota A: Suporte Operacional do Sistema (Máquina de Três Estados)
-Destina-se a orientar o escrevente ou implantador sobre como operar as telas e botões do sistema Orion TN/PRO.
-1.  **Estado 1 - Seleção e Busca (`<estado_busca>`)**:
-    *   **Função:** Localizar e listar rotinas correspondentes à busca semântica na base de conhecimento (Vector Store) via **File Search**.
-2.  **Estado 2 - Transcrição Estruturada (`<estado_transcricao>`)**:
-    *   **Função:** Detalhar os passos operacionais do manual com 100% de fidelidade literal, destacando os caminhos de cliques, botões e telas em **negrito**.
-3.  **Estado 3 - Suporte de Acompanhamento e Contexto (`<estado_acompanhamento>`)**:
-    *   **Função:** Resolver dúvidas de navegação conceituais adicionais sobre a rotina que acabou de ser exibida, mantendo o escopo restrito ao manual.
-
-### Rota B: Conhecimento Setorial, Leis e Regulamentos
-Destina-se a responder a dúvidas gerais do ecossistema de cartórios, termos jurídicos, legislação e funcionamento de órgãos externos (ex: e-Notariado, CENPROT, prazos legais, o que é um título, provimentos do CNJ).
-*   **Ação:** O assistente aciona o **Web Search** restrito a domínios oficiais e responde diretamente com explicações claras, técnicas e didáticas, sem passar pela listagem de rotinas do sistema.
+### Principais Benefícios da Abordagem Simplificada
+1. **Redução da Carga Cognitiva:** Instruções menores e mais enxutas permitem que o modelo processe a lógica de formatação de maneira instantânea, reduzindo drasticamente o tempo gasto em loops de planejamento interno (*reasoning*).
+2. **Neutralização do Conflito de Citações:** Ao simplificar a regra ("Zero Citações"), o modelo não entra em conflito com as diretrizes internas da API de File Search da OpenAI. A regra instrui a IA a gerar respostas fingindo que possui "conhecimento intrínseco", inibindo a geração de marcadores (`【`, `†`, etc.) que acionavam a injeção do nome do arquivo físico no frontend.
+3. **Escrita Direta em Markdown:** O uso de títulos estruturados comuns no prompt, ao invés de pseudo-tags XML, é processado de forma muito mais natural pelos decoders do modelo de linguagem.
 
 ---
 
@@ -61,8 +52,8 @@ Os assistentes virtuais utilizarão exclusivamente as seguintes ferramentas hosp
 
 ### 1. File Search
 *   **Configuração:** Habilitada em ambos.
-*   **Vector Store Orion TN:** Carregar exclusivamente o arquivo consolidador único da base de conhecimento **`Orion_TN_Limpo.md`**, contendo todas as rotinas e parametrizações operacionais do Tabelionato de Notas.
-*   **Vector Store Orion PRO:** Carregar exclusivamente o arquivo consolidador único da base de conhecimento **`Orion_PRO_Conhecimento.md`**, contendo todas as rotinas e parametrizações operacionais do Tabelionato de Protesto.
+*   **Vector Store Orion TN:** Carregar exclusivamente o arquivo consolidador único da base de conhecimento **`OrionTN.md`** (renomeado de `Orion_TN_Limpo.md` para evitar poluição visual na citação automática).
+*   **Vector Store Orion PRO:** Carregar exclusivamente o arquivo consolidador único da base de conhecimento **`OrionPRO.md`** (renomeado de `Orion_PRO_Conhecimento.md` para evitar poluição visual na citação automática).
 
 *Nota:* Os arquivos modulares (ex: `Orion TN - Balcão de Firmas.md` ou `Orion PRO - Caixa e Financeiro.md`) são recursos estruturados utilizados exclusivamente para o alinhamento de contexto da inteligência do desenvolvedor do projeto e não são indexados nos assistentes da plataforma final.
 
@@ -95,8 +86,9 @@ Para que o assistente do Orion PRO possa explicar prazos de pagamento de protest
 | **Vazamento de Título de Rotina** | **Permitido**: Começa a resposta operacional com o título da rotina em negrito no topo. | **Proibido**: Oculta títulos e códigos técnicos. Começa direto na frase de conexão de objetivo. | Mantém o visual mais conciso e fluido para canais onde o PRO opera. |
 | **Metadados Internos (Objetivo, Tags, Intenções, Descrição)** | **Proibição Absoluta**: Esses campos servem apenas para RAG/raciocínio interno e devem ser completamente omitidos na resposta. | **Proibição Absoluta**: Esses campos servem apenas para RAG/raciocínio interno e devem ser completamente omitidos na resposta. | Evita a exibição de metadados da estrutura da base de conhecimento que poluem o visual da resposta ao usuário. |
 | **Destaque em Negrito** | Aplicado a **menus**, **botões**, **telas**, **abas**, **campos** e **opções**. | Aplicado estritamente a **menus**, **botões** e **telas**. | O TN possui telas com configurações complexas de preenchimento de minutas e campos do e-Notariado. |
-| **Exibição de Citações/Fontes e Anotações** | **Proibição Absoluta**: Sem citações. Veto total a colchetes `【 】`, adagas `†`, strings `source`/`file` e nomes de arquivos. | **Proibição Absoluta**: Sem citações. Veto total a colchetes `【 】`, adagas `†`, strings `source`/`file` e nomes de arquivos. | Neutraliza a inserção de marcas internas e anotações automáticas da API do Assistant da OpenAI, garantindo saída limpa. |
-| **Arquivo Fixo File Search** | `Orion_TN_Limpo.md` | `Orion_PRO_Conhecimento.md` | O indexador consome um arquivo único consolidado de referência para RAG. |
+| **Exibição de Citações e Anotações** | **Permissão Amigável**: Aceita a citação do arquivo de fonte limpa **`OrionTN.md`** no final, proibindo colchetes e marcadores complexos no corpo. | **Permissão Amigável**: Aceita a citação do arquivo de fonte limpa **`OrionPRO.md`** no final, proibindo colchetes e marcadores complexos no corpo. | Oferece consistência com a infraestrutura OpenAI ao mesmo tempo que torna a citação discreta e legível. |
+| **Arquivo Fixo File Search** | `OrionTN.md` | `OrionPRO.md` | Renomeados para melhor legibilidade da citação automática na interface de usuário. |
+| **Fidelidade à Transcrição** | **Literal Absoluta**: Proibido resumir, parafrasear ou deduzir caminhos ou botões alternativos. | **Literal Absoluta**: Proibido resumir, parafrasear ou deduzir caminhos ou botões alternativos. | Evita alucinações e instruções incorretas ao implantador e ao escrevente no balcão. |
 
 ---
 
