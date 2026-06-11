@@ -7640,22 +7640,22 @@ Digitalização em lote por código de barras permite escanear cartões em qualq
 * **Observação Importante:** Cartões podem estar fora de ordem. Sistema usa código de barras como chave de vinculação. Requer consumo automático configurado.
 
 ---
-## D-3.9 - Fazer Digitalização em Lote de DUT para CEPHAS
-**Objetivo:** Digitalizar documentos de veículos (DUT) em lote com leitura de QR Code para comunicação automática ao CEPHAS.  
-**Tags:** `digitalização`, `dut`, `cephas`, `veículo`
+## D-3.9 - Fazer Digitalização em Lote de DUT para SEFAZ
+**Objetivo:** Digitalizar documentos de veículos (DUT) em lote com leitura de QR Code para comunicação automática ao SEFAZ.  
+**Tags:** `digitalização`, `dut`, `SEFAZ`, `veículo`
 
 ### Intenções de Busca & Dúvidas Frequentes
 - processar dut em lote
 - escanear dut
 - digitalizar documentos de veículo
-- Como digitalizar DUT para CEPHAS?
+- Como digitalizar DUT para SEFAZ?
 - Como o sistema lê QR Code do DUT?
 - Como vincular DUT ao termo de forma automática?
 
 ### Procedimento / Explicação
 #### Descrição:
 
-Digitalização de DUT (Documento Único de Transferência) com leitura automática de QR Code e vinculação ao termo, otimizando comunicação CEPHAS.
+Digitalização de DUT (Documento Único de Transferência) com leitura automática de QR Code e vinculação ao termo, otimizando comunicação SEFAZ.
 
 #### Passo a passo:
 
@@ -7685,7 +7685,7 @@ Digitalização de DUT (Documento Único de Transferência) com leitura automát
 
 - O sistema **associa cada DUT** ao termo correto baseado no **número do selo** consumido.
 
-- **Otimiza comunicação CEPHAS** em lote (múltiplos DUTs de uma vez).
+- **Otimiza comunicação SEFAZ** em lote (múltiplos DUTs de uma vez).
 
 * **Observação Importante:** Requer selos com QR Code colados. Integração com IA e OCR para leitura. Otimiza significativamente tempo de comunicação.
 
@@ -7753,7 +7753,7 @@ Digitalização em lote de livros permite processar grande volume de páginas, v
 
 - Necessário para **Certidão Reprográfica** (precisa imagem do livro)
 
-- Necessário para **comunicação CEPHAS e ITBI** (precisam anexar página do livro)
+- Necessário para **comunicação SEFAZ e ITBI** (precisam anexar página do livro)
 
 * **Observação Importante:** Grande economia de tempo. Processo automatizado por leitura do número de livro e folha em cada página. Essencial para certidões e comunicações.
 
@@ -7807,7 +7807,7 @@ Consulta rápida de serviços de reconhecimento com filtro por período, exibind
 
 ---
 ## D-3.12 - Consultar Serviços Praticados
-**Objetivo:** Fazer consulta detalhada de serviços com múltiplos filtros (CEPHAS, período, livro, termo, placa, RENAVAM).  
+**Objetivo:** Fazer consulta detalhada de serviços com múltiplos filtros (SEFAZ, período, livro, termo, placa, RENAVAM).  
 **Tags:** `consulta`, `serviço`, `detalhado`, `filtro`
 
 ### Intenções de Busca & Dúvidas Frequentes
@@ -7817,7 +7817,7 @@ Consulta rápida de serviços de reconhecimento com filtro por período, exibind
 - Como saber se tem certidão de um serviço?
 - Como buscar um serviço específico?
 - Como buscar por número de livro?
-- Como filtrar por CEPHAS?
+- Como filtrar por SEFAZ?
 
 ### Procedimento / Explicação
 #### Descrição:
@@ -7830,7 +7830,7 @@ Consulta avançada de serviços com filtros específicos para encontrar serviço
 
 2. Configure **filtros**:
 
-   * **Tipo de Serviço:** Ex: termos CEPHAS
+   * **Tipo de Serviço:** Ex: termos SEFAZ
 
    * **Período:** Data desejada
 
@@ -9903,12 +9903,12 @@ Auditoria de selos é rotina rigorosa que compara cada selo gerado no sistema co
 
 ---
 ## D-3.56 - Comunicar Selos ao TJ
-**Objetivo:** Enviar selos gerados para o TJ (web service) ou gerar arquivo para envio (CEPHAS/DOI).  
+**Objetivo:** Enviar selos gerados para o TJ (web service) ou gerar arquivo para envio (SEFAZ/DOI).  
 **Tags:** `comunicação`, `selo`, `tj`, `envio`
 
 ### Intenções de Busca & Dúvidas Frequentes
 - enviar selo
-- Como comunicar ao CEPHAS?
+- Como comunicar ao SEFAZ?
 - Como enviar selos?
 - Como enviar para DOI?
 - comunicar tj
@@ -9945,7 +9945,7 @@ Comunicação dispara envio automático (web service) ou gera arquivo para centr
 
 **Gerar Arquivo (Manual):**
 
-- CEPHAS e DOI
+- SEFAZ e DOI
 
 - Clique em **Processar**
 
