@@ -62,7 +62,7 @@ Os assistentes virtuais utilizarão exclusivamente as seguintes ferramentas hosp
 ### 1. File Search
 *   **Configuração:** Habilitada em ambos.
 *   **Vector Store Orion TN:** Carregar exclusivamente o arquivo consolidador único da base de conhecimento **`Orion_TN_Limpo.md`**, contendo todas as rotinas e parametrizações operacionais do Tabelionato de Notas.
-*   **Vector Store Orion PRO:** Carregar exclusivamente o arquivo consolidador único da base de conhecimento **`Orion_PRO_Limpo.md`**, contendo todas as rotinas e parametrizações operacionais do Tabelionato de Protesto.
+*   **Vector Store Orion PRO:** Carregar exclusivamente o arquivo consolidador único da base de conhecimento **`Orion_PRO_Conhecimento.md`**, contendo todas as rotinas e parametrizações operacionais do Tabelionato de Protesto.
 
 *Nota:* Os arquivos modulares (ex: `Orion TN - Balcão de Firmas.md` ou `Orion PRO - Caixa e Financeiro.md`) são recursos estruturados utilizados exclusivamente para o alinhamento de contexto da inteligência do desenvolvedor do projeto e não são indexados nos assistentes da plataforma final.
 
@@ -92,12 +92,13 @@ Para que o assistente do Orion PRO possa explicar prazos de pagamento de protest
 
 | Característica Técnica | Orion TN (Tabelionato de Notas) | Orion PRO (Tabelionato de Protesto) | Raciocínio de Design |
 | :--- | :--- | :--- | :--- |
-| **Vazamento de Metadados** | **Permitido**: Começa a resposta operacional com o título da rotina em negrito. | **Proibido**: Oculta títulos e códigos técnicos. Começa direto na frase de conexão de objetivo. | Mantém o visual limpo para mensagens que trafegam via canais públicos como WhatsApp no Orion PRO. |
+| **Vazamento de Título de Rotina** | **Permitido**: Começa a resposta operacional com o título da rotina em negrito no topo. | **Proibido**: Oculta títulos e códigos técnicos. Começa direto na frase de conexão de objetivo. | Mantém o visual mais conciso e fluido para canais onde o PRO opera. |
+| **Metadados Internos (Objetivo, Tags, Intenções, Descrição)** | **Proibição Absoluta**: Esses campos servem apenas para RAG/raciocínio interno e devem ser completamente omitidos na resposta. | **Proibição Absoluta**: Esses campos servem apenas para RAG/raciocínio interno e devem ser completamente omitidos na resposta. | Evita a exibição de metadados da estrutura da base de conhecimento que poluem o visual da resposta ao usuário. |
 | **Destaque em Negrito** | Aplicado a **menus**, **botões**, **telas**, **abas**, **campos** e **opções**. | Aplicado estritamente a **menus**, **botões** e **telas**. | O TN possui telas com configurações complexas de preenchimento de minutas e campos do e-Notariado. |
-| **Exibição de Citações/Fontes** | **Proibição Absoluta**: Nunca exibe o nome do arquivo markdown ou marcas de citação de origem. | **Proibição Absoluta**: Nunca exibe o nome do arquivo markdown ou marcas de citação de origem. | Garante uma interface de chat limpa e sem ruídos de compilação interna de notas do Obsidian. |
-| **Arquivo Fixo File Search** | `Orion_TN_Limpo.md` | `Orion_PRO_Limpo.md` | O indexador consome um arquivo único consolidado de referência para RAG. |
+| **Exibição de Citações/Fontes e Anotações** | **Proibição Absoluta**: Sem citações. Veto total a colchetes `【 】`, adagas `†`, strings `source`/`file` e nomes de arquivos. | **Proibição Absoluta**: Sem citações. Veto total a colchetes `【 】`, adagas `†`, strings `source`/`file` e nomes de arquivos. | Neutraliza a inserção de marcas internas e anotações automáticas da API do Assistant da OpenAI, garantindo saída limpa. |
+| **Arquivo Fixo File Search** | `Orion_TN_Limpo.md` | `Orion_PRO_Conhecimento.md` | O indexador consome um arquivo único consolidado de referência para RAG. |
 
 ---
 
 > [!NOTE]
-> Ambas as instruções foram atualizadas para suportar o roteamento dinâmico entre suporte operacional ao sistema (File Search) e conhecimento de regras setoriais (Web Search). A menção a Functions, APIs do Siplan Hub e ao Code Interpreter foi integralmente removida de todas as seções e exemplos.
+> Ambas as instruções foram atualizadas para suportar o roteamento dinâmico entre suporte operacional ao sistema (File Search) e conhecimento de regras setoriais (Web Search). A menção a Functions, APIs do Siplan Hub e ao Code Interpreter foi integralmente removida. Foi estabelecida uma seção exclusiva e agressiva de **Regras Anti-Citação Estritas** em ambas as instruções, e as restrições globais (`<constraints>`) foram reforçadas para vetar qualquer tipo de caractere especial de anotação vetorial no texto gerado (ex: `【`, `†`, etc.) e nomes de arquivos markdown.
