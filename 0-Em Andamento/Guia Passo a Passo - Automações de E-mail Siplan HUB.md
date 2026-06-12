@@ -1,6 +1,6 @@
 # 🚀 Guia Passo a Passo: Implantação de Automações de Disparo de E-mail — Siplan HUB
 
-Este documento é o manual tático e operacional definitivo para a configuração e implantação das automações de disparo de e-mail do **Siplan HUB**, utilizando a plataforma de integração **n8n (versão 2.22.6 / 0.222.6)**, banco de dados **Supabase** (Database Webhooks) e envio de e-mails via **Gmail SMTP** com App Password configurada.
+Este documento é o manual tático e operacional definitivo para a configuração e implantação das automações de disparo de e-mail do **Siplan HUB**, utilizando a plataforma de integração **n8n (versão 2.22.6 / 0.222.6)**, banco de dados **Supabase** (Database Webhooks e nós nativos do Supabase no n8n) e envio de e-mails via **Gmail SMTP** com App Password configurada.
 
 ---
 
@@ -13,10 +13,10 @@ Para enviar e-mails a partir de uma conta do Gmail usando o nó **Send Email (SM
 
 *   **Credentials Type:** `SMTP`
 *   **Host:** `smtp.gmail.com`
-*   **Port:** `465` (recomendado com SSL/TLS ativo) ou `587` (com STARTTLS ativo)
+*   **Port:** `465` (com SSL/TLS ativo) ou `587` (com STARTTLS ativo)
 *   **SSL/TLS:** Ativado (caso use a porta 465)
 *   **User:** O seu e-mail do Gmail (ex: `seu-email@gmail.com` ou e-mail corporativo gerenciado pelo Google Workspace)
-*   **Password:** A sua **App Password** de 16 dígitos gerada no painel de segurança da conta Google (não utilize a sua senha pessoal do e-mail).
+*   **Password:** A sua **App Password** de 16 dígitos gerada no painel de segurança da conta Google.
 *   **From Address:** O e-mail de origem dos disparos (deve coincidir com o e-mail autenticado ou ser um alias autorizado).
 
 ### 2. Configuração de Webhooks de Banco de Dados no Supabase
@@ -32,12 +32,19 @@ Todas as automações são baseadas em eventos do banco de dados (Event-driven).
     *   **Events:** Marque as caixas dos eventos desejados (`Insert` e/ou `Update`).
     *   **Method:** `POST`.
     *   **URL:** A URL gerada pelo nó **Webhook** do n8n.
-        *   *Dica de Ouro:* Durante o desenvolvimento e testes, utilize a **Test URL** do n8n. Ao ativar o fluxo em produção, altere a URL no Supabase para a **Production URL**.
+        *   *Dica:* Durante o desenvolvimento e testes, utilize a **Test URL** do n8n. Ao ativar o fluxo em produção, altere a URL no Supabase para a **Production URL**.
     *   **Headers:** `Content-Type: application/json`.
 5.  Clique em **Save**.
 
-### 3. Tabela Geral de Mapeamento de E-mails
-Os destinatários citados nas especificações das automações devem ser mapeados exatamente conforme a lista oficial abaixo:
+### 3. Conexão Nativa do Supabase no n8n
+As consultas complementares de dados (como buscar informações do projeto ou o perfil do usuário) serão realizadas utilizando o **nó nativo do Supabase** já configurado no n8n.
+
+*   **Credentials Type:** `Supabase API`
+*   **Host:** A URL da API do seu projeto Supabase (ex: `https://xxxxxx.supabase.co`).
+*   **Service Role API Key:** A chave de serviço secreta (`service_role` ou `service_key`) necessária para burlar políticas de RLS quando necessário em rotinas de retaguarda.
+
+### 4. Tabela Geral de Mapeamento de E-mails (Fallback)
+Se por algum motivo de inconsistência no banco de dados o e-mail do usuário não for encontrado na tabela de perfis (`public.profiles`), utilize o mapeamento de fallback abaixo:
 
 | Nome do Colaborador | E-mail Oficial |
 | :--- | :--- |
@@ -59,7 +66,7 @@ Os destinatários citados nas especificações das automações devem ser mapead
 ## 🛠️ Automação 1: Criação de Novo Projeto via Automação 0800
 
 ### 1. Descrição do Fluxo
-Esta automação é disparada quando um integrador externo insere um novo projeto na tabela `projects`. O fluxo deve validar a entrada e disparar três e-mails distintos com layouts profissionais para diferentes equipes.
+Esta automação é disparada quando um integrador externo insere um novo projeto na tabela `projects`. O fluxo valida a entrada e dispara três e-mails distintos com layouts profissionais para diferentes equipes.
 
 ```mermaid
 graph TD
@@ -80,7 +87,7 @@ graph TD
 *   **Path:** `novo-projeto-0800`
 *   **Response Mode:** `onReceived`
 *   **Response Code:** `200`
-*   **Options -> Raw Body:** `False` (desmarcado para o n8n interpretar o JSON automaticamente)
+*   **Options -> Raw Body:** `False`
 
 #### Nó 2: IF (Validação)
 Este nó garante que a automação só execute se for uma inserção (`INSERT`) e se existirem dados de chamado associados (`ticket_number` ou `external_id`).
@@ -252,6 +259,7 @@ Este nó garante que a automação só execute se for uma inserção (`INSERT`) 
 ```
 
 #### Nó 5: Send Email (SMTP) - Kickoff do Projeto
+Como o líder do projeto sempre será Marcus Vinicius ou Bruno Fernandes, a lista fixa do Kickoff já cobre todos de forma ideal.
 *   **Name:** `Email - Kickoff do Projeto`
 *   **Authentication:** `SMTP Credentials` (Gmail)
 *   **From Email:** `seu-email@gmail.com`
@@ -358,8 +366,8 @@ Este nó garante que a automação só execute se for uma inserção (`INSERT`) 
         'EXT-0800-TEST'
     );
     ```
-3.  **Verificar a Execução no n8n:** O n8n deve piscar em verde, confirmando o recebimento da requisição. Verifique se o fluxo seguiu pelo caminho `true` do IF.
-4.  **Confirmar os E-mails Recebidos:** Acesse as caixas de e-mail de teste ou audite os logs do nó SMTP para garantir que as variáveis foram preenchidas (`Cartório de Testes de Automação`, `999991`, `Orion TN`, `50`) e que os três e-mails chegaram com sucesso.
+3.  **Verificar a Execução no n8n:** O n8n deve receber a requisição. Verifique se o fluxo seguiu pelo caminho `true` do IF.
+4.  **Confirmar os E-mails Recebidos:** Acesse as caixas de e-mail de teste para garantir que as variáveis foram preenchidas e que os e-mails chegaram com sucesso.
 5.  **Limpar Banco de Dados (Pós-teste):**
     ```sql
     DELETE FROM public.projects WHERE ticket_number = '999991';
@@ -370,16 +378,17 @@ Este nó garante que a automação só execute se for uma inserção (`INSERT`) 
 ## ⚖️ Automação 2: Análise de Aderência Finalizada
 
 ### 1. Descrição do Fluxo
-Esta automação é disparada quando um formulário de aderência (`project_form_responses` com `stage = 'adherence'`) é atualizado para o status `'approved'`. O fluxo recupera o projeto relacionado, extrai de forma dinâmica as perguntas respondidas com impacto a partir do JSON de respostas, calcula o destinatário dinâmico em cópia (CC) de acordo com o sistema e envia o e-mail formatado.
+Esta automação é disparada quando um formulário de aderência (`project_form_responses` com `stage = 'adherence'`) é atualizado para o status `'approved'`. O fluxo recupera o projeto relacionado do banco, busca dinamicamente o e-mail do analista aprovador na tabela `public.profiles` através de seu UUID, processa recursivamente o JSON de respostas para extrair os itens com impacto técnico e envia a notificação com cópia inteligente (CC) configurada.
 
 ```mermaid
 graph TD
     A[Supabase Webhook: UPDATE project_form_responses] --> B[n8n Webhook Node]
     B --> C[IF Node: Validar Aderência Aprovada]
     C -- Sim --> D[Supabase Node: Buscar Detalhes do Projeto]
-    D --> E[Code Node: Extrair Itens Impactados e Resolver Destinatários]
-    E --> F[Send Email: Notificação de Aderência Aprovada]
-    C -- Não --> G[Ignorar / Fim]
+    D --> E[Supabase Node: Buscar Perfil do Analista]
+    E --> F[Code Node: Processar Itens e Mapear Destinatários]
+    F --> G[Send Email: Aderência Aprovada]
+    C -- Não --> H[Ignorar / Fim]
 ```
 
 ### 2. Passo a Passo da Configuração dos Nós no n8n
@@ -396,29 +405,46 @@ graph TD
 *   **Conditions:**
     *   `{{ $json.body.record.stage }} == 'adherence'` **AND**
     *   `{{ $json.body.record.status }} == 'approved'` **AND**
-    *   `{{ $json.body.old_record.status }} != 'approved'` (Garante que só dispara no momento exato em que muda de outro status para `'approved'`).
+    *   `{{ $json.body.old_record.status }} != 'approved'` (Garante disparo único na aprovação).
 
 #### Nó 3: Supabase (Consulta de Projeto)
+Busca os metadados do projeto na tabela `projects`.
 *   **Name:** `Supabase - Get Project`
-*   **Operation:** `Get` (ou `Select` dependendo do nó do n8n)
+*   **Operation:** `Get`
 *   **Table:** `projects`
-*   **Filters:** `id = {{ $node["Webhook - Aderência Aprovada"].json.body.record.project_id }}`
+*   **Filter -> Column:** `id`
+*   **Filter -> Operator:** `Equal`
+*   **Filter -> Value:** `{{ $node["Webhook - Aderência Aprovada"].json.body.record.project_id }}`
 
-#### Nó 4: Code (Processamento de Dados e Itens Impactados)
-Este nó implementa um parser recursivo equivalente à função `getImpactedItems` do frontend. Ele lê o formulário de respostas e gera uma tabela HTML elegante com as lacunas identificadas. Também resolve a regra de CC dinâmico.
+#### Nó 4: Supabase (Consulta de Perfil do Analista)
+Consulta a tabela `profiles` do Supabase para obter dinamicamente o e-mail e nome do analista aprovador.
+*   **Name:** `Supabase - Get Analyst Profile`
+*   **Operation:** `Get`
+*   **Table:** `profiles`
+*   **Filter -> Column:** `id`
+*   **Filter -> Operator:** `Equal`
+*   **Filter -> Value:** `{{ $node["Webhook - Aderência Aprovada"].json.body.record.approved_by }}`
+
+#### Nó 5: Code (Extração de Itens e Destinatários)
 *   **Name:** `Code - Processar Itens e Destinatários`
 *   **Language:** `JavaScript`
 *   **Code:**
 ```javascript
-// Recupera o registro da resposta do formulário
 const responseRecord = $('Webhook - Aderência Aprovada').item.json.body.record;
 const projectData = $('Supabase - Get Project').item.json;
+let analystProfile = null;
+
+try {
+  analystProfile = $('Supabase - Get Analyst Profile').item.json;
+} catch (e) {
+  // Ignora se o nó de profile não retornou dados para evitar quebra do fluxo
+}
 
 const formData = responseRecord.data || {};
 const finalVerdict = formData.finalVerdict || 'Não informado';
 const finalNotes = formData.finalNotes || 'Nenhuma justificativa informada.';
 
-// Função recursiva para varrer o JSON de dados atrás de propriedades com impacto === true
+// Processamento recursivo dos itens com impacto === true
 const impactedItems = [];
 
 function traverse(obj, currentSection = 'Geral') {
@@ -428,18 +454,16 @@ function traverse(obj, currentSection = 'Geral') {
     if (Object.prototype.hasOwnProperty.call(obj, key)) {
       const val = obj[key];
       if (val && typeof val === 'object') {
-        // Se encontramos um objeto que possui 'impacto'
         if ('impacto' in val) {
           if (val.impacto === true) {
             impactedItems.push({
               section: currentSection,
-              question: key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()), // Formatação básica do nome da propriedade
+              question: key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
               details: val.detalhes || 'Nenhum detalhe informado.',
               impactLevel: val.nivel_impacto || 'SIM'
             });
           }
         } else {
-          // Se for outro nível de objeto, entra recursivo
           traverse(val, key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()));
         }
       }
@@ -449,7 +473,7 @@ function traverse(obj, currentSection = 'Geral') {
 
 traverse(formData, 'Geral');
 
-// Formatar Itens Impactados em Tabela HTML
+// Formatar Tabela HTML
 let impactedHtmlTable = '';
 if (impactedItems.length === 0) {
   impactedHtmlTable = '<p style="color: #10b981; font-weight: bold; font-size: 14px;">✓ Nenhum item com impacto técnico ou impeditivo foi identificado nesta análise.</p>';
@@ -468,9 +492,9 @@ if (impactedItems.length === 0) {
   `;
   
   impactedItems.forEach(item => {
-    let badgeColor = '#ef4444'; // Vermelho para impeditivo
+    let badgeColor = '#ef4444';
     if (item.impactLevel.toUpperCase() === 'BAIXO' || item.impactLevel.toUpperCase() === 'NÃO') {
-      badgeColor = '#f59e0b'; // Laranja
+      badgeColor = '#f59e0b';
     }
     
     impactedHtmlTable += `
@@ -484,29 +508,35 @@ if (impactedItems.length === 0) {
       </tr>
     `;
   });
-  
   impactedHtmlTable += '</tbody></table>';
 }
 
-// Resolver o Analista Executor (Aprovador/Criador)
-// Usamos de-para dos logins para emails do HUB
-const emailMapping = {
-  'marcus': 'marcus.vinicius@siplan.com.br',
-  'bruno': 'bruno.fernandes@siplan.com.br',
-  'marcos': 'marcos.ortiz@siplan.com.br',
-  'ademar': 'ademar.souza@siplan.com.br',
-  'luciane': 'luciane.lima@siplan.com.br',
-  'eduardo': 'eduardo.silva@siplan.com.br',
-  'luan': 'luan.caldeira@siplan.com.br',
-  'amanda': 'amanda.flor@siplan.com.br',
-  'maurilio': 'maurilio.camargo@siplan.com.br',
-  'maria': 'maria.santos@siplan.com.br',
-  'alex': 'alex.silva@siplan.com.br',
-  'hugo': 'hugo.santariosi@siplan.com.br'
-};
+// Resolver o Analista Executor Dinamicamente pelo Profile
+let lastUpdatedByEmail = '';
+let analystName = 'Analista';
 
-const updatedByUsername = (projectData.last_update_by || 'marcus').toLowerCase();
-const lastUpdatedByEmail = emailMapping[updatedByUsername] || 'marcus.vinicius@siplan.com.br';
+if (analystProfile && analystProfile.email) {
+  lastUpdatedByEmail = analystProfile.email;
+  analystName = analystProfile.full_name || 'Analista';
+} else {
+  // Fallback Estático
+  const emailMapping = {
+    'marcus': 'marcus.vinicius@siplan.com.br',
+    'bruno': 'bruno.fernandes@siplan.com.br',
+    'marcos': 'marcos.ortiz@siplan.com.br',
+    'ademar': 'ademar.souza@siplan.com.br',
+    'luciane': 'luciane.lima@siplan.com.br',
+    'eduardo': 'eduardo.silva@siplan.com.br',
+    'luan': 'luan.caldeira@siplan.com.br',
+    'amanda': 'amanda.flor@siplan.com.br',
+    'maurilio': 'maurilio.camargo@siplan.com.br',
+    'maria': 'maria.santos@siplan.com.br',
+    'alex': 'alex.silva@siplan.com.br',
+    'hugo': 'hugo.santariosi@siplan.com.br'
+  };
+  const updatedByUsername = (projectData.last_update_by || 'marcus').toLowerCase();
+  lastUpdatedByEmail = emailMapping[updatedByUsername] || 'marcus.vinicius@siplan.com.br';
+}
 
 // Resolver CC de acordo com o Tipo de Sistema
 const systemType = (projectData.system_type || '').toUpperCase().replace(/\s+/g, '');
@@ -521,12 +551,14 @@ if (systemType === 'ORIONTN' || systemType === 'ORION_TN') {
 }
 
 // Junta a lista fixa de CC
-const ccList = ['marcos.ortiz@siplan.com.br', 'bruno.fernandes@siplan.com.br', lastUpdatedByEmail];
-if (systemSpecificCc) {
+const ccList = ['marcos.ortiz@siplan.com.br', 'bruno.fernandes@siplan.com.br'];
+if (lastUpdatedByEmail && !ccList.includes(lastUpdatedByEmail)) {
+  ccList.push(lastUpdatedByEmail);
+}
+if (systemSpecificCc && !ccList.includes(systemSpecificCc)) {
   ccList.push(systemSpecificCc);
 }
 
-// Cria a saída estruturada
 return [{
   json: {
     projectId: projectData.id,
@@ -535,6 +567,7 @@ return [{
     systemType: projectData.system_type,
     finalVerdict: finalVerdict,
     finalNotes: finalNotes,
+    analystName: analystName,
     impactedHtmlTable: impactedHtmlTable,
     toEmail: 'marcus.vinicius@siplan.com.br',
     ccEmail: ccList.join(', '),
@@ -543,7 +576,7 @@ return [{
 }];
 ```
 
-#### Nó 5: Send Email (SMTP) - Notificação de Aderência Aprovada
+#### Nó 6: Send Email (SMTP)
 *   **Name:** `Email - Aderência Aprovada`
 *   **Authentication:** `SMTP Credentials` (Gmail)
 *   **From Email:** `seu-email@gmail.com`
@@ -576,7 +609,7 @@ return [{
           <tr>
             <td style="padding: 40px 30px;">
               <h2 style="color: #1e293b; font-size: 18px; margin-top: 0; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px;">Resultado da Análise de Aderência</h2>
-              <p style="font-size: 15px; color: #475569;">A análise de aderência para o cliente <strong>{{ $json.clientName }}</strong> foi finalizada pelo analista responsável.</p>
+              <p style="font-size: 15px; color: #475569;">A análise de aderência para o cliente <strong>{{ $json.clientName }}</strong> foi finalizada por <strong>{{ $json.analystName }}</strong>.</p>
               
               <!-- Card Principal de Status -->
               <table width="100%" border="0" cellspacing="0" cellpadding="12" style="background-color: #f8fafc; border-radius: 6px; margin: 20px 0; border: 1px solid #edf2f7; font-size: 14px;">
@@ -615,7 +648,7 @@ return [{
 
               <!-- Links de Acesso e Impressão de PDF -->
               <p style="font-size: 14px; color: #64748b; margin-top: 30px;">
-                💡 *Você pode exportar esta análise em PDF diretamente clicando no botão abaixo e salvando como PDF pelo navegador (Ctrl + P).*
+                💡 *Você pode visualizar as respostas completas ou gerar um PDF de impressão estilizado clicando no botão abaixo.*
               </p>
 
               <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 20px; text-align: center;">
@@ -645,38 +678,42 @@ return [{
 
 ### 3. Plano de Teste para Automação 2
 1.  **Criar Projeto e Resposta de Aderência de Teste:**
-    *   Insira um projeto e uma resposta inicial em rascunho (`draft`) usando SQL:
     ```sql
-    -- Inserir projeto de teste
-    INSERT INTO public.projects (id, client_name, ticket_number, system_type, project_leader, last_update_by)
-    VALUES ('a9999999-9999-9999-9999-99999999999a', 'Cartório de Notas Autoteste', '888882', 'Orion TN', 'Marcus', 'marcos')
+    -- 1. Inserir perfil de teste na tabela profiles
+    INSERT INTO public.profiles (id, email, full_name, role)
+    VALUES ('e8888888-8888-8888-8888-88888888888e', 'maurilio.camargo@siplan.com.br', 'Maurilio Camargo', 'user')
     ON CONFLICT (id) DO NOTHING;
 
-    -- Inserir resposta do formulário em formato rascunho
+    -- 2. Inserir projeto de teste (Sistema: Orion PRO)
+    INSERT INTO public.projects (id, client_name, ticket_number, system_type, project_leader, last_update_by)
+    VALUES ('a9999999-9999-9999-9999-99999999999a', 'Cartório de Testes Aderência', '888882', 'Orion PRO', 'Marcus', 'maurilio')
+    ON CONFLICT (id) DO NOTHING;
+
+    -- 3. Inserir resposta do formulário em formato rascunho (draft)
     INSERT INTO public.project_form_responses (project_id, template_id, stage, status, data)
     VALUES (
         'a9999999-9999-9999-9999-99999999999a', 
         '00000000-0000-0000-0000-000000000000', -- ID fake
         'adherence', 
         'draft',
-        '{"finalVerdict": "Aderente com Restrições", "finalNotes": "O cliente possui impressora muito antiga Zebra GC420T que demandará driver legado no Orion TN.", "modulo_cadastro": {"utilizou": true, "impacto": true, "nivel_impacto": "MÉDIO", "detalhes": "Necessita adequar impressora de etiquetas."}}'::jsonb
+        '{"finalVerdict": "Não Aderente / Impeditivo", "finalNotes": "O cliente necessita de layout CNAB400 customizado do banco de fomento local que ainda não está integrado.", "financeiro": {"utilizou": true, "impacto": true, "nivel_impacto": "IMPEDITIVO", "detalhes": "Sem suporte atual no Orion PRO para o layout CNAB solicitado."}}'::jsonb
     );
     ```
 2.  **Preparar n8n:** Ative o modo "Listen" no webhook.
-3.  **Simular a Aprovação (Finalizar formulário):**
+3.  **Simular a Aprovação:**
     ```sql
     UPDATE public.project_form_responses
-    SET status = 'approved', updated_at = now()
+    SET status = 'approved', approved_by = 'e8888888-8888-8888-8888-88888888888e', updated_at = now()
     WHERE project_id = 'a9999999-9999-9999-9999-99999999999a' AND stage = 'adherence';
     ```
 4.  **Confirmar Validações:**
-    *   Verificar se o CC incluiu Luan Caldeira (`luan.caldeira@siplan.com.br`) por se tratar de `"Orion TN"`.
-    *   Verificar se incluiu Marcos Ortiz, Bruno Fernandes e o analista (`marcos.ortiz@siplan.com.br` referente ao valor 'marcos').
-    *   Verificar se a tabela HTML foi preenchida com a seção `modulo_cadastro`, item `Modulo Cadastro`, impacto `MÉDIO` e detalhes da impressora antiga.
+    *   Verificar se o CC incluiu Maurilio Camargo (`maurilio.camargo@siplan.com.br`) tanto por ser o aprovador (`approved_by` resolvido dinamicamente) quanto por ser o responsável pelo sistema `"Orion PRO"`.
+    *   Verificar se o e-mail foi gerado com o veredito "Não Aderente / Impeditivo" destacando em vermelho.
 5.  **Limpar o Banco:**
     ```sql
     DELETE FROM public.project_form_responses WHERE project_id = 'a9999999-9999-9999-9999-99999999999a';
     DELETE FROM public.projects WHERE id = 'a9999999-9999-9999-9999-99999999999a';
+    DELETE FROM public.profiles WHERE id = 'e8888888-8888-8888-8888-88888888888e';
     ```
 
 ---
@@ -706,14 +743,16 @@ graph TD
 #### Nó 2: IF (Verificar Status)
 *   **Name:** `IF - Status Pending`
 *   **Conditions:**
-    *   `{{ $json.body.record.queue_status }} == 'pending'` (Garante que só processa se estiver com o status correto).
+    *   `{{ $json.body.record.queue_status }} == 'pending'`
 
 #### Nó 3: Supabase (Consulta de Projeto)
-Busca dados do cliente na tabela `projects` para obtermos as variáveis do assunto do e-mail.
+Busca dados do cliente na tabela `projects` usando a conexão nativa configurada.
 *   **Name:** `Supabase - Buscar Projeto`
 *   **Operation:** `Get`
 *   **Table:** `projects`
-*   **Filters:** `id = {{ $node["Webhook - Conversão Criada"].json.body.record.project_id }}`
+*   **Filter -> Column:** `id`
+*   **Filter -> Operator:** `Equal`
+*   **Filter -> Value:** `{{ $node["Webhook - Conversão Criada"].json.body.record.project_id }}`
 
 #### Nó 4: Send Email (SMTP)
 *   **Name:** `Email - Conversão Pendente`
@@ -806,15 +845,12 @@ Busca dados do cliente na tabela `projects` para obtermos as variáveis do assun
 ```
 
 ### 3. Plano de Teste para Automação 3
-1.  **Configurar o n8n:** Mantenha o nó Webhook escutando dados.
-2.  **Inserir Projeto de Teste e Fila via SQL:**
+1.  **Inserir Projeto de Teste e Fila via SQL:**
     ```sql
-    -- Inserir Projeto Auxiliar para FK
     INSERT INTO public.projects (id, client_name, ticket_number, system_type, project_leader, last_update_by)
     VALUES ('b9999999-9999-9999-9999-99999999999b', 'Cartório Fila de Teste', '777773', 'Orion PRO', 'Marcus', 'bruno')
     ON CONFLICT (id) DO NOTHING;
 
-    -- Inserir registro na Fila de Conversão com status pending
     INSERT INTO public.conversion_queue (
         project_id, 
         sent_by_name, 
@@ -827,9 +863,8 @@ Busca dados do cliente na tabela `projects` para obtermos as variáveis do assun
         'pending'
     );
     ```
-3.  **Auditar n8n:** Verifique o recebimento e o join com a tabela de projetos. O fluxo deve preencher o assunto com o nome do cliente.
-4.  **Confirmar Envio:** Veja se a notificação foi disparada para Marcus, Ademar, Luciane, Eduardo Silva e Marcos Ortiz com a prioridade correta ("Alta").
-5.  **Limpar dados:**
+2.  **Auditar n8n:** Verifique o recebimento e o join com a tabela de projetos.
+3.  **Limpar dados:**
     ```sql
     DELETE FROM public.conversion_queue WHERE project_id = 'b9999999-9999-9999-9999-99999999999b';
     DELETE FROM public.projects WHERE id = 'b9999999-9999-9999-9999-99999999999b';
@@ -840,14 +875,14 @@ Busca dados do cliente na tabela `projects` para obtermos as variáveis do assun
 ## 📝 Automação 4: Checklist Comercial Respondido pelo Cliente
 
 ### 1. Descrição do Fluxo
-Esta automação é ativada quando o cliente responde ao Checklist de Infraestrutura/Estrutural no portal externo público, mudando o status da tabela `commercial_checklists` para `'submitted'`. O n8n intercepta, busca dados básicos do projeto relacionado e usa um processamento inteligente em Javascript para transformar a resposta JSON em uma tabela HTML estruturada, facilitando a conferência.
+Esta automação é ativada quando o cliente responde ao Checklist de Infraestrutura no portal externo, mudando o status da tabela `commercial_checklists` para `'submitted'`. O n8n intercepta, busca dados básicos do projeto relacionado e usa um nó **Code** (JavaScript) para processar de forma organizada as respostas conhecidas (em cartões estilizados) e criar uma tabela HTML dinâmica contendo qualquer outra chave/resposta extra presente no JSON que não faça parte das chaves padrão do formulário, garantindo flexibilidade diante de evoluções de campos.
 
 ```mermaid
 graph TD
     A[Supabase Webhook: UPDATE commercial_checklists] --> B[n8n Webhook Node]
     B --> C[IF Node: Validar Status Submitted]
     C -- Sim --> D[Supabase Node: Buscar Dados do Projeto]
-    D --> E[Code Node: Formatar Respostas do Checklist]
+    D --> E[Code Node: Formatar Respostas e Agrupar Extras]
     E --> F[Send Email: Checklist Comercial Respondido]
     C -- Não --> G[Ignorar / Fim]
 ```
@@ -870,10 +905,11 @@ graph TD
 *   **Name:** `Supabase - Buscar Projeto`
 *   **Operation:** `Get`
 *   **Table:** `projects`
-*   **Filters:** `id = {{ $node["Webhook - Checklist Respondido"].json.body.record.project_id }}`
+*   **Filter -> Column:** `id`
+*   **Filter -> Operator:** `Equal`
+*   **Filter -> Value:** `{{ $node["Webhook - Checklist Respondido"].json.body.record.project_id }}`
 
-#### Nó 4: Code (Formatador de Respostas do Formulário)
-Este nó lê o JSON completo na coluna `responses` e monta tabelas estruturadas e separadas por contexto. Ele trata listas complexas como "Colaboradores Chave".
+#### Nó 4: Code (Formatador de Respostas com Tratamento de Chaves Dinâmicas)
 *   **Name:** `Code - Formatar Tabela de Respostas`
 *   **Language:** `JavaScript`
 *   **Code:**
@@ -886,26 +922,23 @@ const resp = record.responses || {};
 const yesNo = (val) => val === true || val === 'yes' || val === 'sim' ? '🟢 SIM' : '🔴 NÃO';
 const cleanText = (val) => val ? val.toString().trim() : 'Não informado';
 
-// 1. Dados de Quem Preencheu
+// 1. Chaves Estruturais Conhecidas
 const fullname = cleanText(resp.fullname);
 const role = cleanText(resp.role);
 const email = cleanText(resp.email);
 const phones = cleanText(resp.phones);
-
-// 2. Informações de Infraestrutura Física
 const floors = cleanText(resp.floors);
 const totalEmployees = cleanText(resp.total_employees);
 const awareOfChange = yesNo(resp.aware_of_change);
 const teamAdaptability = cleanText(resp.team_adaptability);
 
-// Setores
 let sectorsText = 'Nenhum setor selecionado';
 if (resp.sectors && Array.isArray(resp.sectors)) {
   sectorsText = resp.sectors.join(', ');
 }
 const sectorsDistribution = cleanText(resp.sectors_distribution);
 
-// 3. Montar Tabela dos Colaboradores Chave (Líderes de Setor)
+// 2. Colaboradores Chave (Tabela Dinâmica)
 let keyPeopleHtml = '<p style="color: #64748b; font-style: italic;">Nenhum líder chave foi cadastrado.</p>';
 if (resp.key_people && Array.isArray(resp.key_people) && resp.key_people.length > 0) {
   keyPeopleHtml = `
@@ -914,7 +947,7 @@ if (resp.key_people && Array.isArray(resp.key_people) && resp.key_people.length 
         <tr style="background-color: #f8fafc; font-weight: bold; border-bottom: 2px solid #cbd5e1;">
           <th style="padding: 6px; border: 1px solid #cbd5e1; text-align: left; color: #475569;">Nome</th>
           <th style="padding: 6px; border: 1px solid #cbd5e1; text-align: left; color: #475569;">Cargo / Setor</th>
-          <th style="padding: 6px; border: 1px solid #cbd5e1; text-align: left; color: #475569;">Contato (E-mail/Telefone)</th>
+          <th style="padding: 6px; border: 1px solid #cbd5e1; text-align: left; color: #475569;">Contato</th>
         </tr>
       </thead>
       <tbody>
@@ -931,14 +964,60 @@ if (resp.key_people && Array.isArray(resp.key_people) && resp.key_people.length 
   keyPeopleHtml += '</tbody></table>';
 }
 
+// 3. Processamento de Perguntas Adicionais (Dinâmicas)
+const standardKeys = ['fullname', 'role', 'email', 'phones', 'floors', 'total_employees', 'sectors', 'sectors_distribution', 'key_people', 'aware_of_change', 'team_adaptability'];
+const extraItems = [];
+
+for (const key in resp) {
+  if (Object.prototype.hasOwnProperty.call(resp, key) && !standardKeys.includes(key)) {
+    let val = resp[key];
+    let formattedVal = '';
+    
+    if (typeof val === 'boolean') {
+      formattedVal = val ? '🟢 Sim' : '🔴 Não';
+    } else if (Array.isArray(val)) {
+      formattedVal = val.join(', ');
+    } else if (typeof val === 'object' && val !== null) {
+      formattedVal = JSON.stringify(val);
+    } else {
+      formattedVal = cleanText(val);
+    }
+    
+    const friendlyKey = key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+    extraItems.push({ key: friendlyKey, value: formattedVal });
+  }
+}
+
+let extraHtmlTable = '';
+if (extraItems.length > 0) {
+  extraHtmlTable = `
+    <h3 style="color: #0284c7; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 25px; margin-bottom: 10px; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">Outras Respostas Coletadas</h3>
+    <table width="100%" border="0" cellspacing="0" cellpadding="6" style="border-collapse: collapse; margin-top: 5px; border: 1px solid #cbd5e1; font-size: 13px;">
+      <thead>
+        <tr style="background-color: #f8fafc; font-weight: bold; border-bottom: 2px solid #cbd5e1;">
+          <th style="padding: 6px; border: 1px solid #cbd5e1; text-align: left; color: #475569; width: 40%;">Pergunta</th>
+          <th style="padding: 6px; border: 1px solid #cbd5e1; text-align: left; color: #475569;">Resposta</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+  extraItems.forEach(item => {
+    extraHtmlTable += `
+      <tr style="border-bottom: 1px solid #cbd5e1;">
+        <td style="padding: 6px; border: 1px solid #cbd5e1; font-weight: 600; color: #334155;">${item.key}</td>
+        <td style="padding: 6px; border: 1px solid #cbd5e1; color: #475569;">${item.value}</td>
+      </tr>
+    `;
+  });
+  extraHtmlTable += '</tbody></table>';
+}
+
 return [{
   json: {
     clientName: project.client_name,
     ticketNumber: project.ticket_number,
     systemType: project.system_type,
     projectId: project.id,
-    
-    // Respostas Estruturadas
     fullname,
     role,
     email,
@@ -949,7 +1028,8 @@ return [{
     teamAdaptability,
     sectorsText,
     sectorsDistribution,
-    keyPeopleHtml
+    keyPeopleHtml,
+    extraHtmlTable
   }
 }];
 ```
@@ -1049,6 +1129,11 @@ return [{
                 {{ $json.keyPeopleHtml }}
               </div>
 
+              <!-- Bloco 5: Perguntas Dinâmicas/Extras -->
+              <div style="margin-top: 5px;">
+                {{ $json.extraHtmlTable }}
+              </div>
+
               <!-- CTA para o Hub -->
               <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 35px; text-align: center;">
                 <tr>
@@ -1075,30 +1160,27 @@ return [{
 ```
 
 ### 3. Plano de Teste para Automação 4
-1.  **Inserir Projeto Auxiliar para FK:**
+1.  **Inserir Checklist de Teste com Campos Adicionais (Extras):**
     ```sql
     INSERT INTO public.projects (id, client_name, ticket_number, system_type, project_leader, last_update_by)
     VALUES ('c9999999-9999-9999-9999-99999999999c', 'Cartório Checklist Teste', '666664', 'Orion TN', 'Marcus', 'marcus')
     ON CONFLICT (id) DO NOTHING;
-    ```
-2.  **Inserir o Checklist com status inicial (pending):**
-    ```sql
+
     INSERT INTO public.commercial_checklists (project_id, status, responses)
     VALUES (
         'c9999999-9999-9999-9999-99999999999c',
         'pending',
-        '{"fullname": "Geraldo Alckmin", "role": "Tabelião Substituto", "email": "geraldo.alckmin@cartorio.com.br", "phones": "(11) 98888-7777", "floors": "2 andares", "total_employees": "15 colaboradores", "sectors": ["Notas", "TI", "Administrativo"], "sectors_distribution": "Notas no térreo, TI e ADM no primeiro andar.", "key_people": [{"name": "José da Silva", "role": "Coordenador de Notas", "contact": "jose@cartorio.com.br"}, {"name": "Aline Santos", "role": "Suporte de TI", "contact": "(11) 97777-6666"}], "aware_of_change": true, "team_adaptability": "Equipe madura e bem informada da transição para o Orion TN."}'::jsonb
+        '{"fullname": "Geraldo Alckmin", "role": "Tabelião Substituto", "email": "geraldo.alckmin@cartorio.com.br", "phones": "(11) 98888-7777", "floors": "2 andares", "total_employees": "15 colaboradores", "sectors": ["Notas", "TI"], "sectors_distribution": "Distribuição normal.", "aware_of_change": true, "team_adaptability": "Boa adaptabilidade.", "sistema_anterior": "Control-M", "velocidade_internet": "500 Mbps Fibra", "necessita_treinamento_noturno": false}'::jsonb
     );
     ```
-3.  **Preparar o n8n:** Clique em "Listen".
-4.  **Disparar o Webhook via Update de Submissão:**
+2.  **Mudar o status para submetido:**
     ```sql
     UPDATE public.commercial_checklists
     SET status = 'submitted', submitted_at = now()
     WHERE project_id = 'c9999999-9999-9999-9999-99999999999c';
     ```
-5.  **Validar o fluxo:** O n8n deve processar os scripts do node JavaScript Code. Veja se a tabela HTML foi gerada com a lista de colaboradores (José da Silva e Aline Santos) e as demais respostas do cartório.
-6.  **Deletar dados do teste:**
+3.  **Validar:** O n8n deve gerar a tabela de "Outras Respostas Coletadas" com as chaves `Sistema Anterior` ("Control-M"), `Velocidade Internet` ("500 Mbps Fibra") e `Necessita Treinamento Noturno` ("🔴 Não").
+4.  **Limpar dados:**
     ```sql
     DELETE FROM public.commercial_checklists WHERE project_id = 'c9999999-9999-9999-9999-99999999999c';
     DELETE FROM public.projects WHERE id = 'c9999999-9999-9999-9999-99999999999c';
@@ -1109,15 +1191,16 @@ return [{
 ## 💡 Automação Sugerida A: Atribuição de Analista na Fila de Conversão
 
 ### 1. Descrição do Fluxo
-Esta automação é acionada por um `UPDATE` na tabela `conversion_queue` quando um analista clica em "Assumir Conversão", atualizando o status para `'in_progress'` e gravando o seu identificador no campo `assigned_to`. A automação mapeia o nome do analista para disparar um e-mail de aviso para a gestão e líderes de projeto.
+Esta automação é acionada por um `UPDATE` na tabela `conversion_queue` quando um analista clica em "Assumir Conversão", atualizando o status para `'in_progress'` e gravando o seu identificador no campo `assigned_to`. A automação busca dinamicamente o e-mail do analista pelo UUID na tabela `public.profiles` e envia o e-mail de notificação.
 
 ```mermaid
 graph TD
     A[Supabase Webhook: UPDATE conversion_queue] --> B[n8n Webhook Node]
     B --> C[IF Node: Validar Analista Atribuído]
     C -- Sim --> D[Supabase Node: Buscar Dados do Projeto]
-    D --> E[Send Email: Analista Atribuído]
-    C -- Não --> F[Ignorar / Fim]
+    D --> E[Supabase Node: Buscar Perfil do Analista]
+    E --> F[Send Email: Analista Atribuído]
+    C -- Não --> G[Ignorar / Fim]
 ```
 
 ### 2. Passo a Passo da Configuração dos Nós no n8n
@@ -1133,19 +1216,31 @@ graph TD
 *   **Conditions:**
     *   `{{ $json.body.record.queue_status }} == 'in_progress'` **AND**
     *   `{{ $json.body.old_record.assigned_to }} == null` **AND**
-    *   `{{ $json.body.record.assigned_to }} != null` (Evita loops em atualizações subsequentes enquanto a conversão está em andamento).
+    *   `{{ $json.body.record.assigned_to }} != null`
 
 #### Nó 3: Supabase (Consulta de Projeto)
 *   **Name:** `Supabase - Buscar Projeto`
 *   **Operation:** `Get`
 *   **Table:** `projects`
-*   **Filters:** `id = {{ $node["Webhook - Conversão Assumida"].json.body.record.project_id }}`
+*   **Filter -> Column:** `id`
+*   **Filter -> Operator:** `Equal`
+*   **Filter -> Value:** `{{ $node["Webhook - Conversão Assumida"].json.body.record.project_id }}`
 
-#### Nó 4: Send Email (SMTP)
+#### Nó 4: Supabase (Consulta de Perfil do Analista)
+Busca o e-mail do analista na tabela `profiles`.
+*   **Name:** `Supabase - Buscar Perfil`
+*   **Operation:** `Get`
+*   **Table:** `profiles`
+*   **Filter -> Column:** `id`
+*   **Filter -> Operator:** `Equal`
+*   **Filter -> Value:** `{{ $node["Webhook - Conversão Assumida"].json.body.record.assigned_to }}`
+
+#### Nó 5: Send Email (SMTP)
 *   **Name:** `Email - Analista Atribuído`
 *   **Authentication:** `SMTP Credentials` (Gmail)
 *   **From Email:** `seu-email@gmail.com`
 *   **To Email:** `marcus.vinicius@siplan.com.br, bruno.fernandes@siplan.com.br, marcos.ortiz@siplan.com.br`
+*   **Cc Email:** `{{ $node["Supabase - Buscar Perfil"].json.email }}` (Cópia direta para o analista responsável)
 *   **Subject:** `[SIPLAN HUB] [Fila de Conversão] Conversão Iniciada — {{ $node["Supabase - Buscar Projeto"].json.client_name }} (#{{ $node["Supabase - Buscar Projeto"].json.ticket_number }})`
 *   **Format:** `HTML`
 *   **Body (HTML):**
@@ -1192,7 +1287,7 @@ graph TD
                 </tr>
                 <tr>
                   <td style="font-weight: bold; color: #64748b;">Analista Responsável:</td>
-                  <td style="color: #3b82f6; font-weight: bold;">{{ $node["Webhook - Conversão Assumida"].json.body.record.assigned_to_name }}</td>
+                  <td style="color: #3b82f6; font-weight: bold;">{{ $node["Supabase - Buscar Perfil"].json.full_name }}</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; color: #64748b;">Iniciado em:</td>
@@ -1227,42 +1322,34 @@ graph TD
 ```
 
 ### 3. Plano de Teste para Automação Sugerida A
-1.  **Inserir Projeto de Teste e Registro na Fila:**
+1.  **Criar Perfil e Fila de Teste:**
     ```sql
-    -- Inserir Projeto Auxiliar para FK
+    INSERT INTO public.profiles (id, email, full_name, role)
+    VALUES ('f8888888-8888-8888-8888-88888888888f', 'eduardo.silva@siplan.com.br', 'Eduardo Silva', 'user')
+    ON CONFLICT (id) DO NOTHING;
+
     INSERT INTO public.projects (id, client_name, ticket_number, system_type, project_leader, last_update_by)
     VALUES ('d9999999-9999-9999-9999-99999999999d', 'Cartório Fila de Teste 2', '555555', 'Orion TN', 'Marcus', 'marcus')
     ON CONFLICT (id) DO NOTHING;
 
-    -- Inserir na Fila de Conversão (Status: pending, assigned_to: NULL)
-    INSERT INTO public.conversion_queue (
-        project_id, 
-        sent_by_name, 
-        priority, 
-        queue_status
-    ) VALUES (
-        'd9999999-9999-9999-9999-99999999999d', 
-        'Marcus', 
-        3, 
-        'pending'
-    );
+    INSERT INTO public.conversion_queue (project_id, sent_by_name, priority, queue_status)
+    VALUES ('d9999999-9999-9999-9999-99999999999d', 'Marcus', 3, 'pending');
     ```
-2.  **Preparar o n8n:** Ative o modo "Listen" no webhook.
-3.  **Simular a Atribuição do Analista:**
+2.  **Simular a Atribuição:**
     ```sql
     UPDATE public.conversion_queue
     SET 
-        assigned_to = '00000000-0000-0000-0000-000000000000', -- ID fake
+        assigned_to = 'f8888888-8888-8888-8888-88888888888f',
         assigned_to_name = 'Eduardo Silva',
         queue_status = 'in_progress',
         started_at = now()
     WHERE project_id = 'd9999999-9999-9999-9999-99999999999d';
     ```
-4.  **Confirmar Validações:** O n8n deve receber a atualização, executar e enviar o e-mail preenchido informando que `Eduardo Silva` assumiu o projeto `Cartório Fila de Teste 2`.
-5.  **Limpar o banco:**
+3.  **Limpar dados:**
     ```sql
     DELETE FROM public.conversion_queue WHERE project_id = 'd9999999-9999-9999-9999-99999999999d';
     DELETE FROM public.projects WHERE id = 'd9999999-9999-9999-9999-99999999999d';
+    DELETE FROM public.profiles WHERE id = 'f8888888-8888-8888-8888-88888888888f';
     ```
 
 ---
@@ -1270,8 +1357,8 @@ graph TD
 ## 📈 Melhores Práticas Operacionais e Monitoramento
 
 1.  **Configuração de Timeouts e Retry:** 
-    *   No nó de envio de e-mails (SMTP), marque as opções de **Retry on Failure** (tentar novamente 3 vezes com intervalo de 5 minutos). Isso previne a perda de e-mails em caso de instabilidade pontual com o serviço do Gmail.
+    *   No nó de envio de e-mails (SMTP), marque as opções de **Retry on Failure** (tentar novamente 3 vezes com intervalo de 5 minutos).
 2.  **Tratamento de Erros:**
-    *   Crie um workflow centralizado para capturar falhas globais nas automações do n8n (utilizando a trigger **Error Trigger**). Quando qualquer erro ocorrer em qualquer um desses fluxos, a Error Trigger deve disparar uma notificação por e-mail diretamente para o Marcus informando qual nó de qual workflow falhou.
+    *   Crie um workflow centralizado para capturar falhas globais nas automações do n8n (utilizando a trigger **Error Trigger**). Quando qualquer erro ocorrer, o n8n dispara uma notificação por e-mail diretamente para o Marcus.
 3.  **Validação de Ambientes:**
     *   Sempre teste as alterações na **Test URL** do n8n. Nunca faça alterações estruturais diretamente nas URLs de Produção com o workflow ativo.
