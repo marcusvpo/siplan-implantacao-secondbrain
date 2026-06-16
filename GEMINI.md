@@ -58,6 +58,7 @@ Os arquivos mais importantes são os MOCs, que atuam como índices ou "hubs" cen
 *   **`3-Recursos/Produtos Siplan/MOC - Produtos Siplan.md`:** Mapa de conteúdo central do portfólio de produtos e sistemas da Siplan (Arquitetura Orion).
 *   **`3-Recursos/Produtos Siplan/Orion PRO/MOC - Orion PRO.md`:** Detalha os módulos e rotinas operacionais do sistema Orion PRO (Tabelionato de Protesto).
 *   **`3-Recursos/Produtos Siplan/Orion TN/MOC - Orion TN.md`:** Detalha os módulos e rotinas operacionais do sistema Orion TN (Tabelionato de Notas).
+*   **`3-Recursos/Procedimentos e Manuais/[Recurso] Obsidian RAG Index.md`:** Catálogo semântico e estruturado de todas as notas do Vault, mapeando processos, regras de negócio, gargalos, oportunidades e metadados.
 *   **`3-Recursos/00 - Inbox/`:** Diretório que contém os textos longos "brutos" remanescentes que aguardam refinamento e fragmentação em notas atômicas.
 
 ## Correção e Padronização de Transcrições (Glossário Mestre)
