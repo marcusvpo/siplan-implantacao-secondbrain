@@ -20,21 +20,88 @@ Para enviar e-mails a partir de uma conta do Gmail usando o nó **Send Email (SM
 *   **From Address:** O e-mail de origem dos disparos (deve coincidir com o e-mail autenticado ou ser um alias autorizado).
 
 ### 2. Configuração de Webhooks de Banco de Dados no Supabase
-Todas as automações são baseadas em eventos do banco de dados (Event-driven). O Supabase permite disparar chamadas HTTP (POST) sempre que ocorrerem operações de `INSERT` ou `UPDATE` nas tabelas.
 
-#### Como configurar um Database Webhook no Supabase:
-1.  Acesse o painel do Supabase do projeto Siplan HUB.
-2.  No menu lateral esquerdo, vá em **Database** e selecione **Webhooks**.
-3.  Clique em **Create Webhook**.
-4.  Preencha as informações do webhook:
-    *   **Name:** Nome descritivo da automação (ex: `n8n_novo_projeto`).
-    *   **Table:** A tabela que sofrerá o evento (ex: `projects`).
-    *   **Events:** Marque as caixas dos eventos desejados (`Insert` e/ou `Update`).
-    *   **Method:** `POST`.
-    *   **URL:** A URL gerada pelo nó **Webhook** do n8n.
-        *   *Dica:* Durante o desenvolvimento e testes, utilize a **Test URL** do n8n. Ao ativar o fluxo em produção, altere a URL no Supabase para a **Production URL**.
-    *   **Headers:** `Content-Type: application/json`.
-5.  Clique em **Save**.
+Todas as automações descritas neste guia são baseadas em eventos ocorridos no banco de dados do Supabase (Event-driven). O Supabase permite registrar **Database Webhooks** que realizam chamadas HTTP (POST) contendo o payload do registro inserido ou atualizado diretamente para a URL correspondente no n8n.
+
+Para cada uma das automações, você deve criar e configurar um Database Webhook específico seguindo o passo a passo geral e os parâmetros individuais listados abaixo.
+
+#### 🛠️ Passo a Passo Geral de Criação no Painel do Supabase:
+1. Acesse o painel administrativo do Supabase e entre no projeto correspondente ao **Siplan HUB**.
+2. No menu de navegação lateral esquerdo, clique no ícone **Database** (Banco de Dados).
+3. Na lista de recursos do banco de dados, clique na opção **Webhooks**.
+4. No canto superior direito da tela, clique no botão **Create Webhook**.
+5. Preencha o formulário de configuração com os parâmetros específicos descritos a seguir para a respectiva automação.
+6. Após preencher todos os campos (Nome, Tabela, Eventos, Método, URL e Headers), clique no botão **Save** no rodapé do formulário.
+
+---
+
+#### 📋 Parâmetros Individuais para Cada Webhook (Configuração por Automação):
+
+##### ⚡ Webhook 1: Novo Projeto via Automação 0800 (Automação 1)
+Este webhook monitora a inserção de novos projetos criados via integração com o suporte da Siplan (Automação 0800).
+*   **Name:** `n8n_novo_projeto_0800`
+*   **Table:** `projects` (tabela de projetos do HUB)
+*   **Events:** Selecionar **apenas** a opção `Insert` (Inserção de registro)
+*   **Method:** `POST`
+*   **URL:**
+    *   *Ambiente de Testes (n8n Test):* `https://n8n.siplan.com.br/webhook-test/novo-projeto-0800`
+    *   *Ambiente de Produção (n8n Prod):* `https://n8n.siplan.com.br/webhook/novo-projeto-0800`
+*   **Headers:**
+    *   *Key:* `Content-Type`
+    *   *Value:* `application/json`
+
+##### ⚖️ Webhook 2: Análise de Aderência Finalizada (Automação 2)
+Este webhook detecta quando o analista de implantação aprova uma análise de aderência, alterando as respostas para o status final aprovado.
+*   **Name:** `n8n_aderencia_finalizada`
+*   **Table:** `project_form_responses` (tabela de respostas aos formulários do projeto)
+*   **Events:** Selecionar **apenas** a opção `Update` (Atualização de registro)
+*   **Method:** `POST`
+*   **URL:**
+    *   *Ambiente de Testes (n8n Test):* `https://n8n.siplan.com.br/webhook-test/aderencia-aprovada`
+    *   *Ambiente de Produção (n8n Prod):* `https://n8n.siplan.com.br/webhook/aderencia-aprovada`
+*   **Headers:**
+    *   *Key:* `Content-Type`
+    *   *Value:* `application/json`
+
+##### 📥 Webhook 3: Nova Conversão Enviada para a Fila (Automação 3)
+Este webhook aciona a notificação de nova demanda de conversão assim que o registro é enfileirado com status pendente.
+*   **Name:** `n8n_conversao_criada`
+*   **Table:** `conversion_queue` (tabela que gerencia a fila de conversões de banco de dados)
+*   **Events:** Selecionar **apenas** a opção `Insert` (Inserção de registro)
+*   **Method:** `POST`
+*   **URL:**
+    *   *Ambiente de Testes (n8n Test):* `https://n8n.siplan.com.br/webhook-test/conversao-criada`
+    *   *Ambiente de Produção (n8n Prod):* `https://n8n.siplan.com.br/webhook/conversao-criada`
+*   **Headers:**
+    *   *Key:* `Content-Type`
+    *   *Value:* `application/json`
+
+##### 📝 Webhook 4: Checklist Comercial Respondido pelo Cliente (Automação 4)
+Este webhook monitora as atualizações das fichas preenchidas pelos clientes no portal de pré-implantação.
+*   **Name:** `n8n_checklist_respondido`
+*   **Table:** `commercial_checklists` (tabela que armazena as respostas do checklist comercial do cliente)
+*   **Events:** Selecionar **apenas** a opção `Update` (Atualização de registro)
+*   **Method:** `POST`
+*   **URL:**
+    *   *Ambiente de Testes (n8n Test):* `https://n8n.siplan.com.br/webhook-test/checklist-respondido`
+    *   *Ambiente de Produção (n8n Prod):* `https://n8n.siplan.com.br/webhook/checklist-respondido`
+*   **Headers:**
+    *   *Key:* `Content-Type`
+    *   *Value:* `application/json`
+
+##### 💡 Webhook 5: Atribuição de Analista na Fila de Conversão (Automação Sugerida A)
+Este webhook notifica os gestores e o analista quando uma conversão pendente é assumida para execução técnica.
+*   **Name:** `n8n_conversao_assumida`
+*   **Table:** `conversion_queue` (tabela que gerencia a fila de conversões de banco de dados)
+*   **Events:** Selecionar **apenas** a opção `Update` (Atualização de registro)
+*   **Method:** `POST`
+*   **URL:**
+    *   *Ambiente de Testes (n8n Test):* `https://n8n.siplan.com.br/webhook-test/conversao-assumida`
+    *   *Ambiente de Produção (n8n Prod):* `https://n8n.siplan.com.br/webhook/conversao-assumida`
+*   **Headers:**
+    *   *Key:* `Content-Type`
+    *   *Value:* `application/json`
+
 
 ### 3. Conexão Nativa do Supabase no n8n
 As consultas complementares de dados (como buscar informações do projeto ou o perfil do usuário) serão realizadas utilizando o **nó nativo do Supabase** já configurado no n8n.
@@ -105,7 +172,7 @@ Este nó garante que a automação só execute se for uma inserção (`INSERT`) 
 *   **Authentication:** `SMTP Credentials` (Gmail)
 *   **From Email:** `seu-email@gmail.com`
 *   **To Email:** `marcus.vinicius@siplan.com.br, alex.silva@siplan.com.br, hugo.santariosi@siplan.com.br`
-*   **Subject:** `[SIPLAN HUB] [Infraestrutura] Solicitação de Análise de Infra — {{ $json.body.record.client_name }} (#{{ $json.body.record.ticket_number }})`
+*   **Subject:** `🚀 [SIPLAN HUB] [Infraestrutura] Solicitação de Análise de Infra — {{ $json.body.record.client_name }} (#{{ $json.body.record.ticket_number }})`
 *   **Format:** `HTML`
 *   **Body (HTML):**
 ```html
@@ -116,51 +183,77 @@ Este nó garante que a automação só execute se for uma inserção (`INSERT`) 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Solicitação de Infraestrutura</title>
 </head>
-<body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Segoe UI', Helvetica, Arial, sans-serif; color: #334155; line-height: 1.6;">
-  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 20px 0;">
+<body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; color: #1e293b; line-height: 1.6;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 40px 0 20px 0;">
     <tr>
       <td align="center">
-        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;">
+        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.05); border: 1px solid #e2e8f0;">
           <!-- Header -->
           <tr>
-            <td style="background-color: #0f172a; padding: 20px 30px; text-align: left;">
-              <span style="color: #3b82f6; font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px;">Notificação Automática</span>
-              <h1 style="color: #ffffff; font-size: 20px; margin: 5px 0 0 0; font-weight: 600; font-family: 'Segoe UI', Arial, sans-serif;">SIPLAN HUB</h1>
+            <td style="background-color: #0f172a; padding: 28px 35px; text-align: left;">
+              <span style="color: #ad0505; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 4px;">INFRAESTRUTURA</span>
+              <h1 style="color: #ffffff; font-size: 22px; margin: 0; font-weight: 800; letter-spacing: -0.5px;">SIPLAN <span style="color: #ad0505;">HUB</span></h1>
             </td>
+          </tr>
+          <!-- Decorative Line -->
+          <tr>
+            <td height="4" style="background-color: #ad0505; line-height: 4px; font-size: 4px;">&nbsp;</td>
           </tr>
           <!-- Body -->
           <tr>
-            <td style="padding: 40px 30px;">
-              <h2 style="color: #1e293b; font-size: 18px; margin-top: 0; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px;">Solicitação de Análise de Infraestrutura</h2>
-              <p style="font-size: 15px; color: #475569;">Olá equipe de Infraestrutura,</p>
-              <p style="font-size: 15px; color: #475569;">Um novo projeto foi integrado via automação 0800 e necessita da <strong>Análise de Infraestrutura</strong> inicial. Por favor, revisem os detalhes abaixo e prossigam com o fluxo operacional.</p>
-              
-              <!-- Card de Informações -->
-              <table width="100%" border="0" cellspacing="0" cellpadding="10" style="background-color: #f8fafc; border-radius: 6px; margin: 25px 0; border: 1px solid #edf2f7;">
+            <td style="padding: 40px 35px;">
+              <!-- Badge -->
+              <table border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 25px;">
                 <tr>
-                  <td width="30%" style="font-weight: bold; color: #64748b; font-size: 14px;">Cliente/Cartório:</td>
-                  <td style="color: #1e293b; font-size: 14px; font-weight: 600;">{{ $json.body.record.client_name }}</td>
-                </tr>
-                <tr>
-                  <td style="font-weight: bold; color: #64748b; font-size: 14px;">Chamado:</td>
-                  <td style="color: #1e293b; font-size: 14px;">#{{ $json.body.record.ticket_number }}</td>
-                </tr>
-                <tr>
-                  <td style="font-weight: bold; color: #64748b; font-size: 14px;">Sistema:</td>
-                  <td style="color: #1e293b; font-size: 14px;">{{ $json.body.record.system_type }}</td>
-                </tr>
-                <tr>
-                  <td style="font-weight: bold; color: #64748b; font-size: 14px;">Líder do Projeto:</td>
-                  <td style="color: #1e293b; font-size: 14px;">{{ $json.body.record.project_leader }}</td>
+                  <td>
+                    <span style="background-color: #fee2e2; color: #991b1b; padding: 6px 14px; border-radius: 50px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block;">
+                      ⚠️ AÇÃO PENDENTE
+                    </span>
+                  </td>
                 </tr>
               </table>
 
-              <p style="font-size: 15px; color: #475569;">Acesse o painel do Siplan HUB para atribuir o responsável e iniciar a coleta de dados de hardware do servidor do cliente.</p>
+              <h2 style="color: #0f172a; font-size: 20px; margin-top: 0; margin-bottom: 12px; font-weight: 700; letter-spacing: -0.3px;">Solicitação de Análise de Infraestrutura</h2>
+              <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">Olá equipe de Infraestrutura,</p>
+              <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">Um novo projeto foi integrado via automação 0800 e necessita da <strong>Análise de Infraestrutura</strong> inicial. Por favor, revisem os detalhes abaixo e prossigam com o fluxo operacional.</p>
+              
+              <!-- Card de Informações -->
+              <table width="100%" border="0" cellspacing="0" cellpadding="12" style="background-color: #f8fafc; border-radius: 8px; margin: 25px 0; border: 1px solid #e2e8f0; border-left: 4px solid #ad0505; font-size: 14px;">
+                <tr>
+                  <td width="35%" style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Cliente/Cartório:</td>
+                  <td style="color: #1e293b; font-weight: 700;">{{ $json.body.record.client_name }}</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Chamado:</td>
+                  <td style="color: #1e293b; font-weight: 600;">#{{ $json.body.record.ticket_number }}</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Sistema:</td>
+                  <td style="color: #1e293b;">{{ $json.body.record.system_type }}</td>
+                </tr>
+                
+              </table>
+
+              <!-- Recomendados Checklist -->
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #fff5f5; border-radius: 8px; border: 1px dashed #feb2b2; margin-top: 25px; padding: 20px;">
+                <tr>
+                  <td>
+                    <h3 style="color: #ad0505; font-size: 14px; margin: 0 0 10px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
+                      📋 PRÓXIMOS PASSOS RECOMENDADOS
+                    </h3>
+                    <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 14px; line-height: 1.6;">
+                      <li>Acesse o painel do Siplan HUB e atribua um analista técnico de Infraestrutura.</li>
+                      <li>Inicie a coleta de dados de hardware e rede do servidor do cliente.</li>
+                      <li>Realize o preenchimento da ficha técnica com base no check-up.</li>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
               
               <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 30px;">
                 <tr>
                   <td align="center">
-                    <a href="https://hub.siplan.com.br/projects/{{ $json.body.record.id }}" style="background-color: #3b82f6; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 2px 4px rgba(59,130,246,0.3);">Acessar Projeto no Siplan HUB</a>
+                    <a href="https://siplanhub.vercel.app/projects/{{ $json.body.record.id }}" style="background-color: #ad0505; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(173, 5, 5, 0.2), 0 2px 4px -1px rgba(173, 5, 5, 0.1); text-transform: uppercase; letter-spacing: 0.5px;">Acessar Projeto no Siplan HUB</a>
                   </td>
                 </tr>
               </table>
@@ -168,7 +261,7 @@ Este nó garante que a automação só execute se for uma inserção (`INSERT`) 
           </tr>
           <!-- Footer -->
           <tr>
-            <td style="background-color: #f1f5f9; padding: 20px 30px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #e2e8f0;">
+            <td style="background-color: #f8fafc; padding: 25px 35px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #f1f5f9;">
               Este é um e-mail automático gerado pelo Siplan HUB.<br>
               © Siplan - Soluções para Cartórios Extrajudiciais
             </td>
@@ -186,7 +279,7 @@ Este nó garante que a automação só execute se for uma inserção (`INSERT`) 
 *   **Authentication:** `SMTP Credentials` (Gmail)
 *   **From Email:** `seu-email@gmail.com`
 *   **To Email:** `marcus.vinicius@siplan.com.br, maria.santos@siplan.com.br`
-*   **Subject:** `[SIPLAN HUB] [Aderência] Agendar Análise — {{ $json.body.record.client_name }} (#{{ $json.body.record.ticket_number }}) — Sistema: {{ $json.body.record.system_type }}`
+*   **Subject:** `📅 [SIPLAN HUB] [Aderência] Agendar Análise — {{ $json.body.record.client_name }} (#{{ $json.body.record.ticket_number }}) — Sistema: {{ $json.body.record.system_type }}`
 *   **Format:** `HTML`
 *   **Body (HTML):**
 ```html
@@ -197,47 +290,76 @@ Este nó garante que a automação só execute se for uma inserção (`INSERT`) 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agendamento de Aderência</title>
 </head>
-<body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Segoe UI', Helvetica, Arial, sans-serif; color: #334155; line-height: 1.6;">
-  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 20px 0;">
+<body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; color: #1e293b; line-height: 1.6;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 40px 0 20px 0;">
     <tr>
       <td align="center">
-        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;">
+        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.05); border: 1px solid #e2e8f0;">
           <!-- Header -->
           <tr>
-            <td style="background-color: #0f172a; padding: 20px 30px; text-align: left;">
-              <span style="color: #3b82f6; font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px;">Notificação Automática</span>
-              <h1 style="color: #ffffff; font-size: 20px; margin: 5px 0 0 0; font-weight: 600; font-family: 'Segoe UI', Arial, sans-serif;">SIPLAN HUB</h1>
+            <td style="background-color: #0f172a; padding: 28px 35px; text-align: left;">
+              <span style="color: #ad0505; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 4px;">ADERÊNCIA</span>
+              <h1 style="color: #ffffff; font-size: 22px; margin: 0; font-weight: 800; letter-spacing: -0.5px;">SIPLAN <span style="color: #ad0505;">HUB</span></h1>
             </td>
+          </tr>
+          <!-- Decorative Line -->
+          <tr>
+            <td height="4" style="background-color: #ad0505; line-height: 4px; font-size: 4px;">&nbsp;</td>
           </tr>
           <!-- Body -->
           <tr>
-            <td style="padding: 40px 30px;">
-              <h2 style="color: #1e293b; font-size: 18px; margin-top: 0; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px;">Necessidade de Agendamento - Análise de Aderência</h2>
-              <p style="font-size: 15px; color: #475569;">Olá Marcus e Maria,</p>
-              <p style="font-size: 15px; color: #475569;">O projeto do cliente abaixo foi cadastrado e agora aguarda o agendamento da <strong>Análise de Aderência</strong> para mapeamento de rotinas operacionais.</p>
-              
-              <!-- Card de Informações -->
-              <table width="100%" border="0" cellspacing="0" cellpadding="10" style="background-color: #f8fafc; border-radius: 6px; margin: 25px 0; border: 1px solid #edf2f7;">
+            <td style="padding: 40px 35px;">
+              <!-- Badge -->
+              <table border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 25px;">
                 <tr>
-                  <td width="30%" style="font-weight: bold; color: #64748b; font-size: 14px;">Cliente:</td>
-                  <td style="color: #1e293b; font-size: 14px; font-weight: 600;">{{ $json.body.record.client_name }}</td>
-                </tr>
-                <tr>
-                  <td style="font-weight: bold; color: #64748b; font-size: 14px;">Chamado:</td>
-                  <td style="color: #1e293b; font-size: 14px;">#{{ $json.body.record.ticket_number }}</td>
-                </tr>
-                <tr>
-                  <td style="font-weight: bold; color: #64748b; font-size: 14px;">Sistema Contratado:</td>
-                  <td style="color: #1e293b; font-size: 14px; font-weight: 600; color: #3b82f6;">{{ $json.body.record.system_type }}</td>
+                  <td>
+                    <span style="background-color: #fef3c7; color: #92400e; padding: 6px 14px; border-radius: 50px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block;">
+                      ⚠️ AGENDAMENTO PENDENTE
+                    </span>
+                  </td>
                 </tr>
               </table>
 
-              <p style="font-size: 15px; color: #475569;">Favor entrar em contato com o cliente para agendar a reunião de aderência e preencher os dados correspondentes no Siplan HUB.</p>
+              <h2 style="color: #0f172a; font-size: 20px; margin-top: 0; margin-bottom: 12px; font-weight: 700; letter-spacing: -0.3px;">Necessidade de Agendamento - Análise de Aderência</h2>
+              <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">Olá Marcus e Maria,</p>
+              <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">O projeto do cliente abaixo foi cadastrado e agora aguarda o agendamento da <strong>Análise de Aderência</strong> para mapeamento de rotinas operacionais.</p>
+              
+              <!-- Card de Informações -->
+              <table width="100%" border="0" cellspacing="0" cellpadding="12" style="background-color: #f8fafc; border-radius: 8px; margin: 25px 0; border: 1px solid #e2e8f0; border-left: 4px solid #ad0505; font-size: 14px;">
+                <tr>
+                  <td width="35%" style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Cliente:</td>
+                  <td style="color: #1e293b; font-weight: 700;">{{ $json.body.record.client_name }}</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Chamado:</td>
+                  <td style="color: #1e293b; font-weight: 600;">#{{ $json.body.record.ticket_number }}</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Sistema Contratado:</td>
+                  <td style="color: #ad0505; font-weight: bold;">{{ $json.body.record.system_type }}</td>
+                </tr>
+              </table>
+
+              <!-- Recomendados Checklist -->
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #fff5f5; border-radius: 8px; border: 1px dashed #feb2b2; margin-top: 25px; padding: 20px;">
+                <tr>
+                  <td>
+                    <h3 style="color: #ad0505; font-size: 14px; margin: 0 0 10px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
+                      📋 PRÓXIMOS PASSOS RECOMENDADOS
+                    </h3>
+                    <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 14px; line-height: 1.6;">
+                      <li>Entre em contato com o cliente para alinhar uma data confortável.</li>
+                      <li>Envie o convite da reunião com o link de acesso da chamada.</li>
+                      <li>Registre formalmente a data e horário agendados no painel de Aderência do HUB.</li>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
               
               <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 30px;">
                 <tr>
                   <td align="center">
-                    <a href="https://hub.siplan.com.br/projects/{{ $json.body.record.id }}/adherence" style="background-color: #3b82f6; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 2px 4px rgba(59,130,246,0.3);">Agendar no Siplan HUB</a>
+                    <a href="https://siplanhub.vercel.app/projects/{{ $json.body.record.id }}/adherence" style="background-color: #ad0505; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(173, 5, 5, 0.2), 0 2px 4px -1px rgba(173, 5, 5, 0.1); text-transform: uppercase; letter-spacing: 0.5px;">Agendar no Siplan HUB</a>
                   </td>
                 </tr>
               </table>
@@ -245,7 +367,7 @@ Este nó garante que a automação só execute se for uma inserção (`INSERT`) 
           </tr>
           <!-- Footer -->
           <tr>
-            <td style="background-color: #f1f5f9; padding: 20px 30px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #e2e8f0;">
+            <td style="background-color: #f8fafc; padding: 25px 35px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #f1f5f9;">
               Este é um e-mail automático gerado pelo Siplan HUB.<br>
               © Siplan - Soluções para Cartórios Extrajudiciais
             </td>
@@ -264,7 +386,7 @@ Como o líder do projeto sempre será Marcus Vinicius ou Bruno Fernandes, a list
 *   **Authentication:** `SMTP Credentials` (Gmail)
 *   **From Email:** `seu-email@gmail.com`
 *   **To Email:** `marcus.vinicius@siplan.com.br, marcos.ortiz@siplan.com.br, bruno.fernandes@siplan.com.br`
-*   **Subject:** `[SIPLAN HUB] [Kickoff] Novo Projeto Cadastrado — {{ $json.body.record.client_name }} (#{{ $json.body.record.ticket_number }})`
+*   **Subject:** `🎉 [SIPLAN HUB] [Kickoff] Novo Projeto Cadastrado — {{ $json.body.record.client_name }} (#{{ $json.body.record.ticket_number }})`
 *   **Format:** `HTML`
 *   **Body (HTML):**
 ```html
@@ -275,55 +397,84 @@ Como o líder do projeto sempre será Marcus Vinicius ou Bruno Fernandes, a list
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kickoff do Projeto</title>
 </head>
-<body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Segoe UI', Helvetica, Arial, sans-serif; color: #334155; line-height: 1.6;">
-  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 20px 0;">
+<body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; color: #1e293b; line-height: 1.6;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 40px 0 20px 0;">
     <tr>
       <td align="center">
-        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;">
+        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.05); border: 1px solid #e2e8f0;">
           <!-- Header -->
           <tr>
-            <td style="background-color: #0f172a; padding: 20px 30px; text-align: left;">
-              <span style="color: #3b82f6; font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px;">Notificação Automática</span>
-              <h1 style="color: #ffffff; font-size: 20px; margin: 5px 0 0 0; font-weight: 600; font-family: 'Segoe UI', Arial, sans-serif;">SIPLAN HUB</h1>
+            <td style="background-color: #0f172a; padding: 28px 35px; text-align: left;">
+              <span style="color: #ad0505; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 4px;">KICKOFF</span>
+              <h1 style="color: #ffffff; font-size: 22px; margin: 0; font-weight: 800; letter-spacing: -0.5px;">SIPLAN <span style="color: #ad0505;">HUB</span></h1>
             </td>
+          </tr>
+          <!-- Decorative Line -->
+          <tr>
+            <td height="4" style="background-color: #ad0505; line-height: 4px; font-size: 4px;">&nbsp;</td>
           </tr>
           <!-- Body -->
           <tr>
-            <td style="padding: 40px 30px;">
-              <h2 style="color: #1e293b; font-size: 18px; margin-top: 0; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px;">Novo Projeto Disponível (Kickoff)</h2>
-              <p style="font-size: 15px; color: #475569;">Prezados,</p>
-              <p style="font-size: 15px; color: #475569;">Informamos que o projeto de implantação para o cliente <strong>{{ $json.body.record.client_name }}</strong> foi devidamente inserido no sistema e está pronto para o alinhamento de kickoff.</p>
-              
-              <!-- Card de Informações -->
-              <table width="100%" border="0" cellspacing="0" cellpadding="10" style="background-color: #f8fafc; border-radius: 6px; margin: 25px 0; border: 1px solid #edf2f7;">
+            <td style="padding: 40px 35px;">
+              <!-- Badge -->
+              <table border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 25px;">
                 <tr>
-                  <td width="35%" style="font-weight: bold; color: #64748b; font-size: 14px;">Cliente:</td>
-                  <td style="color: #1e293b; font-size: 14px; font-weight: 600;">{{ $json.body.record.client_name }}</td>
-                </tr>
-                <tr>
-                  <td style="font-weight: bold; color: #64748b; font-size: 14px;">Chamado:</td>
-                  <td style="color: #1e293b; font-size: 14px;">#{{ $json.body.record.ticket_number }}</td>
-                </tr>
-                <tr>
-                  <td style="font-weight: bold; color: #64748b; font-size: 14px;">Sistema:</td>
-                  <td style="color: #1e293b; font-size: 14px; font-weight: bold; color: #0f172a;">{{ $json.body.record.system_type }}</td>
-                </tr>
-                <tr>
-                  <td style="font-weight: bold; color: #64748b; font-size: 14px;">Horas Vendidas:</td>
-                  <td style="color: #10b981; font-size: 14px; font-weight: bold;">{{ $json.body.record.sold_hours }} horas</td>
-                </tr>
-                <tr>
-                  <td style="font-weight: bold; color: #64748b; font-size: 14px;">Líder de Implantação:</td>
-                  <td style="color: #1e293b; font-size: 14px;">{{ $json.body.record.project_leader }}</td>
+                  <td>
+                    <span style="background-color: #e0f2fe; color: #0369a1; padding: 6px 14px; border-radius: 50px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block;">
+                      🚀 NOVO PROJETO CADASTRADO
+                    </span>
+                  </td>
                 </tr>
               </table>
 
-              <p style="font-size: 15px; color: #475569;">Alinhem os próximos passos e verifiquem a alocação dos recursos para o atendimento deste cartório.</p>
+              <h2 style="color: #0f172a; font-size: 20px; margin-top: 0; margin-bottom: 12px; font-weight: 700; letter-spacing: -0.3px;">Novo Projeto Disponível (Kickoff)</h2>
+              <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">Prezados,</p>
+              <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">Informamos que o projeto de implantação para o cliente <strong>{{ $json.body.record.client_name }}</strong> foi devidamente inserido no sistema e está pronto para o alinhamento de kickoff.</p>
+              
+              <!-- Card de Informações -->
+              <table width="100%" border="0" cellspacing="0" cellpadding="12" style="background-color: #f8fafc; border-radius: 8px; margin: 25px 0; border: 1px solid #e2e8f0; border-left: 4px solid #ad0505; font-size: 14px;">
+                <tr>
+                  <td width="35%" style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Cliente:</td>
+                  <td style="color: #1e293b; font-weight: 700;">{{ $json.body.record.client_name }}</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Chamado:</td>
+                  <td style="color: #1e293b; font-weight: 600;">#{{ $json.body.record.ticket_number }}</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Sistema:</td>
+                  <td style="color: #1e293b; font-weight: bold;">{{ $json.body.record.system_type }}</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Horas Vendidas:</td>
+                  <td style="color: #10b981; font-weight: bold;">{{ $json.body.record.sold_hours }} horas</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Líder de Implantação:</td>
+                  <td style="color: #1e293b;">{{ $json.body.record.project_leader }}</td>
+                </tr>
+              </table>
+
+              <!-- Recomendados Checklist -->
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #fff5f5; border-radius: 8px; border: 1px dashed #feb2b2; margin-top: 25px; padding: 20px;">
+                <tr>
+                  <td>
+                    <h3 style="color: #ad0505; font-size: 14px; margin: 0 0 10px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
+                      📋 PRÓXIMOS PASSOS RECOMENDADOS
+                    </h3>
+                    <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 14px; line-height: 1.6;">
+                      <li>Realizar a reunião interna de kickoff e alinhamento do escopo do projeto.</li>
+                      <li>Validar a viabilidade dos prazos em relação às horas vendidas.</li>
+                      <li>Confirmar a alocação dos analistas para as etapas técnica e funcional.</li>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
               
               <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 30px;">
                 <tr>
                   <td align="center">
-                    <a href="https://hub.siplan.com.br/projects/{{ $json.body.record.id }}" style="background-color: #0f172a; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 2px 4px rgba(15,23,42,0.3);">Abrir Ficha do Projeto</a>
+                    <a href="https://siplanhub.vercel.app/projects/{{ $json.body.record.id }}" style="background-color: #ad0505; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(173, 5, 5, 0.2), 0 2px 4px -1px rgba(173, 5, 5, 0.1); text-transform: uppercase; letter-spacing: 0.5px;">Abrir Ficha do Projeto</a>
                   </td>
                 </tr>
               </table>
@@ -331,7 +482,7 @@ Como o líder do projeto sempre será Marcus Vinicius ou Bruno Fernandes, a list
           </tr>
           <!-- Footer -->
           <tr>
-            <td style="background-color: #f1f5f9; padding: 20px 30px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #e2e8f0;">
+            <td style="background-color: #f8fafc; padding: 25px 35px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #f1f5f9;">
               Este é um e-mail automático gerado pelo Siplan HUB.<br>
               © Siplan - Soluções para Cartórios Extrajudiciais
             </td>
@@ -479,32 +630,33 @@ if (impactedItems.length === 0) {
   impactedHtmlTable = '<p style="color: #10b981; font-weight: bold; font-size: 14px;">✓ Nenhum item com impacto técnico ou impeditivo foi identificado nesta análise.</p>';
 } else {
   impactedHtmlTable = `
-    <table width="100%" border="0" cellspacing="0" cellpadding="8" style="border-collapse: collapse; margin-top: 10px; border: 1px solid #e2e8f0; font-size: 13px;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="10" style="border-collapse: collapse; margin-top: 10px; border: 1px solid #e2e8f0; font-size: 13px; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
       <thead>
-        <tr style="background-color: #f1f5f9; border-bottom: 2px solid #e2e8f0; text-align: left; font-weight: bold;">
-          <th style="padding: 10px; border: 1px solid #e2e8f0; color: #475569;">Seção</th>
-          <th style="padding: 10px; border: 1px solid #e2e8f0; color: #475569;">Item/Requisito</th>
-          <th style="padding: 10px; border: 1px solid #e2e8f0; color: #475569;">Impacto</th>
-          <th style="padding: 10px; border: 1px solid #e2e8f0; color: #475569;">Detalhes do Blocker</th>
+        <tr style="background-color: #0f172a; text-align: left; font-weight: bold;">
+          <th style="padding: 12px 10px; border: 1px solid #e2e8f0; color: #ffffff; border-bottom: 2px solid #ad0505;">Seção</th>
+          <th style="padding: 12px 10px; border: 1px solid #e2e8f0; color: #ffffff; border-bottom: 2px solid #ad0505;">Item/Requisito</th>
+          <th style="padding: 12px 10px; border: 1px solid #e2e8f0; color: #ffffff; border-bottom: 2px solid #ad0505; text-align: center;">Impacto</th>
+          <th style="padding: 12px 10px; border: 1px solid #e2e8f0; color: #ffffff; border-bottom: 2px solid #ad0505;">Detalhes do Blocker</th>
         </tr>
       </thead>
       <tbody>
   `;
   
   impactedItems.forEach(item => {
-    let badgeColor = '#ef4444';
+    let badgeColor = '#ad0505';
+    let badgeTextColor = '#ffffff';
     if (item.impactLevel.toUpperCase() === 'BAIXO' || item.impactLevel.toUpperCase() === 'NÃO') {
       badgeColor = '#f59e0b';
     }
     
     impactedHtmlTable += `
       <tr style="border-bottom: 1px solid #e2e8f0;">
-        <td style="padding: 10px; border: 1px solid #e2e8f0; font-weight: 600; color: #64748b;">${item.section}</td>
-        <td style="padding: 10px; border: 1px solid #e2e8f0; color: #334155;">${item.question}</td>
+        <td style="padding: 10px; border: 1px solid #e2e8f0; font-weight: 600; color: #1e293b;">${item.section}</td>
+        <td style="padding: 10px; border: 1px solid #e2e8f0; color: #475569;">${item.question}</td>
         <td style="padding: 10px; border: 1px solid #e2e8f0; text-align: center;">
-          <span style="background-color: ${badgeColor}; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 10px; display: inline-block;">${item.impactLevel}</span>
+          <span style="background-color: ${badgeColor}; color: ${badgeTextColor}; padding: 3px 8px; border-radius: 4px; font-weight: bold; font-size: 11px; display: inline-block;">${item.impactLevel}</span>
         </td>
-        <td style="padding: 10px; border: 1px solid #e2e8f0; color: #475569;">${item.details}</td>
+        <td style="padding: 10px; border: 1px solid #e2e8f0; color: #475569; font-style: italic;">${item.details}</td>
       </tr>
     `;
   });
@@ -571,7 +723,7 @@ return [{
     impactedHtmlTable: impactedHtmlTable,
     toEmail: 'marcus.vinicius@siplan.com.br',
     ccEmail: ccList.join(', '),
-    printUrl: `https://hub.siplan.com.br/projects/${projectData.id}/adherence?print=true`
+    printUrl: `https://siplanhub.vercel.app/projects/${projectData.id}/adherence?print=true`
   }
 }];
 ```
@@ -582,7 +734,7 @@ return [{
 *   **From Email:** `seu-email@gmail.com`
 *   **To Email:** `{{ $json.toEmail }}`
 *   **Cc Email:** `{{ $json.ccEmail }}`
-*   **Subject:** `[SIPLAN HUB] [Aderência] Finalizada — {{ $json.clientName }} (#{{ $json.ticketNumber }}) — Veredito: {{ $json.finalVerdict }}`
+*   **Subject:** `⚠️ [SIPLAN HUB] [Aderência] Finalizada — {{ $json.clientName }} (#{{ $json.ticketNumber }}) — Veredito: {{ $json.finalVerdict }}`
 *   **Format:** `HTML`
 *   **Body (HTML):**
 ```html
@@ -593,69 +745,88 @@ return [{
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Análise de Aderência Finalizada</title>
 </head>
-<body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Segoe UI', Helvetica, Arial, sans-serif; color: #334155; line-height: 1.6;">
-  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 20px 0;">
+<body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; color: #1e293b; line-height: 1.6;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 40px 0 20px 0;">
     <tr>
       <td align="center">
-        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;">
+        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.05); border: 1px solid #e2e8f0;">
           <!-- Header -->
           <tr>
-            <td style="background-color: #0f172a; padding: 20px 30px; text-align: left;">
-              <span style="color: #3b82f6; font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px;">Aderência Concluída</span>
-              <h1 style="color: #ffffff; font-size: 20px; margin: 5px 0 0 0; font-weight: 600; font-family: 'Segoe UI', Arial, sans-serif;">SIPLAN HUB</h1>
+            <td style="background-color: #0f172a; padding: 28px 35px; text-align: left;">
+              <span style="color: #ad0505; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 4px;">ADERÊNCIA CONCLUÍDA</span>
+              <h1 style="color: #ffffff; font-size: 22px; margin: 0; font-weight: 800; letter-spacing: -0.5px;">SIPLAN <span style="color: #ad0505;">HUB</span></h1>
             </td>
+          </tr>
+          <!-- Decorative Line -->
+          <tr>
+            <td height="4" style="background-color: #ad0505; line-height: 4px; font-size: 4px;">&nbsp;</td>
           </tr>
           <!-- Body -->
           <tr>
-            <td style="padding: 40px 30px;">
-              <h2 style="color: #1e293b; font-size: 18px; margin-top: 0; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px;">Resultado da Análise de Aderência</h2>
-              <p style="font-size: 15px; color: #475569;">A análise de aderência para o cliente <strong>{{ $json.clientName }}</strong> foi finalizada por <strong>{{ $json.analystName }}</strong>.</p>
-              
-              <!-- Card Principal de Status -->
-              <table width="100%" border="0" cellspacing="0" cellpadding="12" style="background-color: #f8fafc; border-radius: 6px; margin: 20px 0; border: 1px solid #edf2f7; font-size: 14px;">
+            <td style="padding: 40px 35px;">
+              <!-- Badge -->
+              <table border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 25px;">
                 <tr>
-                  <td width="30%" style="font-weight: bold; color: #64748b;">Cartório:</td>
-                  <td style="color: #1e293b; font-weight: bold;">{{ $json.clientName }}</td>
-                </tr>
-                <tr>
-                  <td style="font-weight: bold; color: #64748b;">Chamado:</td>
-                  <td style="color: #1e293b;">#{{ $json.ticketNumber }}</td>
-                </tr>
-                <tr>
-                  <td style="font-weight: bold; color: #64748b;">Sistema:</td>
-                  <td style="color: #1e293b;">{{ $json.systemType }}</td>
-                </tr>
-                <tr>
-                  <td style="font-weight: bold; color: #64748b;">Veredito Técnico:</td>
-                  <td style="font-weight: bold; font-size: 15px;">
-                    <span style="padding: 4px 10px; border-radius: 20px; text-transform: uppercase; font-size: 11px;
+                  <td>
+                    <span style="padding: 6px 14px; border-radius: 50px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block;
                       {{ if $json.finalVerdict.includes('Totalmente') }} background-color: #d1fae5; color: #065f46; {{ else if $json.finalVerdict.includes('Restrições') }} background-color: #fef3c7; color: #92400e; {{ else }} background-color: #fee2e2; color: #991b1b; {{ end }}">
-                      {{ $json.finalVerdict }}
+                      Veredito: {{ $json.finalVerdict }}
                     </span>
                   </td>
                 </tr>
+              </table>
+
+              <h2 style="color: #0f172a; font-size: 20px; margin-top: 0; margin-bottom: 12px; font-weight: 700; letter-spacing: -0.3px;">Resultado da Análise de Aderência</h2>
+              <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">A análise de aderência para o cliente <strong>{{ $json.clientName }}</strong> foi finalizada por <strong>{{ $json.analystName }}</strong>.</p>
+              
+              <!-- Card Principal de Status -->
+              <table width="100%" border="0" cellspacing="0" cellpadding="12" style="background-color: #f8fafc; border-radius: 8px; margin: 25px 0; border: 1px solid #e2e8f0; border-left: 4px solid #ad0505; font-size: 14px;">
                 <tr>
-                  <td style="font-weight: bold; color: #64748b; vertical-align: top;">Parecer Geral:</td>
+                  <td width="35%" style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Cartório:</td>
+                  <td style="color: #1e293b; font-weight: 700;">{{ $json.clientName }}</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Chamado:</td>
+                  <td style="color: #1e293b; font-weight: 600;">#{{ $json.ticketNumber }}</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Sistema:</td>
+                  <td style="color: #1e293b;">{{ $json.systemType }}</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; vertical-align: top;">Parecer Geral:</td>
                   <td style="color: #475569; font-style: italic;">"{{ $json.finalNotes }}"</td>
                 </tr>
               </table>
 
               <!-- Seção de Requisitos com Impacto / Gaps -->
-              <h3 style="color: #0f172a; font-size: 15px; margin-top: 30px; margin-bottom: 5px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Detalhamento de Lacunas e Bloqueios</h3>
+              <h3 style="color: #ad0505; font-size: 15px; margin-top: 30px; margin-bottom: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Detalhamento de Lacunas e Bloqueios</h3>
               <div style="margin-top: 10px;">
                 {{ $json.impactedHtmlTable }}
               </div>
 
-              <!-- Links de Acesso e Impressão de PDF -->
-              <p style="font-size: 14px; color: #64748b; margin-top: 30px;">
-                💡 *Você pode visualizar as respostas completas ou gerar um PDF de impressão estilizado clicando no botão abaixo.*
-              </p>
-
-              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 20px; text-align: center;">
+              <!-- Recomendados Checklist -->
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #fff5f5; border-radius: 8px; border: 1px dashed #feb2b2; margin-top: 25px; padding: 20px;">
                 <tr>
                   <td>
-                    <a href="{{ $json.printUrl }}" style="background-color: #0f172a; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 2px 4px rgba(15,23,42,0.3); margin-right: 15px;">Visualizar / Imprimir PDF</a>
-                    <a href="https://hub.siplan.com.br/projects/{{ $json.projectId }}" style="background-color: #f1f5f9; color: #475569; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 14px; display: inline-block; border: 1px solid #cbd5e1;">Acessar no HUB</a>
+                    <h3 style="color: #ad0505; font-size: 14px; margin: 0 0 10px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
+                      📋 PRÓXIMOS PASSOS RECOMENDADOS
+                    </h3>
+                    <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 14px; line-height: 1.6;">
+                      <li>Revisar os itens com impacto técnico ou impeditivos listados acima.</li>
+                      <li>Definir planos de mitigação ou adaptações necessárias com os líderes de produto.</li>
+                      <li>Acesse a página do projeto ou imprima a versão PDF estilizada abaixo.</li>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Links de Acesso e Impressão de PDF -->
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 30px; text-align: center;">
+                <tr>
+                  <td>
+                    <a href="{{ $json.printUrl }}" style="background-color: #ad0505; color: #ffffff; padding: 14px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(173, 5, 5, 0.2); margin-right: 15px; text-transform: uppercase; letter-spacing: 0.5px;">Visualizar / Imprimir PDF</a>
+                    <a href="https://siplanhub.vercel.app/projects/{{ $json.projectId }}" style="background-color: #0f172a; color: #ffffff; padding: 14px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.2); text-transform: uppercase; letter-spacing: 0.5px;">Acessar no HUB</a>
                   </td>
                 </tr>
               </table>
@@ -663,7 +834,7 @@ return [{
           </tr>
           <!-- Footer -->
           <tr>
-            <td style="background-color: #f1f5f9; padding: 20px 30px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #e2e8f0;">
+            <td style="background-color: #f8fafc; padding: 25px 35px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #f1f5f9;">
               Este é um e-mail automático gerado pelo Siplan HUB.<br>
               © Siplan - Soluções para Cartórios Extrajudiciais
             </td>
@@ -759,7 +930,7 @@ Busca dados do cliente na tabela `projects` usando a conexão nativa configurada
 *   **Authentication:** `SMTP Credentials` (Gmail)
 *   **From Email:** `seu-email@gmail.com`
 *   **To Email:** `marcus.vinicius@siplan.com.br, ademar.souza@siplan.com.br, luciane.lima@siplan.com.br, eduardo.silva@siplan.com.br, marcos.ortiz@siplan.com.br`
-*   **Subject:** `[Fila de Conversão] Nova Conversão Pendente — {{ $node["Supabase - Buscar Projeto"].json.client_name }} (#{{ $node["Supabase - Buscar Projeto"].json.ticket_number }})`
+*   **Subject:** `📥 [Fila de Conversão] Nova Conversão Pendente — {{ $node["Supabase - Buscar Projeto"].json.client_name }} (#{{ $node["Supabase - Buscar Projeto"].json.ticket_number }})`
 *   **Format:** `HTML`
 *   **Body (HTML):**
 ```html
@@ -770,45 +941,60 @@ Busca dados do cliente na tabela `projects` usando a conexão nativa configurada
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nova Conversão Pendente</title>
 </head>
-<body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Segoe UI', Helvetica, Arial, sans-serif; color: #334155; line-height: 1.6;">
-  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 20px 0;">
+<body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; color: #1e293b; line-height: 1.6;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 40px 0 20px 0;">
     <tr>
       <td align="center">
-        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;">
+        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.05); border: 1px solid #e2e8f0;">
           <!-- Header -->
           <tr>
-            <td style="background-color: #f97316; padding: 20px 30px; text-align: left;">
-              <span style="color: #ffffff; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.9;">Fila de Migração de Dados</span>
-              <h1 style="color: #ffffff; font-size: 20px; margin: 5px 0 0 0; font-weight: 600; font-family: 'Segoe UI', Arial, sans-serif;">SIPLAN HUB</h1>
+            <td style="background-color: #0f172a; padding: 28px 35px; text-align: left;">
+              <span style="color: #ad0505; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 4px;">FILA DE CONVERSÃO</span>
+              <h1 style="color: #ffffff; font-size: 22px; margin: 0; font-weight: 800; letter-spacing: -0.5px;">SIPLAN <span style="color: #ad0505;">HUB</span></h1>
             </td>
+          </tr>
+          <!-- Decorative Line -->
+          <tr>
+            <td height="4" style="background-color: #ad0505; line-height: 4px; font-size: 4px;">&nbsp;</td>
           </tr>
           <!-- Body -->
           <tr>
-            <td style="padding: 40px 30px;">
-              <h2 style="color: #1e293b; font-size: 18px; margin-top: 0; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px;">Nova Demanda de Conversão na Fila</h2>
-              <p style="font-size: 15px; color: #475569;">Olá equipe de Conversão,</p>
-              <p style="font-size: 15px; color: #475569;">O banco de dados do cartório abaixo foi enviado para a fila de processamento de conversão. Esta demanda necessita ser assumida e analisada.</p>
+            <td style="padding: 40px 35px;">
+              <!-- Badge -->
+              <table border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 25px;">
+                <tr>
+                  <td>
+                    <span style="background-color: #fee2e2; color: #991b1b; padding: 6px 14px; border-radius: 50px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block;">
+                      📥 NOVA CONVERSÃO PENDENTE
+                    </span>
+                  </td>
+                </tr>
+              </table>
+
+              <h2 style="color: #0f172a; font-size: 20px; margin-top: 0; margin-bottom: 12px; font-weight: 700; letter-spacing: -0.3px;">Nova Demanda de Conversão na Fila</h2>
+              <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">Olá equipe de Conversão,</p>
+              <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">O banco de dados do cartório abaixo foi enviado para a fila de processamento de conversão. Esta demanda necessita ser assumida e analisada.</p>
               
               <!-- Card de Informações -->
-              <table width="100%" border="0" cellspacing="0" cellpadding="10" style="background-color: #f8fafc; border-radius: 6px; margin: 25px 0; border: 1px solid #edf2f7; font-size: 14px;">
+              <table width="100%" border="0" cellspacing="0" cellpadding="12" style="background-color: #f8fafc; border-radius: 8px; margin: 25px 0; border: 1px solid #e2e8f0; border-left: 4px solid #ad0505; font-size: 14px;">
                 <tr>
-                  <td width="30%" style="font-weight: bold; color: #64748b;">Cliente:</td>
-                  <td style="color: #1e293b; font-weight: 600;">{{ $node["Supabase - Buscar Projeto"].json.client_name }}</td>
+                  <td width="35%" style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Cliente:</td>
+                  <td style="color: #1e293b; font-weight: 700;">{{ $node["Supabase - Buscar Projeto"].json.client_name }}</td>
                 </tr>
                 <tr>
-                  <td style="font-weight: bold; color: #64748b;">Chamado:</td>
-                  <td style="color: #1e293b;">#{{ $node["Supabase - Buscar Projeto"].json.ticket_number }}</td>
+                  <td style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Chamado:</td>
+                  <td style="color: #1e293b; font-weight: 600;">#{{ $node["Supabase - Buscar Projeto"].json.ticket_number }}</td>
                 </tr>
                 <tr>
-                  <td style="font-weight: bold; color: #64748b;">Sistema:</td>
-                  <td style="color: #1e293b; font-weight: 600; color: #f97316;">{{ $node["Supabase - Buscar Projeto"].json.system_type }}</td>
+                  <td style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Sistema:</td>
+                  <td style="color: #ad0505; font-weight: bold;">{{ $node["Supabase - Buscar Projeto"].json.system_type }}</td>
                 </tr>
                 <tr>
-                  <td style="font-weight: bold; color: #64748b;">Enviado Por:</td>
+                  <td style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Enviado Por:</td>
                   <td style="color: #1e293b;">{{ $node["Webhook - Conversão Criada"].json.body.record.sent_by_name }}</td>
                 </tr>
                 <tr>
-                  <td style="font-weight: bold; color: #64748b;">Prioridade da Fila:</td>
+                  <td style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Prioridade da Fila:</td>
                   <td style="color: #1e293b; font-weight: bold;">
                     {{ if $node["Webhook - Conversão Criada"].json.body.record.priority == 1 }} 🚨 Alta 
                     {{ else if $node["Webhook - Conversão Criada"].json.body.record.priority == 2 }} ⚡ Média 
@@ -818,12 +1004,26 @@ Busca dados do cliente na tabela `projects` usando a conexão nativa configurada
                 </tr>
               </table>
 
-              <p style="font-size: 15px; color: #475569;">Por favor, acesse o módulo de Conversão no Siplan HUB para assumir a atividade técnica e iniciar o processo de conversão.</p>
+              <!-- Recomendados Checklist -->
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #fff5f5; border-radius: 8px; border: 1px dashed #feb2b2; margin-top: 25px; padding: 20px;">
+                <tr>
+                  <td>
+                    <h3 style="color: #ad0505; font-size: 14px; margin: 0 0 10px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
+                      📋 PRÓXIMOS PASSOS RECOMENDADOS
+                    </h3>
+                    <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 14px; line-height: 1.6;">
+                      <li>Acesse o painel de Conversão no Siplan HUB.</li>
+                      <li>Assuma a atividade técnica correspondente à demanda.</li>
+                      <li>Inicie o download do banco de dados e faça a migração para a nova versão.</li>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
               
               <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 30px; text-align: center;">
                 <tr>
                   <td>
-                    <a href="https://hub.siplan.com.br/conversion" style="background-color: #f97316; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 2px 4px rgba(249,115,22,0.3);">Visualizar Fila de Conversão</a>
+                    <a href="https://siplanhub.vercel.app/conversion" style="background-color: #ad0505; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(173, 5, 5, 0.2), 0 2px 4px -1px rgba(173, 5, 5, 0.1); text-transform: uppercase; letter-spacing: 0.5px;">Visualizar Fila de Conversão</a>
                   </td>
                 </tr>
               </table>
@@ -831,7 +1031,7 @@ Busca dados do cliente na tabela `projects` usando a conexão nativa configurada
           </tr>
           <!-- Footer -->
           <tr>
-            <td style="background-color: #f1f5f9; padding: 20px 30px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #e2e8f0;">
+            <td style="background-color: #f8fafc; padding: 25px 35px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #f1f5f9;">
               Este é um e-mail automático gerado pelo Siplan HUB.<br>
               © Siplan - Soluções para Cartórios Extrajudiciais
             </td>
@@ -942,12 +1142,12 @@ const sectorsDistribution = cleanText(resp.sectors_distribution);
 let keyPeopleHtml = '<p style="color: #64748b; font-style: italic;">Nenhum líder chave foi cadastrado.</p>';
 if (resp.key_people && Array.isArray(resp.key_people) && resp.key_people.length > 0) {
   keyPeopleHtml = `
-    <table width="100%" border="0" cellspacing="0" cellpadding="6" style="border-collapse: collapse; margin-top: 5px; border: 1px solid #cbd5e1; font-size: 13px;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="8" style="border-collapse: collapse; margin-top: 10px; border: 1px solid #e2e8f0; font-size: 13px; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
       <thead>
-        <tr style="background-color: #f8fafc; font-weight: bold; border-bottom: 2px solid #cbd5e1;">
-          <th style="padding: 6px; border: 1px solid #cbd5e1; text-align: left; color: #475569;">Nome</th>
-          <th style="padding: 6px; border: 1px solid #cbd5e1; text-align: left; color: #475569;">Cargo / Setor</th>
-          <th style="padding: 6px; border: 1px solid #cbd5e1; text-align: left; color: #475569;">Contato</th>
+        <tr style="background-color: #0f172a; text-align: left; font-weight: bold;">
+          <th style="padding: 10px; color: #ffffff; border-bottom: 2px solid #ad0505;">Nome</th>
+          <th style="padding: 10px; color: #ffffff; border-bottom: 2px solid #ad0505;">Cargo / Setor</th>
+          <th style="padding: 10px; color: #ffffff; border-bottom: 2px solid #ad0505;">Contato</th>
         </tr>
       </thead>
       <tbody>
@@ -955,9 +1155,9 @@ if (resp.key_people && Array.isArray(resp.key_people) && resp.key_people.length 
   resp.key_people.forEach(p => {
     keyPeopleHtml += `
       <tr style="border-bottom: 1px solid #cbd5e1;">
-        <td style="padding: 6px; border: 1px solid #cbd5e1; font-weight: 600; color: #334155;">${cleanText(p.name)}</td>
-        <td style="padding: 6px; border: 1px solid #cbd5e1; color: #475569;">${cleanText(p.role || p.sector)}</td>
-        <td style="padding: 6px; border: 1px solid #cbd5e1; color: #475569;">${cleanText(p.contact)}</td>
+        <td style="padding: 8px; border: 1px solid #cbd5e1; font-weight: 600; color: #1e293b;">${cleanText(p.name)}</td>
+        <td style="padding: 8px; border: 1px solid #cbd5e1; color: #475569;">${cleanText(p.role || p.sector)}</td>
+        <td style="padding: 8px; border: 1px solid #cbd5e1; color: #475569;">${cleanText(p.contact)}</td>
       </tr>
     `;
   });
@@ -991,12 +1191,12 @@ for (const key in resp) {
 let extraHtmlTable = '';
 if (extraItems.length > 0) {
   extraHtmlTable = `
-    <h3 style="color: #0284c7; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 25px; margin-bottom: 10px; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">Outras Respostas Coletadas</h3>
-    <table width="100%" border="0" cellspacing="0" cellpadding="6" style="border-collapse: collapse; margin-top: 5px; border: 1px solid #cbd5e1; font-size: 13px;">
+    <h3 style="color: #ad0505; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 25px; margin-bottom: 10px; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">Outras Respostas Coletadas</h3>
+    <table width="100%" border="0" cellspacing="0" cellpadding="8" style="border-collapse: collapse; margin-top: 10px; border: 1px solid #e2e8f0; font-size: 13px; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
       <thead>
-        <tr style="background-color: #f8fafc; font-weight: bold; border-bottom: 2px solid #cbd5e1;">
-          <th style="padding: 6px; border: 1px solid #cbd5e1; text-align: left; color: #475569; width: 40%;">Pergunta</th>
-          <th style="padding: 6px; border: 1px solid #cbd5e1; text-align: left; color: #475569;">Resposta</th>
+        <tr style="background-color: #0f172a; text-align: left; font-weight: bold;">
+          <th style="padding: 10px; color: #ffffff; border-bottom: 2px solid #ad0505; width: 40%;">Pergunta</th>
+          <th style="padding: 10px; color: #ffffff; border-bottom: 2px solid #ad0505;">Resposta</th>
         </tr>
       </thead>
       <tbody>
@@ -1004,8 +1204,8 @@ if (extraItems.length > 0) {
   extraItems.forEach(item => {
     extraHtmlTable += `
       <tr style="border-bottom: 1px solid #cbd5e1;">
-        <td style="padding: 6px; border: 1px solid #cbd5e1; font-weight: 600; color: #334155;">${item.key}</td>
-        <td style="padding: 6px; border: 1px solid #cbd5e1; color: #475569;">${item.value}</td>
+        <td style="padding: 8px; border: 1px solid #cbd5e1; font-weight: 600; color: #1e293b;">${item.key}</td>
+        <td style="padding: 8px; border: 1px solid #cbd5e1; color: #475569;">${item.value}</td>
       </tr>
     `;
   });
@@ -1039,7 +1239,7 @@ return [{
 *   **Authentication:** `SMTP Credentials` (Gmail)
 *   **From Email:** `seu-email@gmail.com`
 *   **To Email:** `marcus.vinicius@siplan.com.br, marcos.ortiz@siplan.com.br, bruno.fernandes@siplan.com.br`
-*   **Subject:** `[SIPLAN HUB] [Checklist] Respostas Enviadas — {{ $json.clientName }} (#{{ $json.ticketNumber }})`
+*   **Subject:** `📋 [SIPLAN HUB] [Checklist] Respostas Enviadas — {{ $json.clientName }} (#{{ $json.ticketNumber }})`
 *   **Format:** `HTML`
 *   **Body (HTML):**
 ```html
@@ -1050,30 +1250,45 @@ return [{
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Respostas do Checklist Comercial</title>
 </head>
-<body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Segoe UI', Helvetica, Arial, sans-serif; color: #334155; line-height: 1.6;">
-  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 20px 0;">
+<body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; color: #1e293b; line-height: 1.6;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 40px 0 20px 0;">
     <tr>
       <td align="center">
-        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;">
+        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.05); border: 1px solid #e2e8f0;">
           <!-- Header -->
           <tr>
-            <td style="background-color: #0284c7; padding: 20px 30px; text-align: left;">
-              <span style="color: #ffffff; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.9;">Portal de Checklist do Cliente</span>
-              <h1 style="color: #ffffff; font-size: 20px; margin: 5px 0 0 0; font-weight: 600; font-family: 'Segoe UI', Arial, sans-serif;">SIPLAN HUB</h1>
+            <td style="background-color: #0f172a; padding: 28px 35px; text-align: left;">
+              <span style="color: #ad0505; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 4px;">CHECKLIST COMERCIAL</span>
+              <h1 style="color: #ffffff; font-size: 22px; margin: 0; font-weight: 800; letter-spacing: -0.5px;">SIPLAN <span style="color: #ad0505;">HUB</span></h1>
             </td>
+          </tr>
+          <!-- Decorative Line -->
+          <tr>
+            <td height="4" style="background-color: #ad0505; line-height: 4px; font-size: 4px;">&nbsp;</td>
           </tr>
           <!-- Body -->
           <tr>
-            <td style="padding: 30px 30px;">
-              <h2 style="color: #1e293b; font-size: 18px; margin-top: 0; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px;">Checklist Estrutural Respondido</h2>
-              <p style="font-size: 14px; color: #475569;">O cliente de implantação finalizou o envio do checklist de infraestrutura. Seguem os dados consolidados para análise técnica:</p>
+            <td style="padding: 40px 35px;">
+              <!-- Badge -->
+              <table border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 25px;">
+                <tr>
+                  <td>
+                    <span style="background-color: #d1fae5; color: #065f46; padding: 6px 14px; border-radius: 50px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block;">
+                      🟢 CHECKLIST ENVIADO
+                    </span>
+                  </td>
+                </tr>
+              </table>
+
+              <h2 style="color: #0f172a; font-size: 20px; margin-top: 0; margin-bottom: 12px; font-weight: 700; letter-spacing: -0.3px;">Checklist Estrutural Respondido</h2>
+              <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">O cliente de implantação finalizou o envio do checklist de infraestrutura. Seguem os dados consolidados para análise técnica:</p>
               
               <!-- Bloco 1: Responsável pelo Preenchimento -->
-              <h3 style="color: #0284c7; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 25px; margin-bottom: 10px; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">1. Contato do Remetente</h3>
+              <h3 style="color: #ad0505; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 25px; margin-bottom: 10px; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">1. Contato do Remetente</h3>
               <table width="100%" border="0" cellspacing="0" cellpadding="6" style="font-size: 13px;">
                 <tr>
                   <td width="35%" style="font-weight: bold; color: #64748b;">Nome Completo:</td>
-                  <td style="color: #334155; font-weight: bold;">{{ $json.fullname }}</td>
+                  <td style="color: #1e293b; font-weight: bold;">{{ $json.fullname }}</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; color: #64748b;">Cargo:</td>
@@ -1090,7 +1305,7 @@ return [{
               </table>
 
               <!-- Bloco 2: Estrutura Física do Cartório -->
-              <h3 style="color: #0284c7; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 25px; margin-bottom: 10px; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">2. Aspectos Estruturais e de Rede</h3>
+              <h3 style="color: #ad0505; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 25px; margin-bottom: 10px; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">2. Aspectos Estruturais e de Rede</h3>
               <table width="100%" border="0" cellspacing="0" cellpadding="6" style="font-size: 13px;">
                 <tr>
                   <td width="35%" style="font-weight: bold; color: #64748b;">Andares do Imóvel:</td>
@@ -1098,7 +1313,7 @@ return [{
                 </tr>
                 <tr>
                   <td style="font-weight: bold; color: #64748b;">Total de Colaboradores:</td>
-                  <td style="color: #334155; font-weight: bold;">{{ $json.totalEmployees }}</td>
+                  <td style="color: #1e293b; font-weight: bold;">{{ $json.totalEmployees }}</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; color: #64748b;">Setores Existentes:</td>
@@ -1111,11 +1326,11 @@ return [{
               </table>
 
               <!-- Bloco 3: Gestão de Mudança -->
-              <h3 style="color: #0284c7; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 25px; margin-bottom: 10px; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">3. Gestão de Mudança e Resistência</h3>
+              <h3 style="color: #ad0505; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 25px; margin-bottom: 10px; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">3. Gestão de Mudança e Resistência</h3>
               <table width="100%" border="0" cellspacing="0" cellpadding="6" style="font-size: 13px;">
                 <tr>
                   <td width="35%" style="font-weight: bold; color: #64748b;">Equipe Ciente da Troca?</td>
-                  <td style="color: #334155; font-weight: bold;">{{ $json.awareOfChange }}</td>
+                  <td style="color: #1e293b; font-weight: bold;">{{ $json.awareOfChange }}</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; color: #64748b; vertical-align: top;">Grau de Adaptabilidade:</td>
@@ -1124,7 +1339,7 @@ return [{
               </table>
 
               <!-- Bloco 4: Pessoas Chave (Tabela Dinâmica) -->
-              <h3 style="color: #0284c7; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 25px; margin-bottom: 10px; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">4. Líderes e Colaboradores Chave</h3>
+              <h3 style="color: #ad0505; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 25px; margin-bottom: 10px; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">4. Líderes e Colaboradores Chave</h3>
               <div style="margin-top: 5px;">
                 {{ $json.keyPeopleHtml }}
               </div>
@@ -1134,11 +1349,27 @@ return [{
                 {{ $json.extraHtmlTable }}
               </div>
 
+              <!-- Recomendados Checklist -->
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #fff5f5; border-radius: 8px; border: 1px dashed #feb2b2; margin-top: 25px; padding: 20px;">
+                <tr>
+                  <td>
+                    <h3 style="color: #ad0505; font-size: 14px; margin: 0 0 10px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
+                      📋 PRÓXIMOS PASSOS RECOMENDADOS
+                    </h3>
+                    <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 14px; line-height: 1.6;">
+                      <li>Analisar o mapeamento estrutural e o número total de colaboradores da serventia.</li>
+                      <li>Verificar a distribuição dos setores para o planejamento dos treinamentos.</li>
+                      <li>Validar eventuais riscos de resistência declarados pelo cliente na seção 3.</li>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
+
               <!-- CTA para o Hub -->
               <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 35px; text-align: center;">
                 <tr>
                   <td>
-                    <a href="https://hub.siplan.com.br/projects/{{ $json.projectId }}" style="background-color: #0284c7; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 2px 4px rgba(2,132,199,0.3);">Analisar no Siplan HUB</a>
+                    <a href="https://siplanhub.vercel.app/projects/{{ $json.projectId }}" style="background-color: #ad0505; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(173, 5, 5, 0.2), 0 2px 4px -1px rgba(173, 5, 5, 0.1); text-transform: uppercase; letter-spacing: 0.5px;">Analisar no Siplan HUB</a>
                   </td>
                 </tr>
               </table>
@@ -1146,7 +1377,7 @@ return [{
           </tr>
           <!-- Footer -->
           <tr>
-            <td style="background-color: #f1f5f9; padding: 20px 30px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #e2e8f0;">
+            <td style="background-color: #f8fafc; padding: 25px 35px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #f1f5f9;">
               Este é um e-mail automático gerado pelo Siplan HUB.<br>
               © Siplan - Soluções para Cartórios Extrajudiciais
             </td>
@@ -1241,7 +1472,7 @@ Busca o e-mail do analista na tabela `profiles`.
 *   **From Email:** `seu-email@gmail.com`
 *   **To Email:** `marcus.vinicius@siplan.com.br, bruno.fernandes@siplan.com.br, marcos.ortiz@siplan.com.br`
 *   **Cc Email:** `{{ $node["Supabase - Buscar Perfil"].json.email }}` (Cópia direta para o analista responsável)
-*   **Subject:** `[SIPLAN HUB] [Fila de Conversão] Conversão Iniciada — {{ $node["Supabase - Buscar Projeto"].json.client_name }} (#{{ $node["Supabase - Buscar Projeto"].json.ticket_number }})`
+*   **Subject:** `⚡ [SIPLAN HUB] [Fila de Conversão] Conversão Iniciada — {{ $node["Supabase - Buscar Projeto"].json.client_name }} (#{{ $node["Supabase - Buscar Projeto"].json.ticket_number }})`
 *   **Format:** `HTML`
 *   **Body (HTML):**
 ```html
@@ -1252,55 +1483,84 @@ Busca o e-mail do analista na tabela `profiles`.
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Analista Atribuído na Conversão</title>
 </head>
-<body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Segoe UI', Helvetica, Arial, sans-serif; color: #334155; line-height: 1.6;">
-  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 20px 0;">
+<body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; color: #1e293b; line-height: 1.6;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 40px 0 20px 0;">
     <tr>
       <td align="center">
-        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;">
+        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.05); border: 1px solid #e2e8f0;">
           <!-- Header -->
           <tr>
-            <td style="background-color: #0f172a; padding: 20px 30px; text-align: left;">
-              <span style="color: #3b82f6; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.9;">Acompanhamento da Fila</span>
-              <h1 style="color: #ffffff; font-size: 20px; margin: 5px 0 0 0; font-weight: 600; font-family: 'Segoe UI', Arial, sans-serif;">SIPLAN HUB</h1>
+            <td style="background-color: #0f172a; padding: 28px 35px; text-align: left;">
+              <span style="color: #ad0505; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 4px;">FILA DE CONVERSÃO</span>
+              <h1 style="color: #ffffff; font-size: 22px; margin: 0; font-weight: 800; letter-spacing: -0.5px;">SIPLAN <span style="color: #ad0505;">HUB</span></h1>
             </td>
+          </tr>
+          <!-- Decorative Line -->
+          <tr>
+            <td height="4" style="background-color: #ad0505; line-height: 4px; font-size: 4px;">&nbsp;</td>
           </tr>
           <!-- Body -->
           <tr>
-            <td style="padding: 40px 30px;">
-              <h2 style="color: #1e293b; font-size: 18px; margin-top: 0; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px;">Conversão Assumida por Analista</h2>
-              <p style="font-size: 15px; color: #475569;">Olá equipe,</p>
-              <p style="font-size: 15px; color: #475569;">A conversão de banco de dados do cartório listado abaixo foi assumida por um analista técnico e está em andamento.</p>
+            <td style="padding: 40px 35px;">
+              <!-- Badge -->
+              <table border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 25px;">
+                <tr>
+                  <td>
+                    <span style="background-color: #e0f2fe; color: #0369a1; padding: 6px 14px; border-radius: 50px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block;">
+                      ⚡ CONVERSÃO EM PROGRESSO
+                    </span>
+                  </td>
+                </tr>
+              </table>
+
+              <h2 style="color: #0f172a; font-size: 20px; margin-top: 0; margin-bottom: 12px; font-weight: 700; letter-spacing: -0.3px;">Conversão Assumida por Analista</h2>
+              <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">Olá equipe,</p>
+              <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">A conversão de banco de dados do cartório listado abaixo foi assumida por um analista técnico e está em andamento.</p>
               
               <!-- Card de Informações -->
-              <table width="100%" border="0" cellspacing="0" cellpadding="10" style="background-color: #f8fafc; border-radius: 6px; margin: 25px 0; border: 1px solid #edf2f7; font-size: 14px;">
+              <table width="100%" border="0" cellspacing="0" cellpadding="12" style="background-color: #f8fafc; border-radius: 8px; margin: 25px 0; border: 1px solid #e2e8f0; border-left: 4px solid #ad0505; font-size: 14px;">
                 <tr>
-                  <td width="35%" style="font-weight: bold; color: #64748b;">Cliente/Cartório:</td>
-                  <td style="color: #1e293b; font-weight: 600;">{{ $node["Supabase - Buscar Projeto"].json.client_name }}</td>
+                  <td width="35%" style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Cliente/Cartório:</td>
+                  <td style="color: #1e293b; font-weight: 700;">{{ $node["Supabase - Buscar Projeto"].json.client_name }}</td>
                 </tr>
                 <tr>
-                  <td style="font-weight: bold; color: #64748b;">Chamado:</td>
-                  <td style="color: #1e293b;">#{{ $node["Supabase - Buscar Projeto"].json.ticket_number }}</td>
+                  <td style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Chamado:</td>
+                  <td style="color: #1e293b; font-weight: 600;">#{{ $node["Supabase - Buscar Projeto"].json.ticket_number }}</td>
                 </tr>
                 <tr>
-                  <td style="font-weight: bold; color: #64748b;">Sistema:</td>
+                  <td style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Sistema:</td>
                   <td style="color: #1e293b;">{{ $node["Supabase - Buscar Projeto"].json.system_type }}</td>
                 </tr>
                 <tr>
-                  <td style="font-weight: bold; color: #64748b;">Analista Responsável:</td>
-                  <td style="color: #3b82f6; font-weight: bold;">{{ $node["Supabase - Buscar Perfil"].json.full_name }}</td>
+                  <td style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Analista Responsável:</td>
+                  <td style="color: #ad0505; font-weight: bold;">{{ $node["Supabase - Buscar Perfil"].json.full_name }}</td>
                 </tr>
                 <tr>
-                  <td style="font-weight: bold; color: #64748b;">Iniciado em:</td>
+                  <td style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Iniciado em:</td>
                   <td style="color: #334155;">{{ $node["Webhook - Conversão Assumida"].json.body.record.started_at }}</td>
                 </tr>
               </table>
 
-              <p style="font-size: 15px; color: #475569;">Para alinhar detalhes ou reportar comportamentos, entrem em contato direto com o analista responsável.</p>
-              
+              <!-- Recomendados Checklist -->
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #fff5f5; border-radius: 8px; border: 1px dashed #feb2b2; margin-top: 25px; padding: 20px;">
+                <tr>
+                  <td>
+                    <h3 style="color: #ad0505; font-size: 14px; margin: 0 0 10px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
+                      📋 PRÓXIMOS PASSOS RECOMENDADOS
+                    </h3>
+                    <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 14px; line-height: 1.6;">
+                      <li>Alinhar detalhes técnicos ou homologações de dados diretamente com o analista.</li>
+                      <li>Monitorar o status do projeto no painel de conversões do Siplan HUB.</li>
+                      <li>Validar se a conversão do backup segue as regras de aderência aprovadas.</li>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
+
               <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 30px; text-align: center;">
                 <tr>
                   <td>
-                    <a href="https://hub.siplan.com.br/conversion" style="background-color: #0f172a; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 2px 4px rgba(15,23,42,0.3);">Abrir Painel no Siplan HUB</a>
+                    <a href="https://siplanhub.vercel.app/conversion" style="background-color: #ad0505; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(173, 5, 5, 0.2), 0 2px 4px -1px rgba(173, 5, 5, 0.1); text-transform: uppercase; letter-spacing: 0.5px;">Abrir Painel no Siplan HUB</a>
                   </td>
                 </tr>
               </table>
@@ -1308,7 +1568,7 @@ Busca o e-mail do analista na tabela `profiles`.
           </tr>
           <!-- Footer -->
           <tr>
-            <td style="background-color: #f1f5f9; padding: 20px 30px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #e2e8f0;">
+            <td style="background-color: #f8fafc; padding: 25px 35px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #f1f5f9;">
               Este é um e-mail automático gerado pelo Siplan HUB.<br>
               © Siplan - Soluções para Cartórios Extrajudiciais
             </td>
