@@ -874,32 +874,33 @@ return [{
 ### 3. Plano de Teste para Automação 2
 1.  **Criar Projeto e Resposta de Aderência de Teste:**
     ```sql
-    -- 1. Inserir perfil de teste na tabela profiles
-    INSERT INTO public.profiles (id, email, full_name, role)
-    VALUES ('e8888888-8888-8888-8888-88888888888e', 'maurilio.camargo@siplan.com.br', 'Maurilio Camargo', 'user')
-    ON CONFLICT (id) DO NOTHING;
+ -- 1. Garante que o perfil do Bruno existe e está atualizado
+INSERT INTO public.profiles (id, email, full_name, role)
+VALUES ('d89cedf4-af7b-48e8-8c6d-2aa857af8420', 'bruno.fernandes@siplan.com.br', 'Bruno Fernandes', 'user')
+ON CONFLICT (id) DO UPDATE 
+SET full_name = 'Bruno Fernandes', email = 'bruno.fernandes@siplan.com.br';
 
-    -- 2. Inserir projeto de teste (Sistema: Orion PRO)
-    INSERT INTO public.projects (id, client_name, ticket_number, system_type, project_leader, last_update_by)
-    VALUES ('a9999999-9999-9999-9999-99999999999a', 'Cartório de Testes Aderência', '888882', 'Orion PRO', 'Marcus', 'maurilio')
-    ON CONFLICT (id) DO NOTHING;
+-- 2. Inserir projeto de teste (Sistema: Orion PRO)
+INSERT INTO public.projects (id, client_name, ticket_number, system_type, project_leader, last_update_by)
+VALUES ('a9999999-9999-9999-9999-99999999999a', 'Cartório de Testes Aderência', '888882', 'Orion PRO', 'Marcus', 'bruno')
+ON CONFLICT (id) DO NOTHING;
 
-    -- 3. Inserir resposta do formulário em formato rascunho (draft)
-    INSERT INTO public.project_form_responses (project_id, template_id, stage, status, data)
-    VALUES (
-        'a9999999-9999-9999-9999-99999999999a', 
-        '00000000-0000-0000-0000-000000000000', -- ID fake
-        'adherence', 
-        'draft',
-        '{"finalVerdict": "Não Aderente / Impeditivo", "finalNotes": "O cliente necessita de layout CNAB400 customizado do banco de fomento local que ainda não está integrado.", "financeiro": {"utilizou": true, "impacto": true, "nivel_impacto": "IMPEDITIVO", "detalhes": "Sem suporte atual no Orion PRO para o layout CNAB solicitado."}}'::jsonb
-    );
+-- 3. Inserir resposta do formulário (Buscando template_id dinamicamente)
+INSERT INTO public.project_form_responses (project_id, template_id, stage, status, data)
+VALUES (
+    'a9999999-9999-9999-9999-99999999999a', 
+    (SELECT id FROM public.form_templates LIMIT 1), -- Resolve a FK puxando qualquer template existente
+    'adherence', 
+    'draft',
+    '{"finalVerdict": "Não Aderente / Impeditivo", "finalNotes": "O cliente necessita de layout CNAB400 customizado do banco de fomento local que ainda não está integrado.", "financeiro": {"utilizou": true, "impacto": true, "nivel_impacto": "IMPEDITIVO", "detalhes": "Sem suporte atual no Orion PRO para o layout CNAB solicitado."}}'::jsonb
+);
     ```
 2.  **Preparar n8n:** Ative o modo "Listen" no webhook.
 3.  **Simular a Aprovação:**
     ```sql
-    UPDATE public.project_form_responses
-    SET status = 'approved', approved_by = 'e8888888-8888-8888-8888-88888888888e', updated_at = now()
-    WHERE project_id = 'a9999999-9999-9999-9999-99999999999a' AND stage = 'adherence';
+ UPDATE public.project_form_responses
+SET status = 'approved', approved_by = 'd89cedf4-af7b-48e8-8c6d-2aa857af8420', updated_at = now()
+WHERE project_id = 'a9999999-9999-9999-9999-99999999999a' AND stage = 'adherence';
     ```
 4.  **Confirmar Validações:**
     *   Verificar se o CC incluiu Maurilio Camargo (`maurilio.camargo@siplan.com.br`) tanto por ser o aprovador (`approved_by` resolvido dinamicamente) quanto por ser o responsável pelo sistema `"Orion PRO"`.
@@ -907,8 +908,7 @@ return [{
 5.  **Limpar o Banco:**
     ```sql
     DELETE FROM public.project_form_responses WHERE project_id = 'a9999999-9999-9999-9999-99999999999a';
-    DELETE FROM public.projects WHERE id = 'a9999999-9999-9999-9999-99999999999a';
-    DELETE FROM public.profiles WHERE id = 'e8888888-8888-8888-8888-88888888888e';
+DELETE FROM public.projects WHERE id = 'a9999999-9999-9999-9999-99999999999a';
     ```
 
 ---
