@@ -184,25 +184,21 @@ Este nó garante que a automação só execute se for uma inserção (`INSERT`) 
   <title>Solicitação de Infraestrutura</title>
 </head>
 <body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; color: #1e293b; line-height: 1.6;">
-  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 40px 0 20px 0;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 20px 40px;">
     <tr>
       <td align="center">
-        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.05); border: 1px solid #e2e8f0;">
-          <!-- Header -->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.05); border: 1px solid #e2e8f0;">
           <tr>
-            <td style="background-color: #0f172a; padding: 28px 35px; text-align: left;">
+            <td style="background-color: #0f172a; padding: 28px 40px; text-align: left;">
               <span style="color: #ad0505; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 4px;">INFRAESTRUTURA</span>
               <h1 style="color: #ffffff; font-size: 22px; margin: 0; font-weight: 800; letter-spacing: -0.5px;">SIPLAN <span style="color: #ad0505;">HUB</span></h1>
             </td>
           </tr>
-          <!-- Decorative Line -->
           <tr>
             <td height="4" style="background-color: #ad0505; line-height: 4px; font-size: 4px;">&nbsp;</td>
           </tr>
-          <!-- Body -->
           <tr>
-            <td style="padding: 40px 35px;">
-              <!-- Badge -->
+            <td style="padding: 40px 40px;">
               <table border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 25px;">
                 <tr>
                   <td>
@@ -217,10 +213,9 @@ Este nó garante que a automação só execute se for uma inserção (`INSERT`) 
               <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">Olá equipe de Infraestrutura,</p>
               <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">Um novo projeto foi integrado via automação 0800 e necessita da <strong>Análise de Infraestrutura</strong> inicial. Por favor, revisem os detalhes abaixo e prossigam com o fluxo operacional.</p>
               
-              <!-- Card de Informações -->
-              <table width="100%" border="0" cellspacing="0" cellpadding="12" style="background-color: #f8fafc; border-radius: 8px; margin: 25px 0; border: 1px solid #e2e8f0; border-left: 4px solid #ad0505; font-size: 14px;">
+              <table width="100%" border="0" cellspacing="0" cellpadding="14" style="background-color: #f8fafc; border-radius: 8px; margin: 25px 0; border: 1px solid #e2e8f0; border-left: 4px solid #ad0505; font-size: 14px;">
                 <tr>
-                  <td width="35%" style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Cliente/Cartório:</td>
+                  <td width="20%" style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Cliente/Cartório:</td>
                   <td style="color: #1e293b; font-weight: 700;">{{ $json.body.record.client_name }}</td>
                 </tr>
                 <tr>
@@ -231,21 +226,30 @@ Este nó garante que a automação só execute se for uma inserção (`INSERT`) 
                   <td style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Sistema:</td>
                   <td style="color: #1e293b;">{{ $json.body.record.system_type }}</td>
                 </tr>
-                
               </table>
 
-              <!-- Recomendados Checklist -->
-              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #fff5f5; border-radius: 8px; border: 1px dashed #feb2b2; margin-top: 25px; padding: 20px;">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #fff5f5; border-radius: 8px; border: 1px dashed #feb2b2; margin-top: 25px; padding: 25px;">
                 <tr>
                   <td>
-                    <h3 style="color: #ad0505; font-size: 14px; margin: 0 0 10px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
-                      📋 PRÓXIMOS PASSOS RECOMENDADOS
+                    <h3 style="color: #ad0505; font-size: 14px; margin: 0 0 12px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
+                      🎯 A BOLA ESTÁ COM VOCÊ — PRÓXIMOS PASSOS:
                     </h3>
-                    <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 14px; line-height: 1.6;">
-                      <li>Acesse o painel do Siplan HUB e atribua um analista técnico de Infraestrutura.</li>
-                      <li>Inicie a coleta de dados de hardware e rede do servidor do cliente.</li>
-                      <li>Realize o preenchimento da ficha técnica com base no check-up.</li>
+                    <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 14px; line-height: 1.8;">
+                      <li style="margin-bottom: 8px;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Acesse a página do projeto e <strong style="color: #1e293b;">atribua o analista técnico</strong> de Infraestrutura responsável no painel.</li>
+                      <li style="margin-bottom: 8px;"><strong style="color: #475569;">⚙️ AÇÃO OPERACIONAL:</strong> Entre em contato com o cartório e solicite as especificações físicas e de rede do servidor local.</li>
+                      <li style="margin-bottom: 8px;"><strong style="color: #475569;">⚙️ AÇÃO OPERACIONAL:</strong> Preencha a <strong style="color: #1e293b;">Planilha de Análise de Infraestrutura</strong> para validar a conformidade dos requisitos de hardware.</li>
+                      <li style="margin-bottom: 0;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Após a finalização da análise, acesse a etapa <strong style="color: #1e293b;">1. Análise de Infraestrutura</strong> e preencha os campos: <em style="color: #1e293b; font-style: normal; font-weight: 600;">Status Estações</em>, <em style="color: #1e293b; font-style: normal; font-weight: 600;">Status Servidor</em>, <em style="color: #1e293b; font-style: normal; font-weight: 600;">Qtd. de Estações</em> e <em style="color: #1e293b; font-style: normal; font-weight: 600;">Observações & Detalhes</em>.</li>
                     </ul>
+                  </td>
+                </tr>
+              </table>
+
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 25px;">
+                <tr>
+                  <td style="background-color: #fff5f5; border: 1px solid #feb2b2; border-left: 4px solid #ad0505; border-radius: 8px; padding: 20px;">
+                    <p style="margin: 0; font-size: 13px; color: #742a2a; line-height: 1.5;">
+                      <strong>💡 IMPORTANTE — CENTRALIZE NO HUB:</strong> A execução dessas tarefas diretamente no painel do Siplan HUB calcula automaticamente os tempos de resposta, notifica a liderança e evita cobranças manuais paralelas no Teams. O uso da plataforma é essencial para o fluxo técnico!
+                    </p>
                   </td>
                 </tr>
               </table>
@@ -253,17 +257,16 @@ Este nó garante que a automação só execute se for uma inserção (`INSERT`) 
               <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 30px;">
                 <tr>
                   <td align="center">
-                    <a href="https://siplanhub.vercel.app/projects/{{ $json.body.record.id }}" style="background-color: #ad0505; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(173, 5, 5, 0.2), 0 2px 4px -1px rgba(173, 5, 5, 0.1); text-transform: uppercase; letter-spacing: 0.5px;">Acessar Projeto no Siplan HUB</a>
+                    <a href="https://siplanhub.vercel.app/projects/{{ $json.body.record.id }}" style="background-color: #ad0505; color: #ffffff; padding: 14px 35px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(173, 5, 5, 0.2), 0 2px 4px -1px rgba(173, 5, 5, 0.1); text-transform: uppercase; letter-spacing: 0.5px;">Acessar Projeto no Siplan HUB</a>
                   </td>
                 </tr>
               </table>
             </td>
           </tr>
-          <!-- Footer -->
           <tr>
-            <td style="background-color: #f8fafc; padding: 25px 35px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #f1f5f9;">
+            <td style="background-color: #f8fafc; padding: 25px 40px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #f1f5f9;">
               Este é um e-mail automático gerado pelo Siplan HUB.<br>
-              © Siplan - Soluções para Cartórios Extrajudiciais
+              
             </td>
           </tr>
         </table>
@@ -291,13 +294,13 @@ Este nó garante que a automação só execute se for uma inserção (`INSERT`) 
   <title>Agendamento de Aderência</title>
 </head>
 <body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; color: #1e293b; line-height: 1.6;">
-  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 40px 0 20px 0;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 20px 40px;">
     <tr>
       <td align="center">
-        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.05); border: 1px solid #e2e8f0;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.05); border: 1px solid #e2e8f0;">
           <!-- Header -->
           <tr>
-            <td style="background-color: #0f172a; padding: 28px 35px; text-align: left;">
+            <td style="background-color: #0f172a; padding: 28px 40px; text-align: left;">
               <span style="color: #ad0505; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 4px;">ADERÊNCIA</span>
               <h1 style="color: #ffffff; font-size: 22px; margin: 0; font-weight: 800; letter-spacing: -0.5px;">SIPLAN <span style="color: #ad0505;">HUB</span></h1>
             </td>
@@ -308,7 +311,7 @@ Este nó garante que a automação só execute se for uma inserção (`INSERT`) 
           </tr>
           <!-- Body -->
           <tr>
-            <td style="padding: 40px 35px;">
+            <td style="padding: 40px 40px;">
               <!-- Badge -->
               <table border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 25px;">
                 <tr>
@@ -325,9 +328,9 @@ Este nó garante que a automação só execute se for uma inserção (`INSERT`) 
               <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">O projeto do cliente abaixo foi cadastrado e agora aguarda o agendamento da <strong>Análise de Aderência</strong> para mapeamento de rotinas operacionais.</p>
               
               <!-- Card de Informações -->
-              <table width="100%" border="0" cellspacing="0" cellpadding="12" style="background-color: #f8fafc; border-radius: 8px; margin: 25px 0; border: 1px solid #e2e8f0; border-left: 4px solid #ad0505; font-size: 14px;">
+              <table width="100%" border="0" cellspacing="0" cellpadding="14" style="background-color: #f8fafc; border-radius: 8px; margin: 25px 0; border: 1px solid #e2e8f0; border-left: 4px solid #ad0505; font-size: 14px;">
                 <tr>
-                  <td width="35%" style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Cliente:</td>
+                  <td width="20%" style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Cliente:</td>
                   <td style="color: #1e293b; font-weight: 700;">{{ $json.body.record.client_name }}</td>
                 </tr>
                 <tr>
@@ -341,17 +344,28 @@ Este nó garante que a automação só execute se for uma inserção (`INSERT`) 
               </table>
 
               <!-- Recomendados Checklist -->
-              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #fff5f5; border-radius: 8px; border: 1px dashed #feb2b2; margin-top: 25px; padding: 20px;">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #fff5f5; border-radius: 8px; border: 1px dashed #feb2b2; margin-top: 25px; padding: 25px;">
                 <tr>
                   <td>
-                    <h3 style="color: #ad0505; font-size: 14px; margin: 0 0 10px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
-                      📋 PRÓXIMOS PASSOS RECOMENDADOS
+                    <h3 style="color: #ad0505; font-size: 14px; margin: 0 0 12px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
+                      🎯 A BOLA ESTÁ COM VOCÊ — PRÓXIMOS PASSOS:
                     </h3>
                     <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 14px; line-height: 1.6;">
-                      <li>Entre em contato com o cliente para alinhar uma data confortável.</li>
-                      <li>Envie o convite da reunião com o link de acesso da chamada.</li>
-                      <li>Registre formalmente a data e horário agendados no painel de Aderência do HUB.</li>
+                      <li style="margin-bottom: 8px;"><strong style="color: #475569;">⚙️ AÇÃO EXTERNA:</strong> Entre em contato com o cliente e defina a data e horário para a análise.</li>
+                      <li style="margin-bottom: 8px;"><strong style="color: #475569;">⚙️ AÇÃO EXTERNA:</strong> Aloque um implantador de acordo com sua agenda para conduzir a análise de aderência.</li>
+                      <li style="margin-bottom: 0;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Salve a <strong style="color: #1e293b;">data  acordada</strong> na etapa "2. Análise de Aderência" do projeto no Siplan HUB!</li>
                     </ul>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Alerta de Incentivo de Uso do HUB -->
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 25px;">
+                <tr>
+                  <td style="background-color: #fff5f5; border: 1px solid #feb2b2; border-left: 4px solid #ad0505; border-radius: 8px; padding: 20px;">
+                    <p style="margin: 0; font-size: 13px; color: #742a2a; line-height: 1.5;">
+                      <strong>💡 IMPORTANTE — CADASTRE NO HUB:</strong> Registrar a agenda da análise de aderência no HUB, atualiza a escala de compromissos interna e organiza o fluxo de informações do projeto. Centralizar essas informações na plataforma é fundamental!
+                    </p>
                   </td>
                 </tr>
               </table>
@@ -359,7 +373,7 @@ Este nó garante que a automação só execute se for uma inserção (`INSERT`) 
               <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 30px;">
                 <tr>
                   <td align="center">
-                    <a href="https://siplanhub.vercel.app/projects/{{ $json.body.record.id }}/adherence" style="background-color: #ad0505; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(173, 5, 5, 0.2), 0 2px 4px -1px rgba(173, 5, 5, 0.1); text-transform: uppercase; letter-spacing: 0.5px;">Agendar no Siplan HUB</a>
+                    <a href="https://siplanhub.vercel.app/projects/{{ $json.body.record.id }}/adherence" style="background-color: #ad0505; color: #ffffff; padding: 14px 35px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(173, 5, 5, 0.2), 0 2px 4px -1px rgba(173, 5, 5, 0.1); text-transform: uppercase; letter-spacing: 0.5px;">Agendar no Siplan HUB</a>
                   </td>
                 </tr>
               </table>
@@ -367,9 +381,9 @@ Este nó garante que a automação só execute se for uma inserção (`INSERT`) 
           </tr>
           <!-- Footer -->
           <tr>
-            <td style="background-color: #f8fafc; padding: 25px 35px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #f1f5f9;">
+            <td style="background-color: #f8fafc; padding: 25px 40px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #f1f5f9;">
               Este é um e-mail automático gerado pelo Siplan HUB.<br>
-              © Siplan - Soluções para Cartórios Extrajudiciais
+              
             </td>
           </tr>
         </table>
@@ -398,25 +412,21 @@ Como o líder do projeto sempre será Marcus Vinicius ou Bruno Fernandes, a list
   <title>Kickoff do Projeto</title>
 </head>
 <body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; color: #1e293b; line-height: 1.6;">
-  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 40px 0 20px 0;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 20px 40px;">
     <tr>
       <td align="center">
-        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.05); border: 1px solid #e2e8f0;">
-          <!-- Header -->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.05); border: 1px solid #e2e8f0;">
           <tr>
-            <td style="background-color: #0f172a; padding: 28px 35px; text-align: left;">
+            <td style="background-color: #0f172a; padding: 28px 40px; text-align: left;">
               <span style="color: #ad0505; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 4px;">KICKOFF</span>
               <h1 style="color: #ffffff; font-size: 22px; margin: 0; font-weight: 800; letter-spacing: -0.5px;">SIPLAN <span style="color: #ad0505;">HUB</span></h1>
             </td>
           </tr>
-          <!-- Decorative Line -->
           <tr>
             <td height="4" style="background-color: #ad0505; line-height: 4px; font-size: 4px;">&nbsp;</td>
           </tr>
-          <!-- Body -->
           <tr>
-            <td style="padding: 40px 35px;">
-              <!-- Badge -->
+            <td style="padding: 40px 40px;">
               <table border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 25px;">
                 <tr>
                   <td>
@@ -429,12 +439,11 @@ Como o líder do projeto sempre será Marcus Vinicius ou Bruno Fernandes, a list
 
               <h2 style="color: #0f172a; font-size: 20px; margin-top: 0; margin-bottom: 12px; font-weight: 700; letter-spacing: -0.3px;">Novo Projeto Disponível (Kickoff)</h2>
               <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">Prezados,</p>
-              <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">Informamos que o projeto de implantação para o cliente <strong>{{ $json.body.record.client_name }}</strong> foi devidamente inserido no sistema e está pronto para o alinhamento de kickoff.</p>
+              <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">Informamos que o projeto de implantação para o cliente <strong>{{ $json.body.record.client_name }}</strong> foi devidamente inserido no system_type e está pronto para o alinhamento de kickoff.</p>
               
-              <!-- Card de Informações -->
-              <table width="100%" border="0" cellspacing="0" cellpadding="12" style="background-color: #f8fafc; border-radius: 8px; margin: 25px 0; border: 1px solid #e2e8f0; border-left: 4px solid #ad0505; font-size: 14px;">
+              <table width="100%" border="0" cellspacing="0" cellpadding="14" style="background-color: #f8fafc; border-radius: 8px; margin: 25px 0; border: 1px solid #e2e8f0; border-left: 4px solid #ad0505; font-size: 14px;">
                 <tr>
-                  <td width="35%" style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Cliente:</td>
+                  <td width="20%" style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Cliente:</td>
                   <td style="color: #1e293b; font-weight: 700;">{{ $json.body.record.client_name }}</td>
                 </tr>
                 <tr>
@@ -442,31 +451,36 @@ Como o líder do projeto sempre será Marcus Vinicius ou Bruno Fernandes, a list
                   <td style="color: #1e293b; font-weight: 600;">#{{ $json.body.record.ticket_number }}</td>
                 </tr>
                 <tr>
+                  <td style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Título do Chamado:</td>
+                  <td style="color: #1e293b;font-weight: 700">{{ $json.body.record.TituloChamado }}</td>
+                </tr>
+                <tr>
                   <td style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Sistema:</td>
                   <td style="color: #1e293b; font-weight: bold;">{{ $json.body.record.system_type }}</td>
                 </tr>
+              </table>
+
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #fff5f5; border-radius: 8px; border: 1px dashed #feb2b2; margin-top: 25px; padding: 25px;">
                 <tr>
-                  <td style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Horas Vendidas:</td>
-                  <td style="color: #10b981; font-weight: bold;">{{ $json.body.record.sold_hours }} horas</td>
-                </tr>
-                <tr>
-                  <td style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Líder de Implantação:</td>
-                  <td style="color: #1e293b;">{{ $json.body.record.project_leader }}</td>
+                  <td>
+                    <h3 style="color: #ad0505; font-size: 14px; margin: 0 0 12px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
+                      🎯 A BOLA ESTÁ COM VOCÊ — PRÓXIMOS PASSOS:
+                    </h3>
+                    <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 14px; line-height: 1.6;">
+                      <li style="margin-bottom: 8px;"><strong style="color: #475569;">⚙️ AÇÃO OPERACIONAL:</strong> Reúna os envolvidos para o kickoff técnico e definição do plano de escopo do cartório.</li>
+                      <li style="margin-bottom: 8px;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Acesse o HUB para <strong style="color: #1e293b;">revisar a alocação de horas, sistema legado</strong> e os analistas funcionais encarregados.</li>
+                      <li style="margin-bottom: 0;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Monitore o andamento das tarefas internas e o preenchimento dos prazos de cada setor no painel do projeto.</li>
+                    </ul>
+                  </td>
                 </tr>
               </table>
 
-              <!-- Recomendados Checklist -->
-              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #fff5f5; border-radius: 8px; border: 1px dashed #feb2b2; margin-top: 25px; padding: 20px;">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 25px;">
                 <tr>
-                  <td>
-                    <h3 style="color: #ad0505; font-size: 14px; margin: 0 0 10px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
-                      📋 PRÓXIMOS PASSOS RECOMENDADOS
-                    </h3>
-                    <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 14px; line-height: 1.6;">
-                      <li>Realizar a reunião interna de kickoff e alinhamento do escopo do projeto.</li>
-                      <li>Validar a viabilidade dos prazos em relação às horas vendidas.</li>
-                      <li>Confirmar a alocação dos analistas para as etapas técnica e funcional.</li>
-                    </ul>
+                  <td style="background-color: #fff5f5; border: 1px solid #feb2b2; border-left: 4px solid #ad0505; border-radius: 8px; padding: 20px;">
+                    <p style="margin: 0; font-size: 13px; color: #742a2a; line-height: 1.5;">
+                      <strong>💡 IMPORTANTE — USE O HUB:</strong> O Siplan HUB centraliza todas as informações do projeto desde o cadastro comercial até a implantação go-live. Usar a plataforma para gerenciar o kickoff dá visibilidade total à equipe e evita retrabalhos de comunicação!
+                    </p>
                   </td>
                 </tr>
               </table>
@@ -474,15 +488,14 @@ Como o líder do projeto sempre será Marcus Vinicius ou Bruno Fernandes, a list
               <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 30px;">
                 <tr>
                   <td align="center">
-                    <a href="https://siplanhub.vercel.app/projects/{{ $json.body.record.id }}" style="background-color: #ad0505; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(173, 5, 5, 0.2), 0 2px 4px -1px rgba(173, 5, 5, 0.1); text-transform: uppercase; letter-spacing: 0.5px;">Abrir Ficha do Projeto</a>
+                    <a href="https://siplanhub.vercel.app/projects/{{ $json.body.record.id }}" style="background-color: #ad0505; color: #ffffff; padding: 14px 35px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(173, 5, 5, 0.2), 0 2px 4px -1px rgba(173, 5, 5, 0.1); text-transform: uppercase; letter-spacing: 0.5px;">Abrir Ficha do Projeto</a>
                   </td>
                 </tr>
               </table>
             </td>
           </tr>
-          <!-- Footer -->
           <tr>
-            <td style="background-color: #f8fafc; padding: 25px 35px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #f1f5f9;">
+            <td style="background-color: #f8fafc; padding: 25px 40px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #f1f5f9;">
               Este é um e-mail automático gerado pelo Siplan HUB.<br>
               © Siplan - Soluções para Cartórios Extrajudiciais
             </td>
@@ -746,13 +759,13 @@ return [{
   <title>Análise de Aderência Finalizada</title>
 </head>
 <body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; color: #1e293b; line-height: 1.6;">
-  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 40px 0 20px 0;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 20px 40px;">
     <tr>
       <td align="center">
-        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.05); border: 1px solid #e2e8f0;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.05); border: 1px solid #e2e8f0;">
           <!-- Header -->
           <tr>
-            <td style="background-color: #0f172a; padding: 28px 35px; text-align: left;">
+            <td style="background-color: #0f172a; padding: 28px 40px; text-align: left;">
               <span style="color: #ad0505; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 4px;">ADERÊNCIA CONCLUÍDA</span>
               <h1 style="color: #ffffff; font-size: 22px; margin: 0; font-weight: 800; letter-spacing: -0.5px;">SIPLAN <span style="color: #ad0505;">HUB</span></h1>
             </td>
@@ -763,7 +776,7 @@ return [{
           </tr>
           <!-- Body -->
           <tr>
-            <td style="padding: 40px 35px;">
+            <td style="padding: 40px 40px;">
               <!-- Badge -->
               <table border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 25px;">
                 <tr>
@@ -780,9 +793,9 @@ return [{
               <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">A análise de aderência para o cliente <strong>{{ $json.clientName }}</strong> foi finalizada por <strong>{{ $json.analystName }}</strong>.</p>
               
               <!-- Card Principal de Status -->
-              <table width="100%" border="0" cellspacing="0" cellpadding="12" style="background-color: #f8fafc; border-radius: 8px; margin: 25px 0; border: 1px solid #e2e8f0; border-left: 4px solid #ad0505; font-size: 14px;">
+              <table width="100%" border="0" cellspacing="0" cellpadding="14" style="background-color: #f8fafc; border-radius: 8px; margin: 25px 0; border: 1px solid #e2e8f0; border-left: 4px solid #ad0505; font-size: 14px;">
                 <tr>
-                  <td width="35%" style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Cartório:</td>
+                  <td width="20%" style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Cartório:</td>
                   <td style="color: #1e293b; font-weight: 700;">{{ $json.clientName }}</td>
                 </tr>
                 <tr>
@@ -806,17 +819,28 @@ return [{
               </div>
 
               <!-- Recomendados Checklist -->
-              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #fff5f5; border-radius: 8px; border: 1px dashed #feb2b2; margin-top: 25px; padding: 20px;">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #fff5f5; border-radius: 8px; border: 1px dashed #feb2b2; margin-top: 25px; padding: 25px;">
                 <tr>
                   <td>
-                    <h3 style="color: #ad0505; font-size: 14px; margin: 0 0 10px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
-                      📋 PRÓXIMOS PASSOS RECOMENDADOS
+                    <h3 style="color: #ad0505; font-size: 14px; margin: 0 0 12px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
+                      🎯 A BOLA ESTÁ COM VOCÊ — PRÓXIMOS PASSOS:
                     </h3>
-                    <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 14px; line-height: 1.6;">
-                      <li>Revisar os itens com impacto técnico ou impeditivos listados acima.</li>
-                      <li>Definir planos de mitigação ou adaptações necessárias com os líderes de produto.</li>
-                      <li>Acesse a página do projeto ou imprima a versão PDF estilizada abaixo.</li>
+                    <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 14px; line-height: 1.8;">
+                      <li style="margin-bottom: 8px;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Acesse o painel de aderência no HUB e <strong style="color: #1e293b;">valide o plano de ação</strong> para mitigar os impactos e gaps apontados.</li>
+                      <li style="margin-bottom: 8px;"><strong style="color: #475569;">⚙️ AÇÃO EXTERNA:</strong> Alinhe com o setor de desenvolvimento e produto sobre os gaps de sistemas legados identificados.</li>
+                      <li style="margin-bottom: 0;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Com o veredito alinhado, atualize a fase do projeto no painel para iniciar a etapa de Conversão.</li>
                     </ul>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Alerta de Incentivo de Uso do HUB -->
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 25px;">
+                <tr>
+                  <td style="background-color: #fff5f5; border: 1px solid #feb2b2; border-left: 4px solid #ad0505; border-radius: 8px; padding: 20px;">
+                    <p style="margin: 0; font-size: 13px; color: #742a2a; line-height: 1.5;">
+                      <strong>💡 IMPORTANTE — REGISTRE NO HUB:</strong> A homologação de pareceres técnicos e o avanço de etapas no Siplan HUB garantem que os indicadores de implantação fiquem em dia e evita desencontros de informação. Centralize as decisões do projeto na plataforma!
+                    </p>
                   </td>
                 </tr>
               </table>
@@ -825,8 +849,8 @@ return [{
               <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 30px; text-align: center;">
                 <tr>
                   <td>
-                    <a href="{{ $json.printUrl }}" style="background-color: #ad0505; color: #ffffff; padding: 14px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(173, 5, 5, 0.2); margin-right: 15px; text-transform: uppercase; letter-spacing: 0.5px;">Visualizar / Imprimir PDF</a>
-                    <a href="https://siplanhub.vercel.app/projects/{{ $json.projectId }}" style="background-color: #0f172a; color: #ffffff; padding: 14px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.2); text-transform: uppercase; letter-spacing: 0.5px;">Acessar no HUB</a>
+                    <a href="{{ $json.printUrl }}" style="background-color: #ad0505; color: #ffffff; padding: 14px 35px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(173, 5, 5, 0.2); margin-right: 15px; text-transform: uppercase; letter-spacing: 0.5px;">Visualizar / Imprimir PDF</a>
+                    <a href="https://siplanhub.vercel.app/projects/{{ $json.projectId }}" style="background-color: #0f172a; color: #ffffff; padding: 14px 35px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.2); text-transform: uppercase; letter-spacing: 0.5px;">Acessar no HUB</a>
                   </td>
                 </tr>
               </table>
@@ -834,9 +858,9 @@ return [{
           </tr>
           <!-- Footer -->
           <tr>
-            <td style="background-color: #f8fafc; padding: 25px 35px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #f1f5f9;">
+            <td style="background-color: #f8fafc; padding: 25px 40px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #f1f5f9;">
               Este é um e-mail automático gerado pelo Siplan HUB.<br>
-              © Siplan - Soluções para Cartórios Extrajudiciais
+              
             </td>
           </tr>
         </table>
@@ -942,13 +966,13 @@ Busca dados do cliente na tabela `projects` usando a conexão nativa configurada
   <title>Nova Conversão Pendente</title>
 </head>
 <body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; color: #1e293b; line-height: 1.6;">
-  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 40px 0 20px 0;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 20px 40px;">
     <tr>
       <td align="center">
-        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.05); border: 1px solid #e2e8f0;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.05); border: 1px solid #e2e8f0;">
           <!-- Header -->
           <tr>
-            <td style="background-color: #0f172a; padding: 28px 35px; text-align: left;">
+            <td style="background-color: #0f172a; padding: 28px 40px; text-align: left;">
               <span style="color: #ad0505; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 4px;">FILA DE CONVERSÃO</span>
               <h1 style="color: #ffffff; font-size: 22px; margin: 0; font-weight: 800; letter-spacing: -0.5px;">SIPLAN <span style="color: #ad0505;">HUB</span></h1>
             </td>
@@ -959,7 +983,7 @@ Busca dados do cliente na tabela `projects` usando a conexão nativa configurada
           </tr>
           <!-- Body -->
           <tr>
-            <td style="padding: 40px 35px;">
+            <td style="padding: 40px 40px;">
               <!-- Badge -->
               <table border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 25px;">
                 <tr>
@@ -976,9 +1000,9 @@ Busca dados do cliente na tabela `projects` usando a conexão nativa configurada
               <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">O banco de dados do cartório abaixo foi enviado para a fila de processamento de conversão. Esta demanda necessita ser assumida e analisada.</p>
               
               <!-- Card de Informações -->
-              <table width="100%" border="0" cellspacing="0" cellpadding="12" style="background-color: #f8fafc; border-radius: 8px; margin: 25px 0; border: 1px solid #e2e8f0; border-left: 4px solid #ad0505; font-size: 14px;">
+              <table width="100%" border="0" cellspacing="0" cellpadding="14" style="background-color: #f8fafc; border-radius: 8px; margin: 25px 0; border: 1px solid #e2e8f0; border-left: 4px solid #ad0505; font-size: 14px;">
                 <tr>
-                  <td width="35%" style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Cliente:</td>
+                  <td width="20%" style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Cliente:</td>
                   <td style="color: #1e293b; font-weight: 700;">{{ $node["Supabase - Buscar Projeto"].json.client_name }}</td>
                 </tr>
                 <tr>
@@ -1005,17 +1029,28 @@ Busca dados do cliente na tabela `projects` usando a conexão nativa configurada
               </table>
 
               <!-- Recomendados Checklist -->
-              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #fff5f5; border-radius: 8px; border: 1px dashed #feb2b2; margin-top: 25px; padding: 20px;">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #fff5f5; border-radius: 8px; border: 1px dashed #feb2b2; margin-top: 25px; padding: 25px;">
                 <tr>
                   <td>
-                    <h3 style="color: #ad0505; font-size: 14px; margin: 0 0 10px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
-                      📋 PRÓXIMOS PASSOS RECOMENDADOS
+                    <h3 style="color: #ad0505; font-size: 14px; margin: 0 0 12px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
+                      🎯 A BOLA ESTÁ COM VOCÊ — PRÓXIMOS PASSOS:
                     </h3>
-                    <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 14px; line-height: 1.6;">
-                      <li>Acesse o painel de Conversão no Siplan HUB.</li>
-                      <li>Assuma a atividade técnica correspondente à demanda.</li>
-                      <li>Inicie o download do banco de dados e faça a migração para a nova versão.</li>
+                    <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 14px; line-height: 1.8;">
+                      <li style="margin-bottom: 8px;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Acesse a fila de conversão no Siplan HUB e <strong style="color: #1e293b;">assuma a atividade técnica</strong> correspondente.</li>
+                      <li style="margin-bottom: 8px;"><strong style="color: #475569;">⚙️ AÇÃO OPERACIONAL:</strong> Realize o download do backup do banco de dados do cliente do link de origem.</li>
+                      <li style="margin-bottom: 0;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Após a conversão, atualize o status da fila no painel para acompanhar a entrega e gerar o histórico.</li>
                     </ul>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Alerta de Incentivo de Uso do HUB -->
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 25px;">
+                <tr>
+                  <td style="background-color: #fff5f5; border: 1px solid #feb2b2; border-left: 4px solid #ad0505; border-radius: 8px; padding: 20px;">
+                    <p style="margin: 0; font-size: 13px; color: #742a2a; line-height: 1.5;">
+                      <strong>💡 IMPORTANTE — ASSUMA NO HUB:</strong> Assumir e atualizar a fila de conversão no Siplan HUB avisa imediatamente os gestores e o time de infraestrutura sobre o andamento físico da migração. Centralizar essas ações reduz em até 40% o tempo total de implantação!
+                    </p>
                   </td>
                 </tr>
               </table>
@@ -1023,7 +1058,7 @@ Busca dados do cliente na tabela `projects` usando a conexão nativa configurada
               <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 30px; text-align: center;">
                 <tr>
                   <td>
-                    <a href="https://siplanhub.vercel.app/conversion" style="background-color: #ad0505; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(173, 5, 5, 0.2), 0 2px 4px -1px rgba(173, 5, 5, 0.1); text-transform: uppercase; letter-spacing: 0.5px;">Visualizar Fila de Conversão</a>
+                    <a href="https://siplanhub.vercel.app/conversion" style="background-color: #ad0505; color: #ffffff; padding: 14px 35px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(173, 5, 5, 0.2), 0 2px 4px -1px rgba(173, 5, 5, 0.1); text-transform: uppercase; letter-spacing: 0.5px;">Visualizar Fila de Conversão</a>
                   </td>
                 </tr>
               </table>
@@ -1031,9 +1066,9 @@ Busca dados do cliente na tabela `projects` usando a conexão nativa configurada
           </tr>
           <!-- Footer -->
           <tr>
-            <td style="background-color: #f8fafc; padding: 25px 35px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #f1f5f9;">
+            <td style="background-color: #f8fafc; padding: 25px 40px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #f1f5f9;">
               Este é um e-mail automático gerado pelo Siplan HUB.<br>
-              © Siplan - Soluções para Cartórios Extrajudiciais
+              
             </td>
           </tr>
         </table>
@@ -1251,13 +1286,13 @@ return [{
   <title>Respostas do Checklist Comercial</title>
 </head>
 <body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; color: #1e293b; line-height: 1.6;">
-  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 40px 0 20px 0;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 20px 40px;">
     <tr>
       <td align="center">
-        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.05); border: 1px solid #e2e8f0;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.05); border: 1px solid #e2e8f0;">
           <!-- Header -->
           <tr>
-            <td style="background-color: #0f172a; padding: 28px 35px; text-align: left;">
+            <td style="background-color: #0f172a; padding: 28px 40px; text-align: left;">
               <span style="color: #ad0505; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 4px;">CHECKLIST COMERCIAL</span>
               <h1 style="color: #ffffff; font-size: 22px; margin: 0; font-weight: 800; letter-spacing: -0.5px;">SIPLAN <span style="color: #ad0505;">HUB</span></h1>
             </td>
@@ -1268,7 +1303,7 @@ return [{
           </tr>
           <!-- Body -->
           <tr>
-            <td style="padding: 40px 35px;">
+            <td style="padding: 40px 40px;">
               <!-- Badge -->
               <table border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 25px;">
                 <tr>
@@ -1350,17 +1385,28 @@ return [{
               </div>
 
               <!-- Recomendados Checklist -->
-              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #fff5f5; border-radius: 8px; border: 1px dashed #feb2b2; margin-top: 25px; padding: 20px;">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #fff5f5; border-radius: 8px; border: 1px dashed #feb2b2; margin-top: 25px; padding: 25px;">
                 <tr>
                   <td>
-                    <h3 style="color: #ad0505; font-size: 14px; margin: 0 0 10px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
-                      📋 PRÓXIMOS PASSOS RECOMENDADOS
+                    <h3 style="color: #ad0505; font-size: 14px; margin: 0 0 12px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
+                      🎯 A BOLA ESTÁ COM VOCÊ — PRÓXIMOS PASSOS:
                     </h3>
-                    <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 14px; line-height: 1.6;">
-                      <li>Analisar o mapeamento estrutural e o número total de colaboradores da serventia.</li>
-                      <li>Verificar a distribuição dos setores para o planejamento dos treinamentos.</li>
-                      <li>Validar eventuais riscos de resistência declarados pelo cliente na seção 3.</li>
+                    <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 14px; line-height: 1.8;">
+                      <li style="margin-bottom: 8px;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Acesse o HUB e <strong style="color: #1e293b;">homologue o checklist comercial</strong> do cliente para integrá-lo formalmente à ficha do projeto.</li>
+                      <li style="margin-bottom: 8px;"><strong style="color: #475569;">⚙️ AÇÃO OPERACIONAL:</strong> Analise o mapeamento estrutural e o número total de colaboradores para planejar o cronograma de treinamento.</li>
+                      <li style="margin-bottom: 0;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Registre quaisquer riscos de resistência ou observações humanas mapeadas diretamente na aba "Comportamental" do projeto.</li>
                     </ul>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Alerta de Incentivo de Uso do HUB -->
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 25px;">
+                <tr>
+                  <td style="background-color: #fff5f5; border: 1px solid #feb2b2; border-left: 4px solid #ad0505; border-radius: 8px; padding: 20px;">
+                    <p style="margin: 0; font-size: 13px; color: #742a2a; line-height: 1.5;">
+                      <strong>💡 IMPORTANTE — CADASTRE NO HUB:</strong> A análise das respostas do checklist e o consequente registro de pessoas-chave no painel de implantação do Siplan HUB orienta os implantadores em campo sobre quem realmente manda no cartório. Centralizar esses dados na plataforma reduz o atrito de comunicação externa!
+                    </p>
                   </td>
                 </tr>
               </table>
@@ -1369,7 +1415,7 @@ return [{
               <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 35px; text-align: center;">
                 <tr>
                   <td>
-                    <a href="https://siplanhub.vercel.app/projects/{{ $json.projectId }}" style="background-color: #ad0505; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(173, 5, 5, 0.2), 0 2px 4px -1px rgba(173, 5, 5, 0.1); text-transform: uppercase; letter-spacing: 0.5px;">Analisar no Siplan HUB</a>
+                    <a href="https://siplanhub.vercel.app/projects/{{ $json.projectId }}" style="background-color: #ad0505; color: #ffffff; padding: 14px 35px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(173, 5, 5, 0.2), 0 2px 4px -1px rgba(173, 5, 5, 0.1); text-transform: uppercase; letter-spacing: 0.5px;">Analisar no Siplan HUB</a>
                   </td>
                 </tr>
               </table>
@@ -1377,9 +1423,9 @@ return [{
           </tr>
           <!-- Footer -->
           <tr>
-            <td style="background-color: #f8fafc; padding: 25px 35px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #f1f5f9;">
+            <td style="background-color: #f8fafc; padding: 25px 40px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #f1f5f9;">
               Este é um e-mail automático gerado pelo Siplan HUB.<br>
-              © Siplan - Soluções para Cartórios Extrajudiciais
+              
             </td>
           </tr>
         </table>
@@ -1484,13 +1530,13 @@ Busca o e-mail do analista na tabela `profiles`.
   <title>Analista Atribuído na Conversão</title>
 </head>
 <body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; color: #1e293b; line-height: 1.6;">
-  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 40px 0 20px 0;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 20px 40px;">
     <tr>
       <td align="center">
-        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.05); border: 1px solid #e2e8f0;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.05); border: 1px solid #e2e8f0;">
           <!-- Header -->
           <tr>
-            <td style="background-color: #0f172a; padding: 28px 35px; text-align: left;">
+            <td style="background-color: #0f172a; padding: 28px 40px; text-align: left;">
               <span style="color: #ad0505; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 4px;">FILA DE CONVERSÃO</span>
               <h1 style="color: #ffffff; font-size: 22px; margin: 0; font-weight: 800; letter-spacing: -0.5px;">SIPLAN <span style="color: #ad0505;">HUB</span></h1>
             </td>
@@ -1501,7 +1547,7 @@ Busca o e-mail do analista na tabela `profiles`.
           </tr>
           <!-- Body -->
           <tr>
-            <td style="padding: 40px 35px;">
+            <td style="padding: 40px 40px;">
               <!-- Badge -->
               <table border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 25px;">
                 <tr>
@@ -1518,9 +1564,9 @@ Busca o e-mail do analista na tabela `profiles`.
               <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">A conversão de banco de dados do cartório listado abaixo foi assumida por um analista técnico e está em andamento.</p>
               
               <!-- Card de Informações -->
-              <table width="100%" border="0" cellspacing="0" cellpadding="12" style="background-color: #f8fafc; border-radius: 8px; margin: 25px 0; border: 1px solid #e2e8f0; border-left: 4px solid #ad0505; font-size: 14px;">
+              <table width="100%" border="0" cellspacing="0" cellpadding="14" style="background-color: #f8fafc; border-radius: 8px; margin: 25px 0; border: 1px solid #e2e8f0; border-left: 4px solid #ad0505; font-size: 14px;">
                 <tr>
-                  <td width="35%" style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Cliente/Cartório:</td>
+                  <td width="20%" style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Cliente/Cartório:</td>
                   <td style="color: #1e293b; font-weight: 700;">{{ $node["Supabase - Buscar Projeto"].json.client_name }}</td>
                 </tr>
                 <tr>
@@ -1542,17 +1588,28 @@ Busca o e-mail do analista na tabela `profiles`.
               </table>
 
               <!-- Recomendados Checklist -->
-              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #fff5f5; border-radius: 8px; border: 1px dashed #feb2b2; margin-top: 25px; padding: 20px;">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #fff5f5; border-radius: 8px; border: 1px dashed #feb2b2; margin-top: 25px; padding: 25px;">
                 <tr>
                   <td>
-                    <h3 style="color: #ad0505; font-size: 14px; margin: 0 0 10px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
-                      📋 PRÓXIMOS PASSOS RECOMENDADOS
+                    <h3 style="color: #ad0505; font-size: 14px; margin: 0 0 12px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
+                      🎯 A BOLA ESTÁ COM VOCÊ — PRÓXIMOS PASSOS:
                     </h3>
-                    <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 14px; line-height: 1.6;">
-                      <li>Alinhar detalhes técnicos ou homologações de dados diretamente com o analista.</li>
-                      <li>Monitorar o status do projeto no painel de conversões do Siplan HUB.</li>
-                      <li>Validar se a conversão do backup segue as regras de aderência aprovadas.</li>
+                    <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 14px; line-height: 1.8;">
+                      <li style="margin-bottom: 8px;"><strong style="color: #475569;">⚙️ AÇÃO OPERACIONAL:</strong> Alinhe detalhes técnicos ou homologações de dados diretamente com o analista técnico responsável.</li>
+                      <li style="margin-bottom: 8px;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Monitore e acompanhe o status físico da conversão na aba de fila no painel do Siplan HUB.</li>
+                      <li style="margin-bottom: 0;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Assim que a conversão for concluída, registre o parecer de validação dos dados na plataforma.</li>
                     </ul>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Alerta de Incentivo de Uso do HUB -->
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 25px;">
+                <tr>
+                  <td style="background-color: #fff5f5; border: 1px solid #feb2b2; border-left: 4px solid #ad0505; border-radius: 8px; padding: 20px;">
+                    <p style="margin: 0; font-size: 13px; color: #742a2a; line-height: 1.5;">
+                      <strong>💡 IMPORTANTE — ACOMPANHE NO HUB:</strong> O registro do progresso das conversões no Siplan HUB dá visibilidade em tempo real para toda a equipe comercial e operacional. Acompanhar a fila via plataforma evita interrupções desnecessárias por telefone ou WhatsApp!
+                    </p>
                   </td>
                 </tr>
               </table>
@@ -1560,7 +1617,7 @@ Busca o e-mail do analista na tabela `profiles`.
               <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 30px; text-align: center;">
                 <tr>
                   <td>
-                    <a href="https://siplanhub.vercel.app/conversion" style="background-color: #ad0505; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(173, 5, 5, 0.2), 0 2px 4px -1px rgba(173, 5, 5, 0.1); text-transform: uppercase; letter-spacing: 0.5px;">Abrir Painel no Siplan HUB</a>
+                    <a href="https://siplanhub.vercel.app/conversion" style="background-color: #ad0505; color: #ffffff; padding: 14px 35px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(173, 5, 5, 0.2), 0 2px 4px -1px rgba(173, 5, 5, 0.1); text-transform: uppercase; letter-spacing: 0.5px;">Abrir Painel no Siplan HUB</a>
                   </td>
                 </tr>
               </table>
@@ -1568,9 +1625,9 @@ Busca o e-mail do analista na tabela `profiles`.
           </tr>
           <!-- Footer -->
           <tr>
-            <td style="background-color: #f8fafc; padding: 25px 35px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #f1f5f9;">
+            <td style="background-color: #f8fafc; padding: 25px 40px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #f1f5f9;">
               Este é um e-mail automático gerado pelo Siplan HUB.<br>
-              © Siplan - Soluções para Cartórios Extrajudiciais
+              
             </td>
           </tr>
         </table>
