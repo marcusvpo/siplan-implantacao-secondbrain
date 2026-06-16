@@ -13,6 +13,7 @@ A Siplan atua no mercado de cartórios extrajudiciais, um setor marcado pela tra
 - [[[Mercado] Perfil Heterogêneo e Baixa Maturidade Tecnológica]]
 - [[[Mercado] Transformação Digital e Pressão Regulatória (CNJ, LGPD)]]
 - [[[Mercado] Uso de IA e Automação (Iniciativas como IARI)]]
+- [[[Regra] Abreviações de Serventias e Mapeamento de Produtos]]
 
 ## Impactos na Operação Siplan
 - [[[Gargalo] Dúvidas Operacionais no Service Desk]]

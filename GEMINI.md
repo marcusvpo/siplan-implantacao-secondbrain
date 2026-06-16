@@ -23,6 +23,22 @@ A análise dos documentos históricos de implantação revela que o processo é 
 *   **Gap de Integrações Legadas:** Clientes rotineiramente reportam frustração com integrações pendentes no novo ecossistema Orion que eram nativas em sistemas antigos (ex: integração nativa com COAF, NFE e layouts específicos de boletos bancários como CNAB400).
 *   **A "Hora Zero":** A virada (conversão final e implantação "go-live") tipicamente ocorre em uma janela restrita (final de semana), exigindo atuação presencial intensa na primeira semana (acompanhamento de balcão e retaguarda) para estabilização tática.
 
+## Taxonomia de Serventias e Portfólio de Sistemas
+Para correto entendimento das demandas, contextos de implantação e logs de cartórios:
+*   **Abreviações das Serventias:**
+    *   **TN:** Tabelionato de Notas (Ex: "01 TN Campinas").
+    *   **PT:** Protesto de Títulos.
+    *   **TNPT:** Tabelionato de Notas e Protesto de Títulos (Serventia de natureza mista; Ex: "1°TNPT Araraquara").
+    *   **RC:** Registro Civil das Pessoas Naturais.
+    *   **RI:** Registro de Imóvel (Ex: "02 RI Franca").
+    *   **TDPJ:** Registro de Títulos e Documentos e Civil de Pessoas Jurídicas.
+*   **Mapeamento de Produtos Siplan por Especialidade:**
+    *   **Orion TN:** Utilizado em cartórios de Notas (**TN** e serventias mistas **TNPT**).
+    *   **Orion PRO:** Utilizado em cartórios de Protesto (**PT** e serventias mistas **TNPT**).
+    *   **Orion REG:** Utilizado em cartórios de Registro de Imóveis (**RI**) e Registro de Títulos e Documentos e Civil de Pessoas Jurídicas (**TDPJ**).
+    *   **WEB RI:** Utilizado complementarmente em cartórios de Registro de Imóveis (**RI**).
+*   **Coexistência em Serventias Mistas (TNPT):** Cartórios sob a sigla **TNPT** utilizam concomitantemente os dois sistemas principais (**Orion TN** e **Orion PRO**) compartilhando ou integrando suas rotinas financeiras e de retaguarda.
+
 ## Arquivos Principais (MOCs - Maps of Content)
 Os arquivos mais importantes são os MOCs, que atuam como índices ou "hubs" centrais ligando as diversas notas atômicas do ecossistema:
 

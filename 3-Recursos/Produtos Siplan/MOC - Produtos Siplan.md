@@ -37,6 +37,18 @@ O **Orion TN** é a plataforma web para automação de Tabelionatos de Notas. Co
   - [[Orion TN - Certidões e GED|Certidões e GED]] — Emissão e histórico de certidões, reprografia, e o Orion GED integrado com OCR e indexação.
   - [[Orion TN - Selos e Integrações|Selos e Integrações]] — Controle de selos digitais, comunicação automática com o TJ/SP, indisponibilidades (CENIB/CNIB), e-Notariado, COAF, SEFAZ, DOIWeb e SGA (totem/filas).
 
+### 3. Orion REG (Registro de Imóveis - RI / Registro de Títulos e Documentos e Civil de Pessoas Jurídicas - TDPJ)
+O **Orion REG** é o sistema web robusto para automação de cartórios de Registro de Imóveis (RI) e Registro de Títulos e Documentos e Civil de Pessoas Jurídicas (TDPJ). Abrange a qualificação de títulos, controle de exigências, geração de certidões, selagem digital e geração automática de livros.
+
+### 4. WEB RI (Registro de Imóveis - RI)
+O **WEB RI** é uma solução complementar focada na interface web para Registro de Imóveis, otimizando a recepção, processamento eletrônico de títulos e integração com centrais registradoras de imóveis.
+
+---
+
+## 🗂️ 3. Regras de Negócio e Abreviações das Serventias
+Para garantir a padronização das comunicações de implantação, suporte e inteligência de mercado:
+- Consulte a nota de mapeamento: [[[Regra] Abreviações de Serventias e Mapeamento de Produtos]] para compreender as siglas (TN, PT, TNPT, RC, RI, TDPJ) e como elas se associam a cada sistema do portfólio da Siplan.
+
 ---
 
 ## 🔗 Integração Operacional (O "Segundo Cérebro" Siplan)
