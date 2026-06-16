@@ -439,7 +439,7 @@ Como o líder do projeto sempre será Marcus Vinicius ou Bruno Fernandes, a list
 
               <h2 style="color: #0f172a; font-size: 20px; margin-top: 0; margin-bottom: 12px; font-weight: 700; letter-spacing: -0.3px;">Novo Projeto Disponível (Kickoff)</h2>
               <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">Prezados,</p>
-              <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">Informamos que o projeto de implantação para o cliente <strong>{{ $json.body.record.client_name }}</strong> foi devidamente inserido no system_type e está pronto para o alinhamento de kickoff.</p>
+              <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">Informamos que o projeto de implantação para o cliente <strong>{{ $json.body.record.client_name }}</strong> foi devidamente inserido no Siplan HUB e está pronto para as primeiras etapas de kickoff da Implantação.</p>
               
               <table width="100%" border="0" cellspacing="0" cellpadding="14" style="background-color: #f8fafc; border-radius: 8px; margin: 25px 0; border: 1px solid #e2e8f0; border-left: 4px solid #ad0505; font-size: 14px;">
                 <tr>
