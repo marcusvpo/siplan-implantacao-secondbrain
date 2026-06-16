@@ -38,6 +38,16 @@ Para correto entendimento das demandas, contextos de implantação e logs de car
     *   **Orion REG:** Utilizado em cartórios de Registro de Imóveis (**RI**) e Registro de Títulos e Documentos e Civil de Pessoas Jurídicas (**TDPJ**).
     *   **WEB RI:** Utilizado complementarmente em cartórios de Registro de Imóveis (**RI**).
 *   **Coexistência em Serventias Mistas (TNPT):** Cartórios sob a sigla **TNPT** utilizam concomitantemente os dois sistemas principais (**Orion TN** e **Orion PRO**) compartilhando ou integrando suas rotinas financeiras e de retaguarda.
+*   **Correspondência de Sistemas Legados (Migração):**
+    *   *Linha Control-M:*
+        *   **Control-M TABNOT** (TN / TNPT) e **SiplanTN** $\rightarrow$ migram para **Orion TN**.
+        *   **Control-M PROT** (PT / TNPT) e **Siplan PRO** $\rightarrow$ migram para **Orion PRO**.
+        *   **Control-M REG** e **WebRI** (RI) $\rightarrow$ migram para **Orion REG** / **WEB RI**.
+        *   **Control-M TDJP** e **WebTD** (TDPJ) $\rightarrow$ migram para **Orion REG**.
+        *   **Control-M Distribuidor** $\rightarrow$ migra para módulo correspondente do **Orion PRO**.
+        *   **Control-M GED** $\rightarrow$ migra para o **Orion GED** integrado.
+    *   *Linha Siplan:*
+        *   **Siplan RC** (RC) $\rightarrow$ sem equivalente Orion direto (tratar individualmente).
 
 ## Arquivos Principais (MOCs - Maps of Content)
 Os arquivos mais importantes são os MOCs, que atuam como índices ou "hubs" centrais ligando as diversas notas atômicas do ecossistema:
@@ -49,6 +59,11 @@ Os arquivos mais importantes são os MOCs, que atuam como índices ou "hubs" cen
 *   **`3-Recursos/Produtos Siplan/Orion PRO/MOC - Orion PRO.md`:** Detalha os módulos e rotinas operacionais do sistema Orion PRO (Tabelionato de Protesto).
 *   **`3-Recursos/Produtos Siplan/Orion TN/MOC - Orion TN.md`:** Detalha os módulos e rotinas operacionais do sistema Orion TN (Tabelionato de Notas).
 *   **`3-Recursos/00 - Inbox/`:** Diretório que contém os textos longos "brutos" remanescentes que aguardam refinamento e fragmentação em notas atômicas.
+
+## Correção e Padronização de Transcrições (Glossário Mestre)
+Ao analisar ou incorporar textos originários de transcrições brutas de reuniões, vídeos ou notas faladas:
+*   A IA deve aplicar e respeitar a taxonomia definida no [[[Recurso] Glossário Mestre de Correção de Transcrições]] para substituir automaticamente termos foneticamente incorretos (como "ciplan", "oriom", "aran teeno", "sem prot") pelos seus equivalentes corretos (**Siplan**, **Orion**, **Orion TN**, **CENPROT**).
+*   A IA possui a capacidade de aprender novos mapeamentos de erro e ajustá-los/complementá-los na referida nota ao detectar novos casos de uso semelhantes durante as interações.
 
 ## Como Utilizar este Vault
 1.  **Navegação:** Comece sempre pelos MOCs (Maps of Content) para entender o fluxo macro de um tema. Siga os links internos para explorar fases específicas dos processos ou conceitos.

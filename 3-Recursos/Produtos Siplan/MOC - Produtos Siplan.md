@@ -45,9 +45,10 @@ O **WEB RI** é uma solução complementar focada na interface web para Registro
 
 ---
 
-## 🗂️ 3. Regras de Negócio e Abreviações das Serventias
+## 🗂️ 3. Regras de Negócio, Abreviações e Sistemas Legados
 Para garantir a padronização das comunicações de implantação, suporte e inteligência de mercado:
 - Consulte a nota de mapeamento: [[[Regra] Abreviações de Serventias e Mapeamento de Produtos]] para compreender as siglas (TN, PT, TNPT, RC, RI, TDPJ) e como elas se associam a cada sistema do portfólio da Siplan.
+- Consulte a base de conhecimento de legados: [[[Recurso] Sistemas Legados Siplan e Control-M]] para compreender os produtos e módulos antigos (como SiplanTN, Siplan PRO, Control-M TABNOT, Control-M PROT, etc.) e sua equivalência de migração para a linha Orion.
 
 ---
 
@@ -67,3 +68,6 @@ Os produtos da Siplan não operam isolados; eles estão integrados às rotinas i
 
 4. **Mercado e CNJ:**
    - O desenvolvimento e a manutenção desses produtos são guiados por pressões regulatórias intensas do CNJ (Provimentos 74/2018 e 134/2023) e pela necessidade de integração com centrais eletrônicas nacionais (veja [[MOC - Mercado Cartorário]]).
+
+5. **Sistemas Legados e Migração:**
+   - A equipe de conversão e implantação utiliza a documentação de equivalência de sistemas legados (linhas Siplan e Control-M) para planejar a migração de dados e configurações de balcão das serventias clientes para a nova plataforma Orion (consulte [[[Recurso] Sistemas Legados Siplan e Control-M]]).
