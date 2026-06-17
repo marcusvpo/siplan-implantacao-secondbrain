@@ -1117,7 +1117,7 @@ Busca dados do cliente na tabela `projects` usando a conexão nativa configurada
 
               <h2 style="color: #0f172a; font-size: 20px; margin-top: 0; margin-bottom: 12px; font-weight: 700; letter-spacing: -0.3px;">Nova Demanda de Conversão na Fila</h2>
               <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">Olá equipe de Conversão,</p>
-              <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">O banco de dados do cartório abaixo foi enviado para a fila de processamento de conversão. Esta demanda necessita ser assumida e analisada.</p>
+              <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">A equipe de Implantação solicitou o início do processo de Conversão do cartório abaixo. Esta demanda necessita ser assumida e analisada.</p>
               
               <!-- Card de Informações -->
               <table width="100%" border="0" cellspacing="0" cellpadding="14" style="background-color: #f8fafc; border-radius: 8px; margin: 25px 0; border: 1px solid #e2e8f0; border-left: 4px solid #ad0505; font-size: 14px;">
@@ -1153,9 +1153,10 @@ Busca dados do cliente na tabela `projects` usando a conexão nativa configurada
                       🎯 A BOLA ESTÁ COM VOCÊ — PRÓXIMOS PASSOS:
                     </h3>
                     <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 14px; line-height: 1.8;">
-                      <li style="margin-bottom: 8px;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Acesse a fila de conversão no Siplan HUB e <strong style="color: #1e293b;">assuma a atividade técnica</strong> correspondente.</li>
-                      <li style="margin-bottom: 8px;"><strong style="color: #475569;">⚙️ AÇÃO OPERACIONAL:</strong> Realize o download do backup do banco de dados do cliente do link de origem.</li>
-                      <li style="margin-bottom: 0;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Após a conversão, atualize o status da fila no painel para acompanhar a entrega e gerar o histórico.</li>
+                      <li style="margin-bottom: 8px;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Acesse a fila de conversão no Siplan HUB e <strong style="color: #1e293b;">assuma a Conversão</strong> correspondente.</li>
+                      <li style="margin-bottom: 8px;"><strong style="color: #475569;">⚙️ AÇÃO OPERACIONAL:</strong> Entre em contato com o cliente para solicitar a assinatura do termo de <strong style="color: #1e293b;">Conversão de Dados</strong>.</li>
+                      <li style="margin-bottom: 0;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Utilize a funcionalidade de <strong style="color: #1e293b;">Publicações</strong> para cadastrar anotações, avanços e pendências durante a Conversão!</li>
+                      <li style="margin-bottom: 0;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Após a conversão, libere os dados de acesso para o <strong style="color: #1e293b;">ambiente de Homologação ao analista</strong> e atualize o status da fila no painel para acompanhar a entrega e gerar o histórico.</li>
                     </ul>
                   </td>
                 </tr>
@@ -1166,7 +1167,7 @@ Busca dados do cliente na tabela `projects` usando a conexão nativa configurada
                 <tr>
                   <td style="background-color: #fff5f5; border: 1px solid #feb2b2; border-left: 4px solid #ad0505; border-radius: 8px; padding: 20px;">
                     <p style="margin: 0; font-size: 13px; color: #742a2a; line-height: 1.5;">
-                      <strong>💡 IMPORTANTE — ASSUMA NO HUB:</strong> Assumir e atualizar a fila de conversão no Siplan HUB avisa imediatamente os gestores e o time de infraestrutura sobre o andamento físico da migração. Centralizar essas ações reduz em até 40% o tempo total de implantação!
+                      <strong>💡 IMPORTANTE — ASSUMA NO HUB:</strong> Assumir e atualizar a fila de conversão no Siplan HUB avisa imediatamente os gestores e o time de infraestrutura sobre o andamento físico da migração. Centralizar essas ações no HUB reduz em até 40% o tempo total de implantação!
                     </p>
                   </td>
                 </tr>
@@ -1200,7 +1201,7 @@ Busca dados do cliente na tabela `projects` usando a conexão nativa configurada
 1.  **Inserir Projeto de Teste e Fila via SQL:**
     ```sql
     INSERT INTO public.projects (id, client_name, ticket_number, system_type, project_leader, last_update_by)
-    VALUES ('b9999999-9999-9999-9999-99999999999b', 'Cartório Fila de Teste', '777773', 'Orion PRO', 'Marcus', 'bruno')
+    VALUES ('b9999999-9999-9999-9999-99999999999b', 'Cartório Fila de Teste', '777773', 'Orion PRO', 'Bruno Fernandes', 'Marcus Ortiz')
     ON CONFLICT (id) DO NOTHING;
 
     INSERT INTO public.conversion_queue (
@@ -1210,7 +1211,7 @@ Busca dados do cliente na tabela `projects` usando a conexão nativa configurada
         queue_status
     ) VALUES (
         'b9999999-9999-9999-9999-99999999999b', 
-        'Bruno Fernandes', 
+        'Marcus Ortiz', 
         1, 
         'pending'
     );
