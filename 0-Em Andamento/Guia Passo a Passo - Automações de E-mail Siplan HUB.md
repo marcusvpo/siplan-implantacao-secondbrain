@@ -707,11 +707,11 @@ if (analystProfile && analystProfile.email) {
 const systemType = (projectData.system_type || '').toUpperCase().replace(/\s+/g, '');
 let systemSpecificCc = '';
 
-if (systemType === 'ORIONTN' || systemType === 'ORION_TN') {
+if (systemType === 'ORIONTN' || systemType === 'ORION_TN' || systemType === 'ORION TN') {
   systemSpecificCc = 'luan.caldeira@siplan.com.br';
-} else if (systemType === 'ORIONPRO' || systemType === 'ORION_PRO') {
+} else if (systemType === 'ORIONPRO' || systemType === 'ORION_PRO' || systemType === 'ORION PRO') {
   systemSpecificCc = 'maurilio.camargo@siplan.com.br';
-} else if (systemType === 'ORIONREG' || systemType === 'ORION_REG') {
+} else if (systemType === 'ORIONREG' || systemType === 'ORION_REG' || systemType === 'ORION REG') {
   systemSpecificCc = 'amanda.flor@siplan.com.br';
 }
 
@@ -880,9 +880,9 @@ VALUES ('d89cedf4-af7b-48e8-8c6d-2aa857af8420', 'bruno.fernandes@siplan.com.br',
 ON CONFLICT (id) DO UPDATE 
 SET full_name = 'Bruno Fernandes', email = 'bruno.fernandes@siplan.com.br';
 
--- 2. Inserir projeto de teste (Sistema: Orion PRO)
+-- 2. Inserir projeto de teste (Sistema: Orion TN)
 INSERT INTO public.projects (id, client_name, ticket_number, system_type, project_leader, last_update_by)
-VALUES ('a9999999-9999-9999-9999-99999999999a', 'Cartório de Testes Aderência', '888882', 'Orion PRO', 'Marcus', 'bruno')
+VALUES ('a9999999-9999-9999-9999-99999999999a', 'Cartório de Testes Aderência', '888882', 'Orion TN', 'Marcus', 'bruno')
 ON CONFLICT (id) DO NOTHING;
 
 -- 3. Inserir resposta do formulário (Buscando template_id dinamicamente)
@@ -892,7 +892,7 @@ VALUES (
     (SELECT id FROM public.form_templates LIMIT 1), -- Resolve a FK puxando qualquer template existente
     'adherence', 
     'draft',
-    '{"finalVerdict": "Não Aderente / Impeditivo", "finalNotes": "O cliente necessita de layout CNAB400 customizado do banco de fomento local que ainda não está integrado.", "financeiro": {"utilizou": true, "impacto": true, "nivel_impacto": "IMPEDITIVO", "detalhes": "Sem suporte atual no Orion PRO para o layout CNAB solicitado."}}'::jsonb
+    '{"finalVerdict": "Não Aderente / Impeditivo", "finalNotes": "O cliente necessita da rotina X customizada que ainda não está integrado ao Orion TN.", "financeiro": {"utilizou": true, "impacto": true, "nivel_impacto": "IMPEDITIVO", "detalhes": "Sem suporte atual no Orion TN para a rotina X solicitada."}}'::jsonb
 );
     ```
 2.  **Preparar n8n:** Ative o modo "Listen" no webhook.
