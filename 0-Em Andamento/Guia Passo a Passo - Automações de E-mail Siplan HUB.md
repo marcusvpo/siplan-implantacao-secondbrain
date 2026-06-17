@@ -1255,7 +1255,7 @@ graph TD
     *   `{{ $json.body.old_record.status }} != 'submitted'`
 
 #### Nó 3: Supabase (Consulta de Projeto)
-*   **Name:** `Supabase - Buscar Projeto`
+*   **Name:** `Supabase - Buscar Projeto2`
 *   **Operation:** `Get`
 *   **Table:** `projects`
 *   **Filter -> Column:** `id`
@@ -1268,7 +1268,7 @@ graph TD
 *   **Code:**
 ```javascript
 const record = $('Webhook - Checklist Respondido').first().json.body.record;
-const project = $('Supabase - Buscar Projeto').first().json;
+const project = $('Supabase - Buscar Projeto2').first().json;
 const resp = record.responses || {};
 
 // Helpers para exibição
