@@ -51,17 +51,18 @@ Este webhook monitora a inserção de novos projetos criados via integração co
     *   *Value:* `application/json`
 
 ##### ⚖️ Webhook 2: Análise de Aderência Finalizada (Automação 2)
-Este webhook detecta quando o analista de implantação aprova uma análise de aderência, alterando as respostas para o status final aprovado.
+Este webhook detecta quando a análise de aderência é finalizada no HUB, sendo acionado quando o status do formulário transiciona de `'draft'` para qualquer status concluído (`'approved'`, `'approved_with_restrictions'` ou `'rejected'`).
 *   **Name:** `n8n_aderencia_finalizada`
 *   **Table:** `project_form_responses` (tabela de respostas aos formulários do projeto)
 *   **Events:** Selecionar **apenas** a opção `Update` (Atualização de registro)
 *   **Method:** `POST`
 *   **URL:**
-    *   *Ambiente de Testes (n8n Test):* `https://n8n.siplan.com.br/webhook-test/aderencia-aprovada`
-    *   *Ambiente de Produção (n8n Prod):* `https://n8n.siplan.com.br/webhook/aderencia-aprovada`
+    *   *Ambiente de Testes (n8n Test):* `https://n8n.siplan.com.br/webhook-test/aderencia-finalizada`
+    *   *Ambiente de Produção (n8n Prod):* `https://n8n.siplan.com.br/webhook/aderencia-finalizada`
 *   **Headers:**
     *   *Key:* `Content-Type`
     *   *Value:* `application/json`
+
 
 ##### 📥 Webhook 3: Nova Conversão Enviada para a Fila (Automação 3)
 Este webhook aciona a notificação de nova demanda de conversão assim que o registro é enfileirado com status pendente.
@@ -542,34 +543,34 @@ Como o líder do projeto sempre será Marcus Vinicius ou Bruno Fernandes, a list
 ## ⚖️ Automação 2: Análise de Aderência Finalizada
 
 ### 1. Descrição do Fluxo
-Esta automação é disparada quando um formulário de aderência (`project_form_responses` com `stage = 'adherence'`) é atualizado para o status `'approved'`. O fluxo recupera o projeto relacionado do banco, busca dinamicamente o e-mail do analista aprovador na tabela `public.profiles` através de seu UUID, processa recursivamente o JSON de respostas para extrair os itens com impacto técnico e envia a notificação com cópia inteligente (CC) configurada.
+Esta automação é disparada quando uma análise de aderência (`project_form_responses` com `stage = 'adherence'`) é concluída e seu status é atualizado para qualquer veredito final diferente de `'draft'` (ou seja, `'approved'`, `'approved_with_restrictions'` ou `'rejected'`). O fluxo recupera o projeto relacionado do banco, busca dinamicamente o e-mail do analista na tabela `public.profiles` através de seu UUID (campo `approved_by`), processa as respostas para extrair os itens com impacto técnico e envia a notificação por e-mail com a cópia inteligente (CC) configurada.
 
 ```mermaid
 graph TD
     A[Supabase Webhook: UPDATE project_form_responses] --> B[n8n Webhook Node]
-    B --> C[IF Node: Validar Aderência Aprovada]
+    B --> C[IF Node: Validar Aderência Finalizada]
     C -- Sim --> D[Supabase Node: Buscar Detalhes do Projeto]
     D --> E[Supabase Node: Buscar Perfil do Analista]
-    E --> F[Code Node: Processar Itens e Mapear Destinatários]
-    F --> G[Send Email: Aderência Aprovada]
+    E --> F[Code Node: Processar Itens, Status e Mapear Destinatários]
+    F --> G[Send Email: Aderência Finalizada]
     C -- Não --> H[Ignorar / Fim]
 ```
 
 ### 2. Passo a Passo da Configuração dos Nós no n8n
 
 #### Nó 1: Webhook (Gatilho)
-*   **Name:** `Webhook - Aderência Aprovada`
+*   **Name:** `Webhook - Aderência Finalizada`
 *   **Authentication:** `None`
 *   **HTTP Method:** `POST`
-*   **Path:** `aderencia-aprovada`
+*   **Path:** `aderencia-finalizada`
 *   **Response Mode:** `onReceived`
 
 #### Nó 2: IF (Validação de Status)
-*   **Name:** `IF - Status Approved`
+*   **Name:** `IF - Status Finalizado`
 *   **Conditions:**
     *   `{{ $json.body.record.stage }} == 'adherence'` **AND**
-    *   `{{ $json.body.record.status }} == 'approved'` **AND**
-    *   `{{ $json.body.old_record.status }} != 'approved'` (Garante disparo único na aprovação).
+    *   `{{ $json.body.record.status }} != 'draft'` **AND**
+    *   `{{ $json.body.old_record.status }} == 'draft'` (Garante disparo único no momento exato em que a análise de aderência sai do status padrão rascunho/em andamento para um veredito definitivo).
 
 #### Nó 3: Supabase (Consulta de Projeto)
 Busca os metadados do projeto na tabela `projects`.
@@ -578,23 +579,23 @@ Busca os metadados do projeto na tabela `projects`.
 *   **Table:** `projects`
 *   **Filter -> Column:** `id`
 *   **Filter -> Operator:** `Equal`
-*   **Filter -> Value:** `{{ $node["Webhook - Aderência Aprovada"].json.body.record.project_id }}`
+*   **Filter -> Value:** `{{ $node["Webhook - Aderência Finalizada"].json.body.record.project_id }}`
 
 #### Nó 4: Supabase (Consulta de Perfil do Analista)
-Consulta a tabela `profiles` do Supabase para obter dinamicamente o e-mail e nome do analista aprovador.
+Consulta a tabela `profiles` do Supabase para obter dinamicamente o e-mail e nome do analista que finalizou a análise.
 *   **Name:** `Supabase - Get Analyst Profile`
 *   **Operation:** `Get`
 *   **Table:** `profiles`
 *   **Filter -> Column:** `id`
 *   **Filter -> Operator:** `Equal`
-*   **Filter -> Value:** `{{ $node["Webhook - Aderência Aprovada"].json.body.record.approved_by }}`
+*   **Filter -> Value:** `{{ $node["Webhook - Aderência Finalizada"].json.body.record.approved_by }}`
 
-#### Nó 5: Code (Extração de Itens e Destinatários)
+#### Nó 5: Code (Processar Itens, Status e Destinatários)
 *   **Name:** `Code - Processar Itens e Destinatários`
 *   **Language:** `JavaScript`
 *   **Code:**
 ```javascript
-const responseRecord = $('Webhook - Aderência Aprovada').item.json.body.record;
+const responseRecord = $('Webhook - Aderência Finalizada').item.json.body.record;
 const projectData = $('Supabase - Get Project').item.json;
 let analystProfile = null;
 
@@ -604,9 +605,96 @@ try {
   // Ignora se o nó de profile não retornou dados para evitar quebra do fluxo
 }
 
+const status = responseRecord.status || 'rejected';
 const formData = responseRecord.data || {};
-const finalVerdict = formData.finalVerdict || 'Não informado';
 const finalNotes = formData.finalNotes || 'Nenhuma justificativa informada.';
+
+// Processamento de veredito amigável
+let finalVerdict = '';
+if (status === 'approved') {
+  finalVerdict = 'Totalmente Aderente';
+} else if (status === 'approved_with_restrictions') {
+  finalVerdict = 'Aderente com Restrições';
+} else if (status === 'rejected') {
+  finalVerdict = 'Não Aderente / Impeditivo';
+} else {
+  finalVerdict = formData.finalVerdict || 'Não informado';
+}
+
+// Mapeamento dinâmico de layout e mensagens conforme o status
+const statusMap = {
+  'approved': {
+    badgeStyle: 'background-color: #d1fae5; color: #065f46; border: 1px solid #10b981;',
+    introMessage: 'Boas notícias! A análise de aderência técnica foi concluída e o projeto foi classificado como <strong>Totalmente Aderente</strong>. Isso significa que os requisitos do cartório e sistemas legados são plenamente compatíveis com o ecossistema Orion.',
+    checklistHeader: '🎯 PRÓXIMOS PASSOS (A BOLA ESTÁ COM VOCÊ):',
+    checklistHtml: `
+      <li style="margin-bottom: 8px;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Confirme o cronograma no painel e atualize a fase do projeto para iniciar a etapa de Conversão.</li>
+      <li style="margin-bottom: 8px;"><strong style="color: #475569;">⚙️ AÇÃO EXTERNA:</strong> Alinhe com o cartório a data final para a entrega do backup e congelamento da base legada.</li>
+      <li style="margin-bottom: 0;"><strong style="color: #475569;">👥 ALINHAMENTO:</strong> Comunique o time técnico sobre o parecer positivo para que preparem o ambiente de homologação.</li>
+    `,
+    checklistTableStyle: 'background-color: #f0fdf4; border: 1px dashed #bbf7d0; margin-top: 25px; padding: 25px; border-radius: 8px;',
+    checklistHeaderColor: '#166534',
+    alertBox: `
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 25px;">
+        <tr>
+          <td style="background-color: #f0fdf4; border: 1px solid #bbf7d0; border-left: 4px solid #10b981; border-radius: 8px; padding: 20px;">
+            <p style="margin: 0; font-size: 13px; color: #166534; line-height: 1.5;">
+              <strong>💡 HUB INFORMA:</strong> O avanço imediato para a etapa de Conversão no Siplan HUB garante a sincronia das equipes e mantém o cronograma de implantação dentro da meta estimada.
+            </p>
+          </td>
+        </tr>
+      </table>
+    `
+  },
+  'approved_with_restrictions': {
+    badgeStyle: 'background-color: #fef3c7; color: #92400e; border: 1px solid #f59e0b;',
+    introMessage: 'Atenção: A análise de aderência técnica foi concluída e classificada como <strong>Aderente com Restrições</strong>. Existem gaps ou particularidades que demandam atenção, mas que não impedem a migração desde que mitigados.',
+    checklistHeader: '⚠️ PRÓXIMOS PASSOS (ATENÇÃO AOS GAPS):',
+    checklistHtml: `
+      <li style="margin-bottom: 8px;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Registre o plano de ação ou contorno para cada uma das restrições apontadas na tabela de gaps.</li>
+      <li style="margin-bottom: 8px;"><strong style="color: #475569;">⚙️ AÇÃO EXTERNA:</strong> Comunique formalmente o cliente e o comercial sobre as limitações identificadas (ex: layouts de boletos específicos).</li>
+      <li style="margin-bottom: 0;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Após o aceite das restrições pelo gerente ou comercial no HUB, libere a fase de Conversão.</li>
+    `,
+    checklistTableStyle: 'background-color: #fffbeb; border: 1px dashed #fef08a; margin-top: 25px; padding: 25px; border-radius: 8px;',
+    checklistHeaderColor: '#78350f',
+    alertBox: `
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 25px;">
+        <tr>
+          <td style="background-color: #fffbeb; border: 1px solid #fef08a; border-left: 4px solid #f59e0b; border-radius: 8px; padding: 20px;">
+            <p style="margin: 0; font-size: 13px; color: #78350f; line-height: 1.5;">
+              <strong>💡 ATENÇÃO — REGISTRE NO HUB:</strong> Gaps de aderência não resolvidos ou sem plano de contorno documentado podem gerar gargalos críticos durante o Go-Live. Use o HUB para formalizar a aceitação dos riscos.
+            </p>
+          </td>
+        </tr>
+      </table>
+    `
+  },
+  'rejected': {
+    badgeStyle: 'background-color: #fee2e2; color: #991b1b; border: 1px solid #ad0505;',
+    introMessage: '<strong>ALERTA DE IMPEDIMENTO CRÍTICO:</strong> A análise de aderência técnica foi finalizada com veredito de <strong>Não Aderente / Impeditivo</strong>. Foram detectadas lacunas de hardware, software ou processos que bloqueiam a implantação.',
+    checklistHeader: '🚨 PRÓXIMOS PASSOS (AÇÃO IMEDIATA REQUERIDA):',
+    checklistHtml: `
+      <li style="margin-bottom: 8px;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Acesse a aba de aderência do projeto para analisar detalhadamente os impedimentos técnicos cadastrados e planejar a adequação.</li>
+      <li style="margin-bottom: 8px;"><strong style="color: #475569;">⚙️ AÇÃO EXTERNA:</strong> Abra uma demanda de desenvolvimento ou solicite avaliação da gerência para as customizações necessárias.</li>
+      <li style="margin-bottom: 0;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Mantenha o projeto pausado no HUB até que o plano de adequação seja validado e aprovado pelas partes.</li>
+    `,
+    checklistTableStyle: 'background-color: #fff5f5; border: 1px dashed #feb2b2; margin-top: 25px; padding: 25px; border-radius: 8px;',
+    checklistHeaderColor: '#ad0505',
+    alertBox: `
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 25px;">
+        <tr>
+          <td style="background-color: #fff5f5; border: 1px solid #feb2b2; border-left: 4px solid #ad0505; border-radius: 8px; padding: 20px;">
+            <p style="margin: 0; font-size: 13px; color: #742a2a; line-height: 1.5;">
+              <strong>🚨 CRÍTICO — IMPEDIMENTOS DETECTADOS:</strong> O projeto permanecerá bloqueado até que todos os itens marcados como impeditivos sejam sanados ou tenham uma solução técnica definitiva validada no HUB.
+            </p>
+          </td>
+        </tr>
+      </table>
+    `
+  }
+};
+
+const statusConfig = statusMap[status] || statusMap['rejected'];
 
 // Processamento recursivo dos itens com impacto === true
 const impactedItems = [];
@@ -658,7 +746,10 @@ if (impactedItems.length === 0) {
   impactedItems.forEach(item => {
     let badgeColor = '#ad0505';
     let badgeTextColor = '#ffffff';
-    if (item.impactLevel.toUpperCase() === 'BAIXO' || item.impactLevel.toUpperCase() === 'NÃO') {
+    const level = item.impactLevel.toUpperCase();
+    if (level === 'BAIXO' || level === 'NÃO') {
+      badgeColor = '#f59e0b';
+    } else if (level === 'RESTRIÇÃO' || level === 'RESTRIÇÕES') {
       badgeColor = '#f59e0b';
     }
     
@@ -736,13 +827,20 @@ return [{
     impactedHtmlTable: impactedHtmlTable,
     toEmail: 'marcus.vinicius@siplan.com.br',
     ccEmail: ccList.join(', '),
-    printUrl: `https://siplanhub.vercel.app/projects/${projectData.id}/adherence?print=true`
+    printUrl: `https://siplanhub.vercel.app/projects/${projectData.id}/adherence?print=true`,
+    statusBadgeStyle: statusConfig.badgeStyle,
+    statusIntroMessage: statusConfig.introMessage,
+    statusChecklistHeader: statusConfig.checklistHeader,
+    statusChecklistHtml: statusConfig.checklistHtml,
+    statusAlertBox: statusConfig.alertBox,
+    statusChecklistTableStyle: statusConfig.checklistTableStyle,
+    statusChecklistHeaderColor: statusConfig.checklistHeaderColor
   }
 }];
 ```
 
 #### Nó 6: Send Email (SMTP)
-*   **Name:** `Email - Aderência Aprovada`
+*   **Name:** `Email - Aderência Finalizada`
 *   **Authentication:** `SMTP Credentials` (Gmail)
 *   **From Email:** `seu-email@gmail.com`
 *   **To Email:** `{{ $json.toEmail }}`
@@ -781,8 +879,7 @@ return [{
               <table border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 25px;">
                 <tr>
                   <td>
-                    <span style="padding: 6px 14px; border-radius: 50px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block;
-                      {{ if $json.finalVerdict.includes('Totalmente') }} background-color: #d1fae5; color: #065f46; {{ else if $json.finalVerdict.includes('Restrições') }} background-color: #fef3c7; color: #92400e; {{ else }} background-color: #fee2e2; color: #991b1b; {{ end }}">
+                    <span style="padding: 6px 14px; border-radius: 50px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; {{ $json.statusBadgeStyle }}">
                       Veredito: {{ $json.finalVerdict }}
                     </span>
                   </td>
@@ -790,7 +887,8 @@ return [{
               </table>
 
               <h2 style="color: #0f172a; font-size: 20px; margin-top: 0; margin-bottom: 12px; font-weight: 700; letter-spacing: -0.3px;">Resultado da Análise de Aderência</h2>
-              <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">A análise de aderência para o cliente <strong>{{ $json.clientName }}</strong> foi finalizada por <strong>{{ $json.analystName }}</strong>.</p>
+              <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">{{ $json.statusIntroMessage }}</p>
+              <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">Esta avaliação foi registrada na plataforma pelo analista <strong>{{ $json.analystName }}</strong>.</p>
               
               <!-- Card Principal de Status -->
               <table width="100%" border="0" cellspacing="0" cellpadding="14" style="background-color: #f8fafc; border-radius: 8px; margin: 25px 0; border: 1px solid #e2e8f0; border-left: 4px solid #ad0505; font-size: 14px;">
@@ -819,38 +917,28 @@ return [{
               </div>
 
               <!-- Recomendados Checklist -->
-              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #fff5f5; border-radius: 8px; border: 1px dashed #feb2b2; margin-top: 25px; padding: 25px;">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="{{ $json.statusChecklistTableStyle }}">
                 <tr>
                   <td>
-                    <h3 style="color: #ad0505; font-size: 14px; margin: 0 0 12px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
-                      🎯 A BOLA ESTÁ COM VOCÊ — PRÓXIMOS PASSOS:
+                    <h3 style="color: {{ $json.statusChecklistHeaderColor }}; font-size: 14px; margin: 0 0 12px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
+                      {{ $json.statusChecklistHeader }}
                     </h3>
                     <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 14px; line-height: 1.8;">
-                      <li style="margin-bottom: 8px;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Acesse o painel de aderência no HUB e <strong style="color: #1e293b;">valide o plano de ação</strong> para mitigar os impactos e gaps apontados.</li>
-                      <li style="margin-bottom: 8px;"><strong style="color: #475569;">⚙️ AÇÃO EXTERNA:</strong> Alinhe com o setor de desenvolvimento e produto sobre os gaps de sistemas legados identificados.</li>
-                      <li style="margin-bottom: 0;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Com o veredito alinhado, atualize a fase do projeto no painel para iniciar a etapa de Conversão.</li>
+                      {{ $json.statusChecklistHtml }}
                     </ul>
                   </td>
                 </tr>
               </table>
 
-              <!-- Alerta de Incentivo de Uso do HUB -->
-              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 25px;">
-                <tr>
-                  <td style="background-color: #fff5f5; border: 1px solid #feb2b2; border-left: 4px solid #ad0505; border-radius: 8px; padding: 20px;">
-                    <p style="margin: 0; font-size: 13px; color: #742a2a; line-height: 1.5;">
-                      <strong>💡 IMPORTANTE — REGISTRE NO HUB:</strong> A homologação de pareceres técnicos e o avanço de etapas no Siplan HUB garantem que os indicadores de implantação fiquem em dia e evita desencontros de informação. Centralize as decisões do projeto na plataforma!
-                    </p>
-                  </td>
-                </tr>
-              </table>
+              <!-- Alerta Dinâmico / Incentivo de Uso do HUB -->
+              {{ $json.statusAlertBox }}
 
               <!-- Links de Acesso e Impressão de PDF -->
               <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 30px; text-align: center;">
                 <tr>
                   <td>
                     <a href="{{ $json.printUrl }}" style="background-color: #ad0505; color: #ffffff; padding: 14px 35px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(173, 5, 5, 0.2); margin-right: 15px; text-transform: uppercase; letter-spacing: 0.5px;">Visualizar / Imprimir PDF</a>
-                    <a href="https://siplanhub.vercel.app/projects/{{ $json.projectId }}" style="background-color: #0f172a; color: #ffffff; padding: 14px 35px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.2); text-transform: uppercase; letter-spacing: 0.5px;">Acessar no HUB</a>
+                    <a href="https://siplanhub.vercel.app/projects/{{ $json.projectId }}/adherence" style="background-color: #0f172a; color: #ffffff; padding: 14px 35px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.2); text-transform: uppercase; letter-spacing: 0.5px;">Acessar no HUB</a>
                   </td>
                 </tr>
               </table>
@@ -860,7 +948,6 @@ return [{
           <tr>
             <td style="background-color: #f8fafc; padding: 25px 40px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #f1f5f9;">
               Este é um e-mail automático gerado pelo Siplan HUB.<br>
-              
             </td>
           </tr>
         </table>
@@ -874,42 +961,73 @@ return [{
 ### 3. Plano de Teste para Automação 2
 1.  **Criar Projeto e Resposta de Aderência de Teste:**
     ```sql
- -- 1. Garante que o perfil do Bruno existe e está atualizado
-INSERT INTO public.profiles (id, email, full_name, role)
-VALUES ('d89cedf4-af7b-48e8-8c6d-2aa857af8420', 'bruno.fernandes@siplan.com.br', 'Bruno Fernandes', 'user')
-ON CONFLICT (id) DO UPDATE 
-SET full_name = 'Bruno Fernandes', email = 'bruno.fernandes@siplan.com.br';
+    -- 1. Garante que o perfil do Bruno existe e está atualizado
+    INSERT INTO public.profiles (id, email, full_name, role)
+    VALUES ('d89cedf4-af7b-48e8-8c6d-2aa857af8420', 'bruno.fernandes@siplan.com.br', 'Bruno Fernandes', 'user')
+    ON CONFLICT (id) DO UPDATE 
+    SET full_name = 'Bruno Fernandes', email = 'bruno.fernandes@siplan.com.br';
 
--- 2. Inserir projeto de teste (Sistema: Orion TN)
-INSERT INTO public.projects (id, client_name, ticket_number, system_type, project_leader, last_update_by)
-VALUES ('a9999999-9999-9999-9999-99999999999a', 'Cartório de Testes Aderência', '888882', 'Orion TN', 'Marcus', 'bruno')
-ON CONFLICT (id) DO NOTHING;
+    -- 2. Inserir projeto de teste (Sistema: Orion TN)
+    INSERT INTO public.projects (id, client_name, ticket_number, system_type, project_leader, last_update_by)
+    VALUES ('a9999999-9999-9999-9999-99999999999a', 'Cartório de Testes Aderência', '888882', 'Orion TN', 'Marcus', 'bruno')
+    ON CONFLICT (id) DO NOTHING;
 
--- 3. Inserir resposta do formulário (Buscando template_id dinamicamente)
-INSERT INTO public.project_form_responses (project_id, template_id, stage, status, data)
-VALUES (
-    'a9999999-9999-9999-9999-99999999999a', 
-    (SELECT id FROM public.form_templates LIMIT 1), -- Resolve a FK puxando qualquer template existente
-    'adherence', 
-    'draft',
-    '{"finalVerdict": "Não Aderente / Impeditivo", "finalNotes": "O cliente necessita da rotina X customizada que ainda não está integrado ao Orion TN.", "financeiro": {"utilizou": true, "impacto": true, "nivel_impacto": "IMPEDITIVO", "detalhes": "Sem suporte atual no Orion TN para a rotina X solicitada."}}'::jsonb
-);
+    -- 3. Inserir resposta do formulário como rascunho ('draft')
+    INSERT INTO public.project_form_responses (project_id, template_id, stage, status, data)
+    VALUES (
+        'a9999999-9999-9999-9999-99999999999a', 
+        (SELECT id FROM public.form_templates LIMIT 1), -- Resolve a FK puxando qualquer template existente
+        'adherence', 
+        'draft',
+        '{"finalVerdict": "Não Aderente / Impeditivo", "finalNotes": "O cliente necessita da rotina X customizada que ainda não está integrado ao Orion TN.", "financeiro": {"utilizou": true, "impacto": true, "nivel_impacto": "IMPEDITIVO", "detalhes": "Sem suporte atual no Orion TN para a rotina X solicitada."}}'::jsonb
+    );
     ```
-2.  **Preparar n8n:** Ative o modo "Listen" no webhook.
-3.  **Simular a Aprovação:**
-    ```sql
- UPDATE public.project_form_responses
-SET status = 'approved', approved_by = 'd89cedf4-af7b-48e8-8c6d-2aa857af8420', updated_at = now()
-WHERE project_id = 'a9999999-9999-9999-9999-99999999999a' AND stage = 'adherence';
-    ```
-4.  **Confirmar Validações:**
-    *   Verificar se o CC incluiu Maurilio Camargo (`maurilio.camargo@siplan.com.br`) tanto por ser o aprovador (`approved_by` resolvido dinamicamente) quanto por ser o responsável pelo sistema `"Orion PRO"`.
-    *   Verificar se o e-mail foi gerado com o veredito "Não Aderente / Impeditivo" destacando em vermelho.
+2.  **Preparar n8n:** Ative o modo "Listen" no webhook da automação 2 (`Webhook - Aderência Finalizada`).
+3.  **Simular a Finalização com Diferentes Status:**
+    Execute um dos updates abaixo para testar as mensagens específicas:
+    
+    *   **Caso A: Não Aderente / Impeditivo (`status = 'rejected'`):**
+        ```sql
+        UPDATE public.project_form_responses
+        SET status = 'rejected', approved_by = 'd89cedf4-af7b-48e8-8c6d-2aa857af8420', updated_at = now()
+        WHERE project_id = 'a9999999-9999-9999-9999-99999999999a' AND stage = 'adherence';
+        ```
+        *Resultado esperado:* O e-mail deve chegar com badge vermelha "Não Aderente / Impeditivo", o bloco de impedimentos em destaque, e as ações imediatas e alertas específicos de bloqueio.
+        
+    *   **Caso B: Aderente com Restrições (`status = 'approved_with_restrictions'`):**
+        *Primeiro resete para draft:*
+        ```sql
+        UPDATE public.project_form_responses SET status = 'draft' WHERE project_id = 'a9999999-9999-9999-9999-99999999999a';
+        ```
+        *Depois simule a finalização:*
+        ```sql
+        UPDATE public.project_form_responses
+        SET status = 'approved_with_restrictions', approved_by = 'd89cedf4-af7b-48e8-8c6d-2aa857af8420', updated_at = now()
+        WHERE project_id = 'a9999999-9999-9999-9999-99999999999a' AND stage = 'adherence';
+        ```
+        *Resultado esperado:* O e-mail deve exibir badge amarela "Aderente com Restrições", e listar as tarefas para o plano de ação de gaps.
+
+    *   **Caso C: Totalmente Aderente (`status = 'approved'`):**
+        *Primeiro resete para draft:*
+        ```sql
+        UPDATE public.project_form_responses SET status = 'draft' WHERE project_id = 'a9999999-9999-9999-9999-99999999999a';
+        ```
+        *Depois simule a finalização:*
+        ```sql
+        UPDATE public.project_form_responses
+        SET status = 'approved', approved_by = 'd89cedf4-af7b-48e8-8c6d-2aa857af8420', updated_at = now()
+        WHERE project_id = 'a9999999-9999-9999-9999-99999999999a' AND stage = 'adherence';
+        ```
+        *Resultado esperado:* O e-mail deve apresentar badge verde "Totalmente Aderente" e as orientações para o prosseguimento do projeto e liberação da conversão.
+
+4.  **Confirmar Validações de CC:**
+    *   Verificar se o CC incluiu a pessoa correta com base no sistema do projeto (`system_type`) e no analista executor.
 5.  **Limpar o Banco:**
     ```sql
     DELETE FROM public.project_form_responses WHERE project_id = 'a9999999-9999-9999-9999-99999999999a';
-DELETE FROM public.projects WHERE id = 'a9999999-9999-9999-9999-99999999999a';
+    DELETE FROM public.projects WHERE id = 'a9999999-9999-9999-9999-99999999999a';
     ```
+
 
 ---
 
