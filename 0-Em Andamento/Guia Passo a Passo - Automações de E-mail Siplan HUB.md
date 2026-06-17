@@ -1140,10 +1140,7 @@ Busca dados do cliente na tabela `projects` usando a conexão nativa configurada
                 <tr>
                   <td style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Prioridade da Fila:</td>
                   <td style="color: #1e293b; font-weight: bold;">
-                    {{ if $node["Webhook - Conversão Criada"].json.body.record.priority == 1 }} 🚨 Alta 
-                    {{ else if $node["Webhook - Conversão Criada"].json.body.record.priority == 2 }} ⚡ Média 
-                    {{ else }} 💤 Normal 
-                    {{ end }}
+                    {{ $node["Webhook - Conversão Criada"].json.body.record.priority == 1 ? '🚨 Alta' : ($node["Webhook - Conversão Criada"].json.body.record.priority == 2 ? '⚡ Média' : '💤 Normal') }}
                   </td>
                 </tr>
               </table>
