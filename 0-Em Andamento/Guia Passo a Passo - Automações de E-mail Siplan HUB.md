@@ -796,14 +796,14 @@ if (analystProfile && analystProfile.email) {
 
 // Resolver CC de acordo com o Tipo de Sistema
 const systemType = (projectData.system_type || '').toUpperCase().replace(/\s+/g, '');
-let systemSpecificCc = '';
+const systemSpecificCc = [];
 
 if (systemType === 'ORIONTN' || systemType === 'ORION_TN' || systemType === 'ORION TN') {
-  systemSpecificCc = 'luan.caldeira@siplan.com.br';
+  systemSpecificCc.push('luan.caldeira@siplan.com.br', 'vinicius.silva@siplan.com.br');
 } else if (systemType === 'ORIONPRO' || systemType === 'ORION_PRO' || systemType === 'ORION PRO') {
-  systemSpecificCc = 'maurilio.camargo@siplan.com.br';
+  systemSpecificCc.push('maurilio.camargo@siplan.com.br', 'daniel.azevedo@siplan.com.br');
 } else if (systemType === 'ORIONREG' || systemType === 'ORION_REG' || systemType === 'ORION REG') {
-  systemSpecificCc = 'amanda.flor@siplan.com.br';
+  systemSpecificCc.push('amanda.flor@siplan.com.br', 'leonardo.rigler@siplan.com.br');
 }
 
 // Junta a lista fixa de CC
@@ -811,9 +811,11 @@ const ccList = ['marcos.ortiz@siplan.com.br', 'bruno.fernandes@siplan.com.br'];
 if (lastUpdatedByEmail && !ccList.includes(lastUpdatedByEmail)) {
   ccList.push(lastUpdatedByEmail);
 }
-if (systemSpecificCc && !ccList.includes(systemSpecificCc)) {
-  ccList.push(systemSpecificCc);
-}
+systemSpecificCc.forEach(email => {
+  if (email && !ccList.includes(email)) {
+    ccList.push(email);
+  }
+});
 
 return [{
   json: {
