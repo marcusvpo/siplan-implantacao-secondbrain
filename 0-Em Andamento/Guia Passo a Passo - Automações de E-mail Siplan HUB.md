@@ -629,8 +629,8 @@ const statusMap = {
     checklistHeader: '🎯 PRÓXIMOS PASSOS (A BOLA ESTÁ COM VOCÊ):',
     checklistHtml: `
       <li style="margin-bottom: 8px;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Confirme o cronograma no painel e atualize a fase do projeto para iniciar a etapa de Conversão.</li>
-      <li style="margin-bottom: 8px;"><strong style="color: #475569;">⚙️ AÇÃO EXTERNA:</strong> Alinhe com o cartório a data final para a entrega do backup e congelamento da base legada.</li>
-      <li style="margin-bottom: 0;"><strong style="color: #475569;">👥 ALINHAMENTO:</strong> Comunique o time técnico sobre o parecer positivo para que preparem o ambiente de homologação.</li>
+      <li style="margin-bottom: 8px;"><strong style="color: #475569;">⚙️ AÇÃO EXTERNA:</strong> Alinhe com a equipe de Produtos sobre os itens pontuados ou pendentes durante a análise.</li>
+      <li style="margin-bottom: 0;"><strong style="color: #475569;">👥 ALINHAMENTO:</strong> Comunique o time técnico de Implantação sobre o parecer positivo para que preparem as próximas etapas da implantação.</li>
     `,
     checklistTableStyle: 'background-color: #f0fdf4; border: 1px dashed #bbf7d0; margin-top: 25px; padding: 25px; border-radius: 8px;',
     checklistHeaderColor: '#166534',
@@ -651,9 +651,9 @@ const statusMap = {
     introMessage: 'Atenção: A análise de aderência técnica foi concluída e classificada como <strong>Aderente com Restrições</strong>. Existem gaps ou particularidades que demandam atenção, mas que não impedem a migração desde que mitigados.',
     checklistHeader: '⚠️ PRÓXIMOS PASSOS (ATENÇÃO AOS GAPS):',
     checklistHtml: `
-      <li style="margin-bottom: 8px;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Registre o plano de ação ou contorno para cada uma das restrições apontadas na tabela de gaps.</li>
-      <li style="margin-bottom: 8px;"><strong style="color: #475569;">⚙️ AÇÃO EXTERNA:</strong> Comunique formalmente o cliente e o comercial sobre as limitações identificadas (ex: layouts de boletos específicos).</li>
-      <li style="margin-bottom: 0;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Após o aceite das restrições pelo gerente ou comercial no HUB, libere a fase de Conversão.</li>
+      <li style="margin-bottom: 8px;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Registre o plano de ação ou contorno para cada uma das restrições apontadas na lista de gaps.</li>
+      <li style="margin-bottom: 8px;"><strong style="color: #475569;">⚙️ AÇÃO EXTERNA:</strong> Comunique formalmente o time de Produtos e Comercial sobre as limitações identificadas.</li>
+      <li style="margin-bottom: 0;"><strong style="color: #ad0505;">👥 ALINHAMENTO:</strong> Após o aceite das restrições pelo cliente ou comercial no HUB, avise a equipe de Implantação para iniciar os processos das próximas etapas.</li>
     `,
     checklistTableStyle: 'background-color: #fffbeb; border: 1px dashed #fef08a; margin-top: 25px; padding: 25px; border-radius: 8px;',
     checklistHeaderColor: '#78350f',
@@ -675,7 +675,7 @@ const statusMap = {
     checklistHeader: '🚨 PRÓXIMOS PASSOS (AÇÃO IMEDIATA REQUERIDA):',
     checklistHtml: `
       <li style="margin-bottom: 8px;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Acesse a aba de aderência do projeto para analisar detalhadamente os impedimentos técnicos cadastrados e planejar a adequação.</li>
-      <li style="margin-bottom: 8px;"><strong style="color: #475569;">⚙️ AÇÃO EXTERNA:</strong> Abra uma demanda de desenvolvimento ou solicite avaliação da gerência para as customizações necessárias.</li>
+      <li style="margin-bottom: 8px;"><strong style="color: #475569;">⚙️ AÇÃO EXTERNA:</strong> Passe a demanda de desenvolvimento e solicite avaliação para a equipe de Produtos entender e analisar o esforço necessário.</li>
       <li style="margin-bottom: 0;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Mantenha o projeto pausado no HUB até que o plano de adequação seja validado e aprovado pelas partes.</li>
     `,
     checklistTableStyle: 'background-color: #fff5f5; border: 1px dashed #feb2b2; margin-top: 25px; padding: 25px; border-radius: 8px;',
