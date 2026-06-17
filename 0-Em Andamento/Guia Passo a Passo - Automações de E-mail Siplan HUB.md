@@ -595,12 +595,12 @@ Consulta a tabela `profiles` do Supabase para obter dinamicamente o e-mail e nom
 *   **Language:** `JavaScript`
 *   **Code:**
 ```javascript
-const responseRecord = $('Webhook - Aderência Finalizada').item.json.body.record;
-const projectData = $('Supabase - Get Project').item.json;
+const responseRecord = $('Webhook - Aderência Finalizada').first().json.body.record;
+const projectData = $('Supabase - Get Project').first().json;
 let analystProfile = null;
 
 try {
-  analystProfile = $('Supabase - Get Analyst Profile').item.json;
+  analystProfile = $('Supabase - Get Analyst Profile').first()?.json;
 } catch (e) {
   // Ignora se o nó de profile não retornou dados para evitar quebra do fluxo
 }
@@ -904,7 +904,7 @@ return [{
                 </tr>
                 <tr>
                   <td style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Sistema:</td>
-                  <td style="color: #1e293b;">{{ $json.systemType }}</td>
+                  <td style="color: #1e293b; font-weight: 600;">{{ $json.systemType }}</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; color: #64748b; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; vertical-align: top;">Parecer Geral:</td>
@@ -1269,8 +1269,8 @@ graph TD
 *   **Language:** `JavaScript`
 *   **Code:**
 ```javascript
-const record = $('Webhook - Checklist Respondido').item.json.body.record;
-const project = $('Supabase - Buscar Projeto').item.json;
+const record = $('Webhook - Checklist Respondido').first().json.body.record;
+const project = $('Supabase - Buscar Projeto').first().json;
 const resp = record.responses || {};
 
 // Helpers para exibição
