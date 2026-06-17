@@ -8,6 +8,8 @@ Este documento é o manual tático e operacional definitivo para a configuraçã
 
 Antes de iniciar a montagem de cada automação no n8n, é necessário garantir que as credenciais e conexões base estejam configuradas corretamente no ambiente.
 
+E-mail remetente oficial: "siplan.assistants@gmail.com"
+
 ### 1. Configuração da Credencial SMTP (Gmail) no n8n
 Para enviar e-mails a partir de uma conta do Gmail usando o nó **Send Email (SMTP)** do n8n, configure a credencial conforme os parâmetros abaixo:
 
@@ -15,7 +17,7 @@ Para enviar e-mails a partir de uma conta do Gmail usando o nó **Send Email (SM
 *   **Host:** `smtp.gmail.com`
 *   **Port:** `465` (com SSL/TLS ativo) ou `587` (com STARTTLS ativo)
 *   **SSL/TLS:** Ativado (caso use a porta 465)
-*   **User:** O seu e-mail do Gmail (ex: `seu-email@gmail.com` ou e-mail corporativo gerenciado pelo Google Workspace)
+*   **User:** O seu e-mail do Gmail (ex: `siplan.assistants@gmail.com` ou e-mail corporativo gerenciado pelo Google Workspace)
 *   **Password:** A sua **App Password** de 16 dígitos gerada no painel de segurança da conta Google.
 *   **From Address:** O e-mail de origem dos disparos (deve coincidir com o e-mail autenticado ou ser um alias autorizado).
 
@@ -171,7 +173,7 @@ Este nó garante que a automação só execute se for uma inserção (`INSERT`) 
 #### Nó 3: Send Email (SMTP) - Solicitação de Infraestrutura
 *   **Name:** `Email - Solicitação de Infra`
 *   **Authentication:** `SMTP Credentials` (Gmail)
-*   **From Email:** `seu-email@gmail.com`
+*   **From Email:** `siplan.assistants@gmail.com`
 *   **To Email:** `marcus.vinicius@siplan.com.br, alex.silva@siplan.com.br, hugo.santariosi@siplan.com.br`
 *   **Subject:** `🚀 [SIPLAN HUB] [Infraestrutura] Solicitação de Análise de Infra — {{ $json.body.record.client_name }} (#{{ $json.body.record.ticket_number }})`
 *   **Format:** `HTML`
@@ -281,7 +283,7 @@ Este nó garante que a automação só execute se for uma inserção (`INSERT`) 
 #### Nó 4: Send Email (SMTP) - Agendamento de Aderência
 *   **Name:** `Email - Agendamento de Aderência`
 *   **Authentication:** `SMTP Credentials` (Gmail)
-*   **From Email:** `seu-email@gmail.com`
+*   **From Email:** `siplan.assistants@gmail.com`
 *   **To Email:** `marcus.vinicius@siplan.com.br, maria.santos@siplan.com.br`
 *   **Subject:** `📅 [SIPLAN HUB] [Aderência] Agendar Análise — {{ $json.body.record.client_name }} (#{{ $json.body.record.ticket_number }}) — Sistema: {{ $json.body.record.system_type }}`
 *   **Format:** `HTML`
@@ -399,7 +401,7 @@ Este nó garante que a automação só execute se for uma inserção (`INSERT`) 
 Como o líder do projeto sempre será Marcus Vinicius ou Bruno Fernandes, a lista fixa do Kickoff já cobre todos de forma ideal.
 *   **Name:** `Email - Kickoff do Projeto`
 *   **Authentication:** `SMTP Credentials` (Gmail)
-*   **From Email:** `seu-email@gmail.com`
+*   **From Email:** `siplan.assistants@gmail.com`
 *   **To Email:** `marcus.vinicius@siplan.com.br, marcos.ortiz@siplan.com.br, bruno.fernandes@siplan.com.br`
 *   **Subject:** `🎉 [SIPLAN HUB] [Kickoff] Novo Projeto Cadastrado — {{ $json.body.record.client_name }} (#{{ $json.body.record.ticket_number }})`
 *   **Format:** `HTML`
@@ -844,7 +846,7 @@ return [{
 #### Nó 6: Send Email (SMTP)
 *   **Name:** `Email - Aderência Finalizada`
 *   **Authentication:** `SMTP Credentials` (Gmail)
-*   **From Email:** `seu-email@gmail.com`
+*   **From Email:** `siplan.assistants@gmail.com`
 *   **To Email:** `{{ $json.toEmail }}`
 *   **Cc Email:** `{{ $json.ccEmail }}`
 *   **Subject:** `⚠️ [SIPLAN HUB] [Aderência] Finalizada — {{ $json.clientName }} (#{{ $json.ticketNumber }}) — Veredito: {{ $json.finalVerdict }}`
@@ -1072,7 +1074,7 @@ Busca dados do cliente na tabela `projects` usando a conexão nativa configurada
 #### Nó 4: Send Email (SMTP)
 *   **Name:** `Email - Conversão Pendente`
 *   **Authentication:** `SMTP Credentials` (Gmail)
-*   **From Email:** `seu-email@gmail.com`
+*   **From Email:** `siplan.assistants@gmail.com`
 *   **To Email:** `marcus.vinicius@siplan.com.br, ademar.souza@siplan.com.br, luciane.lima@siplan.com.br, eduardo.silva@siplan.com.br, marcos.ortiz@siplan.com.br`
 *   **Subject:** `📥 [Fila de Conversão] Nova Conversão Pendente — {{ $node["Supabase - Buscar Projeto"].json.client_name }} (#{{ $node["Supabase - Buscar Projeto"].json.ticket_number }})`
 *   **Format:** `HTML`
@@ -1408,7 +1410,7 @@ return [{
 #### Nó 5: Send Email (SMTP)
 *   **Name:** `Email - Checklist Recebido`
 *   **Authentication:** `SMTP Credentials` (Gmail)
-*   **From Email:** `seu-email@gmail.com`
+*   **From Email:** `siplan.assistants@gmail.com`
 *   **To Email:** `marcus.vinicius@siplan.com.br, marcos.ortiz@siplan.com.br, bruno.fernandes@siplan.com.br`
 *   **Subject:** `📋 [SIPLAN HUB] [Checklist] Respostas Enviadas — {{ $json.clientName }} (#{{ $json.ticketNumber }})`
 *   **Format:** `HTML`
@@ -1681,7 +1683,7 @@ Busca o e-mail do analista na tabela `profiles`.
 #### Nó 5: Send Email (SMTP)
 *   **Name:** `Email - Analista Atribuído`
 *   **Authentication:** `SMTP Credentials` (Gmail)
-*   **From Email:** `seu-email@gmail.com`
+*   **From Email:** `siplan.assistants@gmail.com`
 *   **To Email:** `marcus.vinicius@siplan.com.br, bruno.fernandes@siplan.com.br, marcos.ortiz@siplan.com.br`
 *   **Cc Email:** `{{ $node["Supabase - Buscar Perfil"].json.email }}` (Cópia direta para o analista responsável)
 *   **Subject:** `⚡ [SIPLAN HUB] [Fila de Conversão] Conversão Iniciada — {{ $node["Supabase - Buscar Projeto"].json.client_name }} (#{{ $node["Supabase - Buscar Projeto"].json.ticket_number }})`
