@@ -1427,7 +1427,7 @@ return [{
                 <tr>
                   <td>
                     <span style="background-color: #d1fae5; color: #065f46; padding: 6px 14px; border-radius: 50px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block;">
-                      🟢 CHECKLIST ENVIADO
+                      🟢 CHECKLIST RESPONDIDO
                     </span>
                   </td>
                 </tr>
@@ -1512,7 +1512,7 @@ return [{
                     <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 14px; line-height: 1.8;">
                       <li style="margin-bottom: 8px;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Acesse o HUB e <strong style="color: #1e293b;">homologue o checklist comercial</strong> do cliente para integrá-lo formalmente à ficha do projeto.</li>
                       <li style="margin-bottom: 8px;"><strong style="color: #475569;">⚙️ AÇÃO OPERACIONAL:</strong> Analise o mapeamento estrutural e o número total de colaboradores para planejar o cronograma de treinamento.</li>
-                      <li style="margin-bottom: 0;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Registre quaisquer riscos de resistência ou observações humanas mapeadas diretamente na aba "Comportamental" do projeto.</li>
+                      <li style="margin-bottom: 0;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Registre quaisquer riscos de resistência ou observações humanas mapeadas diretamente no campo "Observações" do projeto.</li>
                     </ul>
                   </td>
                 </tr>
@@ -1558,14 +1558,14 @@ return [{
 1.  **Inserir Checklist de Teste com Campos Adicionais (Extras):**
     ```sql
     INSERT INTO public.projects (id, client_name, ticket_number, system_type, project_leader, last_update_by)
-    VALUES ('c9999999-9999-9999-9999-99999999999c', 'Cartório Checklist Teste', '666664', 'Orion TN', 'Marcus', 'marcus')
+    VALUES ('c9999999-9999-9999-9999-99999999999c', 'CATANDUVA - TABELIONATO DE NOTAS E PROTESTO DE TITULOS 02', '666664', 'Orion TN', 'Marcus', 'marcus')
     ON CONFLICT (id) DO NOTHING;
 
     INSERT INTO public.commercial_checklists (project_id, status, responses)
     VALUES (
         'c9999999-9999-9999-9999-99999999999c',
         'pending',
-        '{"fullname": "Geraldo Alckmin", "role": "Tabelião Substituto", "email": "geraldo.alckmin@cartorio.com.br", "phones": "(11) 98888-7777", "floors": "2 andares", "total_employees": "15 colaboradores", "sectors": ["Notas", "TI"], "sectors_distribution": "Distribuição normal.", "aware_of_change": true, "team_adaptability": "Boa adaptabilidade.", "sistema_anterior": "Control-M", "velocidade_internet": "500 Mbps Fibra", "necessita_treinamento_noturno": false}'::jsonb
+        '{"fullname": "João da Silva", "role": "Oficial Substituto", "email": "joao.silva@cartoriocatanduva.com.br", "phones": "(17) 99999-1234", "floors": "2", "local_observacoes_adicionais": "Possui rede interna estruturada, divisórias de vidro e elevador para acessibilidade.", "sectors": ["Notas", "Protesto", "Financeiro", "TI"], "sectors_distribution": "Térreo (Notas e Protesto), 1.º andar (Financeiro, TI e Diretoria)", "setores_observacoes_adicionais": "Os guichês de atendimento de Notas e Protesto ficam integrados no térreo.", "key_people": [{"name": "Pedro Souza", "role": "Responsável de TI", "contact": "(17) 98888-4321 / ti@cartoriocatanduva.com.br"}], "quantidade_colaboradores_por_setor": "Notas (6), Protesto (4), Financeiro (2), TI (1)", "total_employees": "13", "aware_of_change": true, "team_adaptability": "Receptivos, mas com alguma ansiedade sobre a migração dos dados legados.", "equipe_observacoes_adicionais": "Toda a equipe foi informada em reunião geral sobre a mudança para o Orion TN."}'::jsonb
     );
     ```
 2.  **Mudar o status para submetido:**
@@ -1574,7 +1574,7 @@ return [{
     SET status = 'submitted', submitted_at = now()
     WHERE project_id = 'c9999999-9999-9999-9999-99999999999c';
     ```
-3.  **Validar:** O n8n deve gerar a tabela de "Outras Respostas Coletadas" com as chaves `Sistema Anterior` ("Control-M"), `Velocidade Internet` ("500 Mbps Fibra") e `Necessita Treinamento Noturno` ("🔴 Não").
+3.  **Validar:** O n8n deve gerar a tabela de "Outras Respostas Coletadas" contendo as chaves dinâmicas formatadas, tais como: `Local Observacoes Adicionais`, `Setores Observacoes Adicionais`, `Quantidade Colaboradores Por Setor` e `Equipe Observacoes Adicionais` com suas respectivas respostas.
 4.  **Limpar dados:**
     ```sql
     DELETE FROM public.commercial_checklists WHERE project_id = 'c9999999-9999-9999-9999-99999999999c';
