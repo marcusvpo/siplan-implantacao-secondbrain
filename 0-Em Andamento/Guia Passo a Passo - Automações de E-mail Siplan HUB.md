@@ -1280,6 +1280,7 @@ const fullname = cleanText(resp.fullname);
 const role = cleanText(resp.role);
 const email = cleanText(resp.email);
 const phones = cleanText(resp.phones);
+const fillDate = cleanText(resp.fill_date);
 const floors = cleanText(resp.floors);
 const totalEmployees = cleanText(resp.total_employees);
 const awareOfChange = yesNo(resp.aware_of_change);
@@ -1290,6 +1291,12 @@ if (resp.sectors && Array.isArray(resp.sectors)) {
   sectorsText = resp.sectors.join(', ');
 }
 const sectorsDistribution = cleanText(resp.sectors_distribution);
+
+// Novas chaves mapeadas para a estrutura de perguntas reais
+const structureObs = cleanText(resp.structure_obs || resp.local_observacoes_adicionais);
+const sectorsObs = cleanText(resp.sectors_obs || resp.setores_observacoes_adicionais);
+const employeesBySector = cleanText(resp.employees_by_sector || resp.quantidade_colaboradores_por_setor);
+const employeesObs = cleanText(resp.employees_obs || resp.equipe_observacoes_adicionais);
 
 // 2. Colaboradores Chave (Tabela Dinâmica)
 let keyPeopleHtml = '<p style="color: #64748b; font-style: italic;">Nenhum líder chave foi cadastrado.</p>';
@@ -1318,7 +1325,13 @@ if (resp.key_people && Array.isArray(resp.key_people) && resp.key_people.length 
 }
 
 // 3. Processamento de Perguntas Adicionais (Dinâmicas)
-const standardKeys = ['fullname', 'role', 'email', 'phones', 'floors', 'total_employees', 'sectors', 'sectors_distribution', 'key_people', 'aware_of_change', 'team_adaptability'];
+const standardKeys = [
+  'fullname', 'role', 'email', 'phones', 'fill_date',
+  'floors', 'structure_obs', 'local_observacoes_adicionais',
+  'sectors', 'sectors_distribution', 'sectors_obs', 'setores_observacoes_adicionais',
+  'key_people', 'employees_by_sector', 'quantidade_colaboradores_por_setor',
+  'total_employees', 'aware_of_change', 'team_adaptability', 'employees_obs', 'equipe_observacoes_adicionais'
+];
 const extraItems = [];
 
 for (const key in resp) {
@@ -1375,13 +1388,18 @@ return [{
     role,
     email,
     phones,
+    fillDate,
     floors,
+    structureObs,
+    sectorsText,
+    sectorsDistribution,
+    sectorsObs,
+    keyPeopleHtml,
+    employeesBySector,
     totalEmployees,
     awareOfChange,
     teamAdaptability,
-    sectorsText,
-    sectorsDistribution,
-    keyPeopleHtml,
+    employeesObs,
     extraHtmlTable
   }
 }];
@@ -1436,68 +1454,98 @@ return [{
               <h2 style="color: #0f172a; font-size: 20px; margin-top: 0; margin-bottom: 12px; font-weight: 700; letter-spacing: -0.3px;">Checklist Estrutural Respondido</h2>
               <p style="font-size: 15px; color: #475569; margin-bottom: 20px;">O cliente de implantação finalizou o envio do checklist de infraestrutura. Seguem os dados consolidados para análise técnica:</p>
               
-              <!-- Bloco 1: Responsável pelo Preenchimento -->
-              <h3 style="color: #ad0505; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 25px; margin-bottom: 10px; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">1. Contato do Remetente</h3>
+              <!-- Bloco 1: Identificação (Siplan) -->
+              <h3 style="color: #ad0505; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 25px; margin-bottom: 10px; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">1. Identificação</h3>
               <table width="100%" border="0" cellspacing="0" cellpadding="6" style="font-size: 13px;">
                 <tr>
-                  <td width="35%" style="font-weight: bold; color: #64748b;">Nome Completo:</td>
+                  <td width="35%" style="font-weight: bold; color: #64748b;">Sistema a Implantar:</td>
+                  <td style="color: #ad0505; font-weight: bold;">{{ $json.systemType }}</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; color: #64748b;">Nome do Cartório:</td>
+                  <td style="color: #1e293b; font-weight: bold;">{{ $json.clientName }}</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; color: #64748b;">Nome Completo:</td>
                   <td style="color: #1e293b; font-weight: bold;">{{ $json.fullname }}</td>
                 </tr>
                 <tr>
-                  <td style="font-weight: bold; color: #64748b;">Cargo:</td>
+                  <td style="font-weight: bold; color: #64748b;">Cargo / Função:</td>
                   <td style="color: #334155;">{{ $json.role }}</td>
                 </tr>
                 <tr>
-                  <td style="font-weight: bold; color: #64748b;">E-mail:</td>
+                  <td style="font-weight: bold; color: #64748b;">E-mail de Contato:</td>
                   <td style="color: #334155;">{{ $json.email }}</td>
                 </tr>
                 <tr>
-                  <td style="font-weight: bold; color: #64748b;">Telefone(s):</td>
+                  <td style="font-weight: bold; color: #64748b;">Telefone / WhatsApp:</td>
                   <td style="color: #334155;">{{ $json.phones }}</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; color: #64748b;">Data do Preenchimento:</td>
+                  <td style="color: #334155;">{{ $json.fillDate }}</td>
                 </tr>
               </table>
 
-              <!-- Bloco 2: Estrutura Física do Cartório -->
-              <h3 style="color: #ad0505; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 25px; margin-bottom: 10px; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">2. Aspectos Estruturais e de Rede</h3>
+              <!-- Bloco 2: Estrutura Física e Organizacional -->
+              <h3 style="color: #ad0505; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 25px; margin-bottom: 10px; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">2. Estrutura Física e Organizacional</h3>
               <table width="100%" border="0" cellspacing="0" cellpadding="6" style="font-size: 13px;">
                 <tr>
-                  <td width="35%" style="font-weight: bold; color: #64748b;">Andares do Imóvel:</td>
+                  <td width="35%" style="font-weight: bold; color: #64748b;">Quantos andares possui a serventia?:</td>
                   <td style="color: #334155;">{{ $json.floors }}</td>
                 </tr>
                 <tr>
-                  <td style="font-weight: bold; color: #64748b;">Total de Colaboradores:</td>
-                  <td style="color: #1e293b; font-weight: bold;">{{ $json.totalEmployees }}</td>
+                  <td style="font-weight: bold; color: #64748b; vertical-align: top;">Observações adicionais sobre o local:</td>
+                  <td style="color: #334155; font-style: italic;">"{{ $json.structureObs }}"</td>
                 </tr>
                 <tr>
-                  <td style="font-weight: bold; color: #64748b;">Setores Existentes:</td>
+                  <td style="font-weight: bold; color: #64748b;">Quais setores existem no estabelecimento?:</td>
                   <td style="color: #334155;">{{ $json.sectorsText }}</td>
                 </tr>
                 <tr>
-                  <td style="font-weight: bold; color: #64748b; vertical-align: top;">Distribuição Física:</td>
+                  <td style="font-weight: bold; color: #64748b; vertical-align: top;">Como os setores estão distribuídos nos andares?:</td>
                   <td style="color: #334155;">{{ $json.sectorsDistribution }}</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; color: #64748b; vertical-align: top;">Observações adicionais sobre setores:</td>
+                  <td style="color: #334155; font-style: italic;">"{{ $json.sectorsObs }}"</td>
                 </tr>
               </table>
 
-              <!-- Bloco 3: Gestão de Mudança -->
-              <h3 style="color: #ad0505; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 25px; margin-bottom: 10px; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">3. Gestão de Mudança e Resistência</h3>
+              <!-- Bloco 3: Estrutura de Colaboradores -->
+              <h3 style="color: #ad0505; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 25px; margin-bottom: 10px; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">3. Estrutura de Colaboradores</h3>
               <table width="100%" border="0" cellspacing="0" cellpadding="6" style="font-size: 13px;">
                 <tr>
-                  <td width="35%" style="font-weight: bold; color: #64748b;">Equipe Ciente da Troca?</td>
+                  <td width="35%" style="font-weight: bold; color: #64748b; vertical-align: top;">Pessoa(s) Chave(s) para comunicação:</td>
+                  <td style="color: #334155; padding: 0;">
+                    <div style="margin-top: 5px; margin-bottom: 10px;">
+                      {{ $json.keyPeopleHtml }}
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; color: #64748b; vertical-align: top;">Quantidade de colaboradores por setor:</td>
+                  <td style="color: #334155;">{{ $json.employeesBySector }}</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; color: #64748b;">Quantidade total de colaboradores:</td>
+                  <td style="color: #1e293b; font-weight: bold;">{{ $json.totalEmployees }}</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; color: #64748b;">Todos os colaboradores estão cientes da mudança?:</td>
                   <td style="color: #1e293b; font-weight: bold;">{{ $json.awareOfChange }}</td>
                 </tr>
                 <tr>
-                  <td style="font-weight: bold; color: #64748b; vertical-align: top;">Grau de Adaptabilidade:</td>
+                  <td style="font-weight: bold; color: #64748b; vertical-align: top;">Como a equipe lida com mudanças/sistemas novos?:</td>
                   <td style="color: #334155; font-style: italic;">"{{ $json.teamAdaptability }}"</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; color: #64748b; vertical-align: top;">Observações adicionais sobre equipe/comunicação:</td>
+                  <td style="color: #334155; font-style: italic;">"{{ $json.employeesObs }}"</td>
                 </tr>
               </table>
 
-              <!-- Bloco 4: Pessoas Chave (Tabela Dinâmica) -->
-              <h3 style="color: #ad0505; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 25px; margin-bottom: 10px; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">4. Líderes e Colaboradores Chave</h3>
-              <div style="margin-top: 5px;">
-                {{ $json.keyPeopleHtml }}
-              </div>
-
-              <!-- Bloco 5: Perguntas Dinâmicas/Extras -->
+              <!-- Bloco 4: Outras Respostas Coletadas -->
               <div style="margin-top: 5px;">
                 {{ $json.extraHtmlTable }}
               </div>
