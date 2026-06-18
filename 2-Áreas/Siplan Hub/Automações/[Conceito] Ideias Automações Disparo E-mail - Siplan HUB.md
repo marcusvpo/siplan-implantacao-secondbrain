@@ -1,4 +1,12 @@
-
+---
+tipo: Conceito
+area: Siplan Hub
+tags:
+  - #projeto
+  - #automacao
+  - #email
+  - #requisito
+status_atual: #concluido
 ---
 
 ## 🔍 Detalhamento das 4 Automações Propostas

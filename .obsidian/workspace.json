@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Anotações Diárias/Semanas/15-06--19-06.md",
+                "file": "2-Áreas/Siplan Hub/Automações/[Manual] Guia Passo a Passo - Automações de E-mail Siplan HUB.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "15-06--19-06"
+              "title": "[Manual] Guia Passo a Passo - Automações de E-mail Siplan HUB"
             }
           }
         ]
@@ -213,9 +213,17 @@
   },
   "active": "6c1f41fedfba5127",
   "lastOpenFiles": [
-    "0-Em Andamento/Guia Passo a Passo - Automações de E-mail Siplan HUB.md",
-    "Anotações Diárias/Semanas/15-06--19-06.md",
     "0-Em Andamento/Templates de Email - Siplan Skills.md",
+    "0-Em Andamento/Questionário Investigação.md",
+    "3-Recursos/Procedimentos e Manuais/[Regra] Carga Horária Mínima e Venda Comercial.md",
+    "0-Em Andamento/Questionario_Aprofundamento_Implantacao.md",
+    "0-Em Andamento/Questionario_ASIS_TOBE_Siplan_Hub.md",
+    "2-Áreas/Siplan Hub/Automações/[Conceito] Ideias Automações Disparo E-mail - Siplan HUB.md",
+    "2-Áreas/Siplan Hub/Automações/[Hub] Integrações e Automações n8n.md",
+    "2-Áreas/Siplan Hub/Automações/[Manual] Guia Passo a Passo - Automações de E-mail Siplan HUB.md",
+    "2-Áreas/Siplan Hub/Automações",
+    "Anotações Diárias/Semanas/15-06--19-06.md",
+    "0-Em Andamento/Guia Passo a Passo - Automações de E-mail Siplan HUB.md",
     "0-Em Andamento/Ideias Automações Disparo E-mail - Siplan HUB.md",
     "3-Recursos/Produtos Siplan/analise_responses_api_openai.md",
     "3-Recursos/Procedimentos e Manuais/[Recurso] Obsidian RAG Index.md",
@@ -230,7 +238,6 @@
     "3-Recursos/Produtos Siplan/Legado/Control-M REG - CM REG.pdf",
     "3-Recursos/Produtos Siplan/Legado/Control-M PROT - CM PROT.pdf",
     "3-Recursos/Produtos Siplan/Legado/Control-M TDJP - CM TDPJ.pdf",
-    "3-Recursos/Produtos Siplan/Legado/Control-M Distribuidor.pdf",
     "3-Recursos/Produtos Siplan/[Regra] Abreviações de Serventias e Mapeamento de Produtos.md",
     "Anotações Diárias/Semanas/08-06--12-06.md",
     "Anotações Diárias/0-Templates/Template - Semana.md",
@@ -242,13 +249,6 @@
     "3-Recursos/Procedimentos e Manuais/Estrutura da Equipe e Especialidades.md",
     "2-Áreas/Implantação Funcional/[Processo] 11. Transição para o Pós-Implantação.md",
     "0-Em Andamento/Sem título.md",
-    "3-Recursos/Produtos Siplan/Orion TN/Assistente/Prompt Instruções Assistant - Orion TN.md",
-    "3-Recursos/Produtos Siplan/Orion TN/Assistente/OrionTN.md",
-    "3-Recursos/Produtos Siplan/Orion PRO/MOC - Orion PRO.md",
-    "3-Recursos/Produtos Siplan/Orion TN/Conhecimento/Orion TN - Balcão de Firmas.md",
-    "3-Recursos/Produtos Siplan/Orion TN/Conhecimento/relatorio_orion_tn_siplan.md",
-    "3-Recursos/Produtos Siplan/Orion TN/Conhecimento/Orion TN - Selos e Integrações.md",
-    "3-Recursos/Produtos Siplan/Orion TN/Conhecimento/Orion TN - Escrituração de Atos.md",
     "Sem título.canvas"
   ]
 }

@@ -22,7 +22,11 @@ O Siplan Hub é a plataforma central de gestão operacional interna da Siplan, s
 - [[[Hub] Conversão de Projetos]]
 - [[[Hub] Gestão do OrionTN (Modelos Editor)]]
 - [[[Hub] Relacionamento Comercial (CRM Interno)]]
-- [[[Hub] Integrações e Automações n8n]]
+
+## 🤖 Central de Automações (n8n & Webhooks)
+- [[Automações/[Hub] Integrações e Automações n8n|[Hub] Integrações e Automações n8n]] *(Visão Macro do Orquestrador)*
+- [[Automações/[Manual] Guia Passo a Passo - Automações de E-mail Siplan HUB|[Manual] Guia Passo a Passo - Automações de E-mail Siplan HUB]] *(Manual Técnico de Configuração)*
+- [[Automações/[Conceito] Ideias Automações Disparo E-mail - Siplan HUB|[Conceito] Ideias Automações Disparo E-mail - Siplan HUB]] *(Regras e Escopo de Negócio)*
 
 ## Rotinas e Dinâmicas
 - **Fluxo do Analista:** Inicia no Dashboard, filtra "Minha Fila" em Conversão, opera Motores e Homologação.

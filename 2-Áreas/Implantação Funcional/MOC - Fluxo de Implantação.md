@@ -35,6 +35,7 @@ Este é o mapa de conteúdo que orquestra o processo de implantação de softwar
 - [[[Regra] Gates Condicionais de Início de Projeto]]
 - [[[Regra] Devolução Comercial via SAC 0800]]
 - [[[Regra] Diferença entre Instalação Remota e Implantação Funcional]]
+- [[[Regra] Carga Horária Mínima e Venda Comercial]]
 
 ## Sistemas e Produtos Siplan
 - [[MOC - Produtos Siplan]]

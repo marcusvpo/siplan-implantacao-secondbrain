@@ -1,3 +1,14 @@
+---
+tipo: Manual
+area: Siplan Hub
+tags:
+  - #manual
+  - #automacao
+  - #n8n
+  - #configuracao
+  - #outlook
+status_atual: #ativo
+---
 # 🚀 Guia Passo a Passo: Implantação de Automações de Disparo de E-mail — Siplan HUB
 
 Este documento é o manual tático e operacional definitivo para a configuração e implantação das automações de disparo de e-mail do **Siplan HUB**, utilizando a plataforma de integração **n8n (versão 2.22.6 / 0.222.6)**, banco de dados **Supabase** (Database Webhooks e nós nativos do Supabase no n8n) e envio de e-mails via **Gmail SMTP** com App Password configurada.

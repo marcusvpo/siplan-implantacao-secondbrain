@@ -38,5 +38,11 @@ A execução se apoia no levantamento da serventia e rotinas essenciais da opera
 
 **Próxima etapa:** [[[Processo] 4. Tratamento de Impedimentos da Análise de Aderência]]
 
-- **Padronização e Formato:** Os checklists de aderência serão centralizados num template mestre no HUB (baseado no do Vieira). Análises em clientes que usam sistemas de concorrentes serão preferencialmente **presenciais**.
+- **Diferenciação de Execução por Sistema Legado:**
+  - **Sistemas de Terceiros (Externos):** A análise de aderência é feita preferencialmente de forma **presencial** (durante 2 a 3 dias de viagem do analista) para mapeamento exaustivo de processos.
+  - **Sistemas Legados Siplan/Control-M:** A análise é conduzida de forma **remota** e ágil, por conta do conhecimento prévio da tecnologia e lógicas internas pela equipe de implantação.
+- **Modelos do Editor Orion TN:**
+  - Caso o cliente contrate o módulo Editor de Modelos (Orion TN), o Comercial deve instruí-lo no fechamento a enviar imediatamente as minutas para a equipe de Modelos (**Hugo Januário** e **Bruno Fernandes**).
+  - Para evitar atrasos na implantação, a equipe adaptará inicialmente os **top 5 modelos mais utilizados** pelo cartório para que o treinamento e go-live iniciem com estas peças homologadas. O restante dos modelos (caso haja grande volume, ex: mais de 40) será adaptado gradualmente após o go-live.
+- **Padronização e Formato:** Os checklists de aderência serão centralizados num template mestre no HUB (baseado no do Vieira).
 - **Questionário Prévio:** O Comercial enviará um questionário self-service simplificado logo após o fechamento para coletar dados da infraestrutura e perfis, preparando a ida presencial.

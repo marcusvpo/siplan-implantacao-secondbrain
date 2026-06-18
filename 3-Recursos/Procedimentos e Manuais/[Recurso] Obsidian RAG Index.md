@@ -55,6 +55,7 @@ Notas que detalham políticas internas, cronogramas rígidos, obrigatoriedades e
 
 | Nome do Arquivo / Link | Caminho do Arquivo | Área de Aplicação | Resumo Operacional |
 | :--- | :--- | :--- | :--- |
+| `[Regra] Carga Horária Mínima e Venda Comercial` | `3-Recursos/Procedimentos e Manuais/[Regra] Carga Horária Mínima e Venda Comercial.md` | Comercial / Implantação | Estipula a carga mínima de horas para implantação de cada sistema e veta o subdimensionamento de horas nas vendas. |
 | `[Regra] Cronograma e Virada por Sistema` | `3-Recursos/Procedimentos e Manuais/[Regra] Cronograma...` | Implantação / Infra | Estabelece os tempos mínimos de implantação e a janela restrita de final de semana para go-live de cada sistema. |
 | `[Regra] Devolução Comercial via SAC 0800` | `3-Recursos/Procedimentos e Manuais/[Regra] Devolução Comercial...` | Comercial / Suporte | Procedimento para tratamento de insatisfações e cancelamento de contratos com canal direto de ouvidoria. |
 | `[Regra] Diferença entre Instalação Remota e Implantação Funcional` | `3-Recursos/Procedimentos e Manuais/[Regra] Diferença entre...` | Implantação / TI | Segrega as responsabilidades técnicas (TI) das responsabilidades pedagógicas/treinamento (Implantação). |
@@ -99,7 +100,9 @@ Documentos de design e mapeamento técnico sobre a plataforma interna de gestão
 | `[Hub] Estrutura de Telas e Diagnóstico de Uso` | `2-Áreas/Siplan Hub/[Hub] Estrutura de Telas...` | Frontend | Mapeamento de interface de usuário do Hub para melhoria da navegação. |
 | `[Hub] Gestão de Implantação` | `2-Áreas/Siplan Hub/[Hub] Gestão de Implantação.md` | Implantação | Acompanhamento em tempo real da agenda e status das 11 fases de viagem do analista. |
 | `[Hub] Gestão do OrionTN (Modelos Editor)` | `2-Áreas/Siplan Hub/[Hub] Gestão do OrionTN...` | Editor | Mapeamento de minutas JSON de escrituras e procurações editáveis no Hub para o Orion TN. |
-| `[Hub] Integrações e Automações n8n` | `2-Áreas/Siplan Hub/[Hub] Integrações e Automações...` | Backend / n8n | Detalha as conexões automatizadas via webhooks do Hub disparando emails Outlook (Deep Links). |
+| `[Hub] Integrações e Automações n8n` | `2-Áreas/Siplan Hub/Automações/[Hub] Integrações e Automações n8n.md` | Backend / n8n | Detalha as conexões automatizadas via webhooks do Hub disparando emails Outlook (Deep Links). |
+| `[Manual] Guia Passo a Passo - Automações de E-mail Siplan HUB` | `2-Áreas/Siplan Hub/Automações/[Manual] Guia Passo a Passo - Automações de E-mail Siplan HUB.md` | Backend / n8n | Guia passo a passo definitivo para a configuração e implantação das automações de disparo de e-mail no n8n. |
+| `[Conceito] Ideias Automações Disparo E-mail - Siplan HUB` | `2-Áreas/Siplan Hub/Automações/[Conceito] Ideias Automações Disparo E-mail - Siplan HUB.md` | Backend / n8n | Detalhamento de requisitos, escopo de campos e mapeamento de destinatários das automações propostas. |
 | `[Hub] Relacionamento Comercial (CRM Interno)` | `2-Áreas/Siplan Hub/[Hub] Relacionamento Comercial...` | CRM | Registro de leads, fechamento de contratos e passagem do comercial para a implantação. |
 | `[Hub] Mapeamento Prático e Funcional do Sistema` | `2-Áreas/Siplan Hub/[Hub] Mapeamento Prático...` | Geral | Detalhamento dos bancos de dados, conexões de redes e microsserviços integrados ao Hub. |
 
