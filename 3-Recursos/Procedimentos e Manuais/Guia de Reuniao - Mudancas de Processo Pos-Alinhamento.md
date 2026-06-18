@@ -62,11 +62,11 @@ Abaixo estão as 8 principais mudanças estruturadas com a comparação detalhad
 
 ### D. Levantamento de Infraestrutura e Dependência da TI do Cliente
 
-| Dimensão | Cenário Anterior (AS-IS) | Novo Modelo Definido (TO-BE) |
-| :--- | :--- | :--- |
-| **Qualidade da Informação** | Aceitavam-se respostas vagas da TI terceirizada do cartório (ex: "está tudo OK" ou "máquinas novas") sem dados específicos de hardware. | Exigência técnica de especificações completas (processador, memória, armazenamento livre, modelo de impressoras) preenchidas formalmente na planilha. |
-| **Gargalo de Hardware** | Clientes prometiam realizar melhorias no servidor e estações, mas não as faziam até a virada, gerando lentidão no Orion e culpa errônea ao sistema. | **Gate de Verificação de Infraestrutura:** Check-up obrigatório conduzido remotamente na semana anterior à viagem. Se as adequações do servidor não foram de fato realizadas, a viagem é bloqueada. |
-| **Bloqueio de Acesso** | Algumas TIs locais barravam o acesso do implantador via TeamViewer e forneciam dados incompletos por formulários manuais. | Se o parceiro de TI local recusar acesso remoto ou omitir dados, o time de implantação aciona o Comercial para notificar o oficial do risco de congelamento do projeto. |
+| Dimensão                    | Cenário Anterior (AS-IS)                                                                                                                            | Novo Modelo Definido (TO-BE)                                                                                                                                                                        |
+| :-------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Qualidade da Informação** | Aceitavam-se respostas vagas da TI terceirizada do cartório (ex: "está tudo OK" ou "máquinas novas") sem dados específicos de hardware.             | Exigência técnica de especificações completas (processador, memória, armazenamento livre, modelo de impressoras) preenchidas formalmente na planilha.                                               |
+| **Gargalo de Hardware**     | Clientes prometiam realizar melhorias no servidor e estações, mas não as faziam até a virada, gerando lentidão no Orion e culpa errônea ao sistema. | **Gate de Verificação de Infraestrutura:** Check-up obrigatório conduzido remotamente na semana anterior à viagem. Se as adequações do servidor não foram de fato realizadas, a viagem é bloqueada. |
+| **Bloqueio de Acesso**      | Algumas TIs locais barravam o acesso do implantador via TeamViewer e forneciam dados incompletos por formulários manuais.                           | Se o parceiro de TI local recusar acesso remoto ou omitir dados, o time de implantação aciona o Comercial para notificar o oficial do risco de congelamento do projeto.                             |
 
 ### E. Otimização do Tempo de Campo: Instalação Remota de Estações
 
