@@ -127,20 +127,21 @@ As consultas complementares de dados (como buscar informações do projeto ou o 
 ### 4. Tabela Geral de Mapeamento de E-mails (Fallback)
 Se por algum motivo de inconsistência no banco de dados o e-mail do usuário não for encontrado na tabela de perfis (`public.profiles`), utilize o mapeamento de fallback abaixo:
 
-| Nome do Colaborador | E-mail Oficial |
-| :--- | :--- |
-| **Marcus** | `marcus.vinicius@siplan.com.br` |
-| **Bruno Fernandes** | `bruno.fernandes@siplan.com.br` |
-| **Marcos Ortiz** | `marcos.ortiz@siplan.com.br` |
-| **Ademar** | `ademar.souza@siplan.com.br` |
-| **Luciane** | `luciane.lima@siplan.com.br` |
-| **Eduardo Silva** | `eduardo.silva@siplan.com.br` |
-| **Luan Caldeira** | `luan.caldeira@siplan.com.br` |
-| **Amanda Flor** | `amanda.flor@siplan.com.br` |
+| Nome do Colaborador  | E-mail Oficial                   |
+| :------------------- | :------------------------------- |
+| **Marcus**           | `marcus.vinicius@siplan.com.br`  |
+| **Bruno Fernandes**  | `bruno.fernandes@siplan.com.br`  |
+| **Marcos Ortiz**     | `marcos.ortiz@siplan.com.br`     |
+| **Ademar**           | `ademar.souza@siplan.com.br`     |
+| **Luciane**          | `luciane.lima@siplan.com.br`     |
+| **Eduardo Silva**    | `eduardo.silva@siplan.com.br`    |
+| **Luan Caldeira**    | `luan.caldeira@siplan.com.br`    |
+| **Amanda Flor**      | `amanda.flor@siplan.com.br`      |
 | **Maurilio Camargo** | `maurilio.camargo@siplan.com.br` |
-| **Maria** | `maria.santos@siplan.com.br` |
-| **Alex Silva** | `alex.silva@siplan.com.br` |
-| **Hugo Januário** | `hugo.santariosi@siplan.com.br` |
+| **Maria**            | `maria.santos@siplan.com.br`     |
+| **Alex Silva**       | `alex.silva@siplan.com.br`       |
+| **Hugo Januário**    | `hugo.santariosi@siplan.com.br`  |
+|                      |                                  |
 
 ---
 
