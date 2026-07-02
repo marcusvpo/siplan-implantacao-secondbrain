@@ -143,6 +143,35 @@ Configure os nós de envio para cada uma das saídas do Switch:
         </tr>
       </table>
 
+      <!-- Bloco de Orientação sobre Credenciais e Acessos -->
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #fff5f5; border-radius: 8px; border: 1px dashed #feb2b2; margin: 20px 0; padding: 15px; text-align: left;">
+        <tr>
+          <td>
+            <strong style="color: #ad0505; font-size: 12px; text-transform: uppercase; display: block; margin-bottom: 5px;">🔑 DADOS DE CONEXÃO & SERVIDOR:</strong>
+            <span style="font-size: 13px; color: #475569; line-height: 1.5; display: block;">
+              Os acessos ao servidor técnico e à base de dados legada variam por projeto. Por favor, <strong>entre em contato diretamente com o responsável pela conversão</strong> (indicado no campo "Enviado por") para obter as credenciais e conexões seguras.
+            </span>
+          </td>
+        </tr>
+      </table>
+
+      <!-- Bloco A Bola Está com Você -->
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #fff5f5; border-radius: 8px; border: 1px dashed #feb2b2; margin-top: 20px; padding: 20px; text-align: left;">
+        <tr>
+          <td>
+            <h3 style="color: #ad0505; font-size: 14px; margin: 0 0 12px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
+              🎯 A BOLA ESTÁ COM VOCÊ — PRÓXIMOS PASSOS:
+            </h3>
+            <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 14px; line-height: 1.8;">
+              <li style="margin-bottom: 8px;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Acesse a tela de Homologação em `/implantadores/homologation` e clique no botão <strong style="color: #1e293b;">Assumir</strong> na Fila Geral.</li>
+              <li style="margin-bottom: 8px;"><strong style="color: #475569;">⚙️ AÇÃO OPERACIONAL:</strong> Entre em contato com o responsável pela Conversão para obter os dados de acesso ao servidor.</li>
+              <li style="margin-bottom: 8px;"><strong style="color: #475569;">⚙️ AÇÃO OPERACIONAL:</strong> Efetue os testes operacionais detalhados na base de dados convertida.</li>
+              <li style="margin-bottom: 0;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Preencha o parecer conclusivo no painel e dê seu veredito final (<em style="color: #1e293b; font-style: normal; font-weight: 600;">Aprovado</em> ou <em style="color: #1e293b; font-style: normal; font-weight: 600;">Com Inconsistências</em>).</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+
       <div class="button-container">
         <a href="https://siplanhub.vercel.app/implantadores/homologation" class="button">Validar no Siplan HUB</a>
       </div>
@@ -379,6 +408,23 @@ Como a reprovação exige que o analista saiba quais foram as inconsistências, 
         <!-- Renderiza o HTML das observações escritas pelo implantador no editor rico (incluindo imagens) -->
         {{ $node["Supabase - Buscar Parecer"].json.notes }}
       </div>
+
+      <!-- Bloco A Bola Está com Você -->
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #fff5f5; border-radius: 8px; border: 1px dashed #feb2b2; margin-top: 20px; padding: 20px; text-align: left;">
+        <tr>
+          <td>
+            <h3 style="color: #ad0505; font-size: 14px; margin: 0 0 12px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
+              🎯 A BOLA ESTÁ COM VOCÊ — PRÓXIMOS PASSOS:
+            </h3>
+            <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 14px; line-height: 1.8;">
+              <li style="margin-bottom: 8px;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Acesse a Fila de Conversão em `/conversion` e abra o card detalhado do cliente.</li>
+              <li style="margin-bottom: 8px;"><strong style="color: #475569;">📋 OPERACIONAL:</strong> Analise o relatório técnico de inconsistências e prints colados pelo implantador acima.</li>
+              <li style="margin-bottom: 8px;"><strong style="color: #475569;">⚙️ AÇÃO OPERACIONAL:</strong> Realize os ajustes e correções necessárias na estrutura/conversor do banco.</li>
+              <li style="margin-bottom: 0;"><strong style="color: #ad0505;">🔴 NO HUB:</strong> Após testar as correções, reenvie a base para homologação para que o implantador valide novamente.</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
 
       <div class="button-container">
         <a href="https://siplanhub.vercel.app/conversion" class="button">Acessar Fila de Conversão</a>
