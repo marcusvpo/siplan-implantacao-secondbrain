@@ -204,74 +204,149 @@ Configure os nós de envio para cada uma das saídas do Switch:
 ## 🛠️ Automação B: Homologação Aprovada ou Reprovada
 
 ### 1. Descrição do Fluxo
-Esta automação é disparada quando um implantador finaliza o processo de validação em `/implantadores/homologation` e emite o parecer conclusivo. O status do chamado (`queue_status`) transiciona para `done` (Aprovada) ou `homologation_issues` (Reprovada / Com Inconsistências). A automação busca o e-mail do analista de conversão de forma dinâmica e o notifica sobre o veredicto.
+Esta automação é disparada quando um implantador finaliza o processo de validação em `/implantadores/homologation` e emite o parecer conclusivo. O status do chamado (`queue_status`) transiciona para `done` (Aprovada) ou `homologation_issues` (Reprovada / Com Inconsistências). A automação busca o e-mail do analista de conversão de forma dinâmica no banco de dados e, caso não encontre, aplica um dicionário de mapeamento estático (fallback), notificando o responsável pelo e-mail sobre o veredicto final.
 
 ```mermaid
 graph TD
-    A[Supabase Webhook: UPDATE conversion_queue] --> B[n8n Webhook Node]
-    B --> C[IF Node: Validar Conclusão / Recusa]
-    C -- Sim --> D[Supabase Node: Buscar E-mail do Responsável]
-    D --> E[IF Node: Validar se Achou E-mail]
-    E -- Não --> F[Code Node: Buscar Fallback no Mapeamento]
-    E -- Sim --> G[Merge / Unificar Fluxo]
-    F --> G
-    G --> H[IF Node: Aprovado vs Reprovado]
-    H -- Aprovado --> I[Send Email: Conversão Aprovada]
-    H -- Reprovado --> J[Supabase Node: Buscar Parecer de Inconsistências]
-    J --> K[Send Email: Conversão Reprovada com Parecer]
+    A[Supabase Webhook: UPDATE conversion_queue] --> B[Webhook - Parecer Homologação]
+    B --> C[IF - Status Final]
+    C -- Sim --> D[Supabase - Detalhes do Projeto]
+    D --> E[Supabase - Buscar Perfil]
+    E --> F[IF - Achou E-mail]
+    F -- Sim --> G[Set - E-mail do Perfil]
+    F -- Não --> H[Code - Busca Fallback]
+    G --> I[Merge - Unificar Fluxo]
+    H --> I
+    I --> J[IF - É Aprovado?]
+    J -- Sim --> K[SMTP - Conversão Aprovada]
+    J -- Não --> L[Supabase - Buscar Parecer]
+    L --> M[SMTP - Conversão Reprovada]
 ```
 
+---
+
 ### 2. Configuração do Webhook no Supabase (Trigger)
-Crie um Database Webhook no painel do Supabase com os seguintes parâmetros:
+Crie um Database Webhook no painel do Supabase com os seguintes parâmetros operacionais:
 *   **Name:** `n8n_parecer_homologacao`
 *   **Table:** `conversion_queue`
-*   **Events:** Selecionar `Update`
+*   **Events:** Selecionar `Update` (somente atualizações de registros na fila)
 *   **Method:** `POST`
 *   **URL:**
-    *   *Testes:* `https://n8n.siplan.com.br/webhook-test/parecer-homologacao`
-    *   *Produção:* `https://n8n.siplan.com.br/webhook/parecer-homologacao`
+    *   *Ambiente de Testes:* `https://n8n.siplan.com.br/webhook-test/parecer-homologacao`
+    *   *Ambiente de Produção:* `https://n8n.siplan.com.br/webhook/parecer-homologacao`
 *   **Headers:** `Content-Type: application/json`
+
+---
 
 ### 3. Configuração dos Nós no n8n
 
 #### Nó 1: Webhook (Gatilho)
+Este nó atua como o ponto de entrada que escuta as requisições HTTP enviadas pelo Supabase.
+*   **Name:** `Webhook - Parecer Homologação`
+*   **Authentication:** `None`
+*   **HTTP Method:** `POST`
 *   **Path:** `parecer-homologacao`
+*   **Response Mode:** `onReceived`
+*   **Response Code:** `200`
+*   **Options -> Raw Body:** `False`
 
-#### Nó 2: IF (Validação de Status Finais)
-Verifica se o status mudou para finalizado (`done`) ou devolvido com inconsistências (`homologation_issues`).
+#### Nó 2: IF - Status Final (Filtro de Transição)
+Este nó garante que a automação só execute se o status foi de fato alterado para um dos status conclusivos e evita loops caso outros campos da fila sejam atualizados mantendo o mesmo status.
 *   **Name:** `IF - Status Final`
-*   **Conditions -> String:**
+*   **Conditions (Combinador):** `AND`
+*   *Condição 1:*
     *   **Value 1:** `{{ $json.body.record.queue_status }}`
-    *   **Operation:** `Regex Match`
+    *   **Operation:** `Matches Regex` (ou `Regex Match` dependendo da versão do n8n)
     *   **Value 2:** `^(done|homologation_issues)$`
+*   *Condição 2 (Prevenção de Loops):*
+    *   **Value 1:** `{{ $json.body.old_record.queue_status }}`
+    *   **Operation:** `Not Equal`
+    *   **Value 2:** `{{ $json.body.record.queue_status }}`
 
-#### Nó 3: Supabase (Consulta Perfil do Conversor)
-Busca o e-mail do analista associado ao ID `assigned_to` do registro atualizado.
+#### Nó 3: Supabase - Detalhes do Projeto (Consulta de Projeto)
+Este nó busca os dados do projeto (como nome do cliente e número de ticket) necessários para preencher o e-mail de notificação.
+*   **Name:** `Supabase - Detalhes do Projeto`
+*   **Credential:** `Supabase API`
+*   **Resource:** `Database`
+*   **Operation:** `Get`
+*   **Table:** `projects`
+*   **Row ID:** `{{ $node["Webhook - Parecer Homologação"].json.body.record.project_id }}`
+
+#### Nó 4: Supabase - Buscar Perfil (Consulta Perfil do Conversor)
+Busca o perfil cadastrado do analista de conversão usando o ID `assigned_to` para resgatar seu e-mail institucional.
 *   **Name:** `Supabase - Buscar Perfil`
+*   **Credential:** `Supabase API`
 *   **Resource:** `Database`
 *   **Operation:** `Get`
 *   **Table:** `profiles`
-*   **Row ID:** `{{ $node["Webhook - Nova Homologação"].json.body.record.assigned_to }}`
+*   **Row ID:** `{{ $node["Webhook - Parecer Homologação"].json.body.record.assigned_to }}`
 
-#### Nó 4: IF (Verificar e-mail no Perfil)
-Valida se a consulta retornou um e-mail válido.
+#### Nó 5: IF - Achou E-mail (Verificação)
+Valida se a resposta retornou do banco com um e-mail válido.
 *   **Name:** `IF - Achou E-mail`
 *   **Conditions -> String:**
     *   **Value 1:** `{{ $json.email }}`
-    *   **Operation:** `Not Empty`
+    *   **Operation:** `Is Not Empty`
 
-#### Nó 5: Code (Busca estática de Fallback)
-Caso o e-mail não esteja cadastrado na tabela de perfis, busca no mapeamento estático a partir do nome do conversor (`assigned_to_name`).
+#### Nó 6: Set - E-mail do Perfil (Normalização True)
+Define a variável padronizada `resolved_email` com o e-mail encontrado no perfil do banco de dados.
+*   **Name:** `Set - E-mail do Perfil`
+*   **Mode:** `Set All Data` (ou adicionar campo)
+*   **Values to Set -> String:**
+    *   **Name:** `resolved_email`
+    *   **Value:** `{{ $json.email }}`
+
+#### Nó 7: Code - Busca Fallback (Normalização False)
+Caso o e-mail não esteja cadastrado na tabela de perfis (ou seja, se a busca do Nó 4 retornou vazia), este nó utiliza o dicionário de contatos estáticos para recuperar o e-mail do colaborador associado ao nome textual (`assigned_to_name`).
 *   **Name:** `Code - Busca Fallback`
-*   *(Insira o código JavaScript de fallback disponível no manual [Recurso] Tabela Geral de Mapeamento de E-mails).*
+*   **Mode:** `Run Once for Each Item`
+*   **Code (JavaScript):**
+```javascript
+const emailMap = {
+  "marcus": "marcus.vinicius@siplan.com.br",
+  "bruno fernandes": "bruno.fernandes@siplan.com.br",
+  "marcos ortiz": "marcos.ortiz@siplan.com.br",
+  "ademar": "ademar.souza@siplan.com.br",
+  "luciane": "luciane.lima@siplan.com.br",
+  "eduardo silva": "eduardo.silva@siplan.com.br",
+  "luan caldeira": "luan.caldeira@siplan.com.br",
+  "amanda flor": "amanda.flor@siplan.com.br",
+  "maurilio camargo": "maurilio.camargo@siplan.com.br",
+  "maria": "maria.santos@siplan.com.br",
+  "alex silva": "alex.silva@siplan.com.br",
+  "hugo januário": "hugo.santariosi@siplan.com.br",
+  "rodrigo brites": "rodrigo.brites@siplan.com.br",
+  "brites": "rodrigo.brites@siplan.com.br",
+  "ricardo vieira": "ricardo.vieira@siplan.com.br",
+  "bruno santos": "bruno.santos@siplan.com.br",
+  "bruno matos": "bruno.santos@siplan.com.br",
+  "rodrigo mizuno": "rodrigo.mizuno@siplan.com.br",
+  "mizuno": "rodrigo.mizuno@siplan.com.br",
+  "julio araujo": "julio.araujo@siplan.com.br",
+  "julio": "julio.araujo@siplan.com.br",
+  "fernando cruz": "fernando.lopes@siplan.com.br"
+};
 
-#### Nó 6: Merge (Unificação)
-Une as saídas de sucesso do perfil (Nó 4 True) e do fallback (Nó 5) para seguir o fluxo com a variável `resolved_email`.
+// Obtém o nome livre do conversor a partir do webhook original do parecer
+const assignedToName = $('Webhook - Parecer Homologação').item.json.body.record.assigned_to_name || "";
+const nameKey = assignedToName.toLowerCase().trim();
 
-#### Nó 7: IF (Aprovado vs Reprovado)
+// Define a propriedade resolved_email ou aplica o fallback da coordenação (Marcus)
+item.json.resolved_email = emailMap[nameKey] || "marcus.vinicius@siplan.com.br";
+
+return item;
+```
+
+#### Nó 8: Merge - Unificar Fluxo (Unificação)
+Une a saída bem-sucedida do perfil (`Set - E-mail do Perfil`) e a de fallback (`Code - Busca Fallback`) para que os nós subsequentes continuem operando a partir do mesmo caminho com a variável central `resolved_email`.
+*   **Name:** `Merge - Unificar Fluxo`
+*   **Mode:** `Choose Branch` (ou `Merge inputs by key`)
+
+#### Nó 9: IF - É Aprovado? (Decisão de Roteamento)
+Roteia o fluxo com base na aprovação final do veredicto.
 *   **Name:** `IF - É Aprovado?`
 *   **Conditions -> String:**
-    *   **Value 1:** `{{ $node["Webhook - Nova Homologação"].json.body.record.queue_status }}`
+    *   **Value 1:** `{{ $node["Webhook - Parecer Homologação"].json.body.record.queue_status }}`
     *   **Operation:** `Equal`
     *   **Value 2:** `done`
 
@@ -310,7 +385,7 @@ Une as saídas de sucesso do perfil (Nó 4 True) e do fallback (Nó 5) para segu
     <div class="content">
       <span class="badge">✓ APROVADA</span>
       <h2 style="margin-top:0; color:#0f172a;">Parabéns! Conversão Concluída</h2>
-      <p>Olá <strong>{{ $node["Webhook - Nova Homologação"].json.body.record.assigned_to_name }}</strong>,</p>
+      <p>Olá <strong>{{ $node["Webhook - Parecer Homologação"].json.body.record.assigned_to_name }}</strong>,</p>
       <p>A homologação da base de dados do cliente foi realizada e **APROVADA** pelo implantador. O estágio de conversão de dados do projeto foi dado como concluído no painel.</p>
       
       <table class="info-table">
@@ -324,7 +399,7 @@ Une as saídas de sucesso do perfil (Nó 4 True) e do fallback (Nó 5) para segu
         </tr>
         <tr>
           <td class="info-label">Homologado por:</td>
-          <td>{{ $node["Webhook - Nova Homologação"].json.body.record.homologation_analyst_name }}</td>
+          <td>{{ $node["Webhook - Parecer Homologação"].json.body.record.homologation_analyst_name }}</td>
         </tr>
       </table>
     </div>
@@ -341,15 +416,16 @@ Une as saídas de sucesso do perfil (Nó 4 True) e do fallback (Nó 5) para segu
 #### 🔴 Fluxo 2: Homologação Reprovada (IF False)
 
 ##### Nó Adicional Necessário antes do Envio de E-mail:
-Como a reprovação exige que o analista saiba quais foram as inconsistências, a automação deve buscar o parecer inserido pelo implantador. Este parecer foi salvo na tabela `homologation_events` no campo `notes` (em HTML, incluindo imagens anexadas).
-*   **Nó:** `Supabase - Buscar Parecer`
+Como a reprovação exige que o analista saiba quais foram as inconsistências apontadas, a automação precisa buscar o parecer detalhado inserido na tabela `homologation_events` no campo `notes` (HTML com anotações e imagens).
+*   **Name:** `Supabase - Buscar Parecer`
 *   **Credential:** `Supabase API`
-*   **Operation:** `Get Many` (ou query direta)
+*   **Resource:** `Database`
+*   **Operation:** `Get Many` (ou direct SQL/Query)
 *   **Table:** `homologation_events`
 *   **Filters:**
-    *   `project_id` = `{{ $node["Webhook - Nova Homologação"].json.body.record.project_id }}`
+    *   `project_id` = `{{ $node["Webhook - Parecer Homologação"].json.body.record.project_id }}`
     *   `to_status` = `homologation_issues`
-*   **Sort:** `timestamp` Descending (limite `1` para pegar o último evento de recusa).
+*   **Sort:** `timestamp` Descending (limite `1` para obter estritamente o último evento de inconsistência).
 
 ##### Nó de Envio de E-mail:
 *   **To Email:** `{{ $json.resolved_email }}`
@@ -385,7 +461,7 @@ Como a reprovação exige que o analista saiba quais foram as inconsistências, 
     <div class="content">
       <span class="badge">⚠️ REPROVADA COM INCONSISTÊNCIAS</span>
       <h2 style="margin-top:0; color:#0f172a;">Ajustes Necessários na Conversão</h2>
-      <p>Olá <strong>{{ $node["Webhook - Nova Homologação"].json.body.record.assigned_to_name }}</strong>,</p>
+      <p>Olá <strong>{{ $node["Webhook - Parecer Homologação"].json.body.record.assigned_to_name }}</strong>,</p>
       <p>A base de dados do cliente abaixo retornou da homologação com **inconsistências apontadas pelo implantador**. O projeto foi devolvido para a sua fila em `/conversion` com status pendente de correções.</p>
       
       <table class="info-table">
@@ -399,7 +475,7 @@ Como a reprovação exige que o analista saiba quais foram as inconsistências, 
         </tr>
         <tr>
           <td class="info-label">Recusado por:</td>
-          <td>{{ $node["Webhook - Nova Homologação"].json.body.record.homologation_analyst_name }}</td>
+          <td>{{ $node["Webhook - Parecer Homologação"].json.body.record.homologation_analyst_name }}</td>
         </tr>
       </table>
 
