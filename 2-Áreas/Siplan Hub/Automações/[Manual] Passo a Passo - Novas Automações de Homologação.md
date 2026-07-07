@@ -340,7 +340,10 @@ return item;
 #### Nó 8: Merge - Unificar Fluxo (Unificação)
 Une a saída bem-sucedida do perfil (`Set - E-mail do Perfil`) e a de fallback (`Code - Busca Fallback`) para que os nós subsequentes continuem operando a partir do mesmo caminho com a variável central `resolved_email`.
 *   **Name:** `Merge - Unificar Fluxo`
-*   **Mode:** `Choose Branch` (ou `Merge inputs by key`)
+*   **Mode:** `Choose Branch` (ou `Choose branch to output` na interface em inglês)
+*   **Number of Inputs:** `2` (Recebe duas ramificações mutuamente exclusivas vindo das decisões anteriores)
+*   **Output Type / Output:** `First data that arrives` (ou `Primeiro dado que chegar` em português. Isso é fundamental, pois em ramificações condicionais True/False onde apenas um dos lados executa, o nó continuará o fluxo com o dado que for produzido, sem travar o processamento aguardando o outro lado que nunca executará)
+*   **Use Data of Input:** `First data that arrives` (Garante que os dados do payload que chegou primeiro sejam passados adiante de forma idêntica e sem alterações de estrutura)
 
 #### Nó 9: IF - É Aprovado? (Decisão de Roteamento)
 Roteia o fluxo com base na aprovação final do veredicto.
