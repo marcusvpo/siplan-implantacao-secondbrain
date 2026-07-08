@@ -26,7 +26,9 @@ O Siplan Hub é a plataforma central de gestão operacional interna da Siplan, s
 ## 🤖 Central de Automações (n8n & Webhooks)
 - [[Automações/[Hub] Integrações e Automações n8n|[Hub] Integrações e Automações n8n]] *(Visão Macro do Orquestrador)*
 - [[Automações/[Manual] Guia Passo a Passo - Automações de E-mail Siplan HUB|[Manual] Guia Passo a Passo - Automações de E-mail Siplan HUB]] *(Manual Técnico de Configuração)*
-- [[Automações/[Conceito] Ideias Automações Disparo E-mail - Siplan HUB|[Conceito] Ideias Automações Disparo E-mail - Siplan HUB]] *(Regras e Escopo de Negócio)*
+- [[Automações/[Manual] Passo a Passo - Novas Automações de Homologação|[Manual] Passo a Passo - Novas Automações de Homologação]] *(Homologação de Bases)*
+- [[Automações/[Manual] Passo a Passo - Automação de Configuração de Ambiente|[Manual] Passo a Passo - Automação de Configuração de Ambiente]] *(Preparação de Ambiente)*
+- [[Automações/[Conceito] Ideias de Automações Operacionais - Siplan HUB|[Conceito] Ideias de Automações Operacionais - Siplan HUB]] *(Regras e Escopo de Negócio)*
 
 ## Rotinas e Dinâmicas
 - **Fluxo do Analista:** Inicia no Dashboard, filtra "Minha Fila" em Conversão, opera Motores e Homologação.
