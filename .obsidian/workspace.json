@@ -11,14 +11,10 @@
             "id": "6c1f41fedfba5127",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2-Áreas/Siplan Hub/Automações/[Manual] Passo a Passo - Automação de Configuração de Ambiente.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "[Manual] Passo a Passo - Automação de Configuração de Ambiente"
+              "title": "Nova aba"
             }
           }
         ]
@@ -211,12 +207,12 @@
       "antigravity-cli-sidebar:Open Antigravity CLI": false
     }
   },
-  "active": "6c1f41fedfba5127",
+  "active": "3499d2a2ae291273",
   "lastOpenFiles": [
-    "0-Em Andamento/SKILL.md",
-    "2-Áreas/Siplan Hub/Automações/[Manual] Passo a Passo - Automação de Configuração de Ambiente.md",
-    "0-Em Andamento/skill n8n.md",
     "2-Áreas/Siplan Hub/Automações/[Manual] Passo a Passo - Novas Automações de Homologação.md",
+    "2-Áreas/Siplan Hub/Automações/[Manual] Passo a Passo - Automação de Configuração de Ambiente.md",
+    "0-Em Andamento/SKILL.md",
+    "0-Em Andamento/skill n8n.md",
     "Anotações Diárias/Semanas/2026-07/06-07--10-07.md",
     "Anotações Diárias/Semanas/2026-06/29-06--03-07.md",
     "2-Áreas/Siplan Hub/Automações/[Manual] Guia Passo a Passo - Automações de E-mail Siplan HUB.md",
