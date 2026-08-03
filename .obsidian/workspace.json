@@ -41,7 +41,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "Explorador de arquivos"
@@ -214,8 +216,8 @@
   "active": "6c1f41fedfba5127",
   "lastOpenFiles": [
     "0-Em Andamento/Templates de Email - Siplan Skills.md",
-    "Anotações Diárias/Semanas/2026-07/Sem título.md",
     "Anotações Diárias/Semanas/2026-07/27-07--31-07.md",
+    "Anotações Diárias/Semanas/2026-07/Sem título.md",
     "Anotações Diárias/Semanas/2026-07/20-07--24-07.md",
     "Anotações Diárias/Semanas/2026-07/13-07--17-07.md",
     "Anotações Diárias/Semanas/2026-07/06-07--10-07.md",
