@@ -16,12 +16,14 @@ O Siplan Hub é a plataforma central de gestão operacional interna da Siplan, s
 
 ## Módulos e Tecnologias
 - [[[Processo] Mapeamento AS-IS e TO-BE do Siplan Hub]] *(Estratégia Definitiva de Adoção)*
+- [[[Hub] Estrutura de Telas e Diagnóstico de Uso]] *(Arquitetura Completa de Telas e Nível de Uso)*
 - [[[Hub] Mapeamento Prático e Funcional do Sistema]] *(Análise Detalhada de Telas e Fluxos)*
 - [[[Hub] Dashboard e Visão Estratégica]]
 - [[[Hub] Gestão de Implantação]]
 - [[[Hub] Conversão de Projetos]]
 - [[[Hub] Gestão do OrionTN (Modelos Editor)]]
 - [[[Hub] Relacionamento Comercial (CRM Interno)]]
+- **Área dos Implantadores:** Editor de Formulários de Análise de Aderência com versionamento nativo e sincronização com a etapa do cliente.
 
 ## 🤖 Central de Automações (n8n & Webhooks)
 - [[Automações/[Hub] Integrações e Automações n8n|[Hub] Integrações e Automações n8n]] *(Visão Macro do Orquestrador)*

@@ -56,6 +56,12 @@ Para prever gargalos logísticos e de capacidade da equipe de rua.
 *   **Gestão de Férias (`/admin/vacations`):** Módulo vital para o cálculo de capacidade. Antes de alocar 10 conversões em um mês, a coordenação usa essa tela para garantir que haverá analistas e implantadores disponíveis na época da "virada".
 *   **Logs de Auditoria (`/admin/audit-log`):** Rastreia edições críticas (quem mudou o status de uma homologação, quem alterou um modelo), garantindo segurança jurídica nas entregas.
 
+### G. Área dos Implantadores: Gestão de Formulários de Aderência com Versionamento
+Centralização definitiva do processo de análise de aderência dentro do Hub, eliminando formulários Word (.docx) avulsos.
+*   **Editor de Formulário (`/implantadores/form-aderencia`):** Interface visual onde os próprios analistas/implantadores criam, editam e expandem as matrizes de perguntas por especialidade de produto (Orion TN, Orion PRO, Orion REG).
+*   **Versionamento Dinâmico:** Cada atualização no template gera uma nova versão auditada, permitindo a evolução e padronização contínua das perguntas sem quebrar ou desconfigurar análises preenchidas em projetos anteriores.
+*   **Preenchimento e Sincronização por Projeto:** Na tela do projeto (`/projects/:id`), o implantador gera a instância do formulário correspondente. O preenchimento é salvo nativamente no banco de dados do Hub com auto-save, sincronizado em tempo real com a Etapa de Análise de Aderência do cliente.
+
 ---
 
 ## 3. Síntese do Ciclo de Vida do Projeto no Hub
@@ -63,9 +69,11 @@ Para prever gargalos logísticos e de capacidade da equipe de rua.
 A jornada de uma implantação atravessa o Siplan Hub da seguinte forma:
 
 1.  **Entrada:** O Comercial preenche o Formulário de Handoff (o Hub absorve e cria o Card no Kanban).
-2.  **Alocação:** Coordenação usa o `/admin/vacations` e `/agenda-analistas` para planejar e atrelar um responsável.
-3.  **Execução (Conversão):** Analista assume em `/my-queue`, aciona `/conversion-engines` e entrega a base no `/conversion-homologation`.
-4.  **Execução (OrionTN):** A equipe de modelos atua simultaneamente no `/orion-tn-models` formatando e validando os JSONs no editor interno.
-5.  **Exceção (Bloqueio):** Se o cliente falha, marca-se no `/commercial-blockers`, o n8n avisa o Comercial.
-6.  **Saída para a Rua:** O cartório entra nas `/next-deployments`. A equipe de implantação assume a viagem (usando SAP/0800).
-7.  **Finalização:** Pós-virada, a base de relacionamento (`/client-overview`) fica atualizada para o setor de Suporte.
+2.  **Alocação:** Coordenação usa o `/admin/vacations` e `/agenda-analistas` para planejar e atrelar os responsáveis técnicos.
+3.  **Levantamento de Infraestrutura (Automatizado):** O Hub gera um **link público** exclusivo para a TI do cartório. O TI baixa os scripts, executa no parque tecnológico e faz o upload dos arquivos `.txt`. O Hub processa o inventário automaticamente e emite o parecer de conformidade (**Adequado** ou **Inadequado**) com base nas recomendações mínimas.
+4.  **Análise de Aderência (Implantadores):** O analista gera o formulário nativo na versão vigente via Hub (`/projects/:id`), realiza o diagnóstico técnico/periférico junto ao cliente e salva as respostas diretamente na etapa do projeto.
+5.  **Execução (Conversão):** Analista assume em `/my-queue`, aciona `/conversion-engines` e entrega a base no `/conversion-homologation`.
+6.  **Execução (OrionTN):** A equipe de modelos atua simultaneamente no `/orion-tn-models` formatando e validando os JSONs no editor interno.
+7.  **Exceção (Bloqueio):** Se o cliente falha na infraestrutura ou surge gap funcional impeditivo, registra-se no `/commercial-blockers` ou no próprio formulário (`has_product_gap`), disparando alertas via n8n.
+8.  **Saída para a Rua:** O cartório entra nas `/next-deployments`. A equipe de implantação assume a viagem (usando SAP/0800).
+9.  **Finalização:** Pós-virada, a base de relacionamento (`/client-overview`) fica atualizada para o setor de Suporte.

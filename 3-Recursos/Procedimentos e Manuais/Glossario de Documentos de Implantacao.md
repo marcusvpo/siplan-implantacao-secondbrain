@@ -12,14 +12,16 @@ Durante o ciclo de vida de uma implantação, a equipe técnica da Siplan produz
 Abaixo estão descritos os principais documentos operacionais (modelos encontrados no repositório de implantação) e suas finalidades:
 
 ## 1. Análise de Aderência
-- **O que é:** Questionário técnico e estrutural respondido pelo cliente junto ao analista.
-- **Objetivo:** Mapear a infraestrutura periférica, regras de negócio, quantidade de funcionários e particularidades operacionais para garantir que o sistema da Siplan atenda à serventia e para dimensionar o esforço de implantação.
-- **Evolução:** Foi unificado do antigo modelo de checklist simples (PRO/TN) para o modelo robusto investigativo (inspirado no REG).
-- **Referência no Vault:** [[[Modelo] Template - Analise de Aderencia]]
+- **O que é:** Questionário técnico e estrutural investigativo centralizado no **Siplan HUB**, gerado dinamicamente a partir de um editor de formulários com **versionamento** na Área dos Implantadores.
+- **Objetivo:** Mapear a infraestrutura periférica, regras de negócio, quantidade de colaboradores/setores, espaço em disco de imagens (GED) e eventuais gaps impeditivos para garantir o enquadramento do sistema e dimensionar a implantação.
+- **Evolução:** Abandonou totalmente o uso de arquivos externos `.docx`. Agora tudo é gerado, respondido, cadastrado e salvo diretamente no Hub, sincronizado em tempo real com a etapa de Análise de Aderência do cliente/projeto.
+- **Referência no Vault:** [[[Processo] 3. Análise de Aderência do Processo de Negócio]] | [[[Modelo] Template - Analise de Aderencia]]
 
-## 2. Análise de Ambiente (TI)
-- **O que é:** Planilha (geralmente `.ods` ou Excel) preenchida pela equipe de Infraestrutura/TI (ex: Alex) no Início do Projeto.
-- **Objetivo:** Coletar dados de hardware (memória RAM, processador, espaço em disco, versão do banco de dados, antivírus e rede). Serve como *Gate Condicional* para não enviar o analista de implantação a um cartório com infraestrutura incapaz de rodar o sistema.
+## 2. Levantamento de Infraestrutura / Análise de Ambiente (TI)
+- **O que é:** Coleta técnica e automatizada de dados de hardware e rede gerada via **Link Público** exclusivo no Siplan Hub.
+- **Objetivo:** Coletar dados reais de hardware (memória RAM, núcleos de processador, espaço em disco, sistema operacional, portas e rede) através de scripts executados nas máquinas/servidor do cartório. Serve como *Gate Condicional* obrigatório para impedir o avanço de projetos com infraestrutura defasada.
+- **Evolução:** Substituiu as antigas planilhas manuais (`.ods`/Excel). A TI do cartório baixa o script no link público, executa no parque de máquinas, sobe os arquivos `.txt` e o Hub preenche o inventário e valida a conformidade contra os requisitos mínimos de forma 100% automática.
+- **Referência no Vault:** [[[Processo] 2. Levantamento de Infraestrutura]]
 
 ## 3. Checklist de Implantação
 - **O que é:** Um roteiro passo-a-passo no formato de "to-do list".
