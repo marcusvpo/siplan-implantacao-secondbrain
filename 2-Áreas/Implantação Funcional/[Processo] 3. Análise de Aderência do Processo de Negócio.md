@@ -12,37 +12,45 @@ status_atual: #ativo
 
 Com a infraestrutura validada, o foco passa para a compatibilidade dos processos de negócio do cliente com o software Siplan. Atua como um "Gate Condicional" antes da Conversão.
 
-## 📋 Cenário Atual (As-Is)
+## 📋 Centralização no Siplan HUB & Arquitetura Operacional
 
-**Gargalo de Agenda:**
-A aderência precisa ocorrer nos dias em que o analista está "entre campos", gerando conflitos. Não há SLA fixo para o agendamento. 
+A **Análise de Aderência do Processo de Negócio** foi totalmente integrada e centralizada dentro do **Siplan HUB**, eliminando a geração e manipulação descentralizada de arquivos externos no formato `.docx`. Todo o ciclo de vida da aderência ocorre diretamente na plataforma:
 
-**Execução e Análise:**
-A execução se apoia no levantamento da serventia e rotinas essenciais da operação do cartório versus as funcionalidades do sistema.
+### 1. Editor de Formulários com Versionamento (Área dos Implantadores)
+- **Localização:** Módulo `Implantadores > Editar Form. Aderência`.
+- **Governança e Evolução Contínua:** Os próprios analistas e implantadores possuem autonomia para ajustar, refinar e incluir novas perguntas e seções conforme novos requisitos e particularidades de cada sistema (Orion TN, Orion PRO, Orion REG) são mapeados em campo.
+- **Controle de Versionamento:** O editor conta com suporte a **versionamento dinâmico**. Cada alteração estrutural no questionário cria uma nova versão do template, garantindo que projetos históricos mantenham os dados fiéis à versão sob a qual foram avaliados, enquanto novos projetos utilizam sempre a versão mais atualizada e padronizada.
 
-**Tratamento de Impedimentos (O Gargalo de Desenvolvimento):**
-- **Adequado:** O "Gate" é aberto e o projeto segue para a fila de Conversão.
-- **Não Adequado (Buraco Negro de Produtos):** O caso é escalado para o time de **Produtos** se faltar uma rotina crítica (ex: integração com prefeitura).
-  - **SLA e Fila:** A fila da equipe de Produtos é extensa. Não há SLA de resposta (pode demorar semanas ou meses).
-  - **Status do Projeto:** A implantação fica **pausada**. Nunca fazemos a implantação "pela metade" só para cumprir prazo (a não ser se for algo pré-acordado no Orion TN, dividindo Firmas e Notas). 
-  - **Contingência Comercial:** O Comercial e a Diretoria negociam com o cliente. Apresentam a realidade de esforço de desenvolvimento para entender se a rotina é realmente imprescindível para a operação do cartório. O projeto dorme na fase de Aderência até que o desenvolvimento seja finalizado.
+### 2. Geração, Preenchimento e Sincronização por Projeto
+- **Geração Automática:** Na tela do projeto/cliente (`/projects/:id`), ao acessar a **Etapa de Análise de Aderência**, o sistema identifica o software contratado e instancia a versão vigente do formulário correspondente via botão de geração.
+- **Preenchimento e Auto-Save:** O analista preenche as informações operacionais, técnicas e periféricas diretamente no formulário web no Hub, com persistência e salvamento automático dos dados.
+- **Sincronização em Tempo Real:** As respostas, observações e apontamentos de gaps ficam gravados e vinculados à etapa do projeto no banco de dados do Hub, alimentando os faróis de status e indicadores de saúde do cliente.
 
-## 🚀 Visão de Futuro & Ideias (To-Be)
+---
 
-- **Formulários Estruturados no Siplan HUB:** Consolidação da Análise de Aderência através de formulários técnicos padronizados por sistema dentro do HUB. Foi definida a criação do botão "Gerar Formulário de Aderência" que identificará o sistema e gerará o template apropriado.
-- **Gestão de Templates no HUB:** Criação de uma tela "Implantadores" com a subtela "Editar Form. Aderência", permitindo que os próprios implantadores atualizem e adicionem novos pontos aos checklists.
-- **Questionário Estrutural e Comercial:** O Comercial passará a enviar, logo no fechamento do contrato, um questionário genérico sobre a estrutura física do cartório, disposição de setores e perfil das pessoas (para identificar precocemente resistências e necessidade de gestão de mudança). O Comercial também deve alinhar com o cliente a necessidade de disponibilizar uma pessoa focada para acompanhar a aderência.
-- **Modelo Híbrido:** O cliente preencherá o formulário e o implantador acompanhará e guiará nas perguntas.
-- **Verificação de Espaço em Disco (Imagens):** A Análise de Aderência absorveu a responsabilidade de verificar o tamanho total (espaço em disco) ocupado pelas imagens no servidor atual do cliente (demanda da equipe de Conversão).
-- **Gestão da Fila de Produtos:** Melhorar a previsibilidade e criar métricas de estimativa de viabilidade técnica quando uma implantação depende de uma nova feature, para que o cliente não fique com o prazo completamente aberto.
+## 🔍 Execução e Mapeamento de Campo
+
+**Diferenciação de Execução por Origem do Sistema:**
+- **Sistemas de Terceiros (Externos):** A análise de aderência é conduzida preferencialmente de forma **presencial** (durante 2 a 3 dias de visita técnica do analista), garantindo o levantamento exaustivo de fluxos de trabalho e particularidades locais.
+- **Sistemas Legados Siplan/Control-M:** A análise é conduzida de forma **remota** e ágil, apoiada no conhecimento consolidado da equipe sobre as estruturas de dados e regras do legado.
+
+**Itens Críticos Investigados no Formulário:**
+1. **Estrutura Física e Dimensionamento:** Quantidade de andares, distribuição de setores por piso e contagem de colaboradores (mitigando subdimensionamento de equipes).
+2. **Periféricos e Hardware:** Compatibilidade de impressoras de etiquetas, scanners, biometrias e webcams homologadas.
+3. **Verificação de Espaço em Disco (Imagens GED):** Levantamento do volume total ocupado por imagens e documentos no servidor do cartório para dimensionamento prévio junto à equipe de Conversão e Infraestrutura Docker.
+4. **Minutas e Modelos Orion TN:** Verificação de envio imediato dos top 5 modelos mais utilizados para a equipe de Modelos (Hugo Januário / Bruno Fernandes).
+
+---
+
+## ⛔ Tratamento de Impedimentos (Gate Condicional)
+
+A conclusão da Análise de Aderência atua como um gate rigoroso para a continuidade do projeto:
+- **Aderente (Sem Gaps Críticos):** O gate é liberado, avançando o projeto no fluxo para a fila de [[[Processo] 5. Conversão do Banco de Dados]].
+- **Não Aderente / Gap de Produto:** Se for identificada a ausência de uma rotina vital para a serventia (ex: integração obrigatória com órgão municipal ou formato específico de cobrança):
+  - O implantador sinaliza o gap no formulário nativo do Hub (`has_product_gap = true`).
+  - O projeto é mantido pausado na etapa de Aderência.
+  - A demanda é escalada para o time de **Produtos/P&D** para avaliação de esforço, enquanto a Diretoria/Comercial negocia prazos e viabilidade com o cartório. **Regra rígida:** O sistema nunca é implantado "pela metade" ou sem rotinas operacionais indispensáveis.
+
+---
 
 **Próxima etapa:** [[[Processo] 4. Tratamento de Impedimentos da Análise de Aderência]]
-
-- **Diferenciação de Execução por Sistema Legado:**
-  - **Sistemas de Terceiros (Externos):** A análise de aderência é feita preferencialmente de forma **presencial** (durante 2 a 3 dias de viagem do analista) para mapeamento exaustivo de processos.
-  - **Sistemas Legados Siplan/Control-M:** A análise é conduzida de forma **remota** e ágil, por conta do conhecimento prévio da tecnologia e lógicas internas pela equipe de implantação.
-- **Modelos do Editor Orion TN:**
-  - Caso o cliente contrate o módulo Editor de Modelos (Orion TN), o Comercial deve instruí-lo no fechamento a enviar imediatamente as minutas para a equipe de Modelos (**Hugo Januário** e **Bruno Fernandes**).
-  - Para evitar atrasos na implantação, a equipe adaptará inicialmente os **top 5 modelos mais utilizados** pelo cartório para que o treinamento e go-live iniciem com estas peças homologadas. O restante dos modelos (caso haja grande volume, ex: mais de 40) será adaptado gradualmente após o go-live.
-- **Padronização e Formato:** Os checklists de aderência serão centralizados num template mestre no HUB (baseado no do Vieira).
-- **Questionário Prévio:** O Comercial enviará um questionário self-service simplificado logo após o fechamento para coletar dados da infraestrutura e perfis, preparando a ida presencial.

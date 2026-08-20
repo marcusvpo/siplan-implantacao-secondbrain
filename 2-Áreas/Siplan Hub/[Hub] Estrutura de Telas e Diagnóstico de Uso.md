@@ -48,8 +48,8 @@ Esta nota documenta o mapeamento detalhado da arquitetura de telas atual do Sipl
 *   **Motores:** Conversões aguardando criação ou desenvolvimento do motor. **[Uso Baixo]**
 *   **Homologação:** Validação de conversões finalizadas. **[Nunca Usado]**
 
-### 🛠️ Implantadores (Novo)
-*   **Editar Form. Aderência:** Editor visual para os formulários de Análise de Aderência padronizados por sistema, gerenciados pelos próprios implantadores. **[Em Desenvolvimento]**
+### 🛠️ Implantadores
+*   **Editar Form. Aderência:** Editor visual com suporte a **versionamento dinâmico** para formulários de Análise de Aderência padronizados por sistema (Orion TN, PRO, REG). Permite aos próprios implantadores ajustar, refinar e adicionar perguntas. Os formulários são gerados, preenchidos e salvos diretamente no Hub, sincronizados com a etapa de aderência do projeto/cliente (substituindo documentos `.docx`). **[Ativo / Uso Operacional]**
 *   **Checklist Homologação:** Editor visual e acompanhamento dos checklists padronizados para homologação de dados convertidos. **[Em Desenvolvimento]**
 
 ### 📝 Modelos Editor OrionTN

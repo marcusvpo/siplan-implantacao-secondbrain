@@ -12,25 +12,39 @@ status_atual: #ativo
 
 Após a avaliação inicial, a primeira verificação técnica é determinar se o ambiente tecnológico do cartório cliente possui os requisitos mínimos para a correta operação do software Siplan.
 
-## 📋 Cenário Atual (As-Is)
+## 📋 Fluxo Automatizado de Coleta e Validação (Siplan HUB)
 
-**Acionamento e Verificação:**
-A **Equipe de Infraestrutura** entra em contato com o cartório para realizar o levantamento (remoto ou presencial), avaliando hardware, sistema operacional, rede e periféricos. Os requisitos mínimos exigidos estão presentes no documento de análise de ambiente e já são enviados previamente ao cliente junto da proposta comercial.
+O processo de **Levantamento de Infraestrutura** foi totalmente modernizado e automatizado através do **Siplan HUB**, eliminando planilhas manuais (`.ods`/Excel) e reduzindo a dependência de acessos remotos manuais via AnyDesk/TeamViewer:
 
-**Tratamento de Impedimentos (Limbo da Infraestrutura e Falta de Kill Switch):**
-- **Se Adequada:** O projeto avança para a [[[Processo] 3. Análise de Aderência do Processo de Negócio]].
-- **Se Inadequada:** O chamado é pausado e devolvido ao Comercial (Veja [[[Regra] Devolução Comercial via SAC 0800]]).
-  - **SLA e Prazos:** **Não existe um prazo fixo ou SLA** para a adequação. Cada cliente tem suas particularidades e não existe um "Kill Switch" automático ou multa processual ativada.
-  - **Projeto Adormecido:** Basicamente, o projeto fica adormecido/pausado eternamente. Existem casos na Siplan de clientes com contrato assinado aguardando adequação há quase 1 ano. 
-  - **Acompanhamento:** A Implantação e a TI nada podem fazer a não ser esperar. A responsabilidade de manter o "follow-up" com o cliente é exclusiva da equipe do Comercial.
+### 1. Geração e Envio de Link Público
+- **Geração no HUB:** Na etapa de Infraestrutura do projeto (`/projects/:id`), o sistema gera um **link público exclusivo** para o cliente.
+- **Envio ao TI do Cartório:** O link é compartilhado diretamente com o responsável de TI (interno ou parceiro terceirizado) da serventia.
 
-## 🚀 Visão de Futuro & Ideias (To-Be)
+### 2. Execução dos Scripts de Coleta Automática
+- **Download dos Scripts:** Na página pública acessada, o responsável de TI faz o download de scripts de coleta desenvolvidos pela Siplan.
+- **Execução nas Máquinas e Servidores:** O TI executa o script no(s) servidor(es) e nas estações de trabalho de balcão e retaguarda.
+- **Geração de Arquivo `.txt`:** O script realiza uma varredura completa do ambiente tecnológico (processador, quantidade de núcleos, memória RAM, discos/partições, versão do Sistema Operacional, rede, portas e antivírus) e compila os dados em arquivos estruturados no formato `.txt`.
 
-- **Atualização da Planilha de Infra:** A planilha padrão de Análise de Infraestrutura foi atualizada para incluir a confirmação explícita de servidor em nuvem e a existência de link de internet redundante. A verificação de espaço em disco ocupado pelas imagens foi movida para a equipe de Implantação na Análise de Aderência.
-- **Formalização via TI:** Quando o levantamento for realizado diretamente pela TI do cliente, as informações deverão ser preenchidas em um documento formal seguindo nosso padrão. O Comercial deve deixar claro no fechamento que a equipe da Siplan fará esse contato.
-- **Check-up Pré-Viagem:** Instituição de uma checagem obrigatória com o cliente na semana anterior à implantação presencial para validar se todas as adequações de ambiente solicitadas foram realizadas com sucesso, evitando surpresas "on-site".
-- **Controle de SLA de Retenção e Regra de Rescisão:** Estabelecer uma política ou limite de tempo (ex: 90 dias) para que projetos pausados por infraestrutura recebam um ultimato, evitando contratos zumbis acumulados nos indicadores. Alertas automatizados pelo Hub cobrariam o Comercial periodicamente.
-- **Visibilidade no Hub:** Aprimorar o acompanhamento do status dessas pendências de hardware diretamente pelo Siplan Hub, evitando que o Gestor de Implantação precise cobrar ativamente o Comercial por status.
+### 3. Ingestão e Preenchimento Automático
+- **Upload Simplificado (Drag & Drop):** O profissional de TI apenas arrasta/faz o upload dos arquivos `.txt` gerados diretamente na página do link público.
+- **Leitura e Cadastro Automático:** O Siplan HUB realiza o *parsing* imediato dos arquivos, cadastrando e preenchendo automaticamente o inventário completo de hardware e estações na etapa de infraestrutura do projeto.
 
-- **Exigência de Informações Precisas:** Quando o cliente optar por fazer o levantamento sozinho, a planilha deve ser rigorosamente preenchida com especificações (exigir detalhes e refutar respostas vagas como "Tudo OK"). Inclusão de verificações críticas: presença de domínio (necessidade do WebRI), modelo nuvem/local e link redundante.
-- **Check-up Pré-Implantação Obrigatório:** Instituído um gate inegociável na semana anterior à viagem para validar empiricamente com o cliente se todas as adequações de hardware e rede recomendadas foram de fato realizadas.
+### 4. Validação Automática de Conformidade (Adequado vs. Inadequado)
+- **Cruzamento com Recomendações Mínimas:** O sistema cruza instantaneamente os dados ingeridos com os parâmetros técnicos e recomendações mínimas homologadas para a linha de produtos Siplan (Orion TN, Orion PRO, Orion REG):
+  - Ex: Servidor com mínimo de 6 cores, 20GB de RAM dedicada, modelo de nuvem/local, link de internet redundante e compatibilidade de SO.
+- **Status Instantâneo:** O HUB indica automaticamente se o ambiente está **Adequado** (liberando o projeto) ou **Inadequado** (apontando exatamente quais máquinas ou componentes estão fora da conformidade).
+
+---
+
+## ⛔ Tratamento de Impedimentos (Gate Condicional)
+
+- **Ambiente Adequado:** O gate de infraestrutura é aprovado automaticamente, permitindo o avanço sincronizado para a [[[Processo] 3. Análise de Aderência do Processo de Negócio]] e fila de conversão.
+- **Ambiente Inadequado:** 
+  - O HUB destaca as inconsistências e itens reprovados.
+  - A equipe técnica aciona o botão de **Notificar Comercial** ou dispara o relatório técnico formal diretamente ao cartório.
+  - O projeto é pausado até que o cartório providencie os upgrades de hardware ou correções de rede necessárias.
+  - **Check-up Pré-Viagem:** Uma semana antes do deslocamento para implantação presencial, é feita a revalidação para garantir que as melhorias foram de fato aplicadas.
+
+---
+
+**Próxima etapa:** [[[Processo] 3. Análise de Aderência do Processo de Negócio]]

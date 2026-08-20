@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "faed78330695c939",
+        "id": "1cc78fee257a2eab",
         "type": "tabs",
         "children": [
           {
-            "id": "ce65bab433aae403",
+            "id": "6c1f41fedfba5127",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "0-Em Andamento/Templates de Email - Siplan Skills.md",
+                "file": "Anotações Diárias/Semanas/2026-08/17-08--21-08.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Templates de Email - Siplan Skills"
+              "title": "17-08--21-08"
             }
           }
         ]
@@ -197,10 +197,6 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "pdf-plus:PDF++: Toggle auto-copy": false,
-      "pdf-plus:PDF++: Toggle auto-focus": false,
-      "pdf-plus:PDF++: Toggle auto-paste": false,
-      "antigravity-cli-sidebar:Open Antigravity CLI": false,
       "switcher:Abrir a troca rápida": false,
       "graph:Abrir visualização em gráfico": false,
       "canvas:Criar novo canvas": false,
@@ -208,49 +204,53 @@
       "templates:Inserir modelo": false,
       "command-palette:Abrir paleta de comandos": false,
       "bases:Criar nova base": false,
+      "terminal:Open terminal": false,
       "templater-obsidian:Templater": false,
       "obsidian-git:Open Git source control": false,
-      "terminal:Open terminal": false
+      "pdf-plus:PDF++: Toggle auto-copy": false,
+      "pdf-plus:PDF++: Toggle auto-focus": false,
+      "pdf-plus:PDF++: Toggle auto-paste": false,
+      "antigravity-cli-sidebar:Open Antigravity CLI": false
     }
   },
-  "active": "ce65bab433aae403",
+  "active": "6c1f41fedfba5127",
   "lastOpenFiles": [
     "Anotações Diárias/Semanas/2026-08/10-08--14-08.md",
+    "Anotações Diárias/Semanas/2026-08/17-08--21-08.md",
+    "install.cmd",
+    "copilot/copilot-custom-prompts/Translate to Chinese.md",
+    "copilot/copilot-custom-prompts/Summarize.md",
+    "copilot/copilot-custom-prompts/Simplify.md",
+    "copilot/copilot-custom-prompts/Rewrite as tweet.md",
+    "copilot/copilot-custom-prompts/Rewrite as tweet thread.md",
+    "copilot/copilot-custom-prompts/Remove URLs.md",
+    "copilot/copilot-custom-prompts/Make shorter.md",
+    "copilot/copilot-custom-prompts/Make longer.md",
+    "copilot/copilot-custom-prompts/Generate table of contents.md",
+    "copilot/copilot-custom-prompts/Generate glossary.md",
+    "copilot/copilot-custom-prompts/Fix grammar and spelling.md",
+    "copilot/copilot-custom-prompts/Explain like I am 5.md",
+    "copilot/copilot-custom-prompts/Emojify.md",
+    "copilot/copilot-custom-prompts/Clip YouTube Transcript.md",
+    "copilot/copilot-custom-prompts/Clip Web Page.md",
+    "copilot/copilot-custom-prompts",
+    "copilot",
     "0-Em Andamento/Templates de Email - Siplan Skills.md",
-    "docs/superpowers/plans/2026-06-08-journal-reorganization-plan.md",
     "Anotações Diárias/Semanas/2026-08/03-08--07-08.md",
     "Anotações Diárias/Semanas/2026-07/27-07--31-07.md",
+    "Anotações Diárias/Semanas/2026-08",
+    "Anotações Diárias/Semanas/2026-07/Sem título.md",
     "Anotações Diárias/Semanas/2026-07/20-07--24-07.md",
     "Anotações Diárias/Semanas/2026-07/13-07--17-07.md",
     "Anotações Diárias/Semanas/2026-07/06-07--10-07.md",
-    "Anotações Diárias/Semanas/2026-06/29-06--03-07.md",
-    "Anotações Diárias/Semanas/2026-06/15-06--19-06.md",
-    "Anotações Diárias/Semanas/2026-06/08-06--12-06.md",
-    "4-Arquivo/docs-implantacao/Vieira/Relatório de Atendimento Técnico (RAT) - Chamado 717671.pdf",
-    "4-Arquivo/docs-implantacao/Vieira/Formalização da Migração de Dados do SiplanTN para o OrionTN.pdf",
-    "4-Arquivo/docs-implantacao/Vieira/Documento de transição de conhecimento implantação.docx",
-    "4-Arquivo/docs-implantacao/Vieira/Catalogo de Conversão - OrionTN.pdf",
-    "4-Arquivo/docs-implantacao/Vieira/Análise de aderência para implantação.docx",
-    "4-Arquivo/docs-implantacao/Mizuno/Documento de transição de conhecimento implantação_1TNPT_PortoFeliz.pdf",
-    "4-Arquivo/docs-implantacao/Mizuno/Analise de Aderencia - OrionPRO - 2TNPT Mogi das Cruzes.pdf",
-    "4-Arquivo/docs-implantacao/Julio/Documento de Transição Implantação - SD - CMREG - OrionREG 2º RI de Guarulhos .xlsx",
-    "4-Arquivo/docs-implantacao/Julio/Aderência Orion REG - Olimpia - Resposta-Atualizado-20-02-2026.xlsx",
-    "4-Arquivo/docs-implantacao/Julio/Aderência - Output Sistema Julio.txt",
-    "3-Recursos/Produtos Siplan/Orion TN/MOC - Orion TN.md",
-    "3-Recursos/Produtos Siplan/Orion TN/Conhecimento/relatorio_orion_tn_siplan.md",
-    "3-Recursos/Produtos Siplan/Orion TN/Conhecimento/Orion TN - Selos e Integrações.md",
-    "3-Recursos/Produtos Siplan/Orion TN/Conhecimento/Orion TN - Escrituração de Atos.md",
-    "3-Recursos/Produtos Siplan/Orion TN/Conhecimento/Orion TN - Certidões e GED.md",
-    "3-Recursos/Produtos Siplan/Orion TN/Conhecimento/Orion TN - Caixa e Financeiro.md",
-    "3-Recursos/Produtos Siplan/Orion TN/Conhecimento/Orion TN - Balcão de Firmas.md",
-    "3-Recursos/Produtos Siplan/Orion TN/Assistente/Prompt Instruções Assistant - Orion TN.md",
-    "3-Recursos/Produtos Siplan/Orion TN/Assistente/OrionTN.md",
-    "3-Recursos/Produtos Siplan/Orion PRO/MOC - Orion PRO.md",
-    "3-Recursos/Produtos Siplan/Orion PRO/Conhecimento/relatorio_orion_pro.md",
-    "3-Recursos/Produtos Siplan/Orion PRO/Conhecimento/Orion PRO - Livros e Selagem.md",
-    "3-Recursos/Produtos Siplan/Orion PRO/Conhecimento/Orion PRO - Integração e Comunicação.md",
-    "3-Recursos/Produtos Siplan/Orion PRO/Conhecimento/Orion PRO - Devolução e Irregularidades.md",
-    "3-Recursos/Produtos Siplan/Orion PRO/Conhecimento/Orion PRO - Consulta e Protocolo.md",
+    "2-Áreas/Siplan Hub/Automações/[Manual] Passo a Passo - Novas Automações de Homologação.md",
+    "2-Áreas/Siplan Hub/Automações/[Manual] Passo a Passo - Automação de Configuração de Ambiente.md",
+    "Anotações Diárias/Semanas/2026-07",
+    "Anotações Diárias/Semanas/2026-06",
+    "3-Recursos/Produtos Siplan/Orion PRO/Aderência/Implantacao Orion PRO - Aderencia template produtos.docx",
+    "3-Recursos/Produtos Siplan/Orion PRO/Aderência/Implantacao Orion PRO - Aderencia template.docx",
+    "3-Recursos/Produtos Siplan/Orion PRO/Aderência/Análise de aderência - OrionPRO - 1 Catanduva.docx",
+    "3-Recursos/Produtos Siplan/Orion PRO/Aderência/Implantacao Orion PRO - Aderencia.docx",
     "Sem título.canvas"
   ]
 }

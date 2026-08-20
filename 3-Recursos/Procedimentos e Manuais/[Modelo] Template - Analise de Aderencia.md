@@ -8,7 +8,10 @@ tags:
 ---
 # [Modelo] Template Padrão - Análise de Aderência
 
-Este é o template unificado e padronizado para a realização da **Análise de Aderência do Processo de Negócio** (Fase 3 do Fluxo de Implantação). Ele foi desenhado para abandonar o antigo formato de "Checklist Simples" e atuar como uma verdadeira investigação técnica e estrutural do cartório, unindo as melhores práticas do modelo Orion REG às especificidades do Orion TN e PRO.
+Este documento documenta a matriz de perguntas e tópicos investigativos da **Análise de Aderência do Processo de Negócio** (Fase 3 do Fluxo de Implantação). 
+
+> [!NOTE]
+> **Gestão Dinâmica no Siplan HUB:** Esta estrutura foi totalmente digitalizada e é mantida dinamicamente no **Editor de Formulários com Versionamento** (no módulo `Implantadores > Editar Form. Aderência` do Siplan HUB). Ao invés de arquivos `.docx` legados, o formulário é gerado, preenchido, cadastrado e salvo diretamente no Hub, sincronizado em tempo real com o projeto do cliente. Os analistas podem ajustar e evoluir os blocos de perguntas continuamente.
 
 ## ── 1. IDENTIFICAÇÃO ──
 - **Sistema a implantar:** (ex: OrionTN, OrionREG, OrionPRO)
