@@ -221,7 +221,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 304.5
+    "width": 304.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -241,7 +242,7 @@
       "terminal:Open terminal": false
     }
   },
-  "active": "516ec1b2ad4a4213",
+  "active": "2b8c936955c168aa",
   "lastOpenFiles": [
     "conflict-files-obsidian-git.md",
     "Anotações Diárias/Semanas/2026-08/17-08--21-08.md",
