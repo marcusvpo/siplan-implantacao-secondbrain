@@ -1,6 +1,6 @@
 ### 3. Relação das 124 Rotinas com Dados Faltantes (Agrupadas por Vídeo)
 
-Abaixo estão todas as rotinas que necessitam do preenchimento da minutagem/segundos no documento, organizadas pelo respectivo vídeo na Bunny.net:
+Abaixo estão todas as rotinas que necessitam do preenchimento dos metadados de minutagem/segundos no documento, organizadas pelo respectivo vídeo na Bunny.net:
 
 ---
 
