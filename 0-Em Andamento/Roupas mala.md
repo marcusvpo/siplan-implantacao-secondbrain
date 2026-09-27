@@ -6,10 +6,9 @@ Importante - Os itens que estão com "(vou no corpo)" quer dizer que vou usando 
 O que ja separei para levar:
 
 Calças:
-- Calça de moletom baggy  preta (leve e confortável) 
 - Calça de moletom baggy cinza (leve e confortável) - (Vou no corpo)
 - Calça Chino Verde Escura
-- Calça Jeans Azul Escura
+- Calça Jeans Cargo Relaxed Fit Zara - Preto Desbotado
 - Calça Zara baggy preta (chino/alfaiataria)
 
 ---
@@ -56,4 +55,3 @@ Acessórios:
   [pretendo comprar algum óculos de sol novo lá, mas não sei o modelo ainda]
 - Cinto Dior reversível - Preto/Marrom (ele troca de lado e muda acor)
 - Mochila Cinza claro (para o dia a dia)
-- 
