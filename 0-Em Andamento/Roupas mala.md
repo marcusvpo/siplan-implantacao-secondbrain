@@ -34,6 +34,7 @@ Moletons/Jaquetas:
 - Blusa de moletom branca liso Ralph Lauren crewneck
 - Corta-vento Nike preto (bem fino e leve)
 - Sueter Fino bege half zip
+- Jaqueta Bomber leve Zara - Branco Marfim
 
 ---
 Tenis:
