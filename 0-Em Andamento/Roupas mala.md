@@ -24,7 +24,7 @@ Camisetas:
 ---
 Camisas:
 - Camisa manga longa linho - Branca com listras finas azuis
-- Camisa manga longa flanela xadrez veludo - Verde escura com marrom
+- Camisa manga longa flanela xadrez veludo - Verde escura com preto
 
 
 ---
@@ -33,7 +33,7 @@ Moletons/Jaquetas:
 - Moletom cinza liso confortável (Vou no corpo)
 - Tricô preto half zip da Polo Ralph Lauren
 - Blusa de moletom branca liso Ralph Lauren crewneck
-- Corta-vento Nike (Preto, fino e leve|)
+- Corta-vento Nike preto (bem fino e leve)
 - Sueter Fino bege half zip
 
 ---
