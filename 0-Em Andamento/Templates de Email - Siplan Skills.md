@@ -71,7 +71,7 @@ Prezados, boa tarde! Espero que se encontrem bem.
 
 Dando continuidade ao contato realizado pelo Macan, temos o prazer de disponibilizar os dados de acesso à nossa plataforma de capacitação, a Siplan Skills.
 
-Nesta etapa inicial, foram liberados os módulos de Demonstração e Treinamento do nosso sistema de Registro, o Orion REG, desenvolvidos para otimizar a curva de aprendizado e garantir o pleno domínio das funcionalidades da ferramenta.
+Nesta etapa inicial, foram liberados os módulos de Demonstração e Treinamento do nosso sistema de Registro/TDPJ, o Orion REG TDPJ, desenvolvidos para otimizar a curva de aprendizado e garantir o pleno domínio das funcionalidades da ferramenta.
 
 **Informações de Acesso:**
 **Plataforma:** https://skills.siplan.com.br
