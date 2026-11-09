@@ -34,7 +34,6 @@ https://www.youtube.com/watch?v=OgFi_EORQmY&t=2s&pp=ygURQUkgY2xpcHBpbmcgZ3RhIDY%
 
 
 ---
-Duvidas de nicho - 1 canal/página para postar todos os conteúdos de todos os nicho ou diferentes canais nichados e realmente com vídeos focados naquele nicho do GTA 6, como Carros, história dos personagens, modo história golpes/heists, etc.
 
 ideias:
 
@@ -52,3 +51,14 @@ tudo deve ser extremamente bem detalhado e padronizado, seguindo as diretrizes d
 
 para dar um boost em tudo isso, quero utilizar tecnicas de engajamento e viralização no estilo do Mr Beast e outros criadores virais. Mas também quero utilizar tecnicas de marketing como o Sexy Canvas de André Diamand
 
+---
+
+pensar melhor em:
+
+- geração de banner/thumb dos vídeos de forma automatica com IA
+- criar conta do zero e ir aquecendo manualmente/organicamente ou comprar conta/perfil já aquecidas.
+- automatizar postagem nas plataformas/redes sociais (futuro, no inicio quero e vou fazer isso manualmente.)
+- necessidade de mecanismos de Clonagem de Voz Humana Local para os vídeos ou apenas manter os audios originais dos vídeos longos que serão extraídos as maiorias dos cortes/clipes (referencia)
+- SEO, marketing e branding. Talvez criar agentes (ou um unico agente) específicos para isso.
+- 1 canal/página para postar todos os conteúdos de todos os nicho ou diferentes canais nichados e realmente com vídeos focados naquele nicho do GTA 6, como Carros, história dos personagens, modo história golpes/heists, etc.
+- 
