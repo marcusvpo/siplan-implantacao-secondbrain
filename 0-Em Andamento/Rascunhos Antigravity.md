@@ -36,3 +36,19 @@ https://www.youtube.com/watch?v=OgFi_EORQmY&t=2s&pp=ygURQUkgY2xpcHBpbmcgZ3RhIDY%
 ---
 Duvidas de nicho - 1 canal/página para postar todos os conteúdos de todos os nicho ou diferentes canais nichados e realmente com vídeos focados naquele nicho do GTA 6, como Carros, história dos personagens, modo história golpes/heists, etc.
 
+ideias:
+
+conectar gemini notebook ao antigravity com https://github.com/Chryzalide/agy-gemini-notebook-plugin . pois criei um notebook com inúmeras fontes que quero utilizar como referência e quero que o antigravity tenha o contexto completo dessas fontes, conectando direto ao notebook.
+
+quero criar um ecossistema agentico colossal, sendo o Antigravy o orquestrador, onde quero conectar MCPs, clonar repos open source, utilizar skills e agentes, etc. a minha ideia é que eu faça tudo por dentro do antigravity (ou até desenvolver/vibecodar uma plataforma para gerenciar tudo isso).
+
+meu objetivo é ser um dos maiores criadores de shorts/reels/tiktok de conteúdo do GTA VI. Não tenho o jogo, portanto pretendo utilizar vídeos de outros criadores famosos e que vão ser os primeiros a postarem conteúdo massivo de gameplays na pratica do GTA 6, o que eu quero é ter um ecossistema completo onde eu possa, a partir desses vídeos grandes de outros criadores, gerar uma grande quantidade de vídeos curtos que eu possa monetizar em plataformas como Youtube (foco em Shorts), Instagram (foco em Reels) e Tiktok.
+
+o mais importante é a criação automatizada e com IA desses vídeos curtos, esse deve ser o foco principal desse ecossistema agentico no Antigravity.
+
+quero conectar diversos MCPs que possam facilitar, melhorar e aprimorar toda a operação, por exemplo para automações caso necessário (como MCP do n8n), OpusClip AI MCP (ou qualquer outra plataforma do tipo) e outros diversos MCPs que melhorem/aprimorem a geração desse conteúdo como um todo. Nada ainda 100% está definido tecnicamente, estou aberto a sugestões.
+
+tudo deve ser extremamente bem detalhado e padronizado, seguindo as diretrizes das plataformas, padrões tecnicos de resolução e proporção dos vídeos curtos gerados, Branding e identidade visual do canal, etc.
+
+para dar um boost em tudo isso, quero utilizar tecnicas de engajamento e viralização no estilo do Mr Beast e outros criadores virais. Mas também quero utilizar tecnicas de marketing como o Sexy Canvas de André Diamand
+
