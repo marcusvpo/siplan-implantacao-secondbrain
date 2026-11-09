@@ -14,6 +14,12 @@ https://www.youtube.com/watch?v=iJiBJAJRRkk&pp=ugUEEgJlbtIHCQlBDAGHKiGM7w%3D%3D
 https://www.youtube.com/watch?v=QXfugR3ZIAs
 https://www.youtube.com/watch?v=D2OO5386a5s
 https://www.youtube.com/watch?v=kKVjaDVghfA&pp=ugUHEgVwdC1CUg%3D%3D
+https://www.youtube.com/watch?v=X_TnXgmEXNI
+https://www.youtube.com/watch?v=z7AZZXk3K5o&pp=ygURZ3RhIDYgQUkgY2xpcHBpbmc%3D
+https://www.youtube.com/watch?v=WJY5PGY-rM0&pp=ygURZ3RhIDYgQUkgY2xpcHBpbmc%3D
+https://www.youtube.com/watch?v=1ecn2fLXDQ0&pp=ygURZ3RhIDYgQUkgY2xpcHBpbmc%3D
+https://www.youtube.com/watch?v=c2ZhR_y4a_g&pp=ygURZ3RhIDYgQUkgY2xpcHBpbmc%3D
+
 
 
 
