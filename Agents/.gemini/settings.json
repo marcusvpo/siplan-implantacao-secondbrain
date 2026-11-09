@@ -6,6 +6,12 @@
   "agents": {
     "overrides": {}
   },
+  "permissions": {
+    "allow": [
+      "command(*)",
+      "mcp(*)"
+    ]
+  },
   "experimental": {
     "enableAgents": true
   }
