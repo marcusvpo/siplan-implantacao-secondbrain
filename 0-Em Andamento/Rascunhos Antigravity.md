@@ -12,6 +12,8 @@ https://www.youtube.com/watch?v=bfur3ZES_Go
 https://www.youtube.com/watch?v=O3b1QklJCGM
 https://www.youtube.com/watch?v=iJiBJAJRRkk&pp=ugUEEgJlbtIHCQlBDAGHKiGM7w%3D%3D
 https://www.youtube.com/watch?v=QXfugR3ZIAs
+https://www.youtube.com/watch?v=D2OO5386a5s
+https://www.youtube.com/watch?v=kKVjaDVghfA&pp=ugUHEgVwdC1CUg%3D%3D
 
 
 
