@@ -19,7 +19,17 @@ https://www.youtube.com/watch?v=z7AZZXk3K5o&pp=ygURZ3RhIDYgQUkgY2xpcHBpbmc%3D
 https://www.youtube.com/watch?v=WJY5PGY-rM0&pp=ygURZ3RhIDYgQUkgY2xpcHBpbmc%3D
 https://www.youtube.com/watch?v=1ecn2fLXDQ0&pp=ygURZ3RhIDYgQUkgY2xpcHBpbmc%3D
 https://www.youtube.com/watch?v=c2ZhR_y4a_g&pp=ygURZ3RhIDYgQUkgY2xpcHBpbmc%3D
-
+https://www.youtube.com/watch?v=-Tlu7NhsonI&pp=ygURZ3RhIDYgQUkgY2xpcHBpbmc%3D
+https://www.youtube.com/watch?v=348btYklcNo&pp=ygURZ3RhIDYgQUkgY2xpcHBpbmc%3D
+https://www.youtube.com/watch?v=whAA0_NiPho&pp=ygURZ3RhIDYgQUkgY2xpcHBpbmc%3D
+https://www.youtube.com/watch?v=_8qFChfsENQ&pp=ygULQUkgY2xpcHBpbmc%3D
+https://www.youtube.com/watch?v=COU3JfnOT84&pp=ygULQUkgY2xpcHBpbmc%3D
+https://www.youtube.com/watch?v=eJ2nVltoKXg&pp=ygULQUkgY2xpcHBpbmc%3D
+https://www.youtube.com/watch?v=rupIf7f7KLY&pp=ygULQUkgY2xpcHBpbmc%3D
+https://www.youtube.com/watch?v=qvFERA5avmc&pp=ygULQUkgY2xpcHBpbmc%3D
+https://www.youtube.com/watch?v=z9NEUtaY0y0&pp=ygURQUkgY2xpcHBpbmcgZ3RhIDY%3D
+https://www.youtube.com/watch?v=VPcZ987Ib5E&pp=ygURQUkgY2xpcHBpbmcgZ3RhIDbSBwkJQQwBhyohjO8%3D
+https://www.youtube.com/watch?v=OgFi_EORQmY&t=2s&pp=ygURQUkgY2xpcHBpbmcgZ3RhIDY%3D
 
 
 
