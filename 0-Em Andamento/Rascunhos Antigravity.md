@@ -1,24 +1,7 @@
-
-no modal dos projetos em /projects na aba principal "Informações Gerais" Para todos os projetos com o campo "Observações Gerais" vazios - e para todos os próximos que forem criados no hub. preciso que esse campo já venha preenchido com esse modelo:
-
-"
-Análise de Infra -
-
+adicionar filtro de pesquisa avançado para os projetos na tela /projcets, por exemplo quero saber quais projetos nós registramos nas observações sobre previsão de implantar no ano que vem. para isso eu tenho que ir abrindo manualmente um por um e ir olhando o campo de observações gerais.  
   
+Quero uma tela de pesquisa/consulta onde ao escrever qualquer coisa já mostra todos os projetos que possui aquelas informações e em qual etapa/campo está aquilo, com um preview da exata seção onde se encontra o que eu pesquisei. Tendo efeito para todos os campos que são de anotação/texto livre dos projetos. não incluir campos estáticos como de status, responsáveis, datas, etc.
 
-Aderência -
+esse campo/filtro de pesquisa deve ser separado do filtro atual "Buscar Projetos" pois esse é focado em pesquisa pelo nome do projeto e se juntarmos pode ficar muito confuso.
 
-  
-
-Conversão -
-
-- Homologação -
-
-  
-
-Config. Ambiente -
-
-  
-
-Data prevista de implantação para 11/01 a 15/01 - Rodrigo Brites (A pedido do Macan)
-"
+então quero que essa pesquisa de observações/textos fique do lado esquerdo do botão "Ordenar"
