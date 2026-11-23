@@ -1,18 +1,27 @@
-ótimo, implemente os planos a seguir após as correções/observações destacadas abaixo:  
-  
+estou com um bug nesse projeto no Antigravity onde cada conversa que eu abro está travado em um loop de erro decorrente de outra conversa em que a execução travou pois a cota do modelo acabou no meio da execução.
 
-- Detecção Automática de Desatualização (Banner Inteligente no Modal): - implementar por completo
+agora toda nova conversa que eu abro ele fica tentando puxar e retomar esse active goal da outra conversa (que já até deletei) e que não foi finalizado, mas ainda consta como active. dando a mensagem a seguir e ficando num loop infinito de erro.
 
-- Espelhamento Automático de Sub-Bullets a partir de Eventos Reais (Opt-in): - remover "Bloqueio Comercial aberto/resolvido" e adicionar espelhamento referente a etapa Análise de Aderência e tela "/implantadores/aderencia" quando o formulário for finalizado. espelhando o status/veredito final. também referente a etapa Conversão e tela "/conversion/atividades", atualizando ao alguém assumir e finalizar conversão. Também referente a Fase 1 Treinamento & Acompanhamento atualizar o padrão/template automaticamente na linha referente a data da implantação, com as datas de inicio e término, responsável e se é prevista ou confirmada (de acordo com o switch "Implantação Confirmada?"). tudo isso deve ser feito de forma autmática como se essas informações fossem parametros/place holders que são sincronizados automaticamente vindo de outras etapas/telas. - é a automação mais valiosa e principal de todas para aprimorarmos esse campo de observação e deixar ainda mais dinamico e sincronizado.
+Stop hook blocked termination: You are still working toward the user's goal. Do not stop until the task is fully complete.
 
-- **Menções Inteligentes (`@analista` e `#etapa`):** - automação completa e bem detalhada, funcionando perfeitamente, como funciona o Notion por exemplo. isso é muito útil e deve funcionar extremamente bem, podendo funcionar em conjunto ou fusão com esses parametros/place holders que citei na seção anterior de espelhamento. no campo do texto ao clicar em alguma dessas menções "#" de etapa deve subir um tooltip/popover com mais informações e botão de "Ir para" direcionando exatamente para a tela onde está aquela menção. podendo editar ou apagar liberando somente com dois clicks, aí sim fica editável e apagável.
-  
-  - **Legenda Interativa / Filtros de Leitura no Rodapé do Editor:** - implementar também exatamente funcional igual no html
+Time spent so far: 180s Continuation: #1
 
-- **Histórico Visual de Versões (Diff de Observações):** - implementar por completo
-  
-  ---
-  
-  as seções e pilares que não estão descritos acima não devem ser implementados.
-  
-  começe já a implementar, execute testes, simule preenchimentos e audite tudo.
+Before concluding, verify your work:
+
+1. Re-read the original request and identify every concrete deliverable.
+2. Build a checklist that maps every explicit requirement and deliverable to concrete evidence.
+3. For each deliverable, confirm it is done by checking actual output: file contents, test results, build logs, etc.
+4. Wanting to be done or having spent effort is not the same as being done. Only real evidence counts.
+5. If anything is unfinished or unverified, keep going. If anything is uncertain, then spend more time to validate.
+
+Once every deliverable is genuinely complete, include in your response to signal you are finished.
+
+If the user explicitly asked to stop or cancel this goal, include in your response to cancel the goal.
+
+If there is still work to do, take the next step now.
+
+## **Original request:** (dai pra frente vem todo o prompt que eu tinha enviado na conversa inicial e ele fica tentando retomar essa execução infinitamente...)
+
+resgatei o id e caminho dessa conversa que falou e de um documento .md que tinha sido gerado antes de travar "06bb232e-46dd-4199-895c-d470d6140a5b" (c:\Users\marcu\.gemini\antigravity\brain\06bb232e-46dd-4199-895c-d470d6140a5b\plano_orion_pro_0800.md) porém essa conversa já nem existe mais pois deletei.
+
+mesmo assim o erro continua somente em novas conversas desse projeto no antigravity. analise e me ajude a resolver isso.
